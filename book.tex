@@ -1,7 +1,10 @@
 \documentclass[preprint,russian,a5paper,10pt,twoside]{ncc}
 \usepackage[utf8]{inputenc}
-\usepackage{misccorr}		% различные особенности оформления документов, принятые в России
-\usepackage{indentfirst}	% начинать абзац с красной строки
+\usepackage{misccorr}			% различные особенности оформления документов, принятые в России
+\usepackage{indentfirst}		% начинать абзац с красной строки
+\usepackage{tikz}				% рисование чертежей
+\usetikzlibrary{positioning}	% автоматическое размещение элементов на чертежах относительно друг друга
+\usetikzlibrary{shapes.misc}
 \begin{document}
 
 \begin{titlepage}
@@ -15,8 +18,7 @@
 
 \setcounter{page}{2}
 \thispagestyle{empty}
-\mbox{}
-\newpage
+\mbox{}\newpage
 \tableofcontents
 \newpage
 
@@ -25,27 +27,100 @@
 Существует три фундаментальных принципа управления:
 \begin{itemize}
 \item Управление по заданию --- передаточная функция регулятора обратна передаточной функции объекта управления (ОУ).
-\begin{equation}
+\begin{equation}\label{equ:intro:control_by_target}
 W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
 \end{equation}
-\begin{figure}[ht] \centering \footnotesize
-\begin{picture}(60,12)							% по умолчанию размеры в мм
-	\put(0,5){\vector(1,0){10}}
-	\put(0,5){\makebox(10,6){$v$}}
-	\put(10,0){\framebox(15,10){$ W_{\text{УУ}} $}}
-	\put(25,5){\vector(1,0){10}}
-	\put(25,5){\makebox(10,6){$u$}}
-	\put(35,0){\framebox(15,10){$ W_{\text{ОУ}} $}}
-	\put(50,5){\vector(1,0){10}}
-	\put(50,5){\makebox(10,6){$y$}}
-\end{picture}
-\caption{Управление по заданию\label{fig:intro:control_by_target}}
-\end{figure}
-\item Управление по возмущению --- возмущения, действующие на объект, учитываются при формировании управляющего воздействия.
-\item Управление по ошибке --- на вход регулятора подаётся отклонение выходного сигнала объекта от сигнала задания, и формируется управляющий сигнал, направленный на минимизацию этого отклонения.
-\end{itemize}
+%\begin{figure}[ht] \centering
+%\begin{picture}(60,10)							% по умолчанию размеры в мм
+%	\put(0,5){\vector(1,0){10}}
+%	\put(0,5){\makebox(10,6){$v$}}
+%	\put(10,0){\framebox(15,10){$ W_{\text{УУ}} $}}
+%	\put(25,5){\vector(1,0){10}}
+%	\put(25,5){\makebox(10,6){$u$}}
+%	\put(35,0){\framebox(15,10){$ W_{\text{ОУ}} $}}
+%	\put(50,5){\vector(1,0){10}}
+%	\put(50,5){\makebox(10,6){$y$}}
+%\end{picture}
+%\footnotesize \caption{Управление по заданию\label{fig:intro:control_by_target}}
+%\end{figure}
 
-\newpage
+\begin{figure}[ht] \centering
+\begin{tikzpicture}											% здесь размеры по умолчанию в см
+	[	auto,												% чтобы элементы чертежа не пересекались
+		inner sep = 2ex,									% пространство, оставляемое вокруг текста
+		block/.style={rectangle,draw=black,thick},		% стиль отрисовки блока
+		vec/.style={->,>=stealth,semithick},				% стиль отрисовки вектора
+		point/.style={inner sep = 0pt}	]
+	\node[block] (object) {$ W_{\text{ОУ}} $};			% Ставить ; обязательно! ИНАЧЕ ВСЁ ВИСНЕТ!!!!1
+	\node[block] (regulator) [left = of object] {$ W_{\text{УУ}} $};
+%	\draw[vec] (regulator) to (object);					% вектор без подписи
+	\draw[vec] (regulator) to node{$u$} (object);			% вектор с подписью
+	\node[point] (input) [left = of regulator] {};
+	\draw[vec] (input) to node{$v$} (regulator);
+	\node[point] (output) [right = of object] {};
+	\draw[vec] (object) to node{$y$} (output);
+\end{tikzpicture}
+\footnotesize \caption{Управление по заданию\label{fig:intro:control_by_target}}
+\end{figure}
+
+\item Управление по возмущению --- возмущения, действующие на объект, учитываются при формировании управляющего воздействия.
+\begin{equation}\label{equ:intro:control_by_noise}
+W_{\text{УУ}}=?
+\end{equation}
+\begin{figure}[ht] \centering
+\begin{tikzpicture}	
+	[	auto, inner sep = 2ex,
+		block/.style={rectangle,draw=black,thick},
+		vec/.style={->,>=stealth,semithick},
+		point/.style={inner sep = 0pt}	]
+	\node[block] (object) {$ W_\text{ОУ} $};
+	\node[block] (regulator) [left = of object] {$ W_\text{УУ} $};
+	\draw[vec] (regulator) to node{$u$} (object);
+	\node[point] (input) [left = of regulator] {};
+	\draw[vec] (input) to node{$v$} (regulator);
+	\node[point] (output) [right = of object] {};
+	\draw[vec] (object) to node{$y$} (output);
+	\node[point] (noise) [above = of object] {};
+	\draw[vec] (noise) to node{$f$} (object);
+\end{tikzpicture}
+\footnotesize \caption{Управление по возмущению\label{fig:intro:control_by_noise}}
+\end{figure}
+
+\item Управление по ошибке --- на вход регулятора подаётся отклонение выходного сигнала объекта от сигнала задания, и формируется управляющий сигнал, направленный на минимизацию этого отклонения.
+\begin{equation}\label{equ:intro:control_by_eps}
+W_{\text{УУ}}=?
+\end{equation}
+\begin{figure}[ht] \centering
+\begin{tikzpicture}	
+	[	auto, inner sep = 2ex,
+		block/.style={rectangle,draw,thick},
+		vec/.style={->,>=stealth,semithick},
+		point/.style={inner sep = 0pt}	]
+	\node[block] (object) {$ W_\text{ОУ} $};
+	\node[block] (regulator) [left = of object] {$ W_\text{УУ} $};
+	\draw[vec] (regulator) to node{$u$} (object);
+	\node[circle,draw,thick,inner sep=0pt,minimum size=2ex] (sum) [left = of regulator] {};
+	\draw[semithick] (sum.north west) -- (sum.south east);
+	\draw[semithick] (sum.south west) -- (sum.north east);
+	\fill (sum.center) -- (sum.south west) arc (-135:-45:1ex) -- cycle;
+	\draw[vec] (sum) to node{$e$} (regulator);
+	\node[point] (input) [left = of sum] {};
+	\draw[vec] (input) to node{$v$} (sum);
+	\node[point] (output) [right = of object] {};
+	\draw[vec] (object) to node(y){$y$} (output);
+	\node[point] (p1) [below=of sum] {};
+	\draw (y.south) |- (p1.center) [vec] to (sum);
+	\fill (y.south) circle (1pt);
+	\node[point] (noise) [above = of object] {};
+	\draw[vec] (noise) to node{$f$} (object);
+\end{tikzpicture}
+\footnotesize \caption{Управление по ошибке\label{fig:intro:control_by_eps}}
+\end{figure}
+\end{itemize}
+% Смотри формулу~\eqref{equ:intro:control_by_target}, с.~\pageref{equ:intro:control_by_target}.
+% А теперь смотри рисунок~\ref{fig:intro:control_by_target}, с.~\pageref{fig:intro:control_by_target}.
+
+\newpage\mbox{}\newpage
 
 \section{Постановка задачи оптимального управления\label{task}}
 В общем случае такой постановки управления характеризуются значительным разнообразием, что связано с 3 основными причинами:
