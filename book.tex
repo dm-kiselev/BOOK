@@ -28,25 +28,12 @@
 
 Существует три фундаментальных принципа управления:
 \begin{itemize}
-\item Управление по заданию --- передаточная функция регулятора обратна передаточной функции объекта управления (ОУ).
+\item Управление по заданию --- необходимо получить заданный сигнал $v$ на выходе объекта управления (ОУ). Для этого передаточная функция системы управления в целом (см. рис.~\ref{fig:intro:control_by_target}) должна быть равна единице. Тогда передаточная функция устройства управления (УУ) равна:
 \begin{equation}\label{equ:intro:control_by_target}
 W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
 \end{equation}
-%\begin{figure}[ht] \centering
-%\begin{picture}(60,10)							% по умолчанию размеры в мм
-%	\put(0,5){\vector(1,0){10}}
-%	\put(0,5){\makebox(10,6){$v$}}
-%	\put(10,0){\framebox(15,10){$ W_{\text{УУ}} $}}
-%	\put(25,5){\vector(1,0){10}}
-%	\put(25,5){\makebox(10,6){$u$}}
-%	\put(35,0){\framebox(15,10){$ W_{\text{ОУ}} $}}
-%	\put(50,5){\vector(1,0){10}}
-%	\put(50,5){\makebox(10,6){$y$}}
-%\end{picture}
-%\footnotesize \caption{Управление по заданию\label{fig:intro:control_by_target}}
-%\end{figure}
 
-\begin{figure}[ht] \centering
+\begin{figure}[ht] \centering		% [ht] - размещение в указанном месте, а если невозможно, то вверху следующей страницы
 \begin{tikzpicture}											% здесь размеры по умолчанию в см
 	[	auto,												% чтобы элементы чертежа не пересекались
 		inner sep = 2ex,									% пространство, оставляемое вокруг текста
@@ -60,15 +47,16 @@ W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
 	\node[point] (input) [left = of regulator] {};
 	\draw[vec] (input) to node{$v$} (regulator);
 	\node[point] (output) [right = of object] {};
-	\draw[vec] (object) to node{$y$} (output);
+	\draw[vec] (object) to node{$x$} (output);
 \end{tikzpicture}
 \footnotesize \caption{Управление по заданию\label{fig:intro:control_by_target}}
 \end{figure}
 
-\item Управление по возмущению --- возмущения, действующие на объект, учитываются при формировании управляющего воздействия.
+\item Управление по возмущению --- возмущения $f$, действующие на объект, учитываются при формировании управляющего воздействия $u$ (см. рис.~\ref{fig:intro:control_by_noise}). Передаточная функция от возмущений к выходу может быть выражена как $ W_{fu}W_\text{ОУ}+W_{fx} $ и должна быть равна нулю. Тогда передаточная функция от возмущений к управлению равна:
 \begin{equation}\label{equ:intro:control_by_noise}
-W_{\text{УУ}}=?
+W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
 \end{equation}
+
 \begin{figure}[ht] \centering
 \begin{tikzpicture}	
 	[	auto, inner sep = 2ex,
@@ -81,17 +69,21 @@ W_{\text{УУ}}=?
 	\node[point] (input) [left = of regulator] {};
 	\draw[vec] (input) to node{$v$} (regulator);
 	\node[point] (output) [right = of object] {};
-	\draw[vec] (object) to node{$y$} (output);
+	\draw[vec] (object) to node{$x$} (output);
 	\node[point] (noise) [above = of object] {};
-	\draw[vec] (noise) to node{$f$} (object);
+	\draw[vec] (noise) to node(f){$f$} (object);
+	\draw[vec] (f.west) -| (regulator.north);
+	\fill (f.west) circle (1pt);
 \end{tikzpicture}
 \footnotesize \caption{Управление по возмущению\label{fig:intro:control_by_noise}}
 \end{figure}
 
-\item Управление по ошибке --- на вход регулятора подаётся отклонение выходного сигнала объекта от сигнала задания, и формируется управляющий сигнал, направленный на минимизацию этого отклонения.
+\item Управление по ошибке --- на вход регулятора подаётся отклонение $e$ выходного сигнала объекта $x$ от сигнала задания $v$ (см. рис.~\ref{fig:intro:control_by_eps}). Если $e$ устремить к нулю, то передаточная функция от $e$ к $x$ должна устремиться к бесконечности, чтобы получить на выходе заданную величину:
 \begin{equation}\label{equ:intro:control_by_eps}
-W_{\text{УУ}}=?
+W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
 \end{equation}
+Этого можно добиться, например, введением в регулятор очень больших коэффициентов усиления или интегрирующих звеньев.
+
 \begin{figure}[ht] \centering
 \begin{tikzpicture}	
 	[	auto, inner sep = 2ex,
@@ -109,12 +101,10 @@ W_{\text{УУ}}=?
 	\node[point] (input) [left = of sum] {};
 	\draw[vec] (input) to node{$v$} (sum);
 	\node[point] (output) [right = of object] {};
-	\draw[vec] (object) to node(y){$y$} (output);
+	\draw[vec] (object) to node(x){$x$} (output);
 	\node[point] (p1) [below=of sum] {};
-	\draw (y.south) |- (p1.center) [vec] to (sum);
-	\fill (y.south) circle (1pt);
-	\node[point] (noise) [above = of object] {};
-	\draw[vec] (noise) to node{$f$} (object);
+	\draw (x.south) |- (p1.center) [vec] to (sum);
+	\fill (x.south) circle (1pt);
 \end{tikzpicture}
 \footnotesize \caption{Управление по ошибке\label{fig:intro:control_by_eps}}
 \end{figure}
@@ -122,7 +112,39 @@ W_{\text{УУ}}=?
 % Смотри формулу~\eqref{equ:intro:control_by_target}, с.~\pageref{equ:intro:control_by_target}.
 % А теперь смотри рисунок~\ref{fig:intro:control_by_target}, с.~\pageref{fig:intro:control_by_target}.
 
-\newpage\mbox{}\newpage
+По решаемой задаче системы автоматического управления (САУ) можно разделить на системы:
+\begin{itemize}
+\item стабилизации
+\item программного управления
+\item слежения
+\item оптимального управления
+\item адаптивного управления (поисковые и самонастраивающиеся)
+\end{itemize}
+
+Анализ и синтез САУ предполагает, что кроме цели рассматривается путь решения задачи. Для этого используются различные показатели качества:
+\begin{itemize}
+\item Прямые:
+	\begin{itemize}
+	\item Статические: статизм, добротность;
+	\item Динамические: время переходного процесса, перерегулирование, колебательность;
+	\end{itemize}
+\item Косвенные:
+	\begin{itemize}
+	\item Корневые;
+	\item Частотные;
+	\item Интегральные.
+	\end{itemize}
+\end{itemize}
+
+Существует два основных подхода к синтезу САУ:
+\begin{enumerate}
+\item Обеспечить заданные показатели качества;
+\item Обеспечить наилучшее (оптимальное) в каком-либо определённом смысле качество управления для заданного объекта при конкретных условиях работы и ограничениях.
+\end{enumerate}
+
+При решении такой задачи естественно требовать от управляемого процесса (ОУ) выполнения условий полной управляемости и наблюдаемости.
+
+\newpage % \mbox{}\newpage
 
 \section{Постановка задачи оптимального управления\label{task}}
 
