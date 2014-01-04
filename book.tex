@@ -317,8 +317,69 @@ $\frac{{{\partial }^{2}}L}{\partial x_{1}^{2}}=1;$ $\frac{{{\partial }^{2}}L}{\p
 \\Условие Лежандра $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0\to \min $ величина которого будет равна ${{J}_{\min }}={{\int\limits_{0}^{1}{\left( {\dot{\hat{x}}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( {\dot{t}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( 1 \right)}}^{2}}dt=\left. t \right|_{0}^{1}=1$
 \item Найти уравнение выхода $x\left( t \right)$  и характеристический полином СУ, для которой $J\left( \infty  \right)=\int\limits_{0}^{\infty }{\left( {{a}_{0}}{{x}^{2}}+{{a}_{1}}{{{\dot{x}}}^{2}} \right)}dt\to \min$, при условиях ${{a}_{0}}>0,\,{{a}_{1}}>0,\,x\left( 0 \right)={{x}_{0}},x\left( \infty  \right)=0$
 \\$F={{a}_{0}}{{x}^{2}}+{{a}_{1}}{{\dot{x}}^{2}},\frac{\partial F}{\partial x}=2{{a}_{0}}x,\frac{\partial F}{\partial \dot{x}}=2{{a}_{1}}\dot{x}$
-\\Уравнение Эйлера: $2{{a}_{0}}x-\frac{d}{dt}\left( 2{{a}_{1}}\dot{x} \right)=0$, $\ddot{x}-\frac{{{a}_{0}}}{{{a}_{1}}}x=0$, ${{\lambda }^{2}}-\frac{{{a}_{0}}}{{{a}_{1}}}=0$, ${{\lambda }_{12}}=\pm \sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$, \[x\left( t \right)={{C}_{1}}{{e}^{\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}+{{C}_{2}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}\]
+\\Уравнение Эйлера: $2{{a}_{0}}x-\frac{d}{dt}\left( 2{{a}_{1}}\dot{x} \right)=0$, $\ddot{x}-\frac{{{a}_{0}}}{{{a}_{1}}}x=0$, ${{\lambda }^{2}}-\frac{{{a}_{0}}}{{{a}_{1}}}=0$, ${{\lambda }_{12}}=\pm \sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$, 
+\\$x\left( t \right)={{C}_{1}}{{e}^{\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}+{{C}_{2}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}$
+\\$t=0;\,{{x}_{0}}={{C}_{1}}+{{C}_{2}}$
+\\$t=\infty ;0=C_{1}^{-\infty }\to {{C}_{1}}=0$, а ${{C}_{2}}={{x}_{0}}$
+\par Допустимая экстремаль $\hat{x}={{x}_{0}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}t}}$
+\\Условие Лежандра: $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2{{a}_{1}}>0$ - условия $\min $ выполнены.
+\par Характеристический полином системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ 
 \end{enumerate}
+Обобщим результаты в 2 направлениях:
+\begin{itemize}
+\item Многомерный случай
+\\$X$-векторная функция $={{\left( x_{1}^{\left( t \right)},x_{2}^{\left( t \right)},...x_{n}^{\left( t \right)} \right)}^{T}}$ 
+\\$J\left( x \right)=\int\limits_{{{t}_{0}}}^{{{t}_{K}}}{F\left( x,\dot{x},t \right)}dt\to extr$, $\min $;
+\\${{x}_{i}}\left( {{t}_{0}} \right)={{x}_{io}}$, ${{x}_{i}}\left( {{t}_{k}} \right)={{x}_{ik}}$
+\\Тогда первое необходимое условие (уравнение Эйлера) - система: $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)=0,i=\overline{1,n}$ 
+\\Второе условие требует анализа матрицы вторых частных производных:
+\[\left\| \begin{array}{*{35}{l}}
+   \frac{{{\partial }^{2}}F}{\partial \dot{x}_{1}^{2}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{2}}} & ... & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{n}}}  \\
+   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{2}^{2}} & ... & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{n}}}  \\
+   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{n}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{n}}\partial {{{\dot{x}}}_{2}}} & ... & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{n}^{2}}  \\
+\end{array} \right\|\]
+\\Для \underline{минимума}, все диагональные миноры \underline{должны быть $\ge 0$}, для \underline{$\max \le 0$}. Строгие неравенства дают и \underline{достаточность} условий.
+%Непонятно что это пункт или часть случая
+\\
+\\
+\\$J=\int\limits_{0}^{1}{\left( {{x}_{1}}{{x}_{2}}+{{{\dot{x}}}_{1}}{{{\dot{x}}}_{2}} \right)}dt\to extr$, ${{x}_{1}}\left( 0 \right)={{x}_{2}}\left( 0 \right)=1$, ${{x}_{1}}\left( 1 \right)=e$, ${{x}_{2}}\left( 1 \right)=\frac{1}{e}$ 
+\\$X=\left( {{x}_{1}},{{x}_{2}} \right)$, $F={{x}_{1}}{{x}_{2}}+{{\dot{x}}_{1}}{{\dot{x}}_{2}}$
+\\$\frac{\partial F}{\partial {{x}_{1}}}={{x}_{2}}$ $\frac{\partial F}{\partial {{{\dot{x}}}_{1}}}={{\dot{x}}_{2}}$ $\to $ $\frac{\partial F}{\partial {{x}_{1}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{1}}} \right)=0$: ${{\ddot{x}}_{2}}-{{x}_{2}}=0$ $\to $ ${{x}_{2}}={{C}_{1}}{{e}^{t}}+{{C}_{2}}{{e}^{-t}}$
+\\$\frac{\partial F}{\partial {{x}_{2}}}={{x}_{1}}$, $\frac{\partial F}{\partial {{{\dot{x}}}_{2}}}={{\dot{x}}_{1}}$ $\to$ $\frac{\partial F}{\partial {{x}_{2}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{2}}} \right)=0$: ${{\ddot{x}}_{1}}-{{x}_{1}}=0$ $\to$ ${{x}_{1}}={{C}_{3}}{{e}^{t}}+{{C}_{4}}{{e}^{-t}}$
+\\Подставив начальные и конечные условия получим ${{\hat{x}}_{1}}={{e}^{t}}$, ${{\hat{x}}_{2}}={{e}^{-t}}$
+$\left\| \begin{matrix}
+   \frac{{{\partial }^{2}}F}{\partial \dot{x}_{1}^{2}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{2}}}  \\
+   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{2}^{2}}  \\
+\end{matrix} \right\|=\left\| \begin{matrix}
+   0 & 1  \\
+   1 & 0  \\
+\end{matrix} \right\|$ $\to $  ${{\Delta }_{1}}=0$, ${{\Delta }_{2}}=-1$ $\to $ имеет место \underline{$\max $}
+\\${{J}_{\max }}=\int\limits_{0}^{1}{\left( {{e}^{t}}{{e}^{-t}}+{{e}^{t}}\left( {{e}^{-t}} \right) \right)}dt=0$
+\item Задача со старшими производными:
+\\$J\left( x \right)=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,\dot{x},\ddot{x},...\overset{n}{\mathop{x}}\,,t \right)}dt$
+\\$x\left( {{t}_{0}} \right)={{x}_{0}},\dot{x}\left( {{t}_{0}} \right)={{x}_{0}},...\overset{\left( n-1 \right)}{\mathop{x}}\,\left( {{t}_{0}} \right)=\overset{\left( n-1 \right)}{\mathop{{{x}_{0}}}}\,$
+\\$x\left( {{t}_{k}} \right)={{x}_{0}},\dot{x}\left( {{t}_{k}} \right)={{x}_{k}},...\overset{\left( n-1 \right)}{\mathop{x}}\,\left( {{t}_{k}} \right)=\overset{\left( n-1 \right)}{\mathop{{{x}_{k}}}}\,$
+Существует 2 способа решения:
+\begin{enumerate}
+\item Рассматривается векторная функция, составляемая из исходной $x\left( t \right)$ и её $\left( n-1 \right)$ производной - т.е. задача, как многомерный случай
+\item Уравнение Эйлера преобразуется в уравнение Эйлера-Пуассона:
+$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( \frac{\partial F}{\partial \ddot{x}} \right)-...+{{\left( -1 \right)}^{n}}\frac{{{d}^{n}}}{d{{t}^{n}}}\left( \frac{\partial F}{\partial \overset{\left( n \right)}{\mathop{x}}\,} \right)=0$,
+\\Условие Лежандра: $\frac{{{\partial }^{2}}F}{{{\left( \partial \overset{\left( n \right)}{\mathop{x}}\, \right)}^{2}}}\ne 0$
+\\ $J\left( x \right)=\int\limits_{0}^{1}{{{{\ddot{x}}}^{2}}}dt\to extr$, $x\left( 0 \right)=\dot{x}\left( 0 \right)=0$, $x\left( 1 \right)=0$, $\dot{x}\left( 1 \right)=1$
+\\$F={{\ddot{x}}^{2}}$: $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( \frac{\partial F}{\partial \ddot{x}} \right)=0$
+\\$0-0+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( 2\ddot{x} \right)=0$ $\to $ $\overset{\left( 4 \right)}{\mathop{x}}\,=0$, $\overset{\left( 3 \right)}{\mathop{x}}\,={{C}_{1}}$, $\overset{\left( 2 \right)}{\mathop{x}}\,={{C}_{1}}t+{{C}_{2}}$, $\dot{x}=\frac{1}{2}{{C}_{1}}{{t}^{2}}+{{C}_{2}}t+{{C}_{3}}$
+\\$x=\frac{1}{6}{{C}_{1}}{{t}^{3}}+\frac{1}{2}{{C}_{2}}{{t}^{2}}+{{C}_{3}}t+{{C}_{4}}$, 
+\\$t\left( 0 \right):\,0={{C}_{4}},\,0={{C}_{3}}$
+\\$t\left( 1 \right):\frac{1}{6}{{C}_{1}}+\frac{1}{2}{{C}_{2}}=0,\frac{1}{2}{{C}_{1}}+{{C}_{2}}=0$ $\to $ ${{C}_{1}}=6,\,{{C}_{2}}=-2$
+\\$\hat{x}={{t}^{3}}-{{t}^{2}}$, $\ddot{\hat{x}}=6t-2$ 
+\\${{J}_{\min }}=\int\limits_{0}^{1}{{{\left( 6t-2 \right)}^{2}}}dt=\left. 12{{t}^{3}} \right|_{0}^{1}-\left. 12{{t}^{2}} \right|_{0}^{1}+\left. 4t \right|_{0}^{1}=4$
+\end{enumerate}
+\end{itemize}
+\subsection{Задачи с нефиксированными границами}
+Как для начального момента времени (левого конца) так и для конечного момента времени (правого конца) могут быть следующие варианты: (для удобства все примеры для правого конца)
+
+\begin{itemize}
+\end{itemize}
 
 \clearpage
 \section{Основы вариационного исчисления\label{variations}}
