@@ -6,6 +6,7 @@
 \usetikzlibrary{positioning}	% автоматическое размещение элементов на чертежах относительно друг друга
 \usetikzlibrary{shapes.misc}
 \usepackage{enumitem} %Для разрывов в списках
+\pagestyle{plain}
 
 %********Команда все примеры подчеркиваем
 \newcommand{\ExampleMy}{\textbf{\underline{Пример:}}}
@@ -15,7 +16,7 @@
 \begin{document}
 
 \begin{titlepage}
-	\titlehead{\footnotesize САНКТ-ПЕТЕРБУРГСКИЙ\\[-.2ex] ГОСУДАРСТВЕННЫЙ ПОЛИТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ\par\vspace{1mm} ИНСТИТУТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ И УПРАВЛЕНИЯ}
+	\titlehead{\footnotesize САНКТ-ПЕТЕРБУРГСКИЙ\\ ГОСУДАРСТВЕННЫЙ ПОЛИТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ\par\vspace{1mm} ИНСТИТУТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ И УПРАВЛЕНИЯ\par\vspace{1mm} КАФЕДРА КОМПЬЮТЕРНЫХ СИСТЕМ\\ И ПРОГРАММНЫХ ТЕХНОЛОГИЙ}
 	\titlefoot{Санкт-Петербург\\ \theyear}
 	\author{С.\=,А.~Нестеров}
 	\title{СИСТЕМЫ ОПТИМАЛЬНОГО УПРАВЛЕНИЯ}
@@ -29,7 +30,9 @@
 \tableofcontents
 \newpage
 
+\setcounter{secnumdepth}{-1}		% отключили нумерацию разделов
 \section{Введение\label{intro}}
+\setcounter{secnumdepth}{2}		% включили обратно
 
 Для начала определимся, что понимается под управлением. Существует три фундаментальных принципа управления:
 \begin{itemize}
@@ -84,7 +87,8 @@ W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
 \end{figure}
 
 \item Управление по ошибке --- на вход регулятора подаётся отклонение $e$ выходного сигнала объекта $x$ от сигнала задания $v$ (см. рис.~\ref{fig:intro:control_by_eps}). Если $e$ устремить к нулю, то передаточная функция от $e$ к $x$ должна устремиться к бесконечности, чтобы получить на выходе заданную величину:
-\begin{equation}\label{equ:intro:control_by_eps}W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
+\begin{equation}\label{equ:intro:control_by_eps}
+W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
 \end{equation}
 
 Этого можно добиться, например, введением в регулятор очень больших коэффициентов усиления или интегрирующих звеньев.
@@ -151,7 +155,7 @@ W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
 
 При решении такой задачи естественно требовать от управляемого процесса (ОУ) выполнения условий полной управляемости и наблюдаемости.
 
-\newpage % \mbox{}\newpage
+\clearpage		% выводит все накопившиеся плавающие элементы, а затем завершает страницу
 
 \section{Постановка задачи оптимального управления\label{task}}
 
@@ -378,8 +382,8 @@ $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \do
 \subsection{Задачи с нефиксированными границами}
 Как для начального момента времени (левого конца) так и для конечного момента времени (правого конца) могут быть следующие варианты: (для удобства все примеры для правого конца)
 
-\begin{itemize}
-\end{itemize}
+%\begin{itemize}
+%\end{itemize}
 
 \clearpage
 \section{Основы вариационного исчисления\label{variations}}
