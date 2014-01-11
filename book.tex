@@ -5,13 +5,18 @@
 \usepackage{tikz}				% рисование чертежей
 \usetikzlibrary{positioning}	% автоматическое размещение элементов на чертежах относительно друг друга
 \usetikzlibrary{shapes.misc}
-\usepackage{enumitem} %Для разрывов в списках
+\usepackage{enumitem}			% Для разрывов в списках
+%\usepackage{dcounter}			% динамические счётчики
+%\usepackage{amsmath}
+%\usepackage{nccmath}
+
 \pagestyle{plain}
 
 %********Команда все примеры подчеркиваем
 \newcommand{\ExampleMy}{\textbf{\underline{Пример:}}}
 %*********
 
+\countstyle{section}			% посекционная нумерация
 
 \begin{document}
 
@@ -36,9 +41,9 @@
 
 Для начала определимся, что понимается под управлением. Существует три фундаментальных принципа управления:
 \begin{itemize}
-\item Управление по заданию --- необходимо получить заданный сигнал $v$ на выходе объекта управления (ОУ). Для этого передаточная функция системы управления в целом (см. рис.~\ref{fig:intro:control_by_target}) должна быть равна единице. Тогда передаточная функция устройства управления (УУ) равна:
+\item Управление по заданию --- необходимо получить заданный сигнал $v$ на выходе объекта управления (ОУ). Для этого передаточная функция системы управления в целом (см. рис.~\ref{fig:intro:control_by_target}) должна быть равна единице. Тогда передаточная функция уст\-ройства управления (УУ) равна:
 \begin{equation}\label{equ:intro:control_by_target}
-W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
+W_{\text{\textit{УУ}}}=\frac{1}{W_{\text{\textit{ОУ}}}}
 \end{equation}
 
 \begin{figure}[ht] \centering		% [ht] - размещение в указанном месте, а если невозможно, то вверху следующей страницы
@@ -48,8 +53,8 @@ W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
 		block/.style={rectangle,draw=black,thick},		% стиль отрисовки блока
 		vec/.style={->,>=stealth,semithick},				% стиль отрисовки вектора
 		point/.style={inner sep = 0pt}	]
-	\node[block] (object) {$ W_{\text{ОУ}} $};			% Ставить ; обязательно! ИНАЧЕ ВСЁ ВИСНЕТ!!!!1
-	\node[block] (regulator) [left = of object] {$ W_{\text{УУ}} $};
+	\node[block] (object) {$ W_{\text{\textit{ОУ}}} $};	% Ставить ; обязательно! ИНАЧЕ ВСЁ ВИСНЕТ!!!!1
+	\node[block] (regulator) [left = of object] {$ W_{\text{\textit{УУ}}} $};
 %	\draw[vec] (regulator) to (object);					% вектор без подписи
 	\draw[vec] (regulator) to node{$u$} (object);			% вектор с подписью
 	\node[point] (input) [left = of regulator] {};
@@ -60,9 +65,9 @@ W_{\text{УУ}}=\frac{1}{W_{\text{ОУ}}}
 \footnotesize \caption{Управление по заданию\label{fig:intro:control_by_target}}
 \end{figure}
 
-\item Управление по возмущению --- возмущения $f$, действующие на объект, учитываются при формировании управляющего воздействия $u$ (см. рис.~\ref{fig:intro:control_by_noise}). Передаточная функция от возмущений к выходу может быть выражена как $ W_{fu}W_\text{ОУ}+W_{fx} $ и должна быть равна нулю. Тогда передаточная функция от возмущений к управлению равна:
+\item Управление по возмущению --- возмущения $f$, действующие на объект, учитываются при формировании управляющего воздействия $u$ (см. рис.~\ref{fig:intro:control_by_noise}). Передаточная функция от возмущений к выходу может быть выражена как $ W_{fu}W_\text{\textit{ОУ}}+W_{fx} $ и должна быть равна нулю. Тогда передаточная функция от возмущений к управлению равна:
 \begin{equation}\label{equ:intro:control_by_noise}
-W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
+W_{fu}=-\frac{W_{fx}}{W_\text{\textit{ОУ}}}
 \end{equation}
 
 \begin{figure}[ht] \centering
@@ -71,8 +76,8 @@ W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
 		block/.style={rectangle,draw=black,thick},
 		vec/.style={->,>=stealth,semithick},
 		point/.style={inner sep = 0pt}	]
-	\node[block] (object) {$ W_\text{ОУ} $};
-	\node[block] (regulator) [left = of object] {$ W_\text{УУ} $};
+	\node[block] (object) {$ W_\text{\textit{ОУ}} $};
+	\node[block] (regulator) [left = of object] {$ W_\text{\textit{УУ}} $};
 	\draw[vec] (regulator) to node{$u$} (object);
 	\node[point] (input) [left = of regulator] {};
 	\draw[vec] (input) to node{$v$} (regulator);
@@ -88,7 +93,7 @@ W_{fu}=-\frac{W_{fx}}{W_\text{ОУ}}
 
 \item Управление по ошибке --- на вход регулятора подаётся отклонение $e$ выходного сигнала объекта $x$ от сигнала задания $v$ (см. рис.~\ref{fig:intro:control_by_eps}). Если $e$ устремить к нулю, то передаточная функция от $e$ к $x$ должна устремиться к бесконечности, чтобы получить на выходе заданную величину:
 \begin{equation}\label{equ:intro:control_by_eps}
-W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
+W_\text{\textit{УУ}}W_\text{\textit{ОУ}}\longrightarrow\frac{x_\text{\textit{уст}}}{0}=\infty
 \end{equation}
 
 Этого можно добиться, например, введением в регулятор очень больших коэффициентов усиления или интегрирующих звеньев.
@@ -99,8 +104,8 @@ W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
 		block/.style={rectangle,draw,thick},
 		vec/.style={->,>=stealth,semithick},
 		point/.style={inner sep = 0pt}	]
-	\node[block] (object) {$ W_\text{ОУ} $};
-	\node[block] (regulator) [left = of object] {$ W_\text{УУ} $};
+	\node[block] (object) {$ W_\text{\textit{ОУ}} $};
+	\node[block] (regulator) [left = of object] {$ W_\text{\textit{УУ}} $};
 	\draw[vec] (regulator) to node{$u$} (object);
 	\node[circle,draw,thick,inner sep=0pt,minimum size=2ex] (sum) [left = of regulator] {};
 	\draw[semithick] (sum.north west) -- (sum.south east);
@@ -159,54 +164,81 @@ W_\text{УУ}W_\text{ОУ}\longrightarrow\frac{x_\text{уст}}{0}=\infty
 
 \section{Постановка задачи оптимального управления\label{task}}
 
-%%Текст из пдф
-%Сначала напоминания о фундаментальных принципах управления, вытекающих из них способах формирования управления и %структур систем:
-%Задачи, решаемые системой:
-%Цель: 
-%-стабилизации
-%-програмного движения
-%-слежения. 
-%Анализ и синтез СУ предполагает, что кроме цели (что?) рассматриваеться путь (как?) решения задачи.
-%Существует 2 основных подхода:
-%1). Обеспечить выполнение прямых (или косвенных) показателей качества управляемых процессов (точности- определяемой %ошибками; быстродействием-tпп., tдостижения - гладкости - пререгулированием, колебательностью; работопригодности - %запасы устнойчивости, малочуствительность, грубость)
-%2). Управление формируеться так, чтобы достигать наилучшего (оптимального) в каком-либо определенном смыс
-
-В общем случае такой постановки управления характеризуются значительным разнообразием, что связано с 3 основными причинами:
-
-
-
+В общем случае постановки задач оптимального управления характеризуются значительным разнообразием, что связано с тремя основными причинами:
 \begin{itemize}
-\item Конкретным условиям функционирования, к которым следует отнести - начальное(исходное) и конечное (требуемое) состояние ОУ с временной привязкой при $X_{0}\left ( t_{0} \right )$ , $X_{k}\left ( t_{k} \right )$ 
-\item Взаимосвязями присущими реальным процессам в форме алгебраических (голономных) уравнений $G\left( x,u \right)=0$, дифференциальных (неголономных) $\varphi \left( x,u,t \right)=\dot{x}-Ax+BV=0$ и интегральных (изопериметрических) $I\left( x,u,t \right)=\int\limits_{{{t}_{0}}}^{{{t}_{}}}{\varphi \left( x,u,t \right)dt=C}$;
-\item Ограничения на управляющие сигналы и переменные состояния $\underline{U}\le U\le \overline{U}$; $\underline{X}\le X\le \overline{X}$; $\sum\limits_{i=1}^{n}{u_{i}^{2}}\le A$
-\item Математическим видом критерия оптимальности. Выбор критерия не является формальным актом, он не предписываться какой-либо теоремой, а полностью определяется содержанием задачи управления. В общем виде критерий записывается функционалом: 
-\[J\left( v,x,\underset{{{t}_{0}}-{{t}_{k}}}{\mathop{T}}\, \right)=\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)+\int\limits_{0\left( {{t}_{0}} \right)}^{T\left( {{t}_{k}} \right)}{F\left( x\left( t \right),v\left( t \right),t \right)}\]где $\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)$ - терминальная составляющая, характеризующая качество управления только по начальному и конечному состоянию ОУ (поэтому отсутствует $U$); $F\left( x\left( t \right),v\left( t \right),t \right)$ - подынтегральная целевая функция,характеризующая качество внутри интервала управления. $U$ управления должно доставлять $U=\underset{U}{\mathop{ext}}\,\left( J\left( x,v,T \right) \right)$. Вид критерия задает класс задач оптимальности: 
-\begin{enumerate}
-\item Критерий максимального быстродействия (минимального времени реакции). Варианты записи:
+\item Конкретными \glqq условиями\grqq функционирования, к которым следует отнести:
 \begin{itemize}
-\item $\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)=T={{t}_{k}}-{{t}_{0}}$,$F\left( x\left( t \right),v\left( t \right),t \right)\equiv 0$  
-\item $\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\equiv 0$,$F\left( x\left( t \right),v\left( t \right),t \right)=1\to \int\limits_{0}^{T}{1dx}=T={{t}_{k}}-{{t}_{0}}$
+\item начальное (исходное) и конечное (требуемое) состояния ОУ с временной привязкой $X_{0}\left ( t_{0} \right )$, $X_\text{\textit{к}}\left ( t_\text{\textit{к}} \right )$;
+\item взаимосвязи, присущие реальным процессам, в форме:
+\begin{itemize}
+\item алгебраических (голономных) уравнений $G\left(x,u\right)=0$,
+\item дифференциальных (неголономных) уравнений\\ $\varphi \left( x,u,t \right)=\dot{x}-Ax+Bu=0$,
+\item интегральных (изопериметрических) уравнений\\ $I\left( x,u,t \right)=\int\limits_{t_0}^{t_\text{\textit{к}}}{\varphi \left( x,u,t \right)dt=C}$;
 \end{itemize}
-\item Критерий минимального расхода управления (топлива): 
-\\\begin{math}\min J\left( {{t}_{k}}..{{t}_{0}} \right)\end{math}; $\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\equiv 0$,$F\left( x\left( t \right),v\left( t \right),t \right)=R\left| v \right|=\sum\limits_{i=1}^{n}{{{r}_{i}}}\left| {{u}_{i}} \right|$
-\item Критерий идеальной точности (минимальной ошибки):\\\begin{math}\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\equiv 0\end{math}, \begin{math}F\left( x\left( t \right),v\left( t \right),t \right)={{x}^{T}}Qx\end{math}, где $x$ - как отклонение (ошибка) от заданного значения, $Q$-матрица весовых коэффициентов (важность каждой составляющей в общей ошибке).
-\item Критерий минимума энергетических затрат:\\\begin{math}\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\equiv 0\end{math}, \begin{math}F\left( x\left( t \right),v\left( t \right),t \right)={{U}^{T}}RU=\sum\limits_{i=1}^{n}{{{r}_{i}}}u_{i}^{2}\end{math} на интервале ${{t}_{k}}-{{t}_{0}}=T$
-\item Критерий терминального управления (например задача мягкой посадки - система управления конечным положением):\\
-$\Phi \left( \underset{{{x}_{0}},{{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\ne 0$, $F\left( x\left( t \right),v\left( t \right),t \right)=0$
+\end{itemize}
+\item Ограничениями на управляющие сигналы и переменные состояния $\underline{U}\le U\le \overline{U}$; $\underline{X}\le X\le \overline{X}$; $\sum\limits_{i=1}^{n}{u_{i}^{2}}\le A$
+\item Математическим видом критерия оптимальности.
+\end{itemize}
+
+Выбор критерия не является формальным актом, он не предписывается какой-либо теорией, а полностью определяется содержанием задачи управления. В общем виде критерий записывается функционалом:
+\begin{equation}\label{equ:task:criterion_general}
+J \left( U, X, \underset{t_\text{\textit{к}} - t_0}{\mathop{T}} \, \right) = \Phi \left( \underset{X_0, \, X_\text{\textit{к}}}{\mathop{ X \left( T \right) }} , T \right) + \int\limits_{t_0}^{t_\text{\textit{к}}} F\bigl( X(t), U(t), t \bigr) \, dt,
+\end{equation}
+где $ \Phi \bigl( X(T), T \bigr) $ --- терминальная составляющая, характеризующая качество управления только по начальному и конечному состояниям ОУ (поэтому отсутствует $U$); $ F \bigl( X(t), U(t), t \bigr) $ --- подынтегральная целевая функция, характеризующая качество внутри интервала управления. Управление должно обеспечивать экстремальное значение критерия оптимальности $ U = \underset{U}{\mathop{extr}} \, J \left( X, U, T \right) $. \smallskip 
+
+Вид критерия $ J( X, U, T) $ задаёт класс задач оптимальности:
+\begin{enumerate}
+\item Критерий максимального быстродействия (минимального времени реакции):
+\begin{enumerate}
+\item[а)] $ \Phi \bigl( X(T), T \bigr) = T = t_\text{\textit{к}} - t_0 , \quad F\bigl( X(t), U(t), t \bigr) \equiv 0 $  
+\item[б)] $ \Phi \bigl( X(T), T \bigr) \equiv 0 , \quad F\bigl( X(t), U(t), t \bigr) = 1 \to \int\limits_0^T 1\,dt = T $
 \end{enumerate}
+
+%\begin{subequations}\label{equ:task:minT}
+%\renewcommand{\theequation}{\theparentequation\asbuk{equation}}
+%\begin{equation}\label{equ:task:minT_first}
+%y = x
+%\end{equation}
+%\begin{equation}\label{equ:task:minT_second}
+%z = x^2(C+1)
+%\end{equation}
+%\end{subequations}
+
+% оформление нескольких однострочных выносных формул, разделённых знаком \\
+%\begin{subequations}\label{equ:task:minT}
+%ahaha:
+%\begin{gather}
+%\Phi \bigl( x(T), T \bigr) = T = t_k - t_0 , \quad F\bigl( x(t), u(t), t \bigr) \equiv 0 \\
+%\Phi \bigl( x(T), T \bigr) \equiv 0 , \quad F\bigl( x(t), u(t), t \bigr) = 1 \to \int\limits_0^T 1\,dt = T
+%\end{gather}
+%\end{subequations}
+
+\item Критерий минимального расхода управления (топлива):
+\[ \Phi \bigl( X(T), T \bigr) \equiv 0 , \quad F \bigl( X(t), U(t), t \bigr) = R \left| U \right| = \sum\limits_{i=1}^{n}{ r_i \left| u_i \right| } \]
+\item Критерий предельной точности (минимальной ошибки):
+\[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = X^TQX, \] где $X$ --- отклонение (ошибка) от заданного значения, $Q$ --- матрица весовых коэффициентов (важность каждой составляющей в общей ошибке).
+\item Критерий минимума энергетических затрат:
+\[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = U^TRU = \sum\limits_{i=1}^{n}{r_i u_i^2} \] на интервале $ t_\text{\textit{к}} - t_0 = T $
+\item Критерий терминального управления (задача мягкой посадки или система управления конечным положением):
+\[ \Phi \bigl( X(T), T \bigr) \ne 0, \quad F \bigl( X(t), U(t), t \bigr) \equiv 0 \]
+\end{enumerate}
+
 Часто используются смешанные варианты критериев:
 \begin{enumerate}[resume]
 %6
-\item Квадратичный критерий качества управления процесса (предельной точности при минимуме энергетических затрат):
-\\\begin{math}\Phi \left( \underset{{{x}_{0}}, {{x}_{k}}}{\mathop{x\left( T \right)}}\,,T \right)\equiv 0\end{math}, \begin{math}F\left( x\left( t \right),v\left( t \right),t \right)\equiv {{x}^{T}}Qx+{{u}^{T}}Ru\end{math}
+\item Квадратичный критерий качества управления (предельной точности при минимуме энергетических затрат):
+\[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = X^TQX + U^TRU \]
+\item Критерий максимального быстродействия при минимальном расходе топлива (для управления автономными ОУ):
+\[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = 1 + R\left|U\right| = 1 + \sum\limits_{i=1}^{n}{ r_i \left| u_i \right| } \]
 %8
-\item Критерий минимизации энергетических затрат при фиксированном интервале времени и заданном состоянии 
-\[J\left( v,x,\underset{{{t}_{0}}-{{t}_{k}}}{\mathop{T}}\, \right)={{x}^{T}}\left( t \right)Sx\left( t \right)+\int\limits_{0}^{T}{\left( {{x}^{T}}Qx+{{U}^{T}}RU \right)}dt\] 
- \end{enumerate}
-Постановки задачи с критерием общего вида (двумя слагаемыми) принято называть задачей в форме Больца; Терминальные постановки (только 1 слагаемое) - в форме Майера; постановки только с интервалом (без 1 слагаемого) - в форме Лагранжа.
-\end{itemize}
+\item Критерий минимизации энергетических затрат при фиксированном интервале времени и заданном состоянии: 
+\[ J = X^T \left( T \right) S X \left( T \right) + \int\limits_0^T \left( X^TQX + U^TRU \right) \, dt \] 
+\end{enumerate}
+
+Постановки задачи с критерием общего вида (двумя слагаемыми) принято называть задачей в форме Больца; терминальные постановки (только первое слагаемое) --- в форме Майера; постановки только с интегралом (без первого слагаемого) --- в форме Лагранжа.
+
 %Вывод первого раздела
-\par В итоге задачи оптимального управления являются задачами минимизации на множестве функций и могут быть решены методами классического вариационного исчисления. Однако наличие ограничений в форме равенств (уравнение УП и ОУ) и особенно в форме неравенств (ограничения допустимых управлений и состояний) требует применения методов неклассического вариационного исчисления, к которым относится принцип максимума Л.С. Понтрягина, динамического программирования Р. Беллмана, метод моментов Н.Н.Кросовского, симплекс-метод линейного программирования, нелинейного программирования Табака-Куо,Куна-Таккера, символьные методы решения нелинейных алгебраических (например трансцендентных) уравнений (градиентные и методы прямого поиска) и т.п.
+В итоге: задачи оптимального управления являются задачами минимизации на множестве функций и могут быть решены методами классического вариационного исчисления. Однако, наличие ограничений в форме равенств (уравнения УП и ОУ) и особенно в форме неравенств (ограничения допустимых управлений и состояний) требует применения методов неклассического вариационного исчисления, к которым относятся принцип максимума Л.\=,С.~Понтрягина, метод динамического программирования Р.~Беллмана, метод моментов Н.\=,Н.~Красовского, симплекс-метод линейного программирования, метод нелинейного программирования Табака-Куо, Куна-Таккера, символьные методы решения нелинейных алгебраических (например, трансцендентных) уравнений и~т.\,п. (градиентные и методы прямого поиска).
 
 
 
