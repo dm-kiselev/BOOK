@@ -420,8 +420,32 @@ $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \do
 \begin{itemize}
 \item Задача со свободным правым концом ${{t}_{k}}=\operatorname{var}$, $x\left( {{t}_{k}} \right)=\operatorname{var}$
 \item Задача с подвижным правым концом ${{t}_{k}}=T$, $x\left( {{t}_{k}} \right)=\operatorname{var}$
-\item Задача со скользящим правым концом ${{t}_{k}}=T$-не задано, $x\left( {{t}_{k}} \right)$ не задано, но определена их взаимосвязь 
+\item Задача со скользящим правым концом ${{t}_{k}}=T$-не задано, $x\left( {{t}_{k}} \right)$ не задано, но определена их взаимосвязь $\psi \left( t \right)$
 \end{itemize}
+\par В этих случаях (когда отсутствует соответствующее граничное условие) необходимым условием экстремума, кроме уравнения Эйлера $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0$, становятся \underline{условия трансверсальности}:
+\\$\left\{ \begin{array}{*{35}{l}}
+   {{\left. \left( F-\frac{\partial F}{\partial \dot{x}}\dot{x} \right) \right|}_{{{t}_{k}}}}=0$ - если не задано ${{t}_{k}}$ и $x\left( {{t}_{k}} \right)$  
+   $\\{{\left. \frac{\partial F}{\partial \dot{x}} \right|}_{{{t}_{k}}}}=0$ - если не задано $x\left( {{t}_{k}} \right)$
+   $\\{{\left. \left( F-\frac{\partial F}{\partial \dot{x}}\left( \dot{x}-\dot{\psi } \right) \right) \right|}_{{{t}_{k}}}}=0$ - если конец скользящий   
+$\end{array} \right.$
+\\В векторном случае: $X=\left( {{x}_{1}}\left( t \right),{{x}_{2}}\left( t \right)...{{x}_{n}}\left( t \right) \right)$ необходимым условием достижения экстремума является система уравнений:
+\\$\left\{ \begin{array}{*{35}{l}}
+   \frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{x}_{i}}} \right)=0,\,i=\overline{1,n}$ - уравнение Эйлера   
+   $ \\   {{\left. \left( F-\sum\limits_{i=1}^{n}{\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}{{{\dot{x}}}_{i}}} \right) \right|}_{{{t}_{0}}}}=0;\,\,{{\left. \left( F-\sum\limits_{i=1}^{n}{\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}{{{\dot{x}}}_{i}}} \right) \right|}_{{{t}_{k}}}}=0$ 
+   $\\{{\left. \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right|}_{{{t}_{0}}}}=0,\,i=\overline{1,n};\,\,{{\left. \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right|}_{{{t}_{k}}}}=0,\,i=\overline{1,n}$ 
+$\\\end{array} \right.$
+\\Вторая и третья строки системы условия трансверсальности с соответвующим незаданным граничным условием.
+\\Максимальное количество условий трансверсальности $2n+2$.
+\\
+\\
+\ExampleMy 
+
+
+
+ 
+
+ 
+
 
 \clearpage
 \section{Основы вариационного исчисления\label{variations}}
