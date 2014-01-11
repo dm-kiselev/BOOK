@@ -446,11 +446,15 @@ $\\\end{array} \right.$
 \\$x\left( 0 \right)={{C}_{1}}=0$, $x\left( 1 \right)=\frac{1}{4}+{{\not{C}}_{1}}+{{C}_{2}}=0\to {{C}_{2}}=-\frac{1}{4}$, $\hat{x}\left( t \right)=\frac{1}{4}\left( {{t}^{2}}-1 \right)$ - допустимая экстремаль.  
 $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0$ - \underline{min}: ${{J}_{\min }}=\int\limits_{0}^{1}{\left( \frac{1}{4}{{t}^{2}}+\frac{1}{4}\left( {{t}^{2}}-1 \right) \right)dt=-\frac{1}{12}}$ 
 \end{itemize}
-\\Подводя
+\\Подводя итог хотелось бы ответить, что необходимое условия минимизации функционалов представляются дифференциальными уравнениями относительно неизвестной функции (при минимизации функций $\to $ необходимое условие - алгебраические уравнения). Причём можно показать, что это нелинейное дифференциальное уравнение II порядка:
+\\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0$, $\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}+\frac{\partial }{\partial x}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)+\frac{\partial }{\partial \dot{x}}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)$, $\frac{\partial F}{\partial \dot{x}}=\frac{\partial F}{\partial \dot{x}}\left( t,x,\dot{x} \right)$
+\\Тогда: \[\frac{\partial F}{\partial x}-\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}-\frac{{{\partial }^{2}}F}{\partial \dot{x}\partial \dot{x}}\dot{x}-\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ddot{x}=0\]
+\\Уравнение Эйлера может приобретать вид:
+
 
 
  
-
+\subsection{Оптимизация функционалов с ограничениями в форме равенств (Задачи на условный экстремум)}
  
 
 
