@@ -572,7 +572,48 @@ $\left\{ \begin{array}{*{35}{l}}
 \par Для общей задачи Лагранжа канонические переменные $\psi \left( t \right)$ совпадают с неизвестными множителями Лагранжа $\lambda \left( t \right)$.
 \par Кроме того, переход к функции Гамильтона позволит снизить требования к гладкости изменения переменных состояния и управления и решать задачи в условиях ограничений в виде неравенства.
 \par Для консервативных механических систем функция Гамильтона $H$ имеет простой физический смысл - она совпадает с полной механической энергией $H=const$ - имеет смысл закона сохранения полной механической энергии.
-\par В общем случае 
+\par В общем случае для линейного объекта в форме уравнений состояния $\dot{x}=Ax+Bu$ ($n$-размерности) отсутствует зависимость от $\dot{u}$ уравнения вариационной задачи записываются в следующем виде:
+Из $extrJ=\int\limits_{0}^{\infty }{F\left( x,u,t \right)dt}$
+$L\left( \dot{x},u,t,\lambda  \right)=F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \Phi \left( x,u,t \right)$ $\Phi \left( x,u,t \right)=\dot{x}-Ax-Bu$
+\\$H\left( {} \right)={{\lambda }^{T}}\left( t \right)\dot{x}-L\left( x,u,t,\lambda  \right)=-F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \left( \dot{x}-\dot{x}\underbrace{+Ax+Bu}_{{{\Phi }_{1}}\left( x,u,t \right)} \right)$
+получается система 
+\\$\left\{ \left. \begin{array}{*{35}{l}}
+   \frac{\partial X}{\partial t}=\left\| \frac{\partial H}{\partial {{\lambda }_{i}}} \right\|=AX+BU,\,\,i=\overline{1,n}  \\
+   \frac{\partial \lambda }{\partial t}=-\left\| \frac{\partial H}{\partial {{x}_{i}}} \right\|=\left\| \frac{\partial F}{\partial {{x}_{i}}} \right\|+{{\lambda }^{T}}\left\| \frac{\partial {{\Phi }_{1}}}{\partial {{x}_{i}}} \right\|,\,\,\,i=\overline{1,n}  \\
+   \frac{\partial H}{\partial {{u}_{j}}}=\frac{\partial F}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{{{\lambda }_{i}}\frac{\partial {{\varphi }_{1i}}}{\partial {{u}_{j}}}}=0,\,\,j=\overline{1,r}  \\
+\end{array} \right\} \right.2n+r$ уравнений
+\\
+\ExampleMy Определим оптимальное управление объектом:
+\\$T\dot{x}+x=ku$, $\frac{x}{u}=\frac{k}{Tp+1}\to \dot{x}=-\frac{1}{T}x+\frac{k}{T}u=ax+bu$
+\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt,\to L=q{{x}^{2}}+r{{u}^{2}}+\lambda \left( \dot{x}-ax-bu \right),\,H=-q{{x}^{2}}-r{{u}^{2}}+\lambda \left( ax+bu \right)$
+\\$\left\{ \begin{array}{*{35}{l}}
+   \dot{x}=\frac{\partial H}{\partial \lambda }=ax+bu  \\
+   \dot{\lambda }=-\frac{\partial H}{\partial x}=-\left( 2qx+\lambda a \right)=2qx-\lambda a  \\
+   0=-\frac{\partial H}{\partial u}=-\left( -2ru+\lambda b \right)=2ru-\lambda b  \\
+\end{array} \right.$ $\to u=\frac{b}{2r}\lambda $
+\\Имеем систему уравнений:
+\\$\left\{ \begin{array}{*{35}{l}}
+   \dot{x}=ax+\frac{{{b}^{2}}}{2r}\lambda   \\
+   \dot{\lambda }=2qx-a\lambda   \\
+\end{array} \right.=\left| \begin{matrix}
+   a & \frac{{{b}^{2}}}{2r}  \\
+   2q & -a  \\
+\end{matrix} \right|\left| \begin{matrix}
+   x  \\
+   \lambda   \\
+\end{matrix} \right|$
+\\Для определения корней системы составим определитель
+\\$\Delta \left( p \right)=\left| Ep-A \right|=\left| \begin{matrix}
+   p-a & -\frac{{{b}^{2}}}{2r}  \\
+   -2q & p+a  \\
+\end{matrix} \right|={{p}^{2}}-{{a}^{2}}-2q\left( \frac{{{b}^{2}}}{2r} \right)={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$
+\\${{p}_{1,2}}=\pm \sqrt{{{a}^{2}}+\frac{q{{b}^{2}}}{r}}$-условию устойчивости удовлетворяет только отрицательный корень, поэтому решение ищем в виде $\left\{ \begin{array}{*{35}{l}}
+   x={{C}_{1}}\exp \left( {{p}_{2}}t \right)  \\
+   \lambda ={{C}_{2}}\exp \left( {{p}_{2}}t \right)  \\
+\end{array} \right.$ ${{C}_{1}},\,{{C}_{2}}$ - постоянные интегрирования ${{C}_{1}}={{x}_{0}}$, ${{C}_{2}}=\frac{\left( {{p}_{2}}-a \right)2r}{b}{{C}_{1}}=\frac{2q}{{{p}_{2}}+a}{{C}_{1}}$
+\\Следовательно искомое оптимальное уравнение
+\\
+   
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
