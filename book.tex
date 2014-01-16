@@ -612,8 +612,17 @@ $L\left( \dot{x},u,t,\lambda  \right)=F\left( x,u,t \right)+{{\lambda }^{T}}\lef
    \lambda ={{C}_{2}}\exp \left( {{p}_{2}}t \right)  \\
 \end{array} \right.$ ${{C}_{1}},\,{{C}_{2}}$ - постоянные интегрирования ${{C}_{1}}={{x}_{0}}$, ${{C}_{2}}=\frac{\left( {{p}_{2}}-a \right)2r}{b}{{C}_{1}}=\frac{2q}{{{p}_{2}}+a}{{C}_{1}}$
 \\Следовательно искомое оптимальное уравнение
-\\
-   
+\\${{U}_{}}\left( t \right)=\frac{b}{2r}\lambda \left( t \right)=\frac{bq}{r\left( {{p}_{2}}-a \right)}\cdot \underbrace{{{C}_{1}}\exp \left( {{p}_{2}}t \right)}_{x\left( t \right)}=u\left( t \right)\to \underbrace{\frac{{{p}_{2}}-a}{b}}_{{{K}_{}}}x\left( t \right)$ - такое решение определяет структуру оптимального регулятора в форме отрицательной обратной связи
+\\${{K}_{}}=\frac{{{p}_{2}}-a}{b}=-\frac{a+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}}{b}$   
+\par Вспомним пример поиска характеристического полинома системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ доставляющего $\min J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+q{{{\dot{x}}}^{2}} \right)}dt$ перепишем в нашем случае:
+\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{\left( \frac{\dot{x}-ax}{b} \right)}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( \left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{{\dot{x}}}^{2}} \right)}dt$
+\\$F=\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{\dot{x}}^{2}}\to \frac{\partial F}{\partial x}=2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}$
+\\$\frac{\partial F}{\partial \dot{x}}=-\frac{2ra}{{{b}^{2}}}x+\frac{2r}{{{b}^{2}}}\dot{x}$, уравнение Эйлера:
+\\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\to 2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}+\frac{2ra}{{{b}^{2}}}\dot{x}-\frac{2ra}{{{b}^{2}}}\ddot{x}\to \ddot{x}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)x=0$
+\\Соответствующий характеристический полином ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить как $\left[ {{p}^{2}}-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]\left[ {{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]=0$ - произведение полиномов с симметричным расположением левого и правого полюсов - это \underline{факторизация}. Устойчивый характер процессов дает полином ${{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=0$.
+\par Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то ${{U}_{opt}}={{K}_{opt}}\cdot x$ $\dot{x}=ax+b{{K}_{oc}}x=\left( a+b{{K}_{oc}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_{oc}} \right)$. Приравнивая два полинома 
+$p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_{oc}} \right)$, получим ${{K}_{oc}}=\frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b}$ - как видно решения совпадают - в литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
+\\Записывая факторизацию для $D\left( p \right)\to \left[ p-\left( a+b{{K}_{oc}} \right) \right]\left[ p+\left( a+b{{K}_{oc}} \right) \right]={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)$ получим ${{p}^{2}}-{{\left( a+b{{K}_{oc}} \right)}^{2}}={{p}^{2}}-\left( {{a}^{2}}+\frac{{{b}^{2}}}{r}q \right)$ - уравнение $K_{oc}^{2}+\frac{2a}{b}{{K}_{oc}}-\frac{q}{r}=0$ откуда:  ${{K}_{oc}}=-\frac{a}{b}\pm \sqrt{\frac{{{a}^{2}}}{{{b}^{2}}}+\frac{q}{r}}$ скалярное стационарное уравнение Риккати.    
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
