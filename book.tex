@@ -635,6 +635,7 @@ $\left\{ \begin{array}{*{35}{l}}
    \frac{\partial {{\psi }_{i}}}{dt}=-\frac{\partial {{H}^{*}}}{\partial {{x}_{i}}},\,\,i=\overline{0,n}  \\
    \frac{\partial {{H}^{*}}}{\partial U}=0  \\
 \end{array} \right.$, их количество $2n+2+r$ и решение задачи при фиксированных начальной $x\left( {{t}_{0}} \right)$ и конечной $x\left( {{t}_{k}} \right)$ точках дается теоремой (без доказательства).
+\end{itemize}
 \underline{Теорема (Л.С.Понтягин,1956 г)} Для того, чтобы допустимое управление ${{u}^{*}}\left( t \right)$ и соответствующая ему траектория ${{x}^{*}}\left( t \right)$ были оптимальными \underline{необходимо} существование такой ненулевой непрерывной векторной функции ${{\psi }^{*}}\left( t \right)$, отвечающей в силу уравнений Гамильтона функциям  ${{u}^{*}}\left( t \right)$ и ${{x}^{*}}\left( t \right)$, что:
 \begin{enumerate}
 \item В $\forall $ момент времени, когда ${{u}^{*}}\left( t \right)$ непрерывна при ${{t}_{0}}\le t\le {{t}_{k}}$ функция ${{H}^{*}}\left( {{x}^{*}},{{u}^{*}} \right)=\underset{u\in U}{\mathop{\max }}\,{{H}^{*}}\left( \psi _{0}^{*},{{\psi }^{*}},{{x}^{*}},u \right)$ - достигает максимума.
@@ -654,9 +655,48 @@ $\left\{ \begin{array}{*{35}{l}}
 \item Решить эту систему уравнений при неизвестных начальных условиях и заданных соответствующим сопряженной системе условиям для $x\left( {{t}_{0}} \right)$ и $x\left( {{t}_{k}} \right)$ - краевым или условиям трансверсальности. Соответствующее решение ищется аналитически или численными методами.
 \end{enumerate} 
 \par Для неконсервативных систем ${{H}^{*}}=\psi \dot{X}$ - будет мощностью, а ${{\psi }_{i}}$ - импульсами воздействий, которые вводят в ОУ такое количество энергии, которое обеспечивало бы заданный закон движения и экстремум функционала критерия качества.
+\\
+\\
+\ExampleMy   $\underset{\min }{\mathop{extr}}\,J=\int\limits_{0}^{4}{\left( x+{{u}^{2}} \right)}dt$, $\dot{x}=u$, $x\left( 4 \right)=0$, $\left| u \right|\le 1$
+\begin{enumerate}
+\item $H\left( \psi ,x,u \right)=-1\left( x+{{u}^{2}} \right)+\psi u$
+\item $\max H=\underset{u\left( t \right)\in U}{\mathop{\max }}\,\left( -x-{{u}^{2}}+\psi u \right)$, дифференциируется по $u$ ($\frac{\partial {{H}^{*}}}{\partial u}=0$):$-2u+\psi =0\to u=\frac{1}{2}\psi $ ($\left| u \right|\le 1$)
+\item $\psi =-\frac{\partial H}{\partial x}\to \dot{\psi }=-\frac{\left( x-{{u}^{2}}+\psi u \right)}{\partial x}=1$
+\item ${{u}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{t}{2},\,\,0\le t\le 2  \\
+   1,\,\,\,\,2\le t\le 4  \\
+\end{array} \right.$, ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{{{t}^{2}}}{4}+{{C}_{2}},0\le t\le 2  \\
+   t+{{C}_{3}},2\le t\le 4  \\
+\end{array} \right.$
+\\с дополнительным условием: 
+и $x\left( {{2}_{+0}} \right)=x\left( {{2}_{-0}} \right)\to x\left( {{2}_{+0}} \right)=2-4=-2=x\left( {{2}_{-0}} \right)=\frac{{{2}^{2}}}{4}+{{C}_{2}}=1+{{C}_{2}}\to {{C}_{2}}=-3$ и значит ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{{{t}^{2}}}{4}-3,\,\,0\le t\le 2  \\
+   t-4,\,\,\,2\le t\le 4  \\
+\end{array} \right.$
+\\${{J}_{\min }}=\int\limits_{0}^{2}{\left( \frac{{{t}^{2}}}{4}+\frac{{{t}^{2}}}{4}-3 \right)}dt+\int\limits_{2}^{4}{\left( {{1}^{2}}+t-4 \right)}dt=\left. \left( \frac{{{t}^{3}}}{6}-3t \right) \right|_{0}^{2}+\left. \left( \frac{{{t}^{2}}}{2}-3t \right) \right|_{2}^{4}=-4\frac{2}{3}$ 
+\end{enumerate}
+\ExampleMy $T\dot{x}+x=Ku\to \dot{x}=ax+bu$ 
+\\$\underset{\min }{\mathop{extr}}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$
+\\$\left| u \right|\le {{U}_{\max }}$
+\begin{enumerate}
+\item ${{H}^{*}}=-\left( q{{x}^{2}}+r{{u}^{2}} \right)+\psi \left( ax+bu \right)$
+\item $\frac{\partial {{H}^{*}}}{\partial u}=-2ru+\psi b=0\to \begin{array}{*{35}{l}}
+   u=\frac{b}{2r}\psi$, при $\left| u \right|\in {{U}_{\max }}$   
+   $\\u={{U}_{\max }}$, при $\left| \frac{b}{2r}{{\psi }_{1}} \right|\ge {{U}_{\max }}$ 
+$\\\end{array}$
+\item $\left. \begin{array}{*{35}{l}}
+   \dot{\psi }=-\frac{\partial H}{\partial x}=2qx-a\psi$	
+	$\dot{x}=ax+b\frac{b}{2r}\psi   \\
+\end{array} \right\}$, получим систему аналогичную ранее и тогда  $\psi =\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{{{b}^{2}}}\cdot 2rx$ 
+\item ${{U}_{opt}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
+   \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}  $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\le {{U}_{\max }}$
+   $\\\pm {{U}_{\max }} $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\ge {{U}_{\max }}$
+$ \\\end{array} \right.$ 
+  
+\end{enumerate} 
 
 
-\end{itemize}
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
