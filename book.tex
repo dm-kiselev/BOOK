@@ -555,11 +555,24 @@ $\left| \begin{array}{*{35}{l}}
    {{x}_{1}}  \\
    {{x}_{2}}  \\
 \end{matrix} \right)=-3.2{{x}_{1}}-2.8{{x}_{2}}$
-
 \end{enumerate}
-
- 
-
+\subsection{Общий случай\label{variations:Canonical_Euler}}
+Стремление избавится от двойного дифференцирования (по времени и производны  $\frac{\partial }{\partial \dot{x}}$,$\frac{\partial }{\partial \dot{u}}$ - состояния и управления) привело к предложению ввести канонические переменные ${{\psi }_{i}}\left( t \right)$ сопряжённые с переменными состояния ОУ и функцию Гамильтона: $H=-F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}=-L\left( x,u,\lambda ,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}$, где ${{\psi }_{i}}=\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}$ или $\frac{\partial L}{\partial {{{\dot{x}}}_{i}}}$, и тогда можно получить, учитывая что $\frac{\partial H}{\partial {{x}_{i}}}=-\frac{\partial F}{\partial {{x}_{i}}}=-\frac{\partial L}{\partial {{x}_{i}}}$ ${{\dot{x}}_{i}}=\frac{d{{{\dot{x}}}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}}$ $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\underbrace{\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)}_{{{\psi }_{i}}}\to \frac{d}{dt}{{\psi }_{i}}=\frac{\partial F}{\partial {{x}_{i}}}$, систему
+$\left\{ \begin{array}{*{35}{l}}
+   \frac{d{{x}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}},\,i=\overline{1,n}  \\
+   \frac{d{{\psi }_{i}}}{dt}=-\frac{\partial H}{\partial {{x}_{i}}},\,i=\overline{1,n}  \\
+   \frac{dH}{d{{u}_{j}}}=0,\,\,j=\overline{1,m}  \\
+\end{array} \right.$
+\\Учитывая, что в уравнении ОУ ($\dot{x}=Ax+Bu$) отсутствует производные управления ($\dot{u}$). При не фиксированных граничных условиях уравнение трансверсальности в канонической форме имеет вид: 
+\[\begin{array}{*{35}{l}}
+   {{\psi }_{i}}\left( {{t}_{0}} \right)=0,{{\psi }_{i}}\left( {{t}_{k}} \right)=0  \\
+   H\left( {{t}_{0}} \right)=0,H\left( {{t}_{k}} \right)=0  \\
+\end{array}\]
+\par Такая форма уравнений даёт большое преимущество, т.к. слева только дифференциирование по времени, а справа частные производные по времени.
+\par Для общей задачи Лагранжа канонические переменные $\psi \left( t \right)$ совпадают с неизвестными множителями Лагранжа $\lambda \left( t \right)$.
+\par Кроме того, переход к функции Гамильтона позволит снизить требования к гладкости изменения переменных состояния и управления и решать задачи в условиях ограничений в виде неравенства.
+\par Для консервативных механических систем функция Гамильтона $H$ имеет простой физический смысл - она совпадает с полной механической энергией $H=const$ - имеет смысл закона сохранения полной механической энергии.
+\par В общем случае 
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
