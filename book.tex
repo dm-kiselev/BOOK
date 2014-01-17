@@ -692,11 +692,31 @@ $\\\end{array}$
 \item ${{U}_{opt}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
    \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}  $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\le {{U}_{\max }}$
    $\\\pm {{U}_{\max }} $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\ge {{U}_{\max }}$
-$ \\\end{array} \right.$ 
-  
+$ \\\end{array} \right.$  
 \end{enumerate} 
-
-
+\par Наибольшее применение принцип максимума нашёл при оптимизации из условия  
+$\min {{t}_{p.p.}}$ (максимального быстродействия), т.к. в этом случае $\underset{\min ,u\in U}{\mathop{extr}}\,J=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u \right)}dt=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1}dt={{t}_{k}}-{{t}_{0}}$ - имеет простейшую подынтегральную функцию и гамильтониан ${{H}^{*}}=-1+\sum\limits_{i=1}^{n}{{{\psi }_{i}}\left( t \right)}{{\Phi }_{i}}\left( x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, от управления зависит только последнее слагаемое и в условиях ограничений на управление  
+$\left| u \right|\le {{U}_{m}}$, решение имеет естественный вид: $u={{U}_{m}}\cdot sign{{\psi }^{T}}B$ - т.е. оптимальная система является релейной с определением переключения по знаку вспомогательной функции ${{B}^{T}}\psi $, где $\dot{\psi }=-{{A}^{T}}\psi \to \psi \left( t \right)=-\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$, однако поиск $\psi \left( 0 \right)$ - приводит либо к системе трансцендентных уравнений, трудно решаемых в общем виде, либо к итерационному поиску.
+\par В простейшем случае:
+\\Когда объект представим последовательным соединением 2 интеграторов: $\ddot{x}=u$, $\left| u \right|\le {{U}_{m}}$
+\\$\left| \begin{array}{*{35}{l}}
+   {{{\dot{x}}}_{1}}  \\
+   {{{\dot{x}}}_{2}}  \\
+\end{array} \right|=\left| \begin{matrix}
+   0 & 1  \\
+   0 & 0  \\
+\end{matrix} \right|\left| \begin{matrix}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{matrix} \right|+\left| \begin{matrix}
+   0  \\
+   1  \\
+\end{matrix} \right|u$
+Гамильтониан $H\left( \psi ,x,u \right)=-1+{{\psi }_{1}}{{x}_{2}}+{{\psi }_{2}}u$ и $max$ достигается при ${{U}_{opt}}\left( t \right)={{U}_{m}}\cdot sign{{\psi }_{2}}$, где 
+${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\dot{\psi }}_{1}}=-\frac{\partial H}{\partial {{x}_{1}}}=0$ и ${{\psi }_{2}}\left( t \right)={{C}_{1}}t+{{C}_{2}}$, произвольные постоянные при $\forall $ наборе которых ${{\psi }_{2}}$ может иметь только 2 интервала с разными знаками $\to $ соответственно ${{U}_{opt}}\left( t \right)$ - кусочно-постоянная функция, принимающая $+{{U}_{m}}$ и $-{{U}_{m}}$ значения. Отсюда, для перевода из нулевого начального состояния в заданное (например положительное $x\left( {{t}_{k}} \right)>0$) конечное будем иметь 2 интервала: разгон и торможение, и переключение произойдет ровно посередине. Если будет ограничена скорость набора $\left| {{x}_{2}} \right|\le {{x}_{2m}}$, то в интервале ${{t}_{1}}\to {{t}_{2}}$ потребуется обнулить управление $u$ ${{{t}'}_{k}}\to {{t}_{k}}$, а управление будет иметь 3 интервала: $+{{U}_{m}}$ $0$ $-{{U}_{m}}$ ${{U}_{opt}}\left( t \right)=dez{{\psi }_{2}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
+   0,\,\,\left| {{\psi }_{2}} \right|\le 1  \\
+   sign{{\psi }_{2}},\,\left| {{\psi }_{2}} \right|>1  \\
+\end{array} \right.$
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
@@ -704,6 +724,7 @@ $ \\\end{array} \right.$
  \subsection{Принцип максимума Понтрягина\label{synthesis:principle_of_maximum}}
  
  \subsection{Синтез оптимальных по быстродействию систем\label{synthesis:fastest}}
+ Итак
  
  \subsection{Динамическое программирование Беллмана\label{synthesis:dyn_prog}}
   
