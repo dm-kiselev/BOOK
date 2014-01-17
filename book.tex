@@ -485,12 +485,247 @@ $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0$ - \underline{min}: $
 \\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0$, $\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}+\frac{\partial }{\partial x}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)+\frac{\partial }{\partial \dot{x}}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)$, $\frac{\partial F}{\partial \dot{x}}=\frac{\partial F}{\partial \dot{x}}\left( t,x,\dot{x} \right)$
 \\Тогда: \[\frac{\partial F}{\partial x}-\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}-\frac{{{\partial }^{2}}F}{\partial \dot{x}\partial \dot{x}}\dot{x}-\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ddot{x}=0\]
 \\Уравнение Эйлера может приобретать вид:
-
-
+\begin{itemize}
+\item Если $F\left( x,t \right)$, не зависит от $\dot{x}$ $\to $ $\frac{\partial F}{\partial x}=0$
+\item Если $F\left( \dot{x},t \right)$, не зависит от $x$ $\to $ $\frac{\partial F}{\partial \dot{x}}=const$ 
+\item Если $F\left( x,\dot{x} \right)$, не зависит от $t$ $\to $ $F-\dot{x}\frac{\partial F}{\partial \dot{x}}=const$
+\end{itemize}
 
 \subsection{Оптимизация функционалов с ограничениями в форме равенств(Задачи на условный экстремум)\label{variations:conditional_extremum}}
+\par При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических, дифференциальных и интегральных уравнений, т.е. дополнительных условий. Тогда вместо функции $F\left( x,t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right)+{{\lambda }^{T}}\left( t \right)\centerdot \Phi \left( x,u,t \right)$ - Лагранжиан и уравнение приобретает вид Эйлера-Лагранжа:
+\\$\left\{ \begin{array}{*{35}{l}}
+   \frac{\partial L}{\partial x}-\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{x}} \right)=0$, где $\lambda \left( t \right)$ - вектор множителей Лагранжа,   
+   $\\\frac{\partial L}{\partial u}-\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{u}} \right)=0$    зависящий от времени.
+   $\\\end{array} \right.$
+\\
+\\\ExampleMy Пусть произвольная динамическая система 
+\\$\left\{ \begin{array}{*{35}{l}}
+   {{{\dot{x}}}_{1}}={{x}_{2}}  \\
+   {{{\dot{x}}}_{2}}=-{{x}_{1}}+u  \\
+\end{array} \right.$
+с начальными состоянием $\left| \begin{array}{*{35}{l}}
+   {{x}_{1}}\left( 0 \right)  \\
+   {{x}_{2}}\left( 0 \right)  \\
+\end{array} \right|$
+и нулевым конечным $\left| \begin{array}{*{35}{l}}
+   {{x}_{1}}\left( \infty  \right)=0  \\
+   {{x}_{2}}\left( \infty  \right)=0  \\
+\end{array} \right|$ доставляет $\min \int\limits_{0}^{\infty }{\left( x_{1}^{2}+x_{2}^{2}+0.1{{u}^{2}} \right)dt}$
+Для решения:
+\begin{enumerate}
+\item Составляем Лагранжиан:
+$L\left( x,u,\lambda  \right)=\left( x_{1}^{2}+x_{2}^{2}+0.1{{u}^{2}} \right)+{{\lambda }_{1}}\left( {{{\dot{x}}}_{1}}-{{x}_{2}} \right)+{{\lambda }_{2}}\left( {{{\dot{x}}}_{2}}+{{x}_{1}}-u \right)$
+\item Составляем уравнение Эйлера-Лагранжа:
+\\$\frac{\partial L}{\partial {{x}_{1}}}-\frac{d}{dt}\left( \frac{\partial L}{\partial {{{\dot{x}}}_{1}}} \right)=0$; $2{{x}_{1}}+{{\lambda }_{2}}-\frac{d}{dt}\left( {{\lambda }_{1}} \right)$
+\\$\frac{\partial L}{\partial {{x}_{2}}}-\frac{d}{dt}\left( \frac{\partial L}{\partial {{{\dot{x}}}_{2}}} \right)=0$; $2{{x}_{2}}-{{\lambda }_{1}}-\frac{d}{dt}\left( {{\lambda }_{2}} \right)$
+\\$\frac{\partial L}{\partial u}-\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{u}} \right)=0$; $0.1\cdot 2u-{{\lambda }_{2}}$ 
+Учитывая уравнение системы и исключая получим:
+$\begin{array}{*{35}{l}}
+   {{{\dot{x}}}_{1}}={{x}_{2}},\,\,{{{\dot{x}}}_{2}}=-{{x}_{1}}+5{{\lambda }_{2}}  \\
+   {{{\dot{\lambda }}}_{1}}=2{{x}_{1}}+{{\lambda }_{2}},\,\,{{{\dot{\lambda }}}_{2}}=-{{\lambda }_{1}}+2{{x}_{2}}  \\
+\end{array}$, т.е. $\left| \begin{matrix}
+   {{{\dot{x}}}_{1}}  \\
+   {{{\dot{x}}}_{2}}  \\
+   {{{\dot{\lambda }}}_{1}}  \\
+   {{{\dot{\lambda }}}_{2}}  \\
+\end{matrix} \right|=\underbrace{\left| \begin{matrix}
+   0 & 1 & 0 & 0  \\
+   -1 & 0 & 0 & 5  \\
+   2 & 0 & 0 & 1  \\
+   0 & 2 & -1 & 0  \\
+\end{matrix} \right|}_{A}\left| \begin{matrix}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+   {{\lambda }_{1}}  \\
+   {{\lambda }_{2}}  \\
+\end{matrix} \right|$
+\\$\left| Ep-A \right|=\left| \begin{matrix}
+   p & -1 & 0 & 0  \\
+   1 & p & 0 & -5  \\
+   -2 & 0 & p & -1  \\
+   0 & -2 & -1 & p  \\
+\end{matrix} \right|={{p}^{4}}-8{{p}^{2}}+11$
+\\${{p}_{1,2}}=\pm 2.5$, ${{p}_{3,4}}=\pm 1.32$
+\\${{z}^{2}}-8z+11$, ${{z}_{1,2}}=4\pm \sqrt{16-11}=\left\{ \begin{array}{*{35}{l}}
+   6.25  \\
+   1.75  \\
+\end{array} \right.$
+\par Зная, что условию устойчивого решения отвечают только левые корни ищем решение в форме 
+\\${{x}_{_{1}}}\left( t \right)={{C}_{1}}\exp \left( -2.5t \right)+{{C}_{2}}\exp \left( -1.32t \right)+\underbrace{{{C}_{3}}\exp \left( 2.5t \right)+{{C}_{4}}\exp \left( 1.32t \right)}_{x\left( \infty  \right)=0}$
+\\${{x}_{2}}={{\dot{x}}_{1}}=-2.5{{C}_{1}}\exp \left( -2.5t \right)-1.32{{C}_{2}}\exp \left( -1.32t \right)$
+\\$u={{\dot{x}}_{2}}+{{x}_{1}}=6.25{{C}_{1}}\exp \left( -2.5t \right)+1.75{{C}_{2}}\exp \left( -1.32t \right)-2.5{{C}_{1}}\exp \left( -2.5t \right)-1.32{{C}_{2}}\exp \left( -1.32t \right)=3.75{{C}_{1}}\exp \left( -2.5t \right)+0.43{{C}_{2}}\exp \left( -1.32t \right)$
+\\Зная:
+\\$\left| \begin{array}{*{35}{l}}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{array} \right|=\left| \begin{matrix}
+   1 & 1  \\
+   -2.5 & -1.32  \\
+\end{matrix} \right|\left| \begin{array}{*{35}{l}}
+   {{C}_{1}}\exp \left( -2.5t \right)  \\
+   {{C}_{2}}\exp \left( -1.32t \right)  \\
+\end{array} \right|$
+$\to $
+$\left| \begin{array}{*{35}{l}}
+   {{C}_{1}}\exp \left( -2.5t \right)  \\
+   {{C}_{2}}\exp \left( -1.32t \right)  \\
+\end{array} \right|=\left| \begin{matrix}
+   -1.12 & -0.85  \\
+   2.12 & 0.85  \\
+\end{matrix} \right|\left| \begin{array}{*{35}{l}}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{array} \right|$
+\\${{x}_{1}}=a+b$ $a={{x}_{1}}-b\to {{x}_{2}}=-2.5\left( {{x}_{1}}-b \right)-1.32b=-2.5{{x}_{1}}+1.17b\to b\approx 2.12{{x}_{1}}+0.85{{x}_{2}}$
+\\${{x}_{2}}=-2.5a-1.32b$ $a={{x}_{1}}-b={{x}_{1}}-2.12{{x}_{1}}-0.85{{x}_{2}}=1.12{{x}_{1}}-0.85{{x}_{2}}$
+\\$u=\left( 3.75;\,\,0.43 \right)\left( \begin{matrix}
+   -1.12 & -0.85  \\
+   2.12 & 0.85  \\
+\end{matrix} \right)\left( \begin{matrix}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{matrix} \right)=-3.2{{x}_{1}}-2.8{{x}_{2}}$
+\end{enumerate}
+\subsection{Общий случай\label{variations:Canonical_Euler}}
+Стремление избавится от двойного дифференцирования (по времени и производны  $\frac{\partial }{\partial \dot{x}}$,$\frac{\partial }{\partial \dot{u}}$ - состояния и управления) привело к предложению ввести канонические переменные ${{\psi }_{i}}\left( t \right)$ сопряжённые с переменными состояния ОУ и функцию Гамильтона: $H=-F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}=-L\left( x,u,\lambda ,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}$, где ${{\psi }_{i}}=\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}$ или $\frac{\partial L}{\partial {{{\dot{x}}}_{i}}}$, и тогда можно получить, учитывая что $\frac{\partial H}{\partial {{x}_{i}}}=-\frac{\partial F}{\partial {{x}_{i}}}=-\frac{\partial L}{\partial {{x}_{i}}}$ ${{\dot{x}}_{i}}=\frac{d{{{\dot{x}}}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}}$ $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\underbrace{\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)}_{{{\psi }_{i}}}\to \frac{d}{dt}{{\psi }_{i}}=\frac{\partial F}{\partial {{x}_{i}}}$, систему
+$\left\{ \begin{array}{*{35}{l}}
+   \frac{d{{x}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}},\,i=\overline{1,n}  \\
+   \frac{d{{\psi }_{i}}}{dt}=-\frac{\partial H}{\partial {{x}_{i}}},\,i=\overline{1,n}  \\
+   \frac{dH}{d{{u}_{j}}}=0,\,\,j=\overline{1,m}  \\
+\end{array} \right.$
+\\Учитывая, что в уравнении ОУ ($\dot{x}=Ax+Bu$) отсутствует производные управления ($\dot{u}$). При не фиксированных граничных условиях уравнение трансверсальности в канонической форме имеет вид: 
+\[\begin{array}{*{35}{l}}
+   {{\psi }_{i}}\left( {{t}_{0}} \right)=0,{{\psi }_{i}}\left( {{t}_{k}} \right)=0  \\
+   H\left( {{t}_{0}} \right)=0,H\left( {{t}_{k}} \right)=0  \\
+\end{array}\]
+\par Такая форма уравнений даёт большое преимущество, т.к. слева только дифференциирование по времени, а справа частные производные по времени.
+\par Для общей задачи Лагранжа канонические переменные $\psi \left( t \right)$ совпадают с неизвестными множителями Лагранжа $\lambda \left( t \right)$.
+\par Кроме того, переход к функции Гамильтона позволит снизить требования к гладкости изменения переменных состояния и управления и решать задачи в условиях ограничений в виде неравенства.
+\par Для консервативных механических систем функция Гамильтона $H$ имеет простой физический смысл - она совпадает с полной механической энергией $H=const$ - имеет смысл закона сохранения полной механической энергии.
+\par В общем случае для линейного объекта в форме уравнений состояния $\dot{x}=Ax+Bu$ ($n$-размерности) отсутствует зависимость от $\dot{u}$ уравнения вариационной задачи записываются в следующем виде:
+Из $extrJ=\int\limits_{0}^{\infty }{F\left( x,u,t \right)dt}$
+$L\left( \dot{x},u,t,\lambda  \right)=F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \Phi \left( x,u,t \right)$ $\Phi \left( x,u,t \right)=\dot{x}-Ax-Bu$
+\\$H\left( {} \right)={{\lambda }^{T}}\left( t \right)\dot{x}-L\left( x,u,t,\lambda  \right)=-F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \left( \dot{x}-\dot{x}\underbrace{+Ax+Bu}_{{{\Phi }_{1}}\left( x,u,t \right)} \right)$
+получается система 
+\\$\left\{ \left. \begin{array}{*{35}{l}}
+   \frac{\partial X}{\partial t}=\left\| \frac{\partial H}{\partial {{\lambda }_{i}}} \right\|=AX+BU,\,\,i=\overline{1,n}  \\
+   \frac{\partial \lambda }{\partial t}=-\left\| \frac{\partial H}{\partial {{x}_{i}}} \right\|=\left\| \frac{\partial F}{\partial {{x}_{i}}} \right\|+{{\lambda }^{T}}\left\| \frac{\partial {{\Phi }_{1}}}{\partial {{x}_{i}}} \right\|,\,\,\,i=\overline{1,n}  \\
+   \frac{\partial H}{\partial {{u}_{j}}}=\frac{\partial F}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{{{\lambda }_{i}}\frac{\partial {{\varphi }_{1i}}}{\partial {{u}_{j}}}}=0,\,\,j=\overline{1,r}  \\
+\end{array} \right\} \right.2n+r$ уравнений
+\\
+\ExampleMy Определим оптимальное управление объектом:
+\\$T\dot{x}+x=ku$, $\frac{x}{u}=\frac{k}{Tp+1}\to \dot{x}=-\frac{1}{T}x+\frac{k}{T}u=ax+bu$
+\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt,\to L=q{{x}^{2}}+r{{u}^{2}}+\lambda \left( \dot{x}-ax-bu \right),\,H=-q{{x}^{2}}-r{{u}^{2}}+\lambda \left( ax+bu \right)$
+\\$\left\{ \begin{array}{*{35}{l}}
+   \dot{x}=\frac{\partial H}{\partial \lambda }=ax+bu  \\
+   \dot{\lambda }=-\frac{\partial H}{\partial x}=-\left( 2qx+\lambda a \right)=2qx-\lambda a  \\
+   0=-\frac{\partial H}{\partial u}=-\left( -2ru+\lambda b \right)=2ru-\lambda b  \\
+\end{array} \right.$ $\to u=\frac{b}{2r}\lambda $
+\\Имеем систему уравнений:
+\\$\left\{ \begin{array}{*{35}{l}}
+   \dot{x}=ax+\frac{{{b}^{2}}}{2r}\lambda   \\
+   \dot{\lambda }=2qx-a\lambda   \\
+\end{array} \right.=\left| \begin{matrix}
+   a & \frac{{{b}^{2}}}{2r}  \\
+   2q & -a  \\
+\end{matrix} \right|\left| \begin{matrix}
+   x  \\
+   \lambda   \\
+\end{matrix} \right|$
+\\Для определения корней системы составим определитель
+\\$\Delta \left( p \right)=\left| Ep-A \right|=\left| \begin{matrix}
+   p-a & -\frac{{{b}^{2}}}{2r}  \\
+   -2q & p+a  \\
+\end{matrix} \right|={{p}^{2}}-{{a}^{2}}-2q\left( \frac{{{b}^{2}}}{2r} \right)={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$
+\\${{p}_{1,2}}=\pm \sqrt{{{a}^{2}}+\frac{q{{b}^{2}}}{r}}$-условию устойчивости удовлетворяет только отрицательный корень, поэтому решение ищем в виде $\left\{ \begin{array}{*{35}{l}}
+   x={{C}_{1}}\exp \left( {{p}_{2}}t \right)  \\
+   \lambda ={{C}_{2}}\exp \left( {{p}_{2}}t \right)  \\
+\end{array} \right.$ ${{C}_{1}},\,{{C}_{2}}$ - постоянные интегрирования ${{C}_{1}}={{x}_{0}}$, ${{C}_{2}}=\frac{\left( {{p}_{2}}-a \right)2r}{b}{{C}_{1}}=\frac{2q}{{{p}_{2}}+a}{{C}_{1}}$
+\\Следовательно искомое оптимальное уравнение
+\\${{U}_{}}\left( t \right)=\frac{b}{2r}\lambda \left( t \right)=\frac{bq}{r\left( {{p}_{2}}-a \right)}\cdot \underbrace{{{C}_{1}}\exp \left( {{p}_{2}}t \right)}_{x\left( t \right)}=u\left( t \right)\to \underbrace{\frac{{{p}_{2}}-a}{b}}_{{{K}_{}}}x\left( t \right)$ - такое решение определяет структуру оптимального регулятора в форме отрицательной обратной связи
+\\${{K}_{}}=\frac{{{p}_{2}}-a}{b}=-\frac{a+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}}{b}$   
+\par Вспомним пример поиска характеристического полинома системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ доставляющего $\min J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+q{{{\dot{x}}}^{2}} \right)}dt$ перепишем в нашем случае:
+\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{\left( \frac{\dot{x}-ax}{b} \right)}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( \left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{{\dot{x}}}^{2}} \right)}dt$
+\\$F=\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{\dot{x}}^{2}}\to \frac{\partial F}{\partial x}=2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}$
+\\$\frac{\partial F}{\partial \dot{x}}=-\frac{2ra}{{{b}^{2}}}x+\frac{2r}{{{b}^{2}}}\dot{x}$, уравнение Эйлера:
+\\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\to 2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}+\frac{2ra}{{{b}^{2}}}\dot{x}-\frac{2ra}{{{b}^{2}}}\ddot{x}\to \ddot{x}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)x=0$
+\\Соответствующий характеристический полином ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить как $\left[ {{p}^{2}}-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]\left[ {{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]=0$ - произведение полиномов с симметричным расположением левого и правого полюсов - это \underline{факторизация}. Устойчивый характер процессов дает полином ${{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=0$.
+\par Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то ${{U}_{opt}}={{K}_{opt}}\cdot x$ $\dot{x}=ax+b{{K}_{oc}}x=\left( a+b{{K}_{oc}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_{oc}} \right)$. Приравнивая два полинома 
+$p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_{oc}} \right)$, получим ${{K}_{oc}}=\frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b}$ - как видно решения совпадают - в литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
+\\Записывая факторизацию для $D\left( p \right)\to \left[ p-\left( a+b{{K}_{oc}} \right) \right]\left[ p+\left( a+b{{K}_{oc}} \right) \right]={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)$ получим ${{p}^{2}}-{{\left( a+b{{K}_{oc}} \right)}^{2}}={{p}^{2}}-\left( {{a}^{2}}+\frac{{{b}^{2}}}{r}q \right)$ - уравнение $K_{oc}^{2}+\frac{2a}{b}{{K}_{oc}}-\frac{q}{r}=0$ откуда:  ${{K}_{oc}}=-\frac{a}{b}\pm \sqrt{\frac{{{a}^{2}}}{{{b}^{2}}}+\frac{q}{r}}$ скалярное стационарное уравнение Риккати.
+\subsection{Принцип максимума\label{variations:Canonical_Euler}}
+\par В целом ряде практических задач оптимизация функционала при заданных дифференциальных (динамических) уравнениях объекта $\left\{ \dot{X}=\Phi \left( x,u \right)=AX+BU \right\}$ требуется обеспечивать при ограниченных диапазонах допустимого изменения управлений $\left| {{u}_{i}} \right|\le {{U}_{i}}$   и/или координат объекта $\left| {{x}_{i}} \right|\le {{X}_{i}}$. В изменениях функций образуются переломы, в изменении производных разрыва. Нарушаются условия, при которых были выведены уравнения Эйлера и Эйлера-Лагранжа в вариациях.
+\par Коллективом ученых под руководством академика Л.С.Понтрягина (В.Г.Болтянский,Р.В.Гамкрелидзе,Е.Ф.Мищенко и др.) был разработан принцип максимума, использующий понятие игольчатой вариации относительно оптимального управления и траектории движения, что позволило доказать применимость модифицированной функции Гамильтона для таких неклассических вариационных задач. Модификация заключалась в следующем:
+\begin{itemize}
+\item Уравнение для критерия качества $J=\int\limits_{{{t}_{0}}}^{{{t}_{K}}}{{{F}_{0}}\left( x,u \right)dt}$ из интегральной формы преобразовывалось в дифференциальную ${{\dot{x}}_{0}}={{\dot{F}}_{0}}\left( x,u \right)$, ${{x}_{0}}=\left. J \right|_{{{t}_{0}}}^{{{t}_{k}}}$
+\item Формирования расширенного вектора ${{\left[ {{x}_{0}},x \right]}_{n+1}}$ и новой функции Гамильтона ${{H}^{*}}\left( {{\psi }_{0}},\psi ,x,u \right)={{\psi }_{0}}{{F}_{0}}\left( x,u \right)+{{\psi }^{T}}\Phi \left( x,u \right)=\sum\limits_{i=0}^{n}{{{\psi }_{i}}{{f}_{i}}\left( x,U \right)}$, где ${{\psi }_{0}}=-1$ для перехода об минимизации $J$ к максимизации $H$.
+Канонические уравнения Гамильтона тогда имеют вид:
+$\left\{ \begin{array}{*{35}{l}}
+   \frac{d{{x}_{i}}}{dt}=\frac{\partial {{H}^{*}}}{\partial {{\psi }_{i}}},\,\,i=\overline{0,n}  \\
+   \frac{\partial {{\psi }_{i}}}{dt}=-\frac{\partial {{H}^{*}}}{\partial {{x}_{i}}},\,\,i=\overline{0,n}  \\
+   \frac{\partial {{H}^{*}}}{\partial U}=0  \\
+\end{array} \right.$, их количество $2n+2+r$ и решение задачи при фиксированных начальной $x\left( {{t}_{0}} \right)$ и конечной $x\left( {{t}_{k}} \right)$ точках дается теоремой (без доказательства).
+\end{itemize}
+\underline{Теорема (Л.С.Понтягин,1956 г)} Для того, чтобы допустимое управление ${{u}^{*}}\left( t \right)$ и соответствующая ему траектория ${{x}^{*}}\left( t \right)$ были оптимальными \underline{необходимо} существование такой ненулевой непрерывной векторной функции ${{\psi }^{*}}\left( t \right)$, отвечающей в силу уравнений Гамильтона функциям  ${{u}^{*}}\left( t \right)$ и ${{x}^{*}}\left( t \right)$, что:
+\begin{enumerate}
+\item В $\forall $ момент времени, когда ${{u}^{*}}\left( t \right)$ непрерывна при ${{t}_{0}}\le t\le {{t}_{k}}$ функция ${{H}^{*}}\left( {{x}^{*}},{{u}^{*}} \right)=\underset{u\in U}{\mathop{\max }}\,{{H}^{*}}\left( \psi _{0}^{*},{{\psi }^{*}},{{x}^{*}},u \right)$ - достигает максимума.
+\item В $\forall $ момент времени $\psi _{0}^{*}=-1$,${{H}^{*}}\left( {{\psi }^{*}}\left( T \right),{{x}^{*}}\left( T \right) \right)=0$
+\end{enumerate}
+При этом наличие разрывов в изменении производных накладывает дополнительные условия:
+\\$\left. \begin{array}{*{35}{l}}
+   {{\psi }_{i}}\left( t_{+0}^{*} \right)={{\psi }_{i}}\left( t_{-0}^{*} \right)  \\
+   H\left( t_{+0}^{*} \right)=H\left( t_{-0}^{*} \right)  \\
+\end{array} \right\}$ условия Вейерштрасса-Эрдмана
+ \\и ${{x}_{i}}\left( t_{+0}^{*} \right)={{x}_{i}}\left( t_{-0}^{*} \right)$ - условия припасовывания.
+\par Конструктивный вид этой теоремы позволяет построить алгоритмическую процедуру определения оптимального управления:
+\begin{enumerate}
+\item Составить гамильтониан системы: $H\left( \psi ,x,u \right)=-F\left( x,u \right)+\psi \Phi \left( x,u \right)$
+\item Максимизировать его по $u\left( t \right)\in U$: $\underset{u\in U}{\mathop{\max }}\,{{H}^{*}}\left( {{\psi }^{*}},{{x}^{*}},u \right)={{H}^{*}}\left( {{\psi }^{*}},{{x}^{*}},u \right)$, определяя управление как функцию вектора состояния и вспомогательной переменной ${{u}^{*}}=u\left( {{\psi }^{*}},{{x}^{*}} \right)$
+\item Составить систему однородных дифференциальных уравнений для вспомогательной переменной $\dot{\psi }=-\frac{\partial H}{\partial x}$
+\item Решить эту систему уравнений при неизвестных начальных условиях и заданных соответствующим сопряженной системе условиям для $x\left( {{t}_{0}} \right)$ и $x\left( {{t}_{k}} \right)$ - краевым или условиям трансверсальности. Соответствующее решение ищется аналитически или численными методами.
+\end{enumerate} 
+\par Для неконсервативных систем ${{H}^{*}}=\psi \dot{X}$ - будет мощностью, а ${{\psi }_{i}}$ - импульсами воздействий, которые вводят в ОУ такое количество энергии, которое обеспечивало бы заданный закон движения и экстремум функционала критерия качества.
+\\
+\\
+\ExampleMy   $\underset{\min }{\mathop{extr}}\,J=\int\limits_{0}^{4}{\left( x+{{u}^{2}} \right)}dt$, $\dot{x}=u$, $x\left( 4 \right)=0$, $\left| u \right|\le 1$
+\begin{enumerate}
+\item $H\left( \psi ,x,u \right)=-1\left( x+{{u}^{2}} \right)+\psi u$
+\item $\max H=\underset{u\left( t \right)\in U}{\mathop{\max }}\,\left( -x-{{u}^{2}}+\psi u \right)$, дифференциируется по $u$ ($\frac{\partial {{H}^{*}}}{\partial u}=0$):$-2u+\psi =0\to u=\frac{1}{2}\psi $ ($\left| u \right|\le 1$)
+\item $\psi =-\frac{\partial H}{\partial x}\to \dot{\psi }=-\frac{\left( x-{{u}^{2}}+\psi u \right)}{\partial x}=1$
+\item ${{u}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{t}{2},\,\,0\le t\le 2  \\
+   1,\,\,\,\,2\le t\le 4  \\
+\end{array} \right.$, ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{{{t}^{2}}}{4}+{{C}_{2}},0\le t\le 2  \\
+   t+{{C}_{3}},2\le t\le 4  \\
+\end{array} \right.$
+\\с дополнительным условием: 
+и $x\left( {{2}_{+0}} \right)=x\left( {{2}_{-0}} \right)\to x\left( {{2}_{+0}} \right)=2-4=-2=x\left( {{2}_{-0}} \right)=\frac{{{2}^{2}}}{4}+{{C}_{2}}=1+{{C}_{2}}\to {{C}_{2}}=-3$ и значит ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
+   \frac{{{t}^{2}}}{4}-3,\,\,0\le t\le 2  \\
+   t-4,\,\,\,2\le t\le 4  \\
+\end{array} \right.$
+\\${{J}_{\min }}=\int\limits_{0}^{2}{\left( \frac{{{t}^{2}}}{4}+\frac{{{t}^{2}}}{4}-3 \right)}dt+\int\limits_{2}^{4}{\left( {{1}^{2}}+t-4 \right)}dt=\left. \left( \frac{{{t}^{3}}}{6}-3t \right) \right|_{0}^{2}+\left. \left( \frac{{{t}^{2}}}{2}-3t \right) \right|_{2}^{4}=-4\frac{2}{3}$ 
+\end{enumerate}
+\ExampleMy $T\dot{x}+x=Ku\to \dot{x}=ax+bu$ 
+\\$\underset{\min }{\mathop{extr}}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$
+\\$\left| u \right|\le {{U}_{\max }}$
+\begin{enumerate}
+\item ${{H}^{*}}=-\left( q{{x}^{2}}+r{{u}^{2}} \right)+\psi \left( ax+bu \right)$
+\item $\frac{\partial {{H}^{*}}}{\partial u}=-2ru+\psi b=0\to \begin{array}{*{35}{l}}
+   u=\frac{b}{2r}\psi$, при $\left| u \right|\in {{U}_{\max }}$   
+   $\\u={{U}_{\max }}$, при $\left| \frac{b}{2r}{{\psi }_{1}} \right|\ge {{U}_{\max }}$ 
+$\\\end{array}$
+\item $\left. \begin{array}{*{35}{l}}
+   \dot{\psi }=-\frac{\partial H}{\partial x}=2qx-a\psi$	
+	$\dot{x}=ax+b\frac{b}{2r}\psi   \\
+\end{array} \right\}$, получим систему аналогичную ранее и тогда  $\psi =\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{{{b}^{2}}}\cdot 2rx$ 
+\item ${{U}_{opt}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
+   \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}  $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\le {{U}_{\max }}$
+   $\\\pm {{U}_{\max }} $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\ge {{U}_{\max }}$
+$ \\\end{array} \right.$ 
+  
+\end{enumerate} 
 
- 
 
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
