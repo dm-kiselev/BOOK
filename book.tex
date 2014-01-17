@@ -6,6 +6,7 @@
 \usetikzlibrary{positioning}	% автоматическое размещение элементов на чертежах относительно друг друга
 \usetikzlibrary{shapes.misc}
 \usepackage{enumitem}			% Для разрывов в списках
+\usepackage{ncccomma}			% для использования запятой в качестве разделителя дробной части
 %\usepackage{dcounter}			% динамические счётчики
 %\usepackage{amsmath}
 %\usepackage{nccmath}
@@ -247,7 +248,7 @@ J \left( U, X, \underset{t_\text{\textit{к}} - t_0}{\mathop{T}} \, \right) = \P
 %Часть 3 Теория решения задач на экстремум
 \clearpage
 \section{Теория решения задач на экстремум\label{extremum}}
-Формально достаточно общие задачи на отыскание $\max$  или $\min$ функции записываются в виде $\underset{x}{\mathop{extr}}\,\,F\left( x \right)$, $x\in X$, т.\=,е.~найти в множестве $X$ точку $x$, при которой скалярная функция векторного аргумента $F\left( x \right)$ принимает экстремальное значение. При этом точки $ x = {\left( x_1, x_2, \dots x_n \right)}^T \in X$ называют допустимыми, само множество может быть ограничено или $ X \in \mathop{R}^n $, а задача поиска $ \max \, F\left( x \right) $ сведена к задаче поиска $ \min \, { - F \left( x \right) }$. Точку $ x^* \in \mathop{X}^* $ такую, что $ F \left( x^* \right) \ne F\left( x\in X,\,x\ne {{x}^{*}} \right)$ называют решением задачи на экстремум, а $ F \left( x^* \right) $ --- значением экстремума.
+Формально достаточно общие задачи на отыскание $\max$  или $\min$ функции записываются в виде $\underset{x}{\mathop{extr}} \, F \left( x \right) $, $ x \in X $, т.\=,е.~найти в множестве $X$ точку $x$, при которой скалярная функция векторного аргумента $F \left( x \right) $ принимает экстремальное значение. При этом точки $ x = {\left( x_1, x_2, \dots x_n \right)}^T \in X$ называют допустимыми, само множество может быть ограничено или $ X \in \mathop{R}^n $, а задача поиска $ \max \, F\left( x \right) $ сведена к задаче поиска $ \min \, { - F \left( x \right) }$. Точку $ x^* \in \mathop{X}^* $ такую, что $ F \left( x^* \right) \underset{\le}{\ge} F \left( x \in X, \, x \ne x^* \right) $ называют решением задачи на $ \underset{\min}{\max} $ (экстремум), а $ F \left( x^* \right) $ --- значением экстремума.
 
 Для сложных функций в заданной области может быть несколько таких точек (локальные экстремумы, также называемые слабыми, и абсолютные экстремумы, также называемые сильными).
 
@@ -265,7 +266,7 @@ J \left( U, X, \underset{t_\text{\textit{к}} - t_0}{\mathop{T}} \, \right) = \P
 \vspace{\baselineskip}
 \par\ExampleMy 
 \begin{enumerate}
-\item $ \min \, F \left( x \right) = \frac{1}{2} \left( x_1^2 + 4x_2^2 \right) $\\
+\item $ \min \, F \left( x \right) = \frac{1}{2} \left( x_1^2 + 4x_2^2 \right) $
 \[ \left\{ \begin{darray}{l}
    \frac{\partial F}{\partial x_1} = x_1 \nr
    \frac{\partial F}{\partial x_2} = 4x_2
@@ -276,27 +277,56 @@ J \left( U, X, \underset{t_\text{\textit{к}} - t_0}{\mathop{T}} \, \right) = \P
 \frac{ \partial ^ 2 F }{ \partial x ^ 2} = \left| \begin{matrix} 1 & 0 \\ 0 & 4 \end{matrix} \right| \]
 Положительная определённость может быть подтверждена вычислением собственных чисел ($ \lambda _ 1 = 1, \lambda _ 2 = 4 $) или анализом всех диагональных миноров ($ \Delta _ 1 = 1, \Delta _2 = 4 $). Это доказывает, что стационарная точка $ \left( 0, 0 \right) $ абсолютный (глобальный) $\min$.
 
-\item $\underset{{{x}_{1}},{{x}_{2}}}{\mathop{\min }}\,\left( F\left( x \right) \right)=x_{1}^{2}-2{{x}_{1}}{{x}_{2}}+4x_{2}^{2}$\\ 
-$\left\{ \begin{matrix}
-   \frac{\partial F}{\partial {{x}_{1}}}=2{{x}_{1}}-2{{x}_{2}}=0  \\
-   \frac{\partial F}{\partial {{x}_{2}}}=-2{{x}_{1}}+8{{x}_{2}}=0  \\
-\end{matrix} \right.\to {{x}^{*}}={{\left( 0,0 \right)}^{T}}$
-матрица Гессе $\frac{{{\partial }^{2}}F}{\partial {{x}^{2}}}=\left| \begin{matrix}
-   2 & -2  \\
-   -2 & 8  \\
-\end{matrix} \right|$ - положительно определенная - это достаточное условие $\min \left( F\left( {{x}^{*}} \right) \right)=0$
-\item $f\left( x \right)={{x}^{3}}\left( {{x}^{2}}-1 \right)\to extr$; $-1\le x\le 2$
-\\$\frac{\partial f}{\partial x}=5{{x}^{4}}-3{{x}^{2}}=0\to {{x}_{1}}=0;\,\,{{x}_{2}}=\sqrt{3};\,{{x}_{3}}=\sqrt{\frac{3}{5}}$ \\$\frac{{{\partial }^{2}}F}{\partial {{x}^{2}}}=20{{x}^{2}}-6x$
-\\${{\left. \frac{{{\partial }^{2}}F}{\partial {{x}^{2}}} \right|}_{{{x}_{1}}}}=0;{{\left. \frac{{{\partial }^{2}}F}{\partial {{x}^{2}}} \right|}_{{{x}_{2}}}}=6\sqrt{\frac{3}{5}}>0\to \min ;{{\left. \frac{{{\partial }^{2}}F}{\partial {{x}^{2}}} \right|}_{{{x}_{3}}}}=-6\sqrt{\frac{3}{5}}<0\to \max $
-\\$f\left( -1 \right)=0,f\left( 2 \right)=24$
+\item $ \min \, F \left( x \right) = x_1^2 - 2 x_1 x_2 + 4 x_2^2 $
+\[ \left\{ \begin{darray}{l}
+   \frac{\partial F}{\partial x_1} = 2 x_1 - 2 x_2 = 0  \nr
+   \frac{\partial F}{\partial x_2} = -2 x_1 + 8 x_2 = 0
+\end{darray} \right. \enskip \Rightarrow \enskip x^* = {\left( 0, 0 \right)}^T \]
+Матрица Гессе $ \frac{ \partial ^ 2 F }{ \partial x^2 } =
+\left| \begin{array}{@{}rr@{}} 	% выравнивание обоих столбцов по правому краю
+	 2 & -2 \\
+	-2 &  8
+\end{array} \right| $ положительно определённая --- это достаточное условие $ \min \, F \left( x^* \right) = 0 $
+
+\item $ f(x) = x^3 \left( x^2 - 1 \right) \to extr; \quad -1 \le x \le 2 $
+\[ \frac{\partial f}{\partial x} = 5x^4 - 3x^2 = 0 \enskip \Rightarrow \enskip x_1 = 0, x_2 = \sqrt{3/5}, x_3 = - \sqrt{3/5} \]
+\[ \frac{\partial ^ 2 F }{\partial x^2} = 20x^2 - 6x \]
+\[ \left\{ \begin{darray}{l}
+	\frac{\partial ^ 2 F }{\partial x^2} \Big| _{x=x_1} = 0 \nr
+	\frac{\partial ^ 2 F }{\partial x^2} \Big| _{x=x_2} = 6\sqrt{3/5} > 0 \enskip \Rightarrow \min \nr
+	\frac{\partial ^ 2 F }{\partial x^2} \Big| _{x=x_3} = -6\sqrt{3/5} < 0 \enskip \Rightarrow \max
+\end{darray} \right. \]
+\[ f \left( x_1 \right) = 0; \enskip f \left( x_2 \right) = - \frac{6}{25} \sqrt{\frac{3}{5}} \approx - 0,2; \enskip f \left( x_3 \right) = \frac{6}{25} \sqrt{\frac{3}{5}} \approx 0,2\]
+\[ f(-1) = 0; \enskip f(2) = 24 \]
 \end{enumerate}
 
-В качестве точек возможного экстремума необходимо включить для анализа не только стационарные $\left( \bullet  \right)$, но еще границы допустимой области и точки возможных разрывов оптимизируемой функции.  
-\\При отыскания решения задачи с ограничениями в форме равенств $X=\left\{ x\in {{R}^{n}},G\left( x \right)={{\left( {{g}_{1}}\left( x \right),{{g}_{2}}\left( x \right)...{{g}_{k}}\left( x \right) \right)}^{T}}=0 \right\}$ существует несколько методов: наиболее просты и очевидны 2: метод прямой подстановки и составление функции Лагранжа. При решении методом составления функции Лагранжа необходимо:
+\begin{figure}[ht] \centering
+\begin{tikzpicture}
+	[	scale=3,				% масштаб (относительно 1см)
+		% x = 3cm,
+		% y = 3cm,
+		smooth,					% сглаживать углы
+		samples=100,			% число точек на графике
+		domain=-1:1.2	]		% диапазон значений входной величины
+	\draw[very thin,gray,step=1 mm] (-1.1,-0.3) grid (1.7,1);		% сетка
+	\draw[semithick,->] (-1.1,0) -- (1.7,0) node[right] {$x$};			% ось абсцисс
+	\draw[semithick,->] (0,-0.3) -- (0,1) node[above] {$f(x)$};		% ось ординат
+	\foreach \x in {-1,-0.5,0.5,1,1.5}
+		\draw[semithick] (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\x$};
+	\foreach \y in {-0.2,0.2,0.4,0.6,0.8}
+		\draw[semithick] (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\y$};
+	\draw[semithick,blue] plot (\x,{\x*\x*\x*(\x*\x-1)});		% график (ага, со степенями проблемы)
+\end{tikzpicture}
+\footnotesize \caption{График функции, рассмотренной в третьем примере\label{fig:extremum:third_example}}
+\end{figure}
+
+В качестве точек возможного экстремума необходимо проанализировать не только стационарные точки, но ещё границы допустимой области и точки возможных разрывов оптимизируемой функции.
+
+При отыскания решения задачи с ограничениями в форме равенств $ X=\left\{ x \in \mathop{R}^n, G \left( x \right) = { \bigl( g_1(x), g_2(x),\ldots g_k(x) \bigr) }^T = 0 \right\} $ существует несколько методов. Наиболее просты и очевидны: метод прямой подстановки и метод составления функции Лагранжа. При решении методом составления функции Лагранжа необходимо:
 \begin{itemize}
-\item Составить функцию $L\left( x,\lambda  \right)=F\left( x \right)+{{\lambda }^{T}}G\left( x \right)$, где $\lambda ={{\left( {{\lambda }_{1}},{{\lambda }_{2}}...{{\lambda }_{k}} \right)}^{T}}$ - вектор неопределенных множеств.
-\item Выписать необходимые условия экстремума $\frac{\partial L\left( x,\lambda  \right)}{\partial x}=0,\,\,\frac{\partial L}{\partial \lambda }=0$
-\item Найти стационарные точки и отыскать среди них решения задачи или доказать, что решения нет.
+\item составить функцию Лагранжа $ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) $, где $ \lambda = { \left( \lambda _1, \lambda _2,\ldots \lambda _k \right) }^T $ --- вектор неопределённых множителей;
+\item выписать необходимые условия экстремума $ \frac{\partial L}{\partial x} = 0, \enskip \frac{\partial L}{\partial \lambda } = 0 $;
+\item найти стационарные точки и отыскать среди них решения задачи или доказать, что решения нет.
 \end{itemize}
   
 \begin{enumerate}[resume]
