@@ -739,11 +739,31 @@ $\\\end{array}$
 \item ${{U}_{opt}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
    \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}  $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\le {{U}_{\max }}$
    $\\\pm {{U}_{\max }} $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\ge {{U}_{\max }}$
-$ \\\end{array} \right.$ 
-  
+$ \\\end{array} \right.$  
 \end{enumerate} 
-
-
+\par Наибольшее применение принцип максимума нашёл при оптимизации из условия  
+$\min {{t}_{p.p.}}$ (максимального быстродействия), т.к. в этом случае $\underset{\min ,u\in U}{\mathop{extr}}\,J=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u \right)}dt=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1}dt={{t}_{k}}-{{t}_{0}}$ - имеет простейшую подынтегральную функцию и гамильтониан ${{H}^{*}}=-1+\sum\limits_{i=1}^{n}{{{\psi }_{i}}\left( t \right)}{{\Phi }_{i}}\left( x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, от управления зависит только последнее слагаемое и в условиях ограничений на управление  
+$\left| u \right|\le {{U}_{m}}$, решение имеет естественный вид: $u={{U}_{m}}\cdot sign{{\psi }^{T}}B$ - т.е. оптимальная система является релейной с определением переключения по знаку вспомогательной функции ${{B}^{T}}\psi $, где $\dot{\psi }=-{{A}^{T}}\psi \to \psi \left( t \right)=-\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$, однако поиск $\psi \left( 0 \right)$ - приводит либо к системе трансцендентных уравнений, трудно решаемых в общем виде, либо к итерационному поиску.
+\par В простейшем случае:
+\\Когда объект представим последовательным соединением 2 интеграторов: $\ddot{x}=u$, $\left| u \right|\le {{U}_{m}}$
+\\$\left| \begin{array}{*{35}{l}}
+   {{{\dot{x}}}_{1}}  \\
+   {{{\dot{x}}}_{2}}  \\
+\end{array} \right|=\left| \begin{matrix}
+   0 & 1  \\
+   0 & 0  \\
+\end{matrix} \right|\left| \begin{matrix}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{matrix} \right|+\left| \begin{matrix}
+   0  \\
+   1  \\
+\end{matrix} \right|u$
+Гамильтониан $H\left( \psi ,x,u \right)=-1+{{\psi }_{1}}{{x}_{2}}+{{\psi }_{2}}u$ и $max$ достигается при ${{U}_{opt}}\left( t \right)={{U}_{m}}\cdot sign{{\psi }_{2}}$, где 
+${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\dot{\psi }}_{1}}=-\frac{\partial H}{\partial {{x}_{1}}}=0$ и ${{\psi }_{2}}\left( t \right)={{C}_{1}}t+{{C}_{2}}$, произвольные постоянные при $\forall $ наборе которых ${{\psi }_{2}}$ может иметь только 2 интервала с разными знаками $\to $ соответственно ${{U}_{opt}}\left( t \right)$ - кусочно-постоянная функция, принимающая $+{{U}_{m}}$ и $-{{U}_{m}}$ значения. Отсюда, для перевода из нулевого начального состояния в заданное (например положительное $x\left( {{t}_{k}} \right)>0$) конечное будем иметь 2 интервала: разгон и торможение, и переключение произойдет ровно посередине. Если будет ограничена скорость набора $\left| {{x}_{2}} \right|\le {{x}_{2m}}$, то в интервале ${{t}_{1}}\to {{t}_{2}}$ потребуется обнулить управление $u$ ${{{t}'}_{k}}\to {{t}_{k}}$, а управление будет иметь 3 интервала: $+{{U}_{m}}$ $0$ $-{{U}_{m}}$ ${{U}_{opt}}\left( t \right)=dez{{\psi }_{2}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
+   0,\,\,\left| {{\psi }_{2}} \right|\le 1  \\
+   sign{{\psi }_{2}},\,\left| {{\psi }_{2}} \right|>1  \\
+\end{array} \right.$
 \clearpage
   \section{Синтез оптимальных систем\label{synthesis}}
  \subsection{Общий случай\label{synthesis:general}}
@@ -751,11 +771,107 @@ $ \\\end{array} \right.$
  \subsection{Принцип максимума Понтрягина\label{synthesis:principle_of_maximum}}
  
  \subsection{Синтез оптимальных по быстродействию систем\label{synthesis:fastest}}
- 
- \subsection{Динамическое программирование Беллмана\label{synthesis:dyn_prog}}
-  
-  \clearpage
-  \section{Синтез оптимальных стохастических систем\label{stochastic}}
+ Итак, в общем случае задача синтеза оптимального по быстродействию управления линейным объектом $\dot{X}=A\left( x,u \right)=Ax+Bu$ с $\min \int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1dt={{t}_{k}}-{{t}_{0}}}$, с возможным ограничением на $\left| {{x}_{i}} \right|\le {{X}_{i}}$ осуществляется с помощью принципа Максимума на основе составления формулы Гамильтона: $H\left( \psi ,x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, и ${{u}_{opt}}={{U}_{\max }}\cdot sign\left( \frac{\partial H}{\partial u} \right)={{U}_{\max }}sign\left( {{B}^{T}}\psi  \right)$ и  $\dot{\psi }\left( t \right)=-{{\psi }^{T}}\left( t \right)\frac{\partial \Phi \left( x,u \right)}{\partial x}=-{{\psi }^{T}}\left( t \right)A=-{{A}^{T}}\psi \left( t \right)\to \psi \left( t \right)=\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$ - это набор экспонент, поиск которых в общем виде затруднён. Однако в частных случаях были получены ряд важных результатов.
+\begin{enumerate}
+\item Если собственные числа матрицы $A$ - различные вещественные, то сумма $n$ экспонент ${{B}^{T}}\psi $ - может пересекать ось $t$ (и менять знак) только $n-1$ раз.   Фельдбаум А.А. доказал теорему об \underline{n-интервалах}:
+\\Если объект управления описывается ЛДУ $n$ порядка с постоянными коэффициентами и корни его характеристического уравнения вещественные отрицательные или нулевык, то для оптимального управления по $t$ \underline{необходимо и достаточно} не более $n$ интервалов максимального по значению ${{U}_{m}}$ управления, а знаки чередуются не более $n-1$ раз.
+\item Оптимальное управление для линейных систем с комплексными полюсами не удовлетворяет теореме Фельдбаума А.А., число переключений управления не связано с порядком системы, а зависит от её начального состояния
+\item Наличие только ограниченного числа вариантов управляющего сигнала $\pm {{U}_{m}}$ позволяет разделить всё фазовое пространство СУ на области с помощью гиперповерхностей, в каждой из которых управление постоянно - такой подход называется методом фазовго пространства, и позволяет вычислять управление на основе анализа нелинейных зависимостей   ${{U}_{opt}}=-{{U}_{\max }}\cdot sign\left[ S\left( x \right) \right]$
+\end{enumerate}
+\ExampleMy Для ОУ: $\ddot{x}=u\left( t \right)$, $\left| \begin{matrix}
+   {{{\dot{x}}}_{1}}  \\
+   {{{\dot{x}}}_{2}}  \\
+\end{matrix} \right|=\left| \begin{matrix}
+   0 & 1  \\
+   0 & 0  \\
+\end{matrix} \right|\left| \begin{matrix}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{matrix} \right|+\left| \begin{matrix}
+   0  \\
+   1  \\
+\end{matrix} \right|u$, ${{\dot{x}}_{1}}={{x}_{2}}$ ${{\dot{x}}_{2}}=u$
+\\${}^{\frac{d{{x}_{1}}}{dt}}/{}_{\frac{d{{x}_{2}}}{dt}}=\frac{{{x}_{2}}}{u}$ $\to $ $\frac{d{{x}_{1}}}{d{{x}_{2}}}=\frac{{{x}_{2}}}{u}$ $\to $ $Ud{{x}_{1}}={{x}_{2}}d{{x}_{2}}$
+откуда при получаются траектории вида: $U=+{{U}_{\max }}\to {{U}_{m}}{{x}_{1}}=\frac{x_{2}^{2}}{2}$ 
+ $U=-{{U}_{\max }}\to -{{U}_{m}}{{x}_{1}}=\frac{x_{2}^{2}}{2}$.
+\\Считая необход. точкой $\left( {{x}_{1}},\,{{x}_{2}} \right)=\left( 0,\,0 \right)$ выделяем линию $S\left( {{x}_{1}},{{x}_{2}} \right)={{x}_{1}}+sign\left( {{x}_{2}} \right)\frac{x_{2}^{2}}{2{{U}_{m}}}=0={{x}_{1}}+\frac{{{x}_{2}}\left| {{x}_{2}} \right|}{2{{U}_{m}}}$. Тогда, вычисляя $u\mp -{{U}_{m}}sig\left( S\left( x,{{x}_{2}} \right) \right)$ получим фазовые траектории в виде:
+ \par Аналитические представления для поверхностей переключения как функций координат полностью разрешимы для линейных систем 2 порядка. Для большего порядка решения найдены только для частных случаев 
+ \begin{enumerate}[resume]
+ \item При построении оптимального управления реальными объектами существует как минимум 3 причины невозможности его технической реализации:
+ \begin{itemize}
+ \item неидеальность (неточность) математической модели объекта управления
+ \item упрощения, принимаемые при реализации закона (алгоритма) объекта управления
+ \item неточность (непостоянство) характеристик реальных элементов, реализующих управление
+  \end{itemize}
+  \par Поэтому, на практике реализуются квазиоптимальные или субоптимальные системы, использующие скользящие режимы движения. Реализация устройства управления, в этом случае не требует нелинейных операций, а используются только линейные усилители (с различными ${{K}_{ysil}}$) и релейные переключатели.
+ \end{enumerate}
+ \subsection{Уравнение Риккати для синтеза оптимальных систем\label{synthesis:Riccati}}
+ \par Для линейных объектов управления: $\dot{x}=Ax+Bu$ и минимизируемого квадратичного функционала $J=\frac{1}{2}\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{\left( {{x}^{T}}Qx+{{u}^{T}}Ru \right)dt}$ без учёта ограничений ${{U}_{opt}}\left( t \right)={{K}_{os}}x$ 
+ \\Функция Гамильтона:
+ \\${{H}^{*}}=-\frac{1}{2}{{x}^{T}}Qx-\frac{1}{2}{{u}^{T}}Ru+{{\psi }^{T}}\left( Ax+Bu \right)$
+ \\При оптимальном управлении ${{\left. \frac{\partial {{H}^{*}}}{\partial u} \right|}_{u={{u}_{opt}}}}=0$ $\frac{\partial {{H}^{*}}}{\partial u}=-R{{U}_{opt}}\left( t \right)+{{\psi }^{T}}B=-R{{U}_{opt}}+{{B}^{T}}\psi =0\Rightarrow {{U}_{opt}}\left( t \right)={{R}^{-1}}{{B}^{T}}\psi $, при этом обеспечивается максимум ${{H}^{*}}$, т.к. ${{\left. \frac{{{\partial }^{2}}{{H}^{*}}}{\partial {{u}^{2}}} \right|}_{u={{u}_{opt}}}}=-R<0$
+ \\Запишем канонические уравнения: $\begin{array}{*{35}{l}}
+   \dot{X}=Ax+B{{R}^{-1}}{{B}^{T}}\varphi   \\
+   \dot{\psi }=QX-{{\psi }^{T}}A=QX-{{A}^{T}}\psi   \\
+\end{array}$ сравнивая ${{U}_{opt}}={{K}_{os}}x$ и $U=-{{R}^{T}}{{B}^{T}}\psi $ можно ввести $\psi =-D\left( t \right)x$, дифференциируя которое получим: $\dot{\psi }=-\dot{D}\left( t \right)x-D\left( t \right)\dot{x}$ подставляя $\dot{x}=Ax-B{{R}^{-1}}{{B}^{T}}D\left( t \right)x$ $\dot{\psi }=Qx+{{A}^{T}}D\left( t \right)x$ и получаем окончательно:
+\\$-\dot{D}\left( t \right)x-D\left( t \right)\left( Ax+B{{R}^{-1}}B\left( -p\left( t \right) \right)x \right)=Qx+{{A}^{T}}D\left( t \right)x$ - дифференциальное уравнение Риккати, после решения которого можно получить ${{U}_{opt}}\left( x \right)=-{{R}^{-1}}{{B}^{T}}D\left( t \right)x\left( t \right)$.
+\\Для объектов с постоянными по времени параметрами $\dot{K}\left( t \right)=0$ и при ${{t}_{k}}\to \infty $ $D\left( t \right)=\overline{D}$ - определённого положительная симметричная матрица коэффициентов. В случае ограничений типа $\left| u\left( t \right) \right|\le {{U}_{m}}$, получим нелинейный закон с насыщением, аналогичный простейшему случаю.   
+  \subsection{Динамическое программирование Беллмана\label{synthesis:dyn_prog}}
+  \par В технике и экономике существует класс объектов и процессов, управление которыми осуществляется на основе ограниченного числа решений, принимаемых последовательно в некоторые фиксированные моменты времени. Определение закона (алгоритма) управления для таких объектов связано с решением задачи по методу \underline{многошагового} выбора, предложенного учёным из США Р.Беллманом и названным \underline{динамическим программированием}.
+  \par В основу положен принцип оптимальности, согласно которому оптимальное управление определяется конечной целью и состоянием системы в данный момент времени независимо от предыстории.
+  \par Задачей оптимизации считается определение оптимальных управлений ${{u}^{0}}\left( t \right)$ и траекторий ${{x}^{0}}\left( t \right)$ из условия минимума функционала:
+\\$J=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u,t \right)dt}$ при заданных уравнениях объекта $\dot{x}\overset{{{t}_{0}}}{\mathop{=}}\,\Phi \left( x,u \right)=Ax+Bu$, и граничных значений $x\left( {{t}_{0}} \right)$, $x\left( {{t}_{k}} \right)$, ${{t}_{0}}\le t\le {{t}_{k}}$, а также допустимых интервалов для $x\left( t \right)\in X$, $u\left( t \right)\in U$.
+\par В методе динамического программирования вводится вспомогательная функция Беллмана:
+\\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u,t \right)dt}$ 
+\par В соответствии с сформулированным принципом минимум функционала зависит только от момента времени, значения $x$ в этот момент и конечного момента. Тогда для $\forall $ промежуточного момента $t\in {{t}_{0}}+\Delta t<T$ $S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}+\Delta t}^{T}{F\left( x,u,t \right)dt}$ ${{x}_{\Delta t}}=x\left( {{t}_{0}} \right)+\Delta x$ $S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+\int\limits_{{{t}_{0}}}^{T}{F\left( x,u,t \right)dt}} \right]=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)} \right]$ - это выражение должно использоваться для определения оптимальных управлений $u_{\Delta t}^{0}\left( t \right)\in U$ на интервале $\left[ {{t}_{0}},{{t}_{0}}+\Delta t \right]$. При решении либо решают функциональные уравнения Беллмана в частных производных, либо применяют численные методы.
+\subsection{Уравнение Беллмана и его применение для сминтеза ОУ\label{synthesis:Bellman_equaration}}
+\par Первое слагаемое с точностью до малых более высокого порядка чем $\Delta t$, можно приблизительно записать $\int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)}dt\approx F\left( x,u,t \right)\Delta t=\Delta J$. Второе слагаемое, определяющее значение $S\left( t+\Delta t,x+\Delta x \right)$ для $\forall $ $t+\Delta t$ разложим в ряд Тейлора. Ограничиваясь линейными членами относительно $\Delta {{x}_{i}}$ и $\Delta t$ и переходя к пределу (если функция $S\left( t,x \right)$) имеет непрерывные частные производные по всем ${{x}_{i}}\left( t \right)$ и $t$), запишем:
+\\$S\left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \Delta {{x}_{i}}+\frac{\partial S}{\partial t}\Delta t=S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \frac{d{{x}_{i}}}{dt}+\frac{\partial S}{\partial t} \right]\Delta t$
+\\Тогда можем записать:
+\\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)\Delta t+S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{{\dot{x}}}_{i}}+\frac{\partial S}{\partial t}} \right]\Delta t \right\}$. Откуда переходя к пределу при $\Delta t\to 0$, получим нелинейное дифференциальное уравнение Беллмана в частных производных относительно неизвестной функции $S\left( t,x \right)$:
+\\$\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right] \right\}=0$ 
+\\Необычность этого уравнения в том, что она содержит операцию минимизации. Регулярных аналитических методов решения таких уравнений нет. Однако Лётов А.М. предложил методику поиска ${{u}^{0}}\left( t \right)=u\left( \frac{\partial S\left( x,t \right)}{\partial x} \right)$ и тогда уравнение становится обычным уравнением в частных производных:
+\\$F\left( \dot{x},u,t \right)+grad_{x}^{T}S\left( x,t \right)\cdot \Phi \left( x,u \right)+\frac{\partial S\left( x,t \right)}{\partial t}=0$ с граничным условием $S\left( {{x}^{0}},T \right)=0$.
+\\Если $S\left( x \right)$ не зависит явным образом от $t$, то $\frac{\partial S}{\partial t}=0$ и поиск оптимального управления можно производить по уравнению: $\frac{\partial F\left( \dot{x},u,t \right)}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}}=0$ 
+\par Такой подход наиболее подходит, когда ищется решение для линейно-квадратичных задач и вспомогательная функция берется в виде квадратично-нелинейной формы $S\left( x \right)=\sum\limits_{i,j=1}^{n}{{}}$ объекта управления: $T\dot{x}+x=Ku\to \dot{x}=a\dot{x}+bu$, и вспомогательной функции $\min \int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$ $S\left( x \right)=A{{x}^{2}}$
+\\Тогда функциональное уравнение Беллмана запишется в виде:
+\\$q{{x}^{2}}+r{{u}^{2}}+\left( ax+bu \right)\cdot \frac{\partial S}{\partial x}=0$
+\\$2ru+b\frac{\partial S}{\partial x}=0\to {{U}^{0}}\left( t \right)=-\frac{b}{2r}\frac{\partial S}{\partial x}=-\underbrace{\frac{b}{2r}A}_{{{K}_{os}}}x\left( t \right)$
+\\Для нахождения $A$ и ${{K}_{os}}$:
+\\$q{{x}^{2}}+r{{\left( -\frac{b}{r}Ax \right)}^{2}}+\left( ax+b\left( -\frac{b}{r}Ax \right) \right)Ax=0$, возведя в квадрат вынеся $x$ и структурировав получим:
+\\${{b}^{2}}{{A}^{2}}-2arA-qr=0$, откуда $A=\frac{r\left( a\pm \sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}} \right)}{{{b}^{2}}}$ $\left( A>0 \right)$ получим для ${{K}_{os}}=-\frac{b}{r}A=\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}$ проверить совпадение ?вар.исч.?
+\par Подводя итог для общего подхода применение метода для задачи в форме Лагранжа можно сформулировать в виде алгебраической процедуры:
+\begin{enumerate}
+\item Составить функцию Беллмана
+\\$B\left( t,x,u,\frac{\partial S\left( x,t \right)}{\partial x} \right)=F\left( x,u,t \right)+grad_{x}^{T}S\left( x,t \right)\Phi \left( x,u,t \right)$
+\item Максимизировать функцию Беллмана по $u\in U$
+\\$\underset{u\in U}{\mathop{\min }}\,B\left( t,x,u,\frac{\partial S}{\partial x} \right)={{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)$, определяя управление, как явную функцию вектора состояния и $\frac{\partial S}{\partial x}$
+\item Составить уравнение Беллмана 
+\\${{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)+\frac{\partial S\left( {{x}^{*}},t \right)}{\partial t}=0$, $S\left( {{x}^{*}},T \right)=0$
+\item Решением этого уравнения является функция $S\left( {{x}^{*}},T \right)$, по которой определяются  $\frac{\partial S}{\partial x}$, а затем искомое оптимальное управление  ${{u}^{*}}=u\left( {{x}^{*}},\frac{\partial S}{\partial x} \right)$.
+\end{enumerate} 
+\ExampleMy Примем эту процедуру для управляемого объекта:
+\\$\dot{x}=Ax+bu$ $x\left( 0 \right)={{x}_{0}}$ без ограничений на $u$ $x$ $\underset{u}{\mathop{\min }}\,J\left( x,u \right)=\int\limits_{0}^{T}{\left( {{x}^{2}}+c{{u}^{2}} \right)}dt$ - задача Лагранжа с фиксированным временем и подвижным правым концом.
+\\При этом естественно искать решение в классе линейных функций $u\left( t \right)=K\left( t \right)-x\left( t \right)$
+\begin{enumerate}
+\item Составим функцию Беллмана $B={{x}^{2}}+c{{u}^{2}}+\frac{\partial S\left( x,t \right)}{\partial x}\left( ax+bu \right)$
+\item Найдём её минимум $\frac{\partial B}{\partial u}=2cu\left( t \right)+b\frac{\partial S\left( x,t \right)}{\partial x}=0\to {{u}^{*}}=-\frac{b}{2c}\frac{\partial S\left( x,t \right)}{\partial x}$
+\\$\frac{{{\partial }^{2}}B}{\partial {{u}^{2}}}=2c>0$ - достаточность выполнения
+\item Составим дифференциальное уравнение Беллмана, подставляя вместо $u\leftrightarrow {{u}^{*}}$
+${{x}^{2}}-\frac{{{b}^{2}}}{c}{{\left( \frac{\partial S}{\partial x} \right)}^{2}}\left( \frac{1}{4}-\frac{1}{2} \right)+ax\frac{\partial S}{\partial x}+\frac{\partial S}{\partial t}=0$, $S\left( x\left( t \right),t \right)=0$, это нелинейное уравнение 1 порядка в частных производных, в общем случае с труднонаходимым решением. Однако, если решение ищется как линейное, то $s\left( t \right)=p\left( t \right){{x}^{2}}$. Составим уравнение относительно новой неизвестной $p\left( t \right)$:
+\\$\frac{\partial S}{\partial x}=2p\left( t \right)\cdot x$ ${{u}^{*}}=-\frac{b}{c}p\left( t \right)\cdot x$
+\\${{x}^{2}}\left( \dot{p}\left( t \right)-\frac{{{b}^{2}}}{4{{c}^{2}}}\cdot 4{{p}^{2}}\left( t \right)-2ap\left( t \right)+1 \right)=0$, $p\left( T \right)=0$ - в скобках нелинейное дифференциальное уравнение 1 порядка - типа Риккати с граничным условием на правом конце. Это уравнение можно решить методом разделения переменных. В итоге получаем:
+\\$p\left( t \right)={{p}_{1}}{{p}_{2}}{}^{\left( 1-\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}/{}_{\left( {{p}_{2}}-{{p}_{1}}\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}$ где ${{p}_{1}}$, ${{p}_{2}}$ корни уравнения $\frac{{{b}^{2}}}{{{c}^{2}}}-{{p}^{2}}\left( t \right)+2ap\left( t \right)-1=0$. Если $T\to \infty $, то $p\left( t \right)\Rightarrow \left\{ \begin{array}{*{35}{l}}
+   {{p}_{1}} $, если ${{p}_{1}}>{{p}_{2}}$   
+$   \\{{p}_{2}}$, если ${{p}_{2}}>{{p}_{1}}$   
+$ \\\end{array} \right.$, т.е. $p\left( t \right)=\max \left( {{p}_{2}},{{p}_{1}} \right)$ 
+\end{enumerate}
+\ExampleMy Рассмотрим задачу Лагранжа с закрепленными концами и свободным временем для произвольной динамической системы: $\sum\nolimits_{n}{{}}$: $\dot{x}=\Phi \left( x,u \right)$, $x\left( 0 \right)={{x}_{0}}$, $x\left( T \right)={{x}_{k}}$, $u\in U$. 
+\par Следует найти допустимое управление, переводящее эту систему из ${{x}_{0}}$ в ${{x}_{k}}$, так чтобы критерий качества $J\left( x,u,T \right)=\int\limits_{0}^{T}{F\left( x,u \right)}dt\to $ принимал наименьшее значение. Для решения этой задачи согласно процедуре метода введём функцию $R\left( x \right)$, которая совпадает с наименьшим значением критерия вдоль оптимальной траектории. Эта функция зависит только от текущего состояния. Уравнение Беллмана в этом случае принимает вид $\underset{u\in U}{\mathop{\min }}\,\left[ F\left( x\left( t \right),u\left( t \right) \right)+grad_{x}^{T}R\left( x \right)\Phi \left( x\left( t \right),u\left( t \right) \right) \right]=0$
+\par Задача
+
+\clearpage
+\section{Синтез оптимальных стохастических систем\label{stochastic}}
  \subsection{Основные понятия\label{stochastic:general}}
  
  \subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
