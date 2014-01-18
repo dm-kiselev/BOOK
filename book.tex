@@ -837,9 +837,21 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
 \\$\dot{x}=Ax+bu$ $x\left( 0 \right)={{x}_{0}}$ без ограничений на $u$ $x$ $\underset{u}{\mathop{\min }}\,J\left( x,u \right)=\int\limits_{0}^{T}{\left( {{x}^{2}}+c{{u}^{2}} \right)}dt$ - задача Лагранжа с фиксированным временем и подвижным правым концом.
 \\При этом естественно искать решение в классе линейных функций $u\left( t \right)=K\left( t \right)-x\left( t \right)$
 \begin{enumerate}
-\item Составим
+\item Составим функцию Беллмана $B={{x}^{2}}+c{{u}^{2}}+\frac{\partial S\left( x,t \right)}{\partial x}\left( ax+bu \right)$
+\item Найдём её минимум $\frac{\partial B}{\partial u}=2cu\left( t \right)+b\frac{\partial S\left( x,t \right)}{\partial x}=0\to {{u}^{*}}=-\frac{b}{2c}\frac{\partial S\left( x,t \right)}{\partial x}$
+\\$\frac{{{\partial }^{2}}B}{\partial {{u}^{2}}}=2c>0$ - достаточность выполнения
+\item Составим дифференциальное уравнение Беллмана, подставляя вместо $u\leftrightarrow {{u}^{*}}$
+${{x}^{2}}-\frac{{{b}^{2}}}{c}{{\left( \frac{\partial S}{\partial x} \right)}^{2}}\left( \frac{1}{4}-\frac{1}{2} \right)+ax\frac{\partial S}{\partial x}+\frac{\partial S}{\partial t}=0$, $S\left( x\left( t \right),t \right)=0$, это нелинейное уравнение 1 порядка в частных производных, в общем случае с труднонаходимым решением. Однако, если решение ищется как линейное, то $s\left( t \right)=p\left( t \right){{x}^{2}}$. Составим уравнение относительно новой неизвестной $p\left( t \right)$:
+\\$\frac{\partial S}{\partial x}=2p\left( t \right)\cdot x$ ${{u}^{*}}=-\frac{b}{c}p\left( t \right)\cdot x$
+\\${{x}^{2}}\left( \dot{p}\left( t \right)-\frac{{{b}^{2}}}{4{{c}^{2}}}\cdot 4{{p}^{2}}\left( t \right)-2ap\left( t \right)+1 \right)=0$, $p\left( T \right)=0$ - в скобках нелинейное дифференциальное уравнение 1 порядка - типа Риккати с граничным условием на правом конце. Это уравнение можно решить методом разделения переменных. В итоге получаем:
+\\$p\left( t \right)={{p}_{1}}{{p}_{2}}{}^{\left( 1-\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}/{}_{\left( {{p}_{2}}-{{p}_{1}}\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}$ где ${{p}_{1}}$, ${{p}_{2}}$ корни уравнения $\frac{{{b}^{2}}}{{{c}^{2}}}-{{p}^{2}}\left( t \right)+2ap\left( t \right)-1=0$. Если $T\to \infty $, то $p\left( t \right)\Rightarrow \left\{ \begin{array}{*{35}{l}}
+   {{p}_{1}} $, если ${{p}_{1}}>{{p}_{2}}$   
+$   \\{{p}_{2}}$, если ${{p}_{2}}>{{p}_{1}}$   
+$ \\\end{array} \right.$, т.е. $p\left( t \right)=\max \left( {{p}_{2}},{{p}_{1}} \right)$ 
 \end{enumerate}
-
+\ExampleMy Рассмотрим задачу Лагранжа с закрепленными концами и свободным временем для произвольной динамической системы: $\sum\nolimits_{n}{{}}$: $\dot{x}=\Phi \left( x,u \right)$, $x\left( 0 \right)={{x}_{0}}$, $x\left( T \right)={{x}_{k}}$, $u\in U$. 
+\par Следует найти допустимое управление, переводящее эту систему из ${{x}_{0}}$ в ${{x}_{k}}$, так чтобы критерий качества $J\left( x,u,T \right)=\int\limits_{0}^{T}{F\left( x,u \right)}dt\to $ принимал наименьшее значение. Для решения этой задачи согласно процедуре метода введём функцию $R\left( x \right)$, которая совпадает с наименьшим значением критерия вдоль оптимальной траектории. Эта функция зависит только от текущего состояния. Уравнение Беллмана в этом случае принимает вид $\underset{u\in U}{\mathop{\min }}\,\left[ F\left( x\left( t \right),u\left( t \right) \right)+grad_{x}^{T}R\left( x \right)\Phi \left( x\left( t \right),u\left( t \right) \right) \right]=0$
+\par Задача
 
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
