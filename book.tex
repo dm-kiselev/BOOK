@@ -777,7 +777,7 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
 \\${}^{\frac{d{{x}_{1}}}{dt}}/{}_{\frac{d{{x}_{2}}}{dt}}=\frac{{{x}_{2}}}{u}$ $\to $ $\frac{d{{x}_{1}}}{d{{x}_{2}}}=\frac{{{x}_{2}}}{u}$ $\to $ $Ud{{x}_{1}}={{x}_{2}}d{{x}_{2}}$
 откуда при получаются траектории вида: $U=+{{U}_{\max }}\to {{U}_{m}}{{x}_{1}}=\frac{x_{2}^{2}}{2}$ 
  $U=-{{U}_{\max }}\to -{{U}_{m}}{{x}_{1}}=\frac{x_{2}^{2}}{2}$.
- \\Считая необход. точкой $\left( {{x}_{1}},\,{{x}_{2}} \right)=\left( 0,\,0 \right)$ выделяем линию $S\left( {{x}_{1}},{{x}_{2}} \right)={{x}_{1}}+sign\left( {{x}_{2}} \right)\frac{x_{2}^{2}}{2{{U}_{m}}}=0=x{{ & }_{1}}+\frac{{{x}_{2}}\left| {{x}_{2}} \right|}{2{{U}_{m}}}$. Тогда, вычисляя $u\mp -{{U}_{m}}sig\left( S\left( x,{{x}_{2}} \right) \right)$ получим фазовые траектории в виде:
+\\Считая необход. точкой $\left( {{x}_{1}},\,{{x}_{2}} \right)=\left( 0,\,0 \right)$ выделяем линию $S\left( {{x}_{1}},{{x}_{2}} \right)={{x}_{1}}+sign\left( {{x}_{2}} \right)\frac{x_{2}^{2}}{2{{U}_{m}}}=0={{x}_{1}}+\frac{{{x}_{2}}\left| {{x}_{2}} \right|}{2{{U}_{m}}}$. Тогда, вычисляя $u\mp -{{U}_{m}}sig\left( S\left( x,{{x}_{2}} \right) \right)$ получим фазовые траектории в виде:
  \par Аналитические представления для поверхностей переключения как функций координат полностью разрешимы для линейных систем 2 порядка. Для большего порядка решения найдены только для частных случаев 
  \begin{enumerate}[resume]
  \item При построении оптимального управления реальными объектами существует как минимум 3 причины невозможности его технической реализации:
@@ -821,7 +821,26 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
 \\$q{{x}^{2}}+r{{u}^{2}}+\left( ax+bu \right)\cdot \frac{\partial S}{\partial x}=0$
 \\$2ru+b\frac{\partial S}{\partial x}=0\to {{U}^{0}}\left( t \right)=-\frac{b}{2r}\frac{\partial S}{\partial x}=-\underbrace{\frac{b}{2r}A}_{{{K}_{os}}}x\left( t \right)$
 \\Для нахождения $A$ и ${{K}_{os}}$:
-\\
+\\$q{{x}^{2}}+r{{\left( -\frac{b}{r}Ax \right)}^{2}}+\left( ax+b\left( -\frac{b}{r}Ax \right) \right)Ax=0$, возведя в квадрат вынеся $x$ и структурировав получим:
+\\${{b}^{2}}{{A}^{2}}-2arA-qr=0$, откуда $A=\frac{r\left( a\pm \sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}} \right)}{{{b}^{2}}}$ $\left( A>0 \right)$ получим для ${{K}_{os}}=-\frac{b}{r}A=\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}$ проверить совпадение ?вар.исч.?
+\par Подводя итог для общего подхода применение метода для задачи в форме Лагранжа можно сформулировать в виде алгебраической процедуры:
+\begin{enumerate}
+\item Составить функцию Беллмана
+\\$B\left( t,x,u,\frac{\partial S\left( x,t \right)}{\partial x} \right)=F\left( x,u,t \right)+grad_{x}^{T}S\left( x,t \right)\Phi \left( x,u,t \right)$
+\item Максимизировать функцию Беллмана по $u\in U$
+\\$\underset{u\in U}{\mathop{\min }}\,B\left( t,x,u,\frac{\partial S}{\partial x} \right)={{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)$, определяя управление, как явную функцию вектора состояния и $\frac{\partial S}{\partial x}$
+\item Составить уравнение Беллмана 
+\\${{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)+\frac{\partial S\left( {{x}^{*}},t \right)}{\partial t}=0$, $S\left( {{x}^{*}},T \right)=0$
+\item Решением этого уравнения является функция $S\left( {{x}^{*}},T \right)$, по которой определяются  $\frac{\partial S}{\partial x}$, а затем искомое оптимальное управление  ${{u}^{*}}=u\left( {{x}^{*}},\frac{\partial S}{\partial x} \right)$.
+\end{enumerate} 
+\ExampleMy Примем эту процедуру для управляемого объекта:
+\\$\dot{x}=Ax+bu$ $x\left( 0 \right)={{x}_{0}}$ без ограничений на $u$ $x$ $\underset{u}{\mathop{\min }}\,J\left( x,u \right)=\int\limits_{0}^{T}{\left( {{x}^{2}}+c{{u}^{2}} \right)}dt$ - задача Лагранжа с фиксированным временем и подвижным правым концом.
+\\При этом естественно искать решение в классе линейных функций $u\left( t \right)=K\left( t \right)-x\left( t \right)$
+\begin{enumerate}
+\item Составим
+\end{enumerate}
+
+
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
  \subsection{Основные понятия\label{stochastic:general}}
