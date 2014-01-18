@@ -800,11 +800,30 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
 \\$-\dot{D}\left( t \right)x-D\left( t \right)\left( Ax+B{{R}^{-1}}B\left( -p\left( t \right) \right)x \right)=Qx+{{A}^{T}}D\left( t \right)x$ - дифференциальное уравнение Риккати, после решения которого можно получить ${{U}_{opt}}\left( x \right)=-{{R}^{-1}}{{B}^{T}}D\left( t \right)x\left( t \right)$.
 \\Для объектов с постоянными по времени параметрами $\dot{K}\left( t \right)=0$ и при ${{t}_{k}}\to \infty $ $D\left( t \right)=\overline{D}$ - определённого положительная симметричная матрица коэффициентов. В случае ограничений типа $\left| u\left( t \right) \right|\le {{U}_{m}}$, получим нелинейный закон с насыщением, аналогичный простейшему случаю.   
   \subsection{Динамическое программирование Беллмана\label{synthesis:dyn_prog}}
-  
-  
-  
-  \clearpage
-  \section{Синтез оптимальных стохастических систем\label{stochastic}}
+  \par В технике и экономике существует класс объектов и процессов, управление которыми осуществляется на основе ограниченного числа решений, принимаемых последовательно в некоторые фиксированные моменты времени. Определение закона (алгоритма) управления для таких объектов связано с решением задачи по методу \underline{многошагового} выбора, предложенного учёным из США Р.Беллманом и названным \underline{динамическим программированием}.
+  \par В основу положен принцип оптимальности, согласно которому оптимальное управление определяется конечной целью и состоянием системы в данный момент времени независимо от предыстории.
+  \par Задачей оптимизации считается определение оптимальных управлений ${{u}^{0}}\left( t \right)$ и траекторий ${{x}^{0}}\left( t \right)$ из условия минимума функционала:
+\\$J=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u,t \right)dt}$ при заданных уравнениях объекта $\dot{x}\overset{{{t}_{0}}}{\mathop{=}}\,\Phi \left( x,u \right)=Ax+Bu$, и граничных значений $x\left( {{t}_{0}} \right)$, $x\left( {{t}_{k}} \right)$, ${{t}_{0}}\le t\le {{t}_{k}}$, а также допустимых интервалов для $x\left( t \right)\in X$, $u\left( t \right)\in U$.
+\par В методе динамического программирования вводится вспомогательная функция Беллмана:
+\\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u,t \right)dt}$ 
+\par В соответствии с сформулированным принципом минимум функционала зависит только от момента времени, значения $x$ в этот момент и конечного момента. Тогда для $\forall $ промежуточного момента $t\in {{t}_{0}}+\Delta t<T$ $S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}+\Delta t}^{T}{F\left( x,u,t \right)dt}$ ${{x}_{\Delta t}}=x\left( {{t}_{0}} \right)+\Delta x$ $S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+\int\limits_{{{t}_{0}}}^{T}{F\left( x,u,t \right)dt}} \right]=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)} \right]$ - это выражение должно использоваться для определения оптимальных управлений $u_{\Delta t}^{0}\left( t \right)\in U$ на интервале $\left[ {{t}_{0}},{{t}_{0}}+\Delta t \right]$. При решении либо решают функциональные уравнения Беллмана в частных производных, либо применяют численные методы.
+\subsection{Уравнение Беллмана и его применение для сминтеза ОУ\label{synthesis:Bellman_equaration}}
+\par Первое слагаемое с точностью до малых более высокого порядка чем $\Delta t$, можно приблизительно записать $\int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)}dt\approx F\left( x,u,t \right)\Delta t=\Delta J$. Второе слагаемое, определяющее значение $S\left( t+\Delta t,x+\Delta x \right)$ для $\forall $ $t+\Delta t$ разложим в ряд Тейлора. Ограничиваясь линейными членами относительно $\Delta {{x}_{i}}$ и $\Delta t$ и переходя к пределу (если функция $S\left( t,x \right)$) имеет непрерывные частные производные по всем ${{x}_{i}}\left( t \right)$ и $t$), запишем:
+\\$S\left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \Delta {{x}_{i}}+\frac{\partial S}{\partial t}\Delta t=S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \frac{d{{x}_{i}}}{dt}+\frac{\partial S}{\partial t} \right]\Delta t$
+\\Тогда можем записать:
+\\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)\Delta t+S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{{\dot{x}}}_{i}}+\frac{\partial S}{\partial t}} \right]\Delta t \right\}$. Откуда переходя к пределу при $\Delta t\to 0$, получим нелинейное дифференциальное уравнение Беллмана в частных производных относительно неизвестной функции $S\left( t,x \right)$:
+\\$\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right] \right\}=0$ 
+\\Необычность этого уравнения в том, что она содержит операцию минимизации. Регулярных аналитических методов решения таких уравнений нет. Однако Лётов А.М. предложил методику поиска ${{u}^{0}}\left( t \right)=u\left( \frac{\partial S\left( x,t \right)}{\partial x} \right)$ и тогда уравнение становится обычным уравнением в частных производных:
+\\$F\left( \dot{x},u,t \right)+grad_{x}^{T}S\left( x,t \right)\cdot \Phi \left( x,u \right)+\frac{\partial S\left( x,t \right)}{\partial t}=0$ с граничным условием $S\left( {{x}^{0}},T \right)=0$.
+\\Если $S\left( x \right)$ не зависит явным образом от $t$, то $\frac{\partial S}{\partial t}=0$ и поиск оптимального управления можно производить по уравнению: $\frac{\partial F\left( \dot{x},u,t \right)}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}}=0$ 
+\par Такой подход наиболее подходит, когда ищется решение для линейно-квадратичных задач и вспомогательная функция берется в виде квадратично-нелинейной формы $S\left( x \right)=\sum\limits_{i,j=1}^{n}{{}}$ объекта управления: $T\dot{x}+x=Ku\to \dot{x}=a\dot{x}+bu$, и вспомогательной функции $\min \int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$ $S\left( x \right)=A{{x}^{2}}$
+\\Тогда функциональное уравнение Беллмана запишется в виде:
+\\$q{{x}^{2}}+r{{u}^{2}}+\left( ax+bu \right)\cdot \frac{\partial S}{\partial x}=0$
+\\$2ru+b\frac{\partial S}{\partial x}=0\to {{U}^{0}}\left( t \right)=-\frac{b}{2r}\frac{\partial S}{\partial x}=-\underbrace{\frac{b}{2r}A}_{{{K}_{os}}}x\left( t \right)$
+\\Для нахождения $A$ и ${{K}_{os}}$:
+\\
+\clearpage
+\section{Синтез оптимальных стохастических систем\label{stochastic}}
  \subsection{Основные понятия\label{stochastic:general}}
  
  \subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
