@@ -883,7 +883,28 @@ $\underset{u\left( t \right)\in U}{\mathop{\min }}\,\left[ grad_{x}^{T}R\left( x
 \item Дифференциальное уравнение Беллмана принимает вид: 
 \\$1+\frac{\partial R}{\partial {{x}_{1}}}\cdot {{x}_{2}}-\left| \frac{\partial R}{\partial {{x}_{2}}} \right|=0$, $R\left( 0 \right)=0$
 \item Для решения этого уравнения рассмотрим варианты:
+\begin{itemize}
+\item Область 1:  $\left\{ \left( \begin{array}{*{35}{l}}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{array} \right):\frac{\partial R}{\partial {{x}_{2}}}>0 \right\}\Rightarrow {{u}^{*}}=-1\to $ уравнение Беллмана принимает вид: 
+\\$1+\frac{\partial R}{\partial {{x}_{1}}}{{x}_{2}}-\frac{\partial R}{\partial {{x}_{2}}}=0\to {{R}_{1}}={{x}_{2}}+2\sqrt{\frac{x_{2}^{2}}{2}+{{x}_{1}}}$
+\item Область 2:$\left\{ \left( \begin{array}{*{35}{l}}
+   {{x}_{1}}  \\
+   {{x}_{2}}  \\
+\end{array} \right):\frac{\partial R}{\partial {{x}_{2}}}<0 \right\}\Rightarrow {{u}^{*}}=1\to $ уравнение Беллмана принимает вид:
+\\$1+\frac{\partial R}{\partial {{x}_{1}}}{{x}_{2}}+\frac{\partial R}{\partial {{x}_{2}}}=0\to {{R}_{2}}=-{{x}_{2}}+2\sqrt{\frac{x_{2}^{2}}{2}-{{x}_{1}}}$
+\end{itemize}
 \end{enumerate}
+
+\par Границей между областями 1 и 2 будет кривая ${{x}_{1}}+\frac{x_{2}^{2}sign\left( {{x}_{2}} \right)}{2}=0$. А найденное оптимальное управление ${{u}^{*}}=-sign\left( {{x}_{1}}+\frac{x_{2}^{2}sign\left( {{x}_{2}} \right)}{2} \right)$ - имеет явную зависимость от фазовых координат, что позволяет синтезировать замкнутую структуру управления.
+\par Отметим один замечательный результат. В каждой области можно выделить аналитическое выражение для  семейства изохрон уровня ${{T}^{*}}:$ в 1 ${{x}_{1}}+\frac{x_{2}^{2}}{2}-\frac{{{\left( {{T}^{*}}-{{x}_{2}} \right)}^{2}}}{4}=0$, а на границу 2 ${{x}_{1}}-\frac{x_{2}^{2}}{2}-\frac{{{\left( {{T}^{*}}+{{x}_{2}} \right)}^{2}}}{4}=0$ ${{x}_{1}}+\frac{{{x}_{2}}\cdot {{T}^{*}}}{2}=0$. И можно изобразить семейство изохрон, и для $\forall $ точки изобразить вектор $gra{{d}^{*}}R={{\left( 0.5;1 \right)}^{T}}$, а вектор фазовой скорости $\Phi \left( x,u \right)={{\left( 0,u \right)}^{T}}$. Из всех возможных управлений лишь при $u=-1$ будет наибольшая проекция на направление антиградиента к изохроме в этой точке. Значит оптимальное управление ${{u}^{*}}\left( \begin{array}{*{35}{l}}
+   4  \\
+   0  \\
+\end{array} \right)=1$.
+\subsection{Частные решения уравнений динамического программирования\label{synthesis:specific_solution}}
+\par Уравнение минимизации $\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right\}=0$, или соответствующие ему функциональные уравнения в частных производных: $F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}}=0$ и $\frac{\partial F}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot \frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}=0}$, $j=\overline{1,k}$ далеко не всегда удается решить аналитически. Поэтому применяется численный подход в виде многошагового процесса, являющегося приближенным.   
+
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
  \subsection{Основные понятия\label{stochastic:general}}
