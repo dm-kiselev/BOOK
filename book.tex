@@ -14,7 +14,7 @@
 \pagestyle{plain}
 
 %********Команда все примеры подчеркиваем
-\newcommand{\ExampleMy}{\vspace{\baselineskip}\textbf{\underline{Пример:}}}
+\newcommand{\ExampleMy}{\vspace{\baselineskip}\textbf{\underline{Пример:}}\par}
 %*********
 
 \countstyle{section}			% посекционная нумерация
@@ -379,42 +379,63 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 \item Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.
 
 Составляем рекуррентную формулу $ x_{n+1} = x_n - \frac{ x_n - \sin x_n - \pi/2}{ 1 - \cos x_n } $. При ${{x}_{0}}=2.4$ получается итерационная последовательность $ x_1 = 2.31, x_2 = 2.3099, x_3 = 2.309884, \ldots $ 
+
 \end{enumerate}
 
 
 \clearpage
 \section{Основы вариационного исчисления\label{variations}}
 \subsection{Основные понятия\label{variations:general}}
-Функционал - числовая скалярная функция, определяемая на множестве функцией: $y=f\left( x \right)$  -функция от аргумента. $J\left( x \right)=\int\limits_{0}^{T}{F\left( x,\dot{x},t \right)}dt$ - функция от функций  (скалярная оценка различных функций).
-\par Каждая функция $x\left( t \right)$ является точкой функционального пространства. Пусть эта функция однозначна, непрерывна и дифференцируема на рассматриваемом интервале - такие функции называются гладкими. Если значения функции соответствуют заданным в граничных точках их называют допустимыми. И тогда задача заключается в выборе среди допустимых такой где функционал достигает наименьшего значения $\underset{x\in \Omega }{\mathop{\min }}\,\left( J\left( x \right) \right)$.
-Решением таких задач занимается вариационное исчисление. Аналог дифференциального исчисления для функций. 
-\par И так для функций условием экстремума является:
-\[{{\left. d\varphi \left( x \right) \right|}_{x={{x}_{{}}}}}=0,\frac{d\varphi \left( x \right)}{dx}=0\to \partial J\left( x \right)=0\,\,\,\left( * \right)\] 
-\[{{d}^{2}}\varphi \left( x \right)\ne 0\to {{\partial }^{2}}J\left( x \right)\ne 0\,\,\,\,\left( ** \right)\]
-Из $\left( * \right)$  условия выводится уравнение Эйлера: \[\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\]
-Все функции удовлетворяющие этому уравнению, называются экстремалями. Если они проходят через граничные точки,  
-то они называют допустимыми экстремалями. Из уравнения $\left( ** \right)$ выводят условия Лежандра $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ne 0$ 
-%Пример
-\vspace{\baselineskip}
-\par\ExampleMy~ 
+Функционал --- числовая скалярная функция, определяемая на множестве функций: $ y = f(x) $ --- функция от аргумента; $ J(x) = \int\limits_0^T F \left( x, \dot{x}, t \right) \, dt $ --- функция от функций  (скалярная оценка различных функций).
+
+Каждая функция $ x(t) $ является точкой функционального пространства. Пусть эта функция однозначна, непрерывна и дифференцируема на рассматриваемом интервале (такие функции называются гладкими). Если значения функции соответствуют заданным в граничных точках их называют допустимыми. И тогда задача заключается в выборе среди допустимых функций такой, где функционал достигает наименьшего значения $ \underset{ x \in \Omega }{ \min } \, J(x) $. Решением таких задач занимается вариационное исчисление --- аналог дифференциального исчисления для функций.
+
+Итак, для функций условиями экстремума являются:
+\begin{gather*}
+d \varphi (x) = 0 \quad \to \quad \delta J(x) = 0 \tag{*} \\
+d^2 \varphi (x) \underset{\le}{\ge} 0 \quad \to \quad \delta ^2 J(x) \underset{\le}{\ge} 0 \tag{**}
+\end{gather*}
+
+Из условия $(*)$ выводится уравнение Эйлера:
+\begin{equation}\label{equ:variations:Euler}
+\frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) = 0
+\end{equation}
+
+Все функции удовлетворяющие этому уравнению, называются экстремалями. Если они проходят через граничные точки, то они называются допустимыми экстремалями.
+
+Из условия $(**)$ выводятся условия Лежандра:
+\begin{equation}\label{equ:variations:Legendre}
+\frac{\partial ^2 F}{\partial \dot{x} ^2} \underset{\le}{\ge} 0
+\end{equation}
+
+\newpage
+\ExampleMy 
 \begin{enumerate}
-\item $J=\int\limits_{0}^{1}{{{{\dot{x}}}^{2}}dt\to extr,\,x\left( 0 \right)}=0,\,x\left( 1 \right)=1$
-\\$F={{\dot{x}}^{2}}\to \frac{\partial F}{\partial x}=0,\,\,\frac{\partial F}{\partial \dot{x}}=2\dot{x}$
-\\Уравнение Эйлера: $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\to 0-\frac{d}{dt}\left( 2\dot{x} \right)=0$
-\\$\ddot{x}=0,\dot{x}={{C}_{1}},x={{C}_{1}}t+{{C}_{2}};$
-\\$x\left( 0 \right)={{C}_{2}}=0,\,x\left( 1 \right)={{C}_{1}}+{{C}_{2}}=1\to {{C}_{1}}=1$
-\\Допустимая экстремаль: $\hat{x}=t$
-\\Условие Лежандра $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0\to \min $ величина которого будет равна ${{J}_{\min }}={{\int\limits_{0}^{1}{\left( {\dot{\hat{x}}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( {\dot{t}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( 1 \right)}}^{2}}dt=\left. t \right|_{0}^{1}=1$
-\item Найти уравнение выхода $x\left( t \right)$  и характеристический полином СУ, для которой $J\left( \infty  \right)=\int\limits_{0}^{\infty }{\left( {{a}_{0}}{{x}^{2}}+{{a}_{1}}{{{\dot{x}}}^{2}} \right)}dt\to \min$, при условиях ${{a}_{0}}>0,\,{{a}_{1}}>0,\,x\left( 0 \right)={{x}_{0}},x\left( \infty  \right)=0$
-\\$F={{a}_{0}}{{x}^{2}}+{{a}_{1}}{{\dot{x}}^{2}},\frac{\partial F}{\partial x}=2{{a}_{0}}x,\frac{\partial F}{\partial \dot{x}}=2{{a}_{1}}\dot{x}$
-\\Уравнение Эйлера: $2{{a}_{0}}x-\frac{d}{dt}\left( 2{{a}_{1}}\dot{x} \right)=0$, $\ddot{x}-\frac{{{a}_{0}}}{{{a}_{1}}}x=0$, ${{\lambda }^{2}}-\frac{{{a}_{0}}}{{{a}_{1}}}=0$, ${{\lambda }_{12}}=\pm \sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$, 
-\\$x\left( t \right)={{C}_{1}}{{e}^{\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}+{{C}_{2}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}$
-\\$t=0;\,{{x}_{0}}={{C}_{1}}+{{C}_{2}}$
-\\$t=\infty ;0=C_{1}^{-\infty }\to {{C}_{1}}=0$, а ${{C}_{2}}={{x}_{0}}$
-\par Допустимая экстремаль $\hat{x}={{x}_{0}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}t}}$
-\\Условие Лежандра: $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2{{a}_{1}}>0$ - условия $\min $ выполнены.
-\par Характеристический полином системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ 
+\item $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
+\[ F = \dot{x}^2 \enskip \Rightarrow \enskip \frac{\partial F}{\partial x} = 0, \enskip \frac{\partial F}{\partial \dot{x}} = 2\dot{x} \]
+Уравнение Эйлера: $ \frac{\partial F}{\partial x} - \frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right) = 0 \enskip \to \enskip 0 - \frac{d}{dt}\left( 2\dot{x} \right) = 0 $
+\[ \ddot{x} = 0, \quad \dot{x} = C_1, \quad x = C_1 t + C_2 \]
+\[ \left\{ \begin{darray}{l} x(0) = C_2 = 0 \\ x(1) = C_1 + C_2 = 1 \enskip \Rightarrow \enskip C_1 = 1 \end{darray} \right. \]
+Допустимая экстремаль: $\hat{x}=t$
+
+Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 > 0 \enskip \Rightarrow \enskip \min $
+\[ J_{ \min } = \int\limits_0^1 { \left( \dot{\hat{x}} \right) }^2 dt = \int\limits_0^1 { \left( \dot{t} \right) }^2 dt = \int\limits_0^1 1^2 dt = t \Big|_0^1 = 1 \]
+
+\item Найти уравнение выхода $x(t)$  и характеристический полином СУ, для которой $ J(x) = \int\limits_{0}^{\infty } \left( a_0 x^2 + a_1 \dot{x} ^2 \right) \, dt \enskip \to \enskip \min $, при условиях $ a_0 > 0, a_1 > 0, x(0) = x_0, x( \infty ) = 0 $.
+\[ F = a_0 x^2 + a_1 \dot{x} ^2, \quad \frac{\partial F}{\partial x} = 2 a_0 x, \quad \frac{\partial F}{\partial \dot{x}} = 2 a_1 \dot{x} \]
+Уравнение Эйлера: $ 2 a_0 x - \frac{d}{dt} \left( 2 a_1 \dot{x} \right) = 0 $
+\[ \ddot{x} - \frac{a_0}{a_1}x = 0, \quad \lambda ^2 - \frac{a_0}{a_1} = 0, \quad \lambda _{1, 2} = \pm \sqrt{\frac{a_0}{a_1}} \] 
+\[ x(t) = C_1 e^{\sqrt{a_0 / a_1}\,t} + C_2 e^{-\sqrt{a_0 / a_1}\,t} \]
+\[ \left. \begin{darray}{l} x(0) = C_1 + C_2 = x_0 \\
+		x( \infty ) = C_1 \cdot \infty = 0 \enskip \Rightarrow \enskip C_1 = 0 \end{darray} \right\}
+	\enskip \Rightarrow \enskip C_2 = x_0 \]
+Допустимая экстремаль: $ \hat{x} = x_0 e^{-\sqrt{a_0 / a_1}\,t} $
+
+Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 a_1 > 0 \enskip \Rightarrow \enskip \min $
+
+Характеристический полином системы: $ D(p) = p + \sqrt{\frac{a_0}{a_1}} $ 
 \end{enumerate}
+
 Обобщим результаты в 2 направлениях:
 \begin{itemize}
 \item Многомерный случай
