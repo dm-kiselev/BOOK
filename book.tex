@@ -14,7 +14,7 @@
 \pagestyle{plain}
 
 %********Команда все примеры подчеркиваем
-\newcommand{\ExampleMy}{\vspace{\baselineskip}\textbf{\underline{Пример:}}}
+\newcommand{\ExampleMy}{\vspace{\baselineskip}\textbf{\underline{Пример:}}\nopagebreak\par}
 %*********
 
 \countstyle{section}			% посекционная нумерация
@@ -143,6 +143,7 @@ W_\text{\textit{УУ}}W_\text{\textit{ОУ}}\longrightarrow\frac{x_\text{\textit
 	\item Статические: статизм, добротность;
 	\item Динамические: время переходного процесса, перерегулирование, колебательность;
 	\end{itemize}
+\pagebreak
 \item Косвенные:
 	\begin{itemize}
 	\item Корневые;
@@ -379,42 +380,64 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 \item Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.
 
 Составляем рекуррентную формулу $ x_{n+1} = x_n - \frac{ x_n - \sin x_n - \pi/2}{ 1 - \cos x_n } $. При ${{x}_{0}}=2.4$ получается итерационная последовательность $ x_1 = 2.31, x_2 = 2.3099, x_3 = 2.309884, \ldots $ 
+
 \end{enumerate}
 
 
 \clearpage
 \section{Основы вариационного исчисления\label{variations}}
-\subsection{Основные понятия\label{variations:general}}
-Функционал - числовая скалярная функция, определяемая на множестве функцией: $y=f\left( x \right)$  -функция от аргумента. $J\left( x \right)=\int\limits_{0}^{T}{F\left( x,\dot{x},t \right)}dt$ - функция от функций  (скалярная оценка различных функций).
-\par Каждая функция $x\left( t \right)$ является точкой функционального пространства. Пусть эта функция однозначна, непрерывна и дифференцируема на рассматриваемом интервале - такие функции называются гладкими. Если значения функции соответствуют заданным в граничных точках их называют допустимыми. И тогда задача заключается в выборе среди допустимых такой где функционал достигает наименьшего значения $\underset{x\in \Omega }{\mathop{\min }}\,\left( J\left( x \right) \right)$.
-Решением таких задач занимается вариационное исчисление. Аналог дифференциального исчисления для функций. 
-\par И так для функций условием экстремума является:
-\[{{\left. d\varphi \left( x \right) \right|}_{x={{x}_{{}}}}}=0,\frac{d\varphi \left( x \right)}{dx}=0\to \partial J\left( x \right)=0\,\,\,\left( * \right)\] 
-\[{{d}^{2}}\varphi \left( x \right)\ne 0\to {{\partial }^{2}}J\left( x \right)\ne 0\,\,\,\,\left( ** \right)\]
-Из $\left( * \right)$  условия выводится уравнение Эйлера: \[\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\]
-Все функции удовлетворяющие этому уравнению, называются экстремалями. Если они проходят через граничные точки,  
-то они называют допустимыми экстремалями. Из уравнения $\left( ** \right)$ выводят условия Лежандра $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ne 0$ 
-%Пример
-\vspace{\baselineskip}
-\par\ExampleMy~ 
+	\subsection{Оптимизация функционалов\label{variations:general}}
+
+Функционал --- числовая скалярная функция, определяемая на множестве функций: $ y = f(x) $ --- функция от аргумента; $ J(x) = \int\limits_0^T F \left( x, \dot{x}, t \right) \, dt $ --- функция от функций  (скалярная оценка различных функций).
+
+Каждая функция $ x(t) $ является точкой функционального пространства. Пусть эта функция однозначна, непрерывна и дифференцируема на рассматриваемом интервале (такие функции называются гладкими). Если значения функции соответствуют заданным в граничных точках их называют допустимыми. И тогда задача заключается в выборе среди допустимых функций такой, где функционал достигает наименьшего значения $ \underset{ x \in \Omega }{ \min } \, J(x) $. Решением таких задач занимается вариационное исчисление --- аналог дифференциального исчисления для функций.
+
+Итак, для функций условиями экстремума являются:
+\begin{gather*}
+d \varphi (x) = 0 \quad \to \quad \delta J(x) = 0 \tag{*} \\
+d^2 \varphi (x) \underset{\le}{\ge} 0 \quad \to \quad \delta ^2 J(x) \underset{\le}{\ge} 0 \tag{**}
+\end{gather*}
+
+Из условия $(*)$ выводится уравнение Эйлера:
+\begin{equation}\label{equ:variations:Euler}
+\frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) = 0
+\end{equation}
+
+Все функции удовлетворяющие этому уравнению, называются экстремалями. Если они проходят через граничные точки, то они называются допустимыми экстремалями.
+
+Из условия $(**)$ выводятся условия Лежандра:
+\begin{equation}\label{equ:variations:Legendre}
+\frac{\partial ^2 F}{\partial \dot{x} ^2} \underset{\le}{\ge} 0
+\end{equation}
+
+\pagebreak
+\ExampleMy 
 \begin{enumerate}
-\item $J=\int\limits_{0}^{1}{{{{\dot{x}}}^{2}}dt\to extr,\,x\left( 0 \right)}=0,\,x\left( 1 \right)=1$
-\\$F={{\dot{x}}^{2}}\to \frac{\partial F}{\partial x}=0,\,\,\frac{\partial F}{\partial \dot{x}}=2\dot{x}$
-\\Уравнение Эйлера: $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\to 0-\frac{d}{dt}\left( 2\dot{x} \right)=0$
-\\$\ddot{x}=0,\dot{x}={{C}_{1}},x={{C}_{1}}t+{{C}_{2}};$
-\\$x\left( 0 \right)={{C}_{2}}=0,\,x\left( 1 \right)={{C}_{1}}+{{C}_{2}}=1\to {{C}_{1}}=1$
-\\Допустимая экстремаль: $\hat{x}=t$
-\\Условие Лежандра $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0\to \min $ величина которого будет равна ${{J}_{\min }}={{\int\limits_{0}^{1}{\left( {\dot{\hat{x}}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( {\dot{t}} \right)}}^{2}}dt={{\int\limits_{0}^{1}{\left( 1 \right)}}^{2}}dt=\left. t \right|_{0}^{1}=1$
-\item Найти уравнение выхода $x\left( t \right)$  и характеристический полином СУ, для которой $J\left( \infty  \right)=\int\limits_{0}^{\infty }{\left( {{a}_{0}}{{x}^{2}}+{{a}_{1}}{{{\dot{x}}}^{2}} \right)}dt\to \min$, при условиях ${{a}_{0}}>0,\,{{a}_{1}}>0,\,x\left( 0 \right)={{x}_{0}},x\left( \infty  \right)=0$
-\\$F={{a}_{0}}{{x}^{2}}+{{a}_{1}}{{\dot{x}}^{2}},\frac{\partial F}{\partial x}=2{{a}_{0}}x,\frac{\partial F}{\partial \dot{x}}=2{{a}_{1}}\dot{x}$
-\\Уравнение Эйлера: $2{{a}_{0}}x-\frac{d}{dt}\left( 2{{a}_{1}}\dot{x} \right)=0$, $\ddot{x}-\frac{{{a}_{0}}}{{{a}_{1}}}x=0$, ${{\lambda }^{2}}-\frac{{{a}_{0}}}{{{a}_{1}}}=0$, ${{\lambda }_{12}}=\pm \sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$, 
-\\$x\left( t \right)={{C}_{1}}{{e}^{\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}+{{C}_{2}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}}}$
-\\$t=0;\,{{x}_{0}}={{C}_{1}}+{{C}_{2}}$
-\\$t=\infty ;0=C_{1}^{-\infty }\to {{C}_{1}}=0$, а ${{C}_{2}}={{x}_{0}}$
-\par Допустимая экстремаль $\hat{x}={{x}_{0}}{{e}^{-\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}t}}$
-\\Условие Лежандра: $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2{{a}_{1}}>0$ - условия $\min $ выполнены.
-\par Характеристический полином системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ 
+\item $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
+\[ F = \dot{x}^2 \enskip \Rightarrow \enskip \frac{\partial F}{\partial x} = 0, \enskip \frac{\partial F}{\partial \dot{x}} = 2\dot{x} \]
+Уравнение Эйлера: $ \frac{\partial F}{\partial x} - \frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right) = 0 \enskip \to \enskip 0 - \frac{d}{dt}\left( 2\dot{x} \right) = 0 $
+\[ \ddot{x} = 0, \quad \dot{x} = C_1, \quad x = C_1 t + C_2 \]
+\[ \left\{ \begin{darray}{l} x(0) = C_2 = 0 \\ x(1) = C_1 + C_2 = 1 \enskip \Rightarrow \enskip C_1 = 1 \end{darray} \right. \]
+Допустимая экстремаль: $\hat{x}=t$
+
+Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 > 0 \enskip \Rightarrow \enskip \min $
+\[ J_{ \min } = \int\limits_0^1 { \left( \dot{\hat{x}} \right) }^2 dt = \int\limits_0^1 { \left( \dot{t} \right) }^2 dt = \int\limits_0^1 1^2 dt = t \Big|_0^1 = 1 \]
+
+\item Найти уравнение выхода $x(t)$  и характеристический полином СУ, для которой $ J(x) = \int\limits_{0}^{\infty } \left( a_0 x^2 + a_1 \dot{x} ^2 \right) \, dt \enskip \to \enskip \min $, при условиях $ a_0 > 0, a_1 > 0, x(0) = x_0, x( \infty ) = 0 $.
+\[ F = a_0 x^2 + a_1 \dot{x} ^2, \quad \frac{\partial F}{\partial x} = 2 a_0 x, \quad \frac{\partial F}{\partial \dot{x}} = 2 a_1 \dot{x} \]
+Уравнение Эйлера: $ 2 a_0 x - \frac{d}{dt} \left( 2 a_1 \dot{x} \right) = 0 $
+\[ \ddot{x} - \frac{a_0}{a_1}x = 0, \quad \lambda ^2 - \frac{a_0}{a_1} = 0, \quad \lambda _{1, 2} = \pm \sqrt{\frac{a_0}{a_1}} \] 
+\[ x(t) = C_1 e^{\sqrt{a_0 / a_1}\,t} + C_2 e^{-\sqrt{a_0 / a_1}\,t} \]
+\[ \left. \begin{darray}{l} x(0) = C_1 + C_2 = x_0 \\
+		x( \infty ) = C_1 \cdot \infty = 0 \enskip \Rightarrow \enskip C_1 = 0 \end{darray} \right\}
+	\enskip \Rightarrow \enskip C_2 = x_0 \]
+Допустимая экстремаль: $ \hat{x} = x_0 e^{-\sqrt{a_0 / a_1}\,t} $
+
+Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 a_1 > 0 \enskip \Rightarrow \enskip \min $
+
+Характеристический полином системы: $ D(p) = p + \sqrt{\frac{a_0}{a_1}} $ 
 \end{enumerate}
+
 Обобщим результаты в 2 направлениях:
 \begin{itemize}
 \item Многомерный случай
@@ -465,7 +488,7 @@ $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \do
 \\${{J}_{\min }}=\int\limits_{0}^{1}{{{\left( 6t-2 \right)}^{2}}}dt=\left. 12{{t}^{3}} \right|_{0}^{1}-\left. 12{{t}^{2}} \right|_{0}^{1}+\left. 4t \right|_{0}^{1}=4$
 \end{enumerate}
 \end{itemize}
-\subsection{Задачи с нефиксированными границами\label{variations:floating_ends}}
+	\subsection{Задачи с нефиксированными границами\label{variations:floating_ends}}
 Как для начального момента времени (левого конца) так и для конечного момента времени (правого конца) могут быть следующие варианты: (для удобства все примеры для правого конца)
 
 
@@ -508,7 +531,7 @@ $\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0$ - \underline{min}: $
 \item Если $F\left( x,\dot{x} \right)$, не зависит от $t$ $\to $ $F-\dot{x}\frac{\partial F}{\partial \dot{x}}=const$
 \end{itemize}
 
-\subsection{Оптимизация функционалов с ограничениями в форме равенств(Задачи на условный экстремум)\label{variations:conditional_extremum}}
+	\subsection{Оптимизация функционалов с ограничениями в форме равенств\label{variations:conditional_extremum}}
 \par При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических, дифференциальных и интегральных уравнений, т.е. дополнительных условий. Тогда вместо функции $F\left( x,t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right)+{{\lambda }^{T}}\left( t \right)\centerdot \Phi \left( x,u,t \right)$ - Лагранжиан и уравнение приобретает вид Эйлера-Лагранжа:
 \\$\left\{ \begin{array}{*{35}{l}}
    \frac{\partial L}{\partial x}-\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{x}} \right)=0$, где $\lambda \left( t \right)$ - вектор множителей Лагранжа,   
@@ -603,7 +626,7 @@ $\left| \begin{array}{*{35}{l}}
    {{x}_{2}}  \\
 \end{matrix} \right)=-3.2{{x}_{1}}-2.8{{x}_{2}}$
 \end{enumerate}
-\subsection{Общий случай\label{variations:Canonical_Euler}}
+	\subsection{Каноническая (Гамильтонова) форма уравнений Эйлера (Лагранжа)\label{variations:Canonical_Euler}}
 Стремление избавится от двойного дифференцирования (по времени и производны  $\frac{\partial }{\partial \dot{x}}$,$\frac{\partial }{\partial \dot{u}}$ - состояния и управления) привело к предложению ввести канонические переменные ${{\psi }_{i}}\left( t \right)$ сопряжённые с переменными состояния ОУ и функцию Гамильтона: $H=-F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}=-L\left( x,u,\lambda ,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}$, где ${{\psi }_{i}}=\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}$ или $\frac{\partial L}{\partial {{{\dot{x}}}_{i}}}$, и тогда можно получить, учитывая что $\frac{\partial H}{\partial {{x}_{i}}}=-\frac{\partial F}{\partial {{x}_{i}}}=-\frac{\partial L}{\partial {{x}_{i}}}$ ${{\dot{x}}_{i}}=\frac{d{{{\dot{x}}}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}}$ $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\underbrace{\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)}_{{{\psi }_{i}}}\to \frac{d}{dt}{{\psi }_{i}}=\frac{\partial F}{\partial {{x}_{i}}}$, систему
 $\left\{ \begin{array}{*{35}{l}}
    \frac{d{{x}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}},\,i=\overline{1,n}  \\
@@ -670,7 +693,10 @@ $L\left( \dot{x},u,t,\lambda  \right)=F\left( x,u,t \right)+{{\lambda }^{T}}\lef
 \par Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то ${{U}_{opt}}={{K}_{opt}}\cdot x$ $\dot{x}=ax+b{{K}_{oc}}x=\left( a+b{{K}_{oc}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_{oc}} \right)$. Приравнивая два полинома 
 $p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_{oc}} \right)$, получим ${{K}_{oc}}=\frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b}$ - как видно решения совпадают - в литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
 \\Записывая факторизацию для $D\left( p \right)\to \left[ p-\left( a+b{{K}_{oc}} \right) \right]\left[ p+\left( a+b{{K}_{oc}} \right) \right]={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)$ получим ${{p}^{2}}-{{\left( a+b{{K}_{oc}} \right)}^{2}}={{p}^{2}}-\left( {{a}^{2}}+\frac{{{b}^{2}}}{r}q \right)$ - уравнение $K_{oc}^{2}+\frac{2a}{b}{{K}_{oc}}-\frac{q}{r}=0$ откуда:  ${{K}_{oc}}=-\frac{a}{b}\pm \sqrt{\frac{{{a}^{2}}}{{{b}^{2}}}+\frac{q}{r}}$ скалярное стационарное уравнение Риккати.
-\subsection{Принцип максимума\label{variations:Canonical_Euler}}
+
+\clearpage
+\section{Принцип максимума\label{maximum}}
+	\subsection{Определение\label{maximum:def}}
 \par В целом ряде практических задач оптимизация функционала при заданных дифференциальных (динамических) уравнениях объекта $\left\{ \dot{X}=\Phi \left( x,u \right)=AX+BU \right\}$ требуется обеспечивать при ограниченных диапазонах допустимого изменения управлений $\left| {{u}_{i}} \right|\le {{U}_{i}}$   и/или координат объекта $\left| {{x}_{i}} \right|\le {{X}_{i}}$. В изменениях функций образуются переломы, в изменении производных разрыва. Нарушаются условия, при которых были выведены уравнения Эйлера и Эйлера-Лагранжа в вариациях.
 \par Коллективом ученых под руководством академика Л.С.Понтрягина (В.Г.Болтянский,Р.В.Гамкрелидзе,Е.Ф.Мищенко и др.) был разработан принцип максимума, использующий понятие игольчатой вариации относительно оптимального управления и траектории движения, что позволило доказать применимость модифицированной функции Гамильтона для таких неклассических вариационных задач. Модификация заключалась в следующем:
 \begin{itemize}
@@ -764,13 +790,8 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
    0,\,\,\left| {{\psi }_{2}} \right|\le 1  \\
    sign{{\psi }_{2}},\,\left| {{\psi }_{2}} \right|>1  \\
 \end{array} \right.$
-\clearpage
-  \section{Синтез оптимальных систем\label{synthesis}}
- \subsection{Общий случай\label{synthesis:general}}
- 
- \subsection{Принцип максимума Понтрягина\label{synthesis:principle_of_maximum}}
- 
- \subsection{Синтез оптимальных по быстродействию систем\label{synthesis:fastest}}
+
+	\subsection{Синтез оптимального по быстродействию управления для линейных систем\label{maximum:fastest}}
  Итак, в общем случае задача синтеза оптимального по быстродействию управления линейным объектом $\dot{X}=A\left( x,u \right)=Ax+Bu$ с $\min \int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1dt={{t}_{k}}-{{t}_{0}}}$, с возможным ограничением на $\left| {{x}_{i}} \right|\le {{X}_{i}}$ осуществляется с помощью принципа Максимума на основе составления формулы Гамильтона: $H\left( \psi ,x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, и ${{u}_{opt}}={{U}_{\max }}\cdot sign\left( \frac{\partial H}{\partial u} \right)={{U}_{\max }}sign\left( {{B}^{T}}\psi  \right)$ и  $\dot{\psi }\left( t \right)=-{{\psi }^{T}}\left( t \right)\frac{\partial \Phi \left( x,u \right)}{\partial x}=-{{\psi }^{T}}\left( t \right)A=-{{A}^{T}}\psi \left( t \right)\to \psi \left( t \right)=\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$ - это набор экспонент, поиск которых в общем виде затруднён. Однако в частных случаях были получены ряд важных результатов.
 \begin{enumerate}
 \item Если собственные числа матрицы $A$ - различные вещественные, то сумма $n$ экспонент ${{B}^{T}}\psi $ - может пересекать ось $t$ (и менять знак) только $n-1$ раз.   Фельдбаум А.А. доказал теорему об \underline{n-интервалах}:
@@ -805,7 +826,8 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
   \end{itemize}
   \par Поэтому, на практике реализуются квазиоптимальные или субоптимальные системы, использующие скользящие режимы движения. Реализация устройства управления, в этом случае не требует нелинейных операций, а используются только линейные усилители (с различными ${{K}_{ysil}}$) и релейные переключатели.
  \end{enumerate}
- \subsection{Уравнение Риккати для синтеза оптимальных систем\label{synthesis:Riccati}}
+ 
+	\subsection{Уравнение Риккати для синтеза оптимальных систем\label{maximum:Riccati}}
  \par Для линейных объектов управления: $\dot{x}=Ax+Bu$ и минимизируемого квадратичного функционала $J=\frac{1}{2}\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{\left( {{x}^{T}}Qx+{{u}^{T}}Ru \right)dt}$ без учёта ограничений ${{U}_{opt}}\left( t \right)={{K}_{os}}x$ 
  \\Функция Гамильтона:
  \\${{H}^{*}}=-\frac{1}{2}{{x}^{T}}Qx-\frac{1}{2}{{u}^{T}}Ru+{{\psi }^{T}}\left( Ax+Bu \right)$
@@ -815,8 +837,11 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
    \dot{\psi }=QX-{{\psi }^{T}}A=QX-{{A}^{T}}\psi   \\
 \end{array}$ сравнивая ${{U}_{opt}}={{K}_{os}}x$ и $U=-{{R}^{T}}{{B}^{T}}\psi $ можно ввести $\psi =-D\left( t \right)x$, дифференциируя которое получим: $\dot{\psi }=-\dot{D}\left( t \right)x-D\left( t \right)\dot{x}$ подставляя $\dot{x}=Ax-B{{R}^{-1}}{{B}^{T}}D\left( t \right)x$ $\dot{\psi }=Qx+{{A}^{T}}D\left( t \right)x$ и получаем окончательно:
 \\$-\dot{D}\left( t \right)x-D\left( t \right)\left( Ax+B{{R}^{-1}}B\left( -p\left( t \right) \right)x \right)=Qx+{{A}^{T}}D\left( t \right)x$ - дифференциальное уравнение Риккати, после решения которого можно получить ${{U}_{opt}}\left( x \right)=-{{R}^{-1}}{{B}^{T}}D\left( t \right)x\left( t \right)$.
-\\Для объектов с постоянными по времени параметрами $\dot{K}\left( t \right)=0$ и при ${{t}_{k}}\to \infty $ $D\left( t \right)=\overline{D}$ - определённого положительная симметричная матрица коэффициентов. В случае ограничений типа $\left| u\left( t \right) \right|\le {{U}_{m}}$, получим нелинейный закон с насыщением, аналогичный простейшему случаю.   
-  \subsection{Динамическое программирование Беллмана\label{synthesis:dyn_prog}}
+\\Для объектов с постоянными по времени параметрами $\dot{K}\left( t \right)=0$ и при ${{t}_{k}}\to \infty $ $D\left( t \right)=\overline{D}$ - определённого положительная симметричная матрица коэффициентов. В случае ограничений типа $\left| u\left( t \right) \right|\le {{U}_{m}}$, получим нелинейный закон с насыщением, аналогичный простейшему случаю.
+
+\clearpage   
+\section{Динамическое программирование\label{dyn_prog}}
+	\subsection{Определение\label{dyn_prog:def}}
   \par В технике и экономике существует класс объектов и процессов, управление которыми осуществляется на основе ограниченного числа решений, принимаемых последовательно в некоторые фиксированные моменты времени. Определение закона (алгоритма) управления для таких объектов связано с решением задачи по методу \underline{многошагового} выбора, предложенного учёным из США Р.Беллманом и названным \underline{динамическим программированием}.
   \par В основу положен принцип оптимальности, согласно которому оптимальное управление определяется конечной целью и состоянием системы в данный момент времени независимо от предыстории.
   \par Задачей оптимизации считается определение оптимальных управлений ${{u}^{0}}\left( t \right)$ и траекторий ${{x}^{0}}\left( t \right)$ из условия минимума функционала:
@@ -824,7 +849,7 @@ ${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\
 \par В методе динамического программирования вводится вспомогательная функция Беллмана:
 \\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u,t \right)dt}$ 
 \par В соответствии с сформулированным принципом минимум функционала зависит только от момента времени, значения $x$ в этот момент и конечного момента. Тогда для $\forall $ промежуточного момента $t\in {{t}_{0}}+\Delta t<T$ $S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)=\underset{u\in U}{\mathop{\min }}\,\int\limits_{{{t}_{0}}+\Delta t}^{T}{F\left( x,u,t \right)dt}$ ${{x}_{\Delta t}}=x\left( {{t}_{0}} \right)+\Delta x$ $S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+\int\limits_{{{t}_{0}}}^{T}{F\left( x,u,t \right)dt}} \right]=\underset{u\in U}{\mathop{\min }}\,\left[ \int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)dt+S\left( {{t}_{0}}+\Delta t,T,{{X}_{\Delta t}} \right)} \right]$ - это выражение должно использоваться для определения оптимальных управлений $u_{\Delta t}^{0}\left( t \right)\in U$ на интервале $\left[ {{t}_{0}},{{t}_{0}}+\Delta t \right]$. При решении либо решают функциональные уравнения Беллмана в частных производных, либо применяют численные методы.
-\subsection{Уравнение Беллмана и его применение для сминтеза ОУ\label{synthesis:Bellman_equaration}}
+	\subsection{Функциональное уравнение Беллмана для синтеза оптимального управления\label{dyn_prog:Bellman_equation}}
 \par Первое слагаемое с точностью до малых более высокого порядка чем $\Delta t$, можно приблизительно записать $\int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)}dt\approx F\left( x,u,t \right)\Delta t=\Delta J$. Второе слагаемое, определяющее значение $S\left( t+\Delta t,x+\Delta x \right)$ для $\forall $ $t+\Delta t$ разложим в ряд Тейлора. Ограничиваясь линейными членами относительно $\Delta {{x}_{i}}$ и $\Delta t$ и переходя к пределу (если функция $S\left( t,x \right)$) имеет непрерывные частные производные по всем ${{x}_{i}}\left( t \right)$ и $t$), запишем:
 \\$S\left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \Delta {{x}_{i}}+\frac{\partial S}{\partial t}\Delta t=S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \frac{d{{x}_{i}}}{dt}+\frac{\partial S}{\partial t} \right]\Delta t$
 \\Тогда можем записать:
@@ -902,7 +927,7 @@ $\underset{u\left( t \right)\in U}{\mathop{\min }}\,\left[ grad_{x}^{T}R\left( x
    4  \\
    0  \\
 \end{array} \right)=1$.
-\subsection{Частные решения уравнений динамического программирования\label{synthesis:specific_solution}}
+	\subsection{Численное решение уравнений динамического программирования\label{dyn_prog:numerical}}
 \par Уравнение минимизации $\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right\}=0$, или соответствующие ему функциональные уравнения в частных производных: $F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}}=0$ и $\frac{\partial F}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot \frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}=0}$, $j=\overline{1,k}$ далеко не всегда удается решить аналитически. Поэтому применяется численный подход в виде многошагового процесса, являющегося приближенным.   
 \\Для этого исходные уравнения объекта заменяют конечно-разностными:
 \\$\left\{ \begin{array}{*{35}{l}}
@@ -918,9 +943,10 @@ ${{S}_{N-1}}\left( {{x}_{N-2}} \right)=\underset{{{u}_{N-1}}\in U}{\mathop{\min 
 \\${{S}_{N-1}}\left( {{X}_{N-2}} \right)=\underset{u_{N-1}^{0}\in U}{\mathop{\min }}\,\left\{ {{F}_{N-1}}\left( {{X}_{N-2}},u_{N-1}^{0} \right)\Delta t+{{S}_{N}}\left[ {{x}_{N-1}}\left( {{x}_{N-2}},u_{_{N-1}}^{0} \right) \right] \right\}$ 
 \\На предпоследнем интервале (2 шага назад) получим значения ${{S}_{N-1}}\left( {{x}_{N-2}} \right)$ ${{x}_{N-2}}\left( {{t}_{N-2}} \right)$ и $u_{N-1}^{0}\left( {{x}_{N-2}} \right)$, которые запоминаются. Все расчеты повторяются аналогично, пока не придём к первому интервалу. В результате таких расчётов, получим значения $u_{k}^{0}\left( {{x}_{k-1}} \right)$, ${{x}_{k}}\left( {{t}_{k}} \right)$, так что ${{x}_{N}}\left( {{t}_{N}} \right)={{x}_{k}}\left( T \right)$, по которым можно построить приближенное оптимальное управление $\approx {{u}^{0}}\left( t \right)$ и приближенную оптимальную траекторию ${{x}^{0}}\left( t \right)$.
 \par Наиболее успешно метод динамического программирования применяется для оптимизации дискретных систем, где уравнения динамики записаны в конечных разностях, вариационная задача оптимизации функций по $\left( N\times r \right)$ переменным, сводится к $N$ простым задачам оптимизации функций малого ($r$) числа переменных. При многошаговом процессе решения легко учитываются ограничения на координаты и управления. 
+
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
-\subsection{Основные понятия\label{stochastic:general}}
+	\subsection{Основные понятия\label{stochastic:general}}
 \par При оптимальном управлении реальными объектами теория детерминированного управления, определяющая закон управления как функцию времени и фазовых координат часто не применима, т.к. на ОУ действуют различные случайные возмущения, начальные значения координат произвольные, текущие значения не могут быть полностью измерены. В этом случае необходимо применять статистические методы, основанные на работах Н.Винера, А.Н.Колмогорова, Р.Каллмана и др. При проектировании таких систем прежде всего важна точность управления, т.е. точность воспроизведения полезного входного сигнала, оцениваемая по величине ошибки: $\varepsilon \left( t,\tau  \right)=V\left( t+\tau  \right)-y\left( t \right)$, 
 \\$\tau =0$, ошибка фильтрации
 \\$\tau <0$, ошибка сглаживания
@@ -944,7 +970,7 @@ $ \\\end{array} \right.$
 \\Шумы ${{\mu }_{1}}\left( t \right)$ и ${{\mu }_{2}}\left( t \right)$ независимы, в силу своего происхождения.
 \\Необходимо найти управление, обеспечивающее отслеживание уставки $V\left( t \right)$ с минимизацией критерия качества: $\min J=M\left\{ \int\limits_{0}^{T}{\left( {{\varepsilon }^{T}}Q\varepsilon +{{u}^{T}}Ru \right)dt} \right\}$
 \par Как мы видим критерий может быть расширен и включать в себя не только требования минимизации дисперсии, но и экономию управляющего воздействия.  
-\subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
+	\subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
 Величину дисперсии ошибки фильтрации $J=M\left\{ {{\varepsilon }^{2}}\left( t \right) \right\}$ можно найти по её автокорреляционной функции ${{R}_{\varepsilon }}\left( \tau  \right)$ или спектральной плотности ${{S}_{\varepsilon }}\left( \omega  \right)$
 \\$M\left\{ {{\varepsilon }^{2}} \right\}={{R}_{\varepsilon }}\left( 0 \right)=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{{{S}_{\varepsilon }}\left( \omega  \right)d\omega }$
 \par Спектральную плотность ошибки фильтрации можно найти зная спектральные плотности задающего сигнала (уставки) ${{S}_{V}}$ и помехи ${{S}_{f}}$, приведенной ко входу замкнутой системы:
@@ -971,7 +997,7 @@ ${{S}_{\varepsilon }}\left( \omega  \right)={{\left| W_{S}^{\varepsilon }\left( 
    
 \subsection{Фильтры\label{stochastic:filters}}
  
-\subsection{Наблюдатели состояния\label{stochastic:observers}}
+	\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
 
 
 \end{document}
