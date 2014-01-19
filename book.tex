@@ -990,8 +990,18 @@ ${{S}_{\varepsilon }}\left( \omega  \right)={{\left| W_{S}^{\varepsilon }\left( 
 \begin{enumerate}
 \item "Белый" шум: имеет $S\left( \omega  \right)={{a}^{2}}\left( {{N}^{2}} \right)$ - постоянную спектральную плотность и $R\left( \tau  \right)={{a}^{2}}\delta $, ${{D}_{\text{БШ}}}=R\left( \tau  \right)={{a}^{2}}\delta =\frac{1}{\pi }\int\limits_{0}^{\infty }{{{a}^{2}}}d\omega $ 
 \\Идеализация  случайного сигнала - БШ допустима тогда, когда в полосе пропускания линейной системы спектральная плотность входного воздействия меняется мало, что имеет место, когда эффективная полоса пропускания системы более узкая по сравнению с полосой частот входного воздействия.
-\item Альтернативной является 
+\item Альтернативной является $x=C$ - константа. ${{R}_{c}}\left( \tau  \right)={{\mathbb{C}}^{2}}={{D}_{c}}$ тогда ${{S}_{c}}\left( \omega  \right)$ существует только на нулевой частоте и равна  
+${{S}_{c}}\left( \omega  \right)=2\int\limits_{0}^{\infty }{{{c}^{2}}}\cos \left( \omega \tau  \right)d\tau =\left. 2{{c}^{2}}\frac{\sin \left( \omega \tau  \right)}{\omega } \right|_{0}^{\infty }=2{{c}^{2}}\pi \delta \left( \omega  \right)$
+\par Соотношение между спектральной плотностью $S\left( \omega  \right)$ и корреляционной функцией $R\left( \tau  \right)$, аналогично связи между частотой и переходной характеристиками: чем шире график корреляционной функции тем уже график спектральной плотности и наоборот.
+\item Случайный процесс с корреляционной функцией экспонент ${{R}_{x}}\left( \tau  \right):{{D}_{x}}\exp \left( -\lambda \tau  \right)$, $\lambda =\frac{1}{T}$ - параметр затухания - имеет быстрый случайный процесс принимающий значение $\pm A\left( {{D}_{\lambda }}={{A}^{2}} \right)$ где смена знака происходит в соответствии с пуассоновским случайным процессом с параметром $0.5\lambda $.
+\\Спектральная плотность ${{S}_{x}}\left( \omega  \right)={{A}^{2}}\left( \int\limits_{-\infty }^{0}{\exp \left( \lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -\lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$
+\\Такой процесс может быть получен из БШ путём пропускания через динамическое звено: пусть ${{S}_{\text{БШ}}}=1$ ${{S}_{x}}\left( \omega  \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$ $S\left( j\omega  \right)=\frac{A\sqrt{2\lambda }}{j\omega +\lambda }$, т.к.  ${{S}_{x}}\left( \omega  \right)={{\left| W\left( j\omega  \right) \right|}^{2}}{{S}_{БШ}}$ то ${{S}_{x}}\left( \omega  \right)=\underbrace{S\left( j\omega  \right)S\left( -j\omega  \right)}_{\text{факторизация}}=W\left( j\omega  \right)W\left( -j\omega  \right)$, следовательно $W\left( p \right)={{\left. W\left( j\omega  \right) \right|}_{j\omega =p}}=S\left( j\omega  \right)$ 
+${{R}_{\rho }}\left( \tau  \right)=25\exp \left( -0.4\left| \tau  \right| \right)\to {{S}_{\rho }}\left( \omega  \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)$ $=25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|$ - это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
+\\Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
+
 \end{enumerate}
+\ExampleMy Желаемое 
+
  
  
    
