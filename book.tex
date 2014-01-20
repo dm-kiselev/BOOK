@@ -7,17 +7,19 @@
 \usetikzlibrary{shapes.misc}
 \usepackage{enumitem}			% Для разрывов в списках
 \usepackage{ncccomma}			% для использования запятой в качестве разделителя дробной части
-%\usepackage{dcounter}			% динамические счётчики
-%\usepackage{amsmath}
-%\usepackage{nccmath}
+\usepackage{framed}				% текст в рамке
 
 \pagestyle{plain}
+\countstyle{section}			% посекционная нумерация
 
 %********Команда все примеры подчеркиваем
 \newcommand{\ExampleMy}{\vspace{\baselineskip}\textbf{\underline{Пример:}}\nopagebreak\par}
 %*********
 
-\countstyle{section}			% посекционная нумерация
+\newcounter{problem}[section]				% счётчик примеров (имя example уже зарезервировано)
+\renewcommand{\theproblem}{\thesection.\arabic{problem}}		% команда вывода текущего значения счётчика примеров
+% окружение для оформления примера
+\newenvironment{problem}{\par\refstepcounter{problem}{\raggedleft\textit{Пример \theproblem}\par}\begin{oframed}}{\par\end{oframed}}
 
 \begin{document}
 
@@ -215,15 +217,13 @@ J \left( U, X, \underset{t_\text{\textit{к}} - t_0}{\mathop{T}} \, \right) = \P
 \item Критерий терминального управления (задача мягкой посадки или система управления конечным положением):
 \[ \Phi \bigl( X(T), T \bigr) \ne 0, \quad F \bigl( X(t), U(t), t \bigr) \equiv 0 \]
 \end{enumerate}
-
+\pagebreak
 Часто используются смешанные варианты критериев:
 \begin{enumerate}[resume]
-%6
 \item Квадратичный критерий качества управления (предельной точности при минимуме энергетических затрат):
 \[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = X^TQX + U^TRU \]
 \item Критерий максимального быстродействия при минимальном расходе топлива (для управления автономными ОУ):
 \[ \Phi \bigl( X(T), T \bigr) \equiv 0, \quad F \bigl( X(t), U(t), t \bigr) = 1 + R\left|U\right| = 1 + \sum\limits_{i=1}^{n}{ r_i \left| u_i \right| } \]
-%8
 \item Критерий минимизации энергетических затрат при фиксированном интервале времени и заданном состоянии: 
 \[ J = X^T \left( T \right) S X \left( T \right) + \int\limits_0^T \left( X^TQX + U^TRU \right) \, dt \] 
 \end{enumerate}
@@ -256,9 +256,9 @@ grad \, F \left( x \right) = \frac{\partial F\left( x \right)}{\partial x} = 0
 %Надо как-то выделить текст
 %**********
 %Пример
-\par\ExampleMy 
-\begin{enumerate}
-\item $ \min \, F \left( x \right) = \frac{1}{2} \left( x_1^2 + 4x_2^2 \right) $
+%\par\ExampleMy 
+\begin{problem}
+$ \min \, F \left( x \right) = \frac{1}{2} \left( x_1^2 + 4x_2^2 \right) $
 \[ \left\{ \begin{darray}{l}
    \frac{\partial F}{\partial x_1} = x_1 \nr
    \frac{\partial F}{\partial x_2} = 4x_2
@@ -268,8 +268,9 @@ grad \, F \left( x \right) = \frac{\partial F\left( x \right)}{\partial x} = 0
 \end{darray} \right. \enskip \Rightarrow \enskip
 \frac{ \partial ^ 2 F }{ \partial x ^ 2} = \left| \begin{matrix} 1 & 0 \\ 0 & 4 \end{matrix} \right| \]
 Положительная определённость может быть подтверждена вычислением собственных чисел ($ \lambda _ 1 = 1, \lambda _ 2 = 4 $) или анализом всех диагональных миноров ($ \Delta _ 1 = 1, \Delta _2 = 4 $). Это доказывает, что стационарная точка $ \left( 0, 0 \right) $ абсолютный (глобальный) $\min$.
-
-\item $ \min \, F \left( x \right) = x_1^2 - 2 x_1 x_2 + 4 x_2^2 $
+\end{problem}
+\begin{problem}
+$ \min \, F \left( x \right) = x_1^2 - 2 x_1 x_2 + 4 x_2^2 $
 \[ \left\{ \begin{darray}{l}
    \frac{\partial F}{\partial x_1} = 2 x_1 - 2 x_2 = 0  \nr
    \frac{\partial F}{\partial x_2} = -2 x_1 + 8 x_2 = 0
@@ -279,8 +280,9 @@ grad \, F \left( x \right) = \frac{\partial F\left( x \right)}{\partial x} = 0
 	 2 & -2 \\
 	-2 &  8
 \end{array} \right| $ положительно определённая --- это достаточное условие $ \min \, F \left( x^* \right) = 0 $
-
-\item $ f(x) = x^3 \left( x^2 - 1 \right) \to extr; \quad -1 \le x \le 2 $
+\end{problem}
+\begin{problem}
+$ f(x) = x^3 \left( x^2 - 1 \right) \to extr; \quad -1 \le x \le 2 $
 \[ \frac{\partial f}{\partial x} = 5x^4 - 3x^2 = 0 \enskip \Rightarrow \enskip x_1 = 0, x_2 = \sqrt{3/5}, x_3 = - \sqrt{3/5} \]
 \[ \frac{\partial ^ 2 F }{\partial x^2} = 20x^2 - 6x \]
 \[ \left\{ \begin{darray}{l}
@@ -290,7 +292,7 @@ grad \, F \left( x \right) = \frac{\partial F\left( x \right)}{\partial x} = 0
 \end{darray} \right. \]
 \[ f \left( x_1 \right) = 0; \enskip f \left( x_2 \right) = - \frac{6}{25} \sqrt{\frac{3}{5}} \approx - 0,2; \enskip f \left( x_3 \right) = \frac{6}{25} \sqrt{\frac{3}{5}} \approx 0,2\]
 \[ f(-1) = 0; \enskip f(2) = 24 \]
-\end{enumerate}
+\end{problem}
 
 \begin{figure}[ht] \centering
 \begin{tikzpicture}
@@ -323,9 +325,8 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 \item найти стационарные точки и отыскать среди них решения задачи или доказать, что решения нет.
 \end{itemize}
 
-\ExampleMy
-\begin{enumerate}[resume]
-\item Найти стационарные точки для $F\left( x \right)=0.5\left( x_{1}^{2}+4x_{2}^{2} \right)$ при линейном ограничении на переменные $g\left( x \right)={{x}_{1}}+2{{x}_{2}}-1=0$.
+\begin{problem}
+Найти стационарные точки для $F\left( x \right)=0.5\left( x_{1}^{2}+4x_{2}^{2} \right)$ при линейном ограничении на переменные $g\left( x \right)={{x}_{1}}+2{{x}_{2}}-1=0$.
 \begin{itemize}
 \item $L\left( x,\lambda  \right)=\frac{1}{2}\left( x_{1}^{2}+4x_{2}^{2} \right)+\lambda \left( {{x}_{1}}+2{{x}_{2}}-1 \right)$
 \item Необходимые условия: $ \frac{\partial L}{\partial x_1} = x_1 + \lambda = 0 \enskip \Rightarrow \enskip x_1 = - \lambda ; \nr \frac{\partial L}{\partial x_2} = 4x_2 + 2\lambda = 0 \enskip \Rightarrow \enskip x_2 = - \frac{1}{2} \lambda ; \nr \frac{\partial L}{\partial \lambda } = x_1 + 2x_2 - 1 = 0 \enskip \Rightarrow \enskip \lambda = -0.5 $
@@ -352,7 +353,13 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 \[ F = \frac{1}{2} \left( { \left( \frac{1}{2} \right) }^2 + 4 { \left( \frac{1}{4} \right) }^2 \right) = \frac{1}{4} = F \left( x^* \right) \]
 \[ F(x) = \frac{1}{2} \left( x_1^2 + 4x_2^2 \right) = C; \quad x_1^2 + 4x_2^2 = 2C = \frac{1}{2} \] 
 \[ x_1 = \pm \frac{\sqrt{2}}{2} \approx 0.7; \quad x_2 = \pm \frac{\sqrt{2}}{4} \approx 0.35 \]
-\end{enumerate}
+\end{problem}
+
+% \ExampleMy
+% \begin{enumerate}[resume]
+% \item 
+
+% \end{enumerate}
 
 \begin{figure}[ht] \centering
 \begin{tikzpicture}[scale=3]
@@ -375,13 +382,13 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 
 Стационарные точки экстремальной задачи находятся путём решения уравнений вида $ Q(x) = 0 $, рекуррентным методом Ньютона. Последовательные приближения осуществляют по формуле $ x_{n+1} = x_n - \frac{ Q \bigl( x_n \bigr) }{ \Bigl(  dQ \bigl( x_n \bigr) / dx \Bigr) } $, геометрический смысл которой состоит в том, что точка $ x_{n+1} $ вычисляется как пересечение оси абсцисс с касательной к кривой $ y = Q(x) $ в точке $ x_n $.
 
-\ExampleMy
-\begin{enumerate}[resume]
-\item Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.
+
+\begin{problem}
+Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.
 
 Составляем рекуррентную формулу $ x_{n+1} = x_n - \frac{ x_n - \sin x_n - \pi/2}{ 1 - \cos x_n } $. При ${{x}_{0}}=2.4$ получается итерационная последовательность $ x_1 = 2.31, x_2 = 2.3099, x_3 = 2.309884, \ldots $ 
 
-\end{enumerate}
+\end{problem}
 
 
 \clearpage
@@ -411,19 +418,19 @@ d^2 \varphi (x) \underset{\le}{\ge} 0 \quad \to \quad \delta ^2 J(x) \underset{\
 \end{equation}
 
 \pagebreak
-\ExampleMy 
-\begin{enumerate}
-\item $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
+
+\begin{problem}
+$J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
 \[ F = \dot{x}^2 \enskip \Rightarrow \enskip \frac{\partial F}{\partial x} = 0, \enskip \frac{\partial F}{\partial \dot{x}} = 2\dot{x} \]
 Уравнение Эйлера: $ \frac{\partial F}{\partial x} - \frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right) = 0 \enskip \to \enskip 0 - \frac{d}{dt}\left( 2\dot{x} \right) = 0 $
 \[ \ddot{x} = 0, \quad \dot{x} = C_1, \quad x = C_1 t + C_2 \]
 \[ \left\{ \begin{darray}{l} x(0) = C_2 = 0 \\ x(1) = C_1 + C_2 = 1 \enskip \Rightarrow \enskip C_1 = 1 \end{darray} \right. \]
-Допустимая экстремаль: $\hat{x}=t$
-
+Допустимая экстремаль: $\hat{x}=t$\\
 Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 > 0 \enskip \Rightarrow \enskip \min $
 \[ J_{ \min } = \int\limits_0^1 { \left( \dot{\hat{x}} \right) }^2 dt = \int\limits_0^1 { \left( \dot{t} \right) }^2 dt = \int\limits_0^1 1^2 dt = t \Big|_0^1 = 1 \]
-
-\item Найти уравнение выхода $x(t)$  и характеристический полином СУ, для которой $ J(x) = \int\limits_{0}^{\infty } \left( a_0 x^2 + a_1 \dot{x} ^2 \right) \, dt \enskip \to \enskip \min $, при условиях $ a_0 > 0, a_1 > 0, x(0) = x_0, x( \infty ) = 0 $.
+\end{problem}
+\begin{problem}
+Найти уравнение выхода $x(t)$  и характеристический полином СУ, для которой $ J(x) = \int\limits_{0}^{\infty } \left( a_0 x^2 + a_1 \dot{x} ^2 \right) \, dt \enskip \to \enskip \min $, при условиях $ a_0 > 0, a_1 > 0, x(0) = x_0, x( \infty ) = 0 $.
 \[ F = a_0 x^2 + a_1 \dot{x} ^2, \quad \frac{\partial F}{\partial x} = 2 a_0 x, \quad \frac{\partial F}{\partial \dot{x}} = 2 a_1 \dot{x} \]
 Уравнение Эйлера: $ 2 a_0 x - \frac{d}{dt} \left( 2 a_1 \dot{x} \right) = 0 $
 \[ \ddot{x} - \frac{a_0}{a_1}x = 0, \quad \lambda ^2 - \frac{a_0}{a_1} = 0, \quad \lambda _{1, 2} = \pm \sqrt{\frac{a_0}{a_1}} \] 
@@ -431,12 +438,10 @@ d^2 \varphi (x) \underset{\le}{\ge} 0 \quad \to \quad \delta ^2 J(x) \underset{\
 \[ \left. \begin{darray}{l} x(0) = C_1 + C_2 = x_0 \\
 		x( \infty ) = C_1 \cdot \infty = 0 \enskip \Rightarrow \enskip C_1 = 0 \end{darray} \right\}
 	\enskip \Rightarrow \enskip C_2 = x_0 \]
-Допустимая экстремаль: $ \hat{x} = x_0 e^{-\sqrt{a_0 / a_1}\,t} $
-
-Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 a_1 > 0 \enskip \Rightarrow \enskip \min $
-
+Допустимая экстремаль: $ \hat{x} = x_0 e^{-\sqrt{a_0 / a_1}\,t} $\\
+Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 a_1 > 0 \enskip \Rightarrow \enskip \min $\\
 Характеристический полином системы: $ D(p) = p + \sqrt{\frac{a_0}{a_1}} $ 
-\end{enumerate}
+\end{problem}
 
 Обобщим результаты в 2 направлениях:
 \begin{itemize}
@@ -1040,7 +1045,10 @@ $A\left( j\omega  \right)\left| \begin{matrix}
 \par Величина оценки $J=M\left\{ {{\varepsilon }^{2}} \right\}$ является функцией параметров системы  $W\left( p,k,T \right)$ и тогда рассматривая производные ${}^{\partial J}/{}_{\partial k}$, ${}^{\partial J}/{}_{\partial T}$ - и приравнивая их к 0 можно определить оптимальные значения параметров передаточной функции.
 \ExampleMy На вход замкнутой системы с передаточной функции ${{W}_{\textit{з}}}\left( p \right)=\frac{k}{Tp+1}$, действует полезный случайный сигнал со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{b}{{{\alpha }^{2}}+{{\omega }^{2}}}$ и помеха значения удовлетворяет интегральному уравнению Винера-Хопфа: $y\left( t \right)=\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}\cdot \left( \underbrace{V\left( t \right)+f\left( t \right)}_{\varphi }d\tau  \right)$  
 
-\subsection{Фильтры\label{stochastic:filters}}
+ 
+ 
+   
+	\subsection{Фильтры Калмана\label{stochastic:filters}}
  
 	\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
 
