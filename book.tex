@@ -996,15 +996,50 @@ ${{S}_{c}}\left( \omega  \right)=2\int\limits_{0}^{\infty }{{{c}^{2}}}\cos \left
 \item Случайный процесс с корреляционной функцией экспонент ${{R}_{x}}\left( \tau  \right):{{D}_{x}}\exp \left( -\lambda \tau  \right)$, $\lambda =\frac{1}{T}$ - параметр затухания - имеет быстрый случайный процесс принимающий значение $\pm A\left( {{D}_{\lambda }}={{A}^{2}} \right)$ где смена знака происходит в соответствии с пуассоновским случайным процессом с параметром $0.5\lambda $.
 \\Спектральная плотность ${{S}_{x}}\left( \omega  \right)={{A}^{2}}\left( \int\limits_{-\infty }^{0}{\exp \left( \lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -\lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$
 \\Такой процесс может быть получен из БШ путём пропускания через динамическое звено: пусть ${{S}_{\text{БШ}}}=1$ ${{S}_{x}}\left( \omega  \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$ $S\left( j\omega  \right)=\frac{A\sqrt{2\lambda }}{j\omega +\lambda }$, т.к.  ${{S}_{x}}\left( \omega  \right)={{\left| W\left( j\omega  \right) \right|}^{2}}{{S}_{БШ}}$ то ${{S}_{x}}\left( \omega  \right)=\underbrace{S\left( j\omega  \right)S\left( -j\omega  \right)}_{\text{факторизация}}=W\left( j\omega  \right)W\left( -j\omega  \right)$, следовательно $W\left( p \right)={{\left. W\left( j\omega  \right) \right|}_{j\omega =p}}=S\left( j\omega  \right)$ 
-${{R}_{\rho }}\left( \tau  \right)=25\exp \left( -0.4\left| \tau  \right| \right)\to {{S}_{\rho }}\left( \omega  \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)$ $=25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|$ - это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
-\\Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
-
 \end{enumerate}
-\ExampleMy Желаемое 
+\ExampleMy Желаемое ${{R}_{\rho }}\left( \tau  \right)=25\exp \left( -0.4\left| \tau  \right| \right)\to {{S}_{\rho }}\left( \omega  \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)$ $=25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|$ - это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
+\\Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
+\\Пусть $S\left( \omega  \right)=\frac{B\left( j\omega  \right)}{A\left( j\omega  \right)A\left( -j\omega  \right)}=\frac{{{b}_{0}}{{\left( j\omega  \right)}^{2n-2}}+...+{{b}_{n-1}}}{\left( {{a}_{0}}{{\left( j\omega  \right)}^{n}}+{{a}_{1}}{{\left( j\omega  \right)}^{n-1}}+...+{{a}_{n}} \right)\left( {{a}_{0}}{{\left( -j\omega  \right)}^{n}}+...+{{a}_{n}} \right)}$, где степень полинома числителя на 1 меньше степени знаменателя. Тогда фрагмент таблицы Мак-Лена:
+\\при $n=1\to {{I}_{1}}=\frac{{{b}_{0}}}{2{{a}_{0}}{{a}_{1}}}$ 
+\\при $n=2\to {{I}_{2}}=\frac{-{{b}_{0}}{{a}_{2}}+{{a}_{0}}{{b}_{1}}}{2{{a}_{0}}{{a}_{1}}{{a}_{2}}}$
+\\при $n=3\to I=\frac{\left( -{{b}_{0}}{{a}_{2}}{{a}_{3}}+{{b}_{1}}{{a}_{0}}{{a}_{3}}-{{b}_{2}}{{a}_{0}}{{a}_{1}} \right)}{2{{a}_{0}}{{a}_{3}}\left( {{a}_{0}}{{a}_{3}}-{{a}_{1}}{{a}_{2}} \right)}$
+\\Или матричным методом: 
+\\$\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{S\left( \omega  \right)}d\omega ={{\left( -1 \right)}^{n+1}}\cdot \frac{N}{2{{a}_{0}}G}$, где $G$ - определитель матрицы Гурвица многочлена  
+$A\left( j\omega  \right)\left| \begin{matrix}
+   {{a}_{1}} & {{a}_{3}} & {{a}_{5}} & ...  \\
+   {{a}_{0}} & {{a}_{2}} & {{a}_{4}} & ...  \\
+   ... & ... & ... & ...  \\
+\end{matrix} \right|$
+\\$N$ - определитель матрицы, которая получается из матрицы Гурвица многочлена $A\left( j\omega  \right)$ заменой первой строки коэффициентами многочлена $B\left( j\omega  \right)\left| \begin{matrix}
+   {{b}_{0}} & {{b}_{1}} & {{b}_{2}} & ...  \\
+   ... & ... & ... & ...  \\
+\end{matrix} \right|$ параметризуется для $n=2\to I={{\left( -1 \right)}^{2+1}}\frac{\left| \begin{matrix}
+   {{b}_{0}} & {{b}_{1}}  \\
+   {{a}_{0}} & {{a}_{2}}  \\
+\end{matrix} \right|}{2{{a}_{0}}\left| \begin{matrix}
+   {{a}_{1}} & 0  \\
+   {{a}_{0}} & {{a}_{2}}  \\
+\end{matrix} \right|}=-\frac{\left( {{b}_{0}}{{a}_{2}}-{{a}_{0}}{{b}_{1}} \right)}{2{{a}_{0}}\left( {{a}_{1}}{{a}_{2}} \right)}$
+\ExampleMy Пусть на систему с передаточной функцией $W\left( p \right)=\frac{1}{Tp+1}$ действует шум со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}$.
+\\Найдём дисперсию выходного сигнала:  
+\\${{S}_{y}}\left( \omega  \right)={{\left| W\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)=\frac{1}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}\Rightarrow n=2=\frac{2b}{{{T}^{2}}{{\omega }^{4}}+\left( {{T}^{2}}{{\alpha }^{2}}+1 \right){{\omega }^{2}}+{{\alpha }^{2}}}$
+\\$\left( Tj\omega +1 \right)\left( -Tj\omega +1 \right)\left( \alpha +j\omega  \right)\left( \alpha -j\omega  \right)$
+\\$\left[ T{{\left( j\omega  \right)}^{2}}+\left( T\alpha +1 \right)j\omega +\alpha  \right]\left[ T{{\left( -j\omega  \right)}^{2}}+\left( T\alpha +1 \right)\left( -j\omega  \right)+\alpha  \right]$
+\begin{enumerate}
+\item ${{b}_{0}}=0$, ${{b}_{1}}=2b$
+\\${{a}_{0}}={{T}_{1}}{{a}_{1}}=\left( T\alpha +1 \right)$ ${{a}_{2}}=\alpha $
+\\${{D}_{y}}=\frac{2b\left( T\alpha +1 \right)}{2T{{\left( T\alpha +1 \right)}^{2}}\alpha }=\frac{b}{\left( T\alpha +1 \right)\alpha }$
+\item ${{D}_{y}}={{\left( -1 \right)}^{2+1}}\cdot \frac{\left| \begin{matrix}
+   0 & 2b  \\
+   T & \alpha   \\
+\end{matrix} \right|}{2T\left| \begin{matrix}
+   T\alpha +1 & 0  \\
+   T & \alpha   \\
+\end{matrix} \right|}=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{b}{\left( T\alpha +1 \right)\alpha }$
+\end{enumerate}
+\par Величина оценки $J=M\left\{ {{\varepsilon }^{2}} \right\}$ является функцией параметров системы  $W\left( p,k,T \right)$ и тогда рассматривая производные ${}^{\partial J}/{}_{\partial k}$, ${}^{\partial J}/{}_{\partial T}$ - и приравнивая их к 0 можно определить оптимальные значения параметров передаточной функции.
+\ExampleMy На вход замкнутой системы с передаточной функции ${{W}_{\textit{з}}}\left( p \right)=\frac{k}{Tp+1}$, действует полезный случайный сигнал со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{b}{{{\alpha }^{2}}+{{\omega }^{2}}}$ и помеха значения удовлетворяет интегральному уравнению Винера-Хопфа: $y\left( t \right)=\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}\cdot \left( \underbrace{V\left( t \right)+f\left( t \right)}_{\varphi }d\tau  \right)$  
 
- 
- 
-   
 \subsection{Фильтры\label{stochastic:filters}}
  
 	\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
