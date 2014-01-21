@@ -19,7 +19,7 @@
 \newcounter{problem}[section]				% счётчик примеров (имя example уже зарезервировано)
 \renewcommand{\theproblem}{\thesection.\arabic{problem}}		% команда вывода текущего значения счётчика примеров
 % окружение для оформления примера
-\newenvironment{problem}{\par\refstepcounter{problem}{\raggedleft\textit{Пример \theproblem}\par}\begin{oframed}}{\par\end{oframed}}
+\newenvironment{problem}{\par\vspace{\baselineskip}\refstepcounter{problem}{\raggedleft\textit{Пример \theproblem}\par\vspace{-0.5\baselineskip}}\begin{oframed}}{\par\end{oframed}}
 
 \begin{document}
 
@@ -447,10 +447,14 @@ $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
 Обобщим результаты в двух направлениях:
 \begin{enumerate}
 \item Многомерный случай: $ X = { \bigl( x_1(t), x_2(t), \ldots x_n(t) \bigr) }^T $ --- векторная функция.
-\[ J(X) = \int\limits_{t_0}^{t_\textit{к}} F \left( X, \dot{X}, t \right) \, dt \enskip \to \enskip \min ; \quad
-x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \]
+\begin{equation}
+\begin{gathered} J(X) = \int\limits_{t_0}^{t_\textit{к}} F \left( X, \dot{X}, t \right) \, dt \enskip \to \enskip \min \\
+x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \end{gathered}
+\end{equation}
 Тогда первое необходимое условие (уравнение Эйлера):
-\[ \frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right) = 0, \quad i=\overline{1,n} \]
+\begin{equation}
+\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right) = 0, \quad i=\overline{1,n}
+\end{equation}
 Второе условие требует анализа матрицы вторых частных производных:
 \[ \left\| \begin{array}{@{\,}cccc@{\,}}
 	\frac{\partial ^2 F}{\partial \dot{x}_1^2} & \frac{\partial ^2 F}{\partial \dot{x}_1 \partial \dot{x}_2} & \ldots & \frac{\partial ^2 F}{\partial \dot{x}_1 \partial \dot{x}_n} \\[2ex]
@@ -458,7 +462,7 @@ x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \]
 	\hdotsfor[2.5]{4} \\[2ex]
 	\frac{\partial ^2 F}{\partial \dot{x}_n \partial \dot{x}_1} & \frac{\partial ^2 F}{\partial \dot{x}_n \partial \dot{x}_2} & \ldots & \frac{\partial ^2 F}{\partial \dot{x}_n^2}
 \end{array} \right\| \]
-Для минимума, все диагональные миноры должны быть $ \ge 0 $, для максимума $ \le 0 $. Строгие неравенства дают и достаточность условий.
+Для минимума все диагональные миноры должны быть $ \ge 0 $, для максимума $ \le 0 $. Строгие неравенства дают и достаточность условий.
 
 %Непонятно что это пункт или часть случая
 \begin{problem}
@@ -480,16 +484,21 @@ x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \]
 \[ J_{\max } = \int\limits_0^1 \Bigl( e^t e^{-t} + e^t \bigl( {-e^{-t}} \bigr) \Bigr) \, dt = 0 \]
 \end{problem}
 
+\pagebreak
 \item Задача со старшими производными:
-\[ J(x) = \int\limits_{t_0}^{t_\textit{к}} F \left( x, \dot{x}, \ddot{x}, \ldots x^{(n-1)}, t \right) \, dt \]
-\[ x \bigl( t_0 \bigr) = x_0, \enskip \dot{x} \bigl( t_0 \bigr) = \dot{x}_0, \ldots \enskip x^{(n-1)} \bigl( t_0 \bigr) = x^{(n-1)}_0 \]
-\[ x \bigl( t_\textit{к} \bigr) = x_\textit{к}, \enskip \dot{x} \bigl( t_\textit{к} \bigr) = \dot{x}_\textit{к}, \ldots \enskip x^{(n-1)} \bigl( t_\textit{к} \bigr) = x^{(n-1)}_\textit{к} \]
+\begin{equation}
+\begin{gathered} J(x) = \int\limits_{t_0}^{t_\textit{к}} F \left( x, \dot{x}, \ddot{x}, \ldots x^{(n-1)}, t \right) \, dt \\
+	x \bigl( t_0 \bigr) = x_0, \enskip \dot{x} \bigl( t_0 \bigr) = \dot{x}_0, \ldots \enskip x^{(n-1)} \bigl( t_0 \bigr) = x^{(n-1)}_0 \\
+	x \bigl( t_\textit{к} \bigr) = x_\textit{к}, \enskip \dot{x} \bigl( t_\textit{к} \bigr) = \dot{x}_\textit{к}, \ldots \enskip x^{(n-1)} \bigl( t_\textit{к} \bigr) = x^{(n-1)}_\textit{к} \end{gathered}
+\end{equation}
 
 Существует два способа решения:
 \begin{enumerate}
 \item[а)] Рассматривается векторная функция, составляемая из исходной $ x(t) $ и её $ (n-1) $ производной, т.\=,е.~задача как многомерный случай.
 \item[б)] Уравнение Эйлера преобразуется в уравнение Эйлера\-/Пу\-ассона:
-\[ \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) + \frac{d^2}{dt^2} \left( \frac{\partial F}{\partial \ddot{x}} \right) - \ldots + {(-1)}^n \, \frac{d^n}{dt^n} \left( \frac{\partial F}{\partial x^{(n)}} \right) = 0 \]
+\begin{equation}
+\frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) + \frac{d^2}{dt^2} \left( \frac{\partial F}{\partial \ddot{x}} \right) - \ldots + {(-1)}^n \, \frac{d^n}{dt^n} \left( \frac{\partial F}{\partial x^{(n)}} \right) = 0
+\end{equation}
 Условие Лежандра: $ \frac{\partial ^2 F}{ { \left( \partial x^{(n)} \right) }^2 } \underset{\le}{\ge} 0 $
 
 \begin{problem}
@@ -515,49 +524,61 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 
 
 	\subsection{Задачи с нефиксированными границами\label{variations:floating_ends}}
-Как для начального момента времени (левого конца) так и для конечного момента времени (правого конца) могут быть следующие варианты: (для удобства все примеры для правого конца)
 
-
+Как для начального момента времени (левого конца), так и для конечного момента времени (правого конца) могут быть следующие варианты (для удобства будем рассматривать правый конец):
 \begin{itemize}
-\item Задача со свободным правым концом ${{t}_{k}}=\operatorname{var}$, $x\left( {{t}_{k}} \right)=\operatorname{var}$
-\item Задача с подвижным правым концом ${{t}_{k}}=T$, $x\left( {{t}_{k}} \right)=\operatorname{var}$
-\item Задача со скользящим правым концом ${{t}_{k}}=T$-не задано, $x\left( {{t}_{k}} \right)$ не задано, но определена их взаимосвязь $\psi \left( t \right)$
-\end{itemize}
-\par В этих случаях (когда отсутствует соответствующее граничное условие) необходимым условием экстремума, кроме уравнения Эйлера $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0$, становятся \underline{условия трансверсальности}:
-\\$\left\{ \begin{array}{*{35}{l}}
-   {{\left. \left( F-\frac{\partial F}{\partial \dot{x}}\dot{x} \right) \right|}_{{{t}_{k}}}}=0$ - если не задано ${{t}_{k}}$ и $x\left( {{t}_{k}} \right)$  
-   $\\{{\left. \frac{\partial F}{\partial \dot{x}} \right|}_{{{t}_{k}}}}=0$ - если не задано $x\left( {{t}_{k}} \right)$
-   $\\{{\left. \left( F-\frac{\partial F}{\partial \dot{x}}\left( \dot{x}-\dot{\psi } \right) \right) \right|}_{{{t}_{k}}}}=0$ - если конец скользящий   
-$\end{array} \right.$
-\\В векторном случае: $X=\left( {{x}_{1}}\left( t \right),{{x}_{2}}\left( t \right)...{{x}_{n}}\left( t \right) \right)$ необходимым условием достижения экстремума является система уравнений:
-\\$\left\{ \begin{array}{*{35}{l}}
-   \frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{x}_{i}}} \right)=0,\,i=\overline{1,n}$ - уравнение Эйлера   
-   $ \\   {{\left. \left( F-\sum\limits_{i=1}^{n}{\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}{{{\dot{x}}}_{i}}} \right) \right|}_{{{t}_{0}}}}=0;\,\,{{\left. \left( F-\sum\limits_{i=1}^{n}{\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}{{{\dot{x}}}_{i}}} \right) \right|}_{{{t}_{k}}}}=0$ 
-   $\\{{\left. \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right|}_{{{t}_{0}}}}=0,\,i=\overline{1,n};\,\,{{\left. \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right|}_{{{t}_{k}}}}=0,\,i=\overline{1,n}$ 
-$\\\end{array} \right.$
-\\Вторая и третья строки системы условия трансверсальности с соответвующим незаданным граничным условием.
-\\Максимальное количество условий трансверсальности $2n+2$.
-\\
-\\
-\ExampleMy 
-\begin{itemize}
-\item $J=\int\limits_{0}^{1}{\left( {{{\dot{x}}}^{2}}+x \right)dt}\to extr$, $x\left( 1 \right)=0$
-\\$\frac{\partial F}{\partial x}=1$, $\frac{\partial F}{\partial \dot{x}}=2\dot{x}$, уравнение Эйлера: $1-\frac{d}{dt}\left( 2\dot{x} \right)=0$ условие трансверсальности: $2\dot{x}\left( 0 \right)=0$
-\\Решаем: $1-2\ddot{x}=0$, $\,\ddot{x}=\frac{1}{2}$, $\dot{x}\left( t \right)=\frac{t}{2}+{{C}_{1}}$,$x\left( t \right)=\frac{{{t}^{2}}}{4}+{{C}_{1}}+{{C}_{2}}$
-\\$x\left( 0 \right)={{C}_{1}}=0$, $x\left( 1 \right)=\frac{1}{4}+{{\not{C}}_{1}}+{{C}_{2}}=0\to {{C}_{2}}=-\frac{1}{4}$, $\hat{x}\left( t \right)=\frac{1}{4}\left( {{t}^{2}}-1 \right)$ - допустимая экстремаль.  
-$\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}=2>0$ - \underline{min}: ${{J}_{\min }}=\int\limits_{0}^{1}{\left( \frac{1}{4}{{t}^{2}}+\frac{1}{4}\left( {{t}^{2}}-1 \right) \right)dt=-\frac{1}{12}}$ 
-\end{itemize}
-Подводя итог хотелось бы ответить, что необходимое условия минимизации функционалов представляются дифференциальными уравнениями относительно неизвестной функции (при минимизации функций $\to $ необходимое условие - алгебраические уравнения). Причём можно показать, что это нелинейное дифференциальное уравнение II порядка:
-\\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0$, $\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}+\frac{\partial }{\partial x}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)+\frac{\partial }{\partial \dot{x}}\left( \frac{dx}{dt}\frac{\partial F}{\partial \dot{x}} \right)$, $\frac{\partial F}{\partial \dot{x}}=\frac{\partial F}{\partial \dot{x}}\left( t,x,\dot{x} \right)$
-\\Тогда: \[\frac{\partial F}{\partial x}-\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}}-\frac{{{\partial }^{2}}F}{\partial \dot{x}\partial \dot{x}}\dot{x}-\frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ddot{x}=0\]
-\\Уравнение Эйлера может приобретать вид:
-\begin{itemize}
-\item Если $F\left( x,t \right)$, не зависит от $\dot{x}$ $\to $ $\frac{\partial F}{\partial x}=0$
-\item Если $F\left( \dot{x},t \right)$, не зависит от $x$ $\to $ $\frac{\partial F}{\partial \dot{x}}=const$ 
-\item Если $F\left( x,\dot{x} \right)$, не зависит от $t$ $\to $ $F-\dot{x}\frac{\partial F}{\partial \dot{x}}=const$
+\item Задача со \textit{свободным} правым концом --- $ t_\textit{к} $ не задано, $ x\bigl( t_\textit{к} \bigr) $ не задано.
+\item Задача с \textit{подвижным} правым концом --- $ t_\textit{к} = T $, $ x\bigl( t_\textit{к} \bigr) $ не задано.
+\item Задача со \textit{скользящим} правым концом --- $ t_\textit{к} $ не задано, $ x\bigl( t_\textit{к} \bigr) $ не задано, но определена их взаимосвязь $ x_\textit{к} = \psi \bigl( t_\textit{к} \bigr) $.
 \end{itemize}
 
-	\subsection{Оптимизация функционалов с ограничениями в форме равенств\label{variations:conditional_extremum}}
+В этих случаях (когда отсутствует соответствующее граничное условие) необходимым условием экстремума, кроме уравнения Эйлера~\eqref{equ:variations:Euler}, становятся условия трансверсальности:
+\begin{equation}
+\left\{ \begin{array}{@{\,}r@{,\quad\text{если }}l}
+	\left( F - \frac{\partial F}{\partial \dot{x}} \dot{x} \right) \Big|_{t=t_\textit{к}} = 0 & \text{не задано } t_\textit{к} \text{ и } x\bigl( t_\textit{к} \bigr) \\[2ex]
+	\frac{\partial F}{\partial \dot{x}} \Big|_{t=t_\textit{к}} = 0 & \text{не задано } x\bigl( t_\textit{к} \bigr) \\[2ex]
+	\biggl( F - \frac{\partial F}{\partial \dot{x}} \left( \dot{x} - \dot{\psi } \right) \biggr) \bigg|_{t=t_\textit{к}} = 0 & \text{конец скользящий}
+\end{array} \right.
+\end{equation}
+
+В векторном случае --- $ X = { \bigl( x_1(t), x_2(t), \ldots x_n(t) \bigr) }^T $ --- необходимым условием достижения экстремума является система уравнений:
+\begin{equation}
+\left\{ \begin{array}{l}
+	\frac{\partial F}{\partial x_i} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}_i} \right) = 0, \quad i = \overline{1,n} \\[2ex]
+	\begin{array}{@{}l@{\qquad}l@{}}
+		\left( F - \sum\limits_{i=1}^{n} \frac{\partial F}{\partial \dot{x}_i} \dot{x}_i \right) \Bigg|_{t=t_0} = 0; &
+		\left( F - \sum\limits_{i=1}^{n} \frac{\partial F}{\partial \dot{x}_i} \dot{x}_i \right) \Bigg|_{t=t_\textit{к}} = 0 \\[4ex]
+		\frac{\partial F}{\partial \dot{x}_i} \Big|_{t=t_0} = 0, \quad i = \overline{1,n}; &
+		\frac{\partial F}{\partial \dot{x}_i} \Big|_{t=t_\textit{к}} = 0, \quad i = \overline{1,n}
+	\end{array}
+\end{array} \right.
+\end{equation}
+Максимальное количество условий трансверсальности $2n+2$.
+
+%\ExampleMy 
+\begin{problem}
+\[ J = \int\limits_{0}^{1}{\left( {{{\dot{x}}}^{2}}+x \right)\,dt}\enskip\to\enskip extr, \quad x\left( 1 \right)=0 \]
+\[ \frac{\partial F}{\partial x}=1, \quad \frac{\partial F}{\partial \dot{x}}=2\dot{x}, \quad \text{уравнение Эйлера:} \enskip 1-\frac{d}{dt}\left( 2\dot{x} \right)=0 \]
+\[ \text{условие трансверсальности:} \enskip 2\dot{x}\left( 0 \right) = 0 \]
+\[ 1-2\ddot{x}=0, \quad \ddot{x}=\frac{1}{2}, \quad \dot{x}\left( t \right)=\frac{t}{2}+{{C}_{1}}, \quad x\left( t \right) = \frac{t^2}{4} + C_1 t + C_2 \]
+\[ \dot{x} (0) = C_1  = 0, \quad x\left( 1 \right) = \frac{1}{4} + C_2 = 0 \enskip \Rightarrow \enskip C_2 = -\frac{1}{4} \]
+\[ \hat{x}\left( t \right)=\frac{1}{4}\left( t^2 - 1 \right), \quad \dot{\hat{x}} = \frac{1}{2} t \]
+\[ \frac{\partial ^2 F}{\partial \dot{x}^2} = 2 > 0 \enskip \Rightarrow \enskip \min \, : \quad J_{\min } = \int\limits_{0}^{1} \left( \frac{1}{4}{{t}^{2}}+\frac{1}{4}\left( {{t}^{2}}-1 \right) \right)\,dt = -\frac{1}{12} \] 
+\end{problem}
+
+Подводя итог, отмечаем, что необходимые условия минимизации функционалов представляются дифференциальными уравнениями относительно неизвестной функции (при минимизации функций не\-обходимые условия представляются алгебраическими уравнениями). Причём можно показать, что это нелинейное дифференциальное ура\-в\-нение второго порядка:
+\[ \frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0, \quad \frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=\frac{\partial }{\partial t}\frac{\partial F}{\partial \dot{x}} + \frac{\partial }{\partial x} \frac{dx}{dt} \frac{\partial F}{\partial \dot{x}} + \frac{\partial }{\partial \dot{x}} \frac{d\dot{x}}{dt} \frac{\partial F}{\partial \dot{x}} \]
+\[ F = F\left( x, \dot{x}, t \right) ,\quad \frac{\partial F}{\partial \dot{x}}=\frac{\partial F}{\partial \dot{x}}\left( t,x,\dot{x} \right) \]
+\[ \frac{\partial F}{\partial x} - \frac{\partial }{\partial t} \frac{\partial F}{\partial \dot{x}} - \frac{\partial ^2 F}{\partial \dot{x} ^2}\dot{x} - \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}^{2}}}\ddot{x} = 0 \]
+
+Уравнение Эйлера может приобретать частный вид:
+\begin{enumerate}
+\item[а)] если $ F\left( x,t \right) $ не зависит от $\dot{x}$, то $\frac{\partial F}{\partial x}=0$
+\item[б)] если $F\left( \dot{x},t \right)$ не зависит от $x$, то $\frac{\partial F}{\partial \dot{x}}=const$ 
+\item[в)] если $F\left( x,\dot{x} \right)$ не зависит от $t$, то $ F - \dot{x} \frac{\partial F}{\partial \dot{x}} = const $
+\end{enumerate}
+
+	\subsection{Оптимизация функционалов с~ограничениями в~форме равенств\label{variations:conditional_extremum}}
 \par При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических, дифференциальных и интегральных уравнений, т.е. дополнительных условий. Тогда вместо функции $F\left( x,t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right)+{{\lambda }^{T}}\left( t \right)\centerdot \Phi \left( x,u,t \right)$ - Лагранжиан и уравнение приобретает вид Эйлера-Лагранжа:
 \\$\left\{ \begin{array}{*{35}{l}}
    \frac{\partial L}{\partial x}-\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{x}} \right)=0$, где $\lambda \left( t \right)$ - вектор множителей Лагранжа,   
