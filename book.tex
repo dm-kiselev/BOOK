@@ -1097,6 +1097,39 @@ $M\left\{ {{\varepsilon }^{2}} \right\}=\frac{1}{2\pi }\int\limits_{-\infty }^{+
 \\Решение этой задачи было получено Н.Винером на основе следующей \underline{теоремы}:
 \par Искомая оптимальная импульсная функция ${{\varpi }^{*}}\left( t \right)$ (и соответствующая 
  ${{W}^{*}}\left( p \right)$), при которой $M\left\{ {{\varepsilon }^{2}} \right\}$ достигает минимальных значения удовлетворяет интегральному уравнению Винера-Хопфа: $y\left( t \right)=\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}\cdot \left( \underbrace{V\left( t \right)+f\left( t \right)}_{\varphi }d\tau  \right)$  
+\\${{R}_{\varphi V}}\left( \tau  \right)-\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}{{R}_{\varphi }}\left( t-\tau  \right)d\tau =0$, $t\ge 0$
+\\Это утверждение формирует необходимое и достаточное условие. Интеграл имеет вид свертки.
+\\Норберт Винер в 1943 году предложил частотный метод решения этой задачи, который в результате можно записать в виде следующей конструктивной процедуры:
+\begin{enumerate}
+\item Вычислить спектральную плотность сигнала $\varphi \left( t \right)=V\left( t \right)+f\left( t \right)\to {{S}_{\varphi }}\left( \omega  \right)={{S}_{V}}\left( \omega  \right)+{{S}_{f}}\left( \omega  \right)$
+\item Выполнить факторизацию этой функции ${{S}_{\varphi }}\left( \omega  \right)=\psi \left( j\omega  \right)\cdot \psi \left( -j\omega  \right)$
+\item Вычислить функцию $N\left( j\omega  \right)={{\psi }^{-1}}\left( -j\omega  \right){{S}_{V}}\left( \omega  \right)$
+\item Представить функцию $N\left( p \right)={{\left. N\left( j\omega  \right) \right|}_{j\omega =p}}$ в виде суммы двух дробно-рациональных выражений $N\left( p \right)={{N}^{+}}\left( p \right)+{{N}^{-}}\left( p \right)$, одно из которых имеет полюса только  в левой полуплоскости, другое - только в правой. Такая операция называется РАСЩЕПЛЕНИЕМ. Из условия физической реализуемости нас будет интересовать только составляющая ${{N}^{*}}\left( p \right)+$
+\item Искомая передаточная функция, фильтрующая полезный сигнал на фоне независимой аддитивной помехи с $min$ средним квадратом ошибки (дисперсией) определяется выражением: ${{W}^{*}}\left( p \right)={}^{{{N}^{+}}\left( p \right)}/{}_{\psi \left( p \right)}$ $\psi \left( p \right)={{\left. \psi \left( j\omega  \right) \right|}_{j\omega =p}}$
+\end{enumerate}   
+\ExampleMy Пусть полезное входное воздействие, описывается спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}$, помеха - БШ с интенсивностью ${{c}^{2}}$ - найти ${{W}_{\textit{о.ф.}}}\left( p \right)=?$
+\begin{enumerate}
+\item ${{S}_{\varphi }}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}+{{c}^{2}}=\frac{{{c}^{2}}{{\omega }^{2}}+{{c}^{2}}+1}{{{\omega }^{2}}+1}$
+\item ${{S}_{\varphi }}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}+{{c}^{2}}=\frac{{{c}^{2}}{{\omega }^{2}}+{{c}^{2}}+1}{{{\omega }^{2}}+1}$;
+${{S}_{\varphi }}\left( \omega  \right)=\frac{jc\omega +\sqrt{1+{{c}^{2}}}}{j\omega +1}\cdot \frac{-jc\omega +\sqrt{1+{{c}^{2}}}}{-j\omega +1}$ $\psi \left( p \right)=\frac{cp+\sqrt{1+{{c}^{2}}}}{1+p}$
+\item $N\left( j\omega  \right)={{S}_{V}}\left( \omega  \right)\cdot {{\psi }^{-1}}\left( -j\omega  \right)=\frac{1}{{{\omega }^{2}}+1}\cdot \frac{-j\omega +1}{-jc\omega +\sqrt{1+{{c}^{2}}}}=\frac{1}{\left( 1+j\omega  \right)\left( \sqrt{1+{{c}^{2}}}-jc\omega  \right)}$ и $N\left( p \right)=\frac{1}{\left( 1+p \right)\left( \sqrt{{{c}^{2}}+1}-cp \right)}$
+\item $N\left( p \right)=\frac{1}{\left( 1+p \right)\left( \sqrt{{{c}^{2}}+1}-cp \right)}=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \left( \frac{1}{1+p}+\frac{c}{\sqrt{1+{{c}^{2}}}-cp} \right)\to {{N}^{+}}\left( p \right)=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \frac{1}{1+p}$
+\item ${{W}^{*}}\left( p \right)={}^{{{N}^{+}}\left( p \right)}/{}_{\psi \left( p \right)}=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \frac{1}{1+p}\cdot \frac{1+p}{cp+\sqrt{1+{{c}^{2}}}}=\frac{\frac{1}{c\sqrt{1+{{c}^{2}}}+1+{{c}^{2}}}}{\frac{c}{\sqrt{1+{{c}^{2}}}}p+1}$
+\end{enumerate}
+
+\subsection{Фильтры Калмана\label{stochastic:filters}}
+\par Современная теория стохастической фильтрации заложена в 40-х годах XX века трудами А.Н.Колмогорова и Н.Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач   измерения параметров траектории летательных аппаратов по радарным данным. Первым результатом полученным на основе интегрального уравнения Вилмера-Холмса. Решение искалось в частотной области с использованием разложения спектральной.
+\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
+
+
+
+
+
+
+
+
+
+
  
    
 	\subsection{Фильтры Калмана\label{stochastic:filters}}
@@ -1130,6 +1163,11 @@ $M\left\{ {{\varepsilon }^{2}} \right\}=\frac{1}{2\pi }\int\limits_{-\infty }^{+
 \par - приницип стохастической эквивалентности - утверждает возможность замены реальных переменных стоятония $X$ в регуляторе, их оценками  $\hat{x}$, вычисляемыми по измеряемому выходу $y$; 
 \par принцип разделения - утвержают, что синтез регулятора и наблюдателя для линейных систему можно производить независимо друг от друга. 
 \par 
+
+
+
+
+
 
 
  
