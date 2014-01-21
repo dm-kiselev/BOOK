@@ -384,10 +384,11 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 
 
 \begin{problem}
-Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.
-
-Составляем рекуррентную формулу $ x_{n+1} = x_n - \frac{ x_n - \sin x_n - \pi/2}{ 1 - \cos x_n } $. При ${{x}_{0}}=2.4$ получается итерационная последовательность $ x_1 = 2.31, x_2 = 2.3099, x_3 = 2.309884, \ldots $ 
-
+Найти численное значение корня уравнения $ x - \sin x = \frac{ \pi }{2} $.\\
+Составляем рекуррентную формулу:
+\[ x_{n+1} = x_n - \frac{ x_n - \sin x_n - \pi/2}{ 1 - \cos x_n } \]
+При ${{x}_{0}}=2.4$ получается итерационная последовательность:
+\[ x_1 = 2.31, \enskip x_2 = 2.3099, \enskip x_3 = 2.309884, \ldots \]
 \end{problem}
 
 
@@ -443,56 +444,76 @@ $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
 Характеристический полином системы: $ D(p) = p + \sqrt{\frac{a_0}{a_1}} $ 
 \end{problem}
 
-Обобщим результаты в 2 направлениях:
-\begin{itemize}
-\item Многомерный случай
-\\$X$-векторная функция $={{\left( x_{1}^{\left( t \right)},x_{2}^{\left( t \right)},...x_{n}^{\left( t \right)} \right)}^{T}}$ 
-\\$J\left( x \right)=\int\limits_{{{t}_{0}}}^{{{t}_{K}}}{F\left( x,\dot{x},t \right)}dt\to extr$, $\min $;
-\\${{x}_{i}}\left( {{t}_{0}} \right)={{x}_{io}}$, ${{x}_{i}}\left( {{t}_{k}} \right)={{x}_{ik}}$
-\\Тогда первое необходимое условие (уравнение Эйлера) - система: $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)=0,i=\overline{1,n}$ 
-\\Второе условие требует анализа матрицы вторых частных производных:
-\[\left\| \begin{array}{*{35}{l}}
-   \frac{{{\partial }^{2}}F}{\partial \dot{x}_{1}^{2}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{2}}} & ... & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{n}}}  \\
-   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{2}^{2}} & ... & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{n}}}  \\
-   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{n}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{n}}\partial {{{\dot{x}}}_{2}}} & ... & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{n}^{2}}  \\
-\end{array} \right\|\]
-\\Для \underline{минимума}, все диагональные миноры \underline{должны быть $\ge 0$}, для \underline{$\max \le 0$}. Строгие неравенства дают и \underline{достаточность} условий.
-%Непонятно что это пункт или часть случая
-\\
-\\
-\\$J=\int\limits_{0}^{1}{\left( {{x}_{1}}{{x}_{2}}+{{{\dot{x}}}_{1}}{{{\dot{x}}}_{2}} \right)}dt\to extr$, ${{x}_{1}}\left( 0 \right)={{x}_{2}}\left( 0 \right)=1$, ${{x}_{1}}\left( 1 \right)=e$, ${{x}_{2}}\left( 1 \right)=\frac{1}{e}$ 
-\\$X=\left( {{x}_{1}},{{x}_{2}} \right)$, $F={{x}_{1}}{{x}_{2}}+{{\dot{x}}_{1}}{{\dot{x}}_{2}}$
-\\$\frac{\partial F}{\partial {{x}_{1}}}={{x}_{2}}$ $\frac{\partial F}{\partial {{{\dot{x}}}_{1}}}={{\dot{x}}_{2}}$ $\to $ $\frac{\partial F}{\partial {{x}_{1}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{1}}} \right)=0$: ${{\ddot{x}}_{2}}-{{x}_{2}}=0$ $\to $ ${{x}_{2}}={{C}_{1}}{{e}^{t}}+{{C}_{2}}{{e}^{-t}}$
-\\$\frac{\partial F}{\partial {{x}_{2}}}={{x}_{1}}$, $\frac{\partial F}{\partial {{{\dot{x}}}_{2}}}={{\dot{x}}_{1}}$ $\to$ $\frac{\partial F}{\partial {{x}_{2}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{2}}} \right)=0$: ${{\ddot{x}}_{1}}-{{x}_{1}}=0$ $\to$ ${{x}_{1}}={{C}_{3}}{{e}^{t}}+{{C}_{4}}{{e}^{-t}}$
-\\Подставив начальные и конечные условия получим ${{\hat{x}}_{1}}={{e}^{t}}$, ${{\hat{x}}_{2}}={{e}^{-t}}$
-$\left\| \begin{matrix}
-   \frac{{{\partial }^{2}}F}{\partial \dot{x}_{1}^{2}} & \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{1}}\partial {{{\dot{x}}}_{2}}}  \\
-   \frac{{{\partial }^{2}}F}{\partial {{{\dot{x}}}_{2}}\partial {{{\dot{x}}}_{1}}} & \frac{{{\partial }^{2}}F}{\partial \dot{x}_{2}^{2}}  \\
-\end{matrix} \right\|=\left\| \begin{matrix}
-   0 & 1  \\
-   1 & 0  \\
-\end{matrix} \right\|$ $\to $  ${{\Delta }_{1}}=0$, ${{\Delta }_{2}}=-1$ $\to $ имеет место \underline{$\max $}
-\\${{J}_{\max }}=\int\limits_{0}^{1}{\left( {{e}^{t}}{{e}^{-t}}+{{e}^{t}}\left( {{e}^{-t}} \right) \right)}dt=0$
-\item Задача со старшими производными:
-\\$J\left( x \right)=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,\dot{x},\ddot{x},...\overset{n}{\mathop{x}}\,,t \right)}dt$
-\\$x\left( {{t}_{0}} \right)={{x}_{0}},\dot{x}\left( {{t}_{0}} \right)={{x}_{0}},...\overset{\left( n-1 \right)}{\mathop{x}}\,\left( {{t}_{0}} \right)=\overset{\left( n-1 \right)}{\mathop{{{x}_{0}}}}\,$
-\\$x\left( {{t}_{k}} \right)={{x}_{0}},\dot{x}\left( {{t}_{k}} \right)={{x}_{k}},...\overset{\left( n-1 \right)}{\mathop{x}}\,\left( {{t}_{k}} \right)=\overset{\left( n-1 \right)}{\mathop{{{x}_{k}}}}\,$
-Существует 2 способа решения:
+Обобщим результаты в двух направлениях:
 \begin{enumerate}
-\item Рассматривается векторная функция, составляемая из исходной $x\left( t \right)$ и её $\left( n-1 \right)$ производной - т.е. задача, как многомерный случай
-\item Уравнение Эйлера преобразуется в уравнение Эйлера-Пуассона:
-$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( \frac{\partial F}{\partial \ddot{x}} \right)-...+{{\left( -1 \right)}^{n}}\frac{{{d}^{n}}}{d{{t}^{n}}}\left( \frac{\partial F}{\partial \overset{\left( n \right)}{\mathop{x}}\,} \right)=0$,
-\\Условие Лежандра: $\frac{{{\partial }^{2}}F}{{{\left( \partial \overset{\left( n \right)}{\mathop{x}}\, \right)}^{2}}}\ne 0$
-\\ $J\left( x \right)=\int\limits_{0}^{1}{{{{\ddot{x}}}^{2}}}dt\to extr$, $x\left( 0 \right)=\dot{x}\left( 0 \right)=0$, $x\left( 1 \right)=0$, $\dot{x}\left( 1 \right)=1$
-\\$F={{\ddot{x}}^{2}}$: $\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( \frac{\partial F}{\partial \ddot{x}} \right)=0$
-\\$0-0+\frac{{{\partial }^{2}}}{\partial {{t}^{2}}}\left( 2\ddot{x} \right)=0$ $\to $ $\overset{\left( 4 \right)}{\mathop{x}}\,=0$, $\overset{\left( 3 \right)}{\mathop{x}}\,={{C}_{1}}$, $\overset{\left( 2 \right)}{\mathop{x}}\,={{C}_{1}}t+{{C}_{2}}$, $\dot{x}=\frac{1}{2}{{C}_{1}}{{t}^{2}}+{{C}_{2}}t+{{C}_{3}}$
-\\$x=\frac{1}{6}{{C}_{1}}{{t}^{3}}+\frac{1}{2}{{C}_{2}}{{t}^{2}}+{{C}_{3}}t+{{C}_{4}}$, 
-\\$t\left( 0 \right):\,0={{C}_{4}},\,0={{C}_{3}}$
-\\$t\left( 1 \right):\frac{1}{6}{{C}_{1}}+\frac{1}{2}{{C}_{2}}=0,\frac{1}{2}{{C}_{1}}+{{C}_{2}}=0$ $\to $ ${{C}_{1}}=6,\,{{C}_{2}}=-2$
-\\$\hat{x}={{t}^{3}}-{{t}^{2}}$, $\ddot{\hat{x}}=6t-2$ 
-\\${{J}_{\min }}=\int\limits_{0}^{1}{{{\left( 6t-2 \right)}^{2}}}dt=\left. 12{{t}^{3}} \right|_{0}^{1}-\left. 12{{t}^{2}} \right|_{0}^{1}+\left. 4t \right|_{0}^{1}=4$
+\item Многомерный случай: $ X = { \bigl( x_1(t), x_2(t), \ldots x_n(t) \bigr) }^T $ --- векторная функция.
+\[ J(X) = \int\limits_{t_0}^{t_\textit{к}} F \left( X, \dot{X}, t \right) \, dt \enskip \to \enskip \min ; \quad
+x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \]
+Тогда первое необходимое условие (уравнение Эйлера):
+\[ \frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right) = 0, \quad i=\overline{1,n} \]
+Второе условие требует анализа матрицы вторых частных производных:
+\[ \left\| \begin{array}{@{\,}cccc@{\,}}
+	\frac{\partial ^2 F}{\partial \dot{x}_1^2} & \frac{\partial ^2 F}{\partial \dot{x}_1 \partial \dot{x}_2} & \ldots & \frac{\partial ^2 F}{\partial \dot{x}_1 \partial \dot{x}_n} \\[2ex]
+	\frac{\partial ^2 F}{\partial \dot{x}_2 \partial \dot{x}_1} & \frac{\partial ^2 F}{\partial \dot{x}_2^2} & \ldots & \frac{\partial ^2 F}{\partial \dot{x}_2 \partial \dot{x}_n} \\[2ex]
+	\hdotsfor[2.5]{4} \\[2ex]
+	\frac{\partial ^2 F}{\partial \dot{x}_n \partial \dot{x}_1} & \frac{\partial ^2 F}{\partial \dot{x}_n \partial \dot{x}_2} & \ldots & \frac{\partial ^2 F}{\partial \dot{x}_n^2}
+\end{array} \right\| \]
+Для минимума, все диагональные миноры должны быть $ \ge 0 $, для максимума $ \le 0 $. Строгие неравенства дают и достаточность условий.
+
+%Непонятно что это пункт или часть случая
+\begin{problem}
+\[ J = \int\limits_0^1 \bigl( x_1 x_2 + \dot{x}_1 \dot{x}_2 \bigr) \,dt \enskip \to \enskip extr \]
+\[ x_1(0) = x_2(0) = 1, \enskip x_1(1) = e, \enskip  x_2(1) = \frac{1}{e} \] 
+\[ X = \bigl( x_1, x_2 \bigr) , \quad F = x_1 x_2 + \dot{x}_1 \dot{x}_2 \]
+\[ \frac{\partial F}{\partial x_1} = x_2, \quad \frac{\partial F}{\partial \dot{x}_1} = \dot{x}_2 \enskip \Rightarrow \enskip \frac{\partial F}{\partial x_1} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}_1} \right) = 0 \, : \enskip \ddot{x}_2 - x_2 = 0 \] \[ x_2 = C_1 e^t + C_2 e^{-t} \]
+\[ \frac{\partial F}{\partial x_2} = x_1, \quad \frac{\partial F}{\partial \dot{x}_2} = \dot{x}_1 \enskip \Rightarrow \enskip \frac{\partial F}{\partial x_2} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}_2} \right) = 0 \, : \enskip \ddot{x}_1 - x_1 = 0 \] \[ x_1 = C_3 e^t + C_4 e^{-t} \]
+Подставив начальные и конечные условия, получим:
+\[ \hat{x}_1 = e^t, \quad \hat{x}_2 = e^{-t} \]
+\[ \left\| \begin{array}{@{\,}cc@{\,}}
+	\frac{\partial ^2 F}{\partial \dot{x}_1^2} & \frac{\partial ^2 F}{\partial \dot{x}_1 \partial \dot{x}_2} \\[2ex]
+	\frac{\partial ^2 F}{\partial \dot{x}_2 \partial \dot{x}_1} & \frac{\partial ^2 F}{\partial \dot{x}_2^2}
+\end{array} \right\| = \left\| \begin{array}{@{\,}cc@{\,}}
+	0 & 1 \\
+	1 & 0
+\end{array} \right\| \]
+\[ \Delta _1 = 0, \enskip \Delta _2 = -1 \enskip \Rightarrow \enskip \max \]
+\[ J_{\max } = \int\limits_0^1 \Bigl( e^t e^{-t} + e^t \bigl( {-e^{-t}} \bigr) \Bigr) \, dt = 0 \]
+\end{problem}
+
+\item Задача со старшими производными:
+\[ J(x) = \int\limits_{t_0}^{t_\textit{к}} F \left( x, \dot{x}, \ddot{x}, \ldots x^{(n-1)}, t \right) \, dt \]
+\[ x \bigl( t_0 \bigr) = x_0, \enskip \dot{x} \bigl( t_0 \bigr) = \dot{x}_0, \ldots \enskip x^{(n-1)} \bigl( t_0 \bigr) = x^{(n-1)}_0 \]
+\[ x \bigl( t_\textit{к} \bigr) = x_\textit{к}, \enskip \dot{x} \bigl( t_\textit{к} \bigr) = \dot{x}_\textit{к}, \ldots \enskip x^{(n-1)} \bigl( t_\textit{к} \bigr) = x^{(n-1)}_\textit{к} \]
+
+Существует два способа решения:
+\begin{enumerate}
+\item[а)] Рассматривается векторная функция, составляемая из исходной $ x(t) $ и её $ (n-1) $ производной, т.\=,е.~задача как многомерный случай.
+\item[б)] Уравнение Эйлера преобразуется в уравнение Эйлера\-/Пу\-ассона:
+\[ \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) + \frac{d^2}{dt^2} \left( \frac{\partial F}{\partial \ddot{x}} \right) - \ldots + {(-1)}^n \, \frac{d^n}{dt^n} \left( \frac{\partial F}{\partial x^{(n)}} \right) = 0 \]
+Условие Лежандра: $ \frac{\partial ^2 F}{ { \left( \partial x^{(n)} \right) }^2 } \underset{\le}{\ge} 0 $
+
+\begin{problem}
+\[ J\left( x \right)=\int\limits_{0}^{1}{{{{\ddot{x}}}^{2}}}dt\enskip\to\enskip extr \]
+\[ x\left( 0 \right)=\dot{x}\left( 0 \right)=0, \enskip x\left( 1 \right)=0, \enskip \dot{x}\left( 1 \right)=1 \]
+\[ \begin{darray}{@{}l@{\qquad}l@{\qquad}}
+F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{\partial F}{\partial \dot{x}} \right) + \frac{d^2}{dt^2} \left( \frac{\partial F}{\partial \ddot{x}} \right) = 0 \\
+{} & \, 0 - 0 + \frac{d^2}{t^2} \left( 2 \ddot{x} \right) = 0 \enskip \Rightarrow \enskip x^{(4)} = 0
+\end{darray} \]
+\[ x^{(3)} = C_1, \quad \ddot{x} = C_1 t + C_2, \quad \dot{x} = \frac{1}{2} C_1 t^2 + C_2 t + C_3 \]
+\[ x=\frac{1}{6}{{C}_{1}}{{t}^{3}}+\frac{1}{2}{{C}_{2}}{{t}^{2}}+{{C}_{3}}t+{{C}_{4}} \] 
+\[ x(0) = C_4 = 0, \quad \dot{x} (0) = C_3 = 0 \]
+\[ \left\{ \begin{darray}{l} x(1) = \frac{1}{6} C_1 + \frac{1}{2} C_2 = 0 \\
+		\dot{x} (1) = \frac{1}{2} C_1 + C_2 = 0 \end{darray} \right. \enskip \Rightarrow \enskip
+	\left\{ \begin{darray}{l} C_1 = 6 \\
+		C_2 = -2 \end{darray} \right. \]
+\[ \hat{x}={{t}^{3}}-{{t}^{2}}, \quad \ddot{\hat{x}}=6t-2 \] 
+\[ J_{\min } = \int\limits_{0}^{1}{{{\left( 6t-2 \right)}^{2}}}dt = 12{{t}^{3}} \Big|_{0}^{1} - 12{{t}^{2}} \Big|_{0}^{1} + 4t \Big|_{0}^{1} = 4 \]
+\end{problem}
+
 \end{enumerate}
-\end{itemize}
+\end{enumerate}
+
+
 	\subsection{Задачи с нефиксированными границами\label{variations:floating_ends}}
 Как для начального момента времени (левого конца) так и для конечного момента времени (правого конца) могут быть следующие варианты: (для удобства все примеры для правого конца)
 
