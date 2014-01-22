@@ -579,7 +579,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 \vspace{\baselineskip}
 	\subsection{Оптимизация функционалов с~ограничениями в~форме равенств\label{variations:conditional_extremum}}
 
-При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических $ G(x,u)=0 $, дифференциальных $ \Phi (x,u,t) = \dot{x} - Ax - Bu = 0 $ и интегральных $ \int\phi (x,u,t)dt = C $ уравнений, т.\=,е.~дополнительных условий. Тогда вместо функции $F\left( x, \dot{x}, t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right) + \lambda ^T (t) \cdot \Phi \left( x,u,t \right)$ --- лагранжиан, где $ \lambda (t) $ --- вектор множителей Лагранжа, и уравнения приобретают вид Эйлера-Лагранжа:
+При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических $ G(x,u)=0 $, дифференциальных $ \Phi (x,u,t) = \dot{x} - Ax - Bu = 0 $ и интегральных $ \int\varphi (x,u,t)dt = C $ уравнений, т.\=,е.~дополнительных условий. Тогда вместо функции $F\left( x, \dot{x}, t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right) + \lambda ^T (t) \cdot \Phi \left( x,u,t \right)$ --- лагранжиан, где $ \lambda (t) $ --- вектор множителей Лагранжа, и уравнения приобретают вид Эйлера-Лагранжа:
 \begin{equation}
 \left\{ \begin{array}{l}
 	\frac{\partial L}{\partial x} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) = 0 \\[2ex]
@@ -674,73 +674,122 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 
 \end{problem}
 
+\vspace{\baselineskip}
 	\subsection{Каноническая (Гамильтонова) форма уравнений Эйлера (Лагранжа)\label{variations:Canonical_Euler}}
-Стремление избавится от двойного дифференцирования (по времени и производны  $\frac{\partial }{\partial \dot{x}}$,$\frac{\partial }{\partial \dot{u}}$ - состояния и управления) привело к предложению ввести канонические переменные ${{\psi }_{i}}\left( t \right)$ сопряжённые с переменными состояния ОУ и функцию Гамильтона: $H=-F\left( x,u,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}=-L\left( x,u,\lambda ,t \right)+\sum\limits_{i=1}^{n}{{{\psi }_{i}}{{{\dot{x}}}_{i}}}$, где ${{\psi }_{i}}=\frac{\partial F}{\partial {{{\dot{x}}}_{i}}}$ или $\frac{\partial L}{\partial {{{\dot{x}}}_{i}}}$, и тогда можно получить, учитывая что $\frac{\partial H}{\partial {{x}_{i}}}=-\frac{\partial F}{\partial {{x}_{i}}}=-\frac{\partial L}{\partial {{x}_{i}}}$ ${{\dot{x}}_{i}}=\frac{d{{{\dot{x}}}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}}$ $\frac{\partial F}{\partial {{x}_{i}}}-\frac{d}{dt}\underbrace{\left( \frac{\partial F}{\partial {{{\dot{x}}}_{i}}} \right)}_{{{\psi }_{i}}}\to \frac{d}{dt}{{\psi }_{i}}=\frac{\partial F}{\partial {{x}_{i}}}$, систему
-$\left\{ \begin{array}{*{35}{l}}
-   \frac{d{{x}_{i}}}{dt}=\frac{\partial H}{\partial {{\psi }_{i}}},\,i=\overline{1,n}  \\
-   \frac{d{{\psi }_{i}}}{dt}=-\frac{\partial H}{\partial {{x}_{i}}},\,i=\overline{1,n}  \\
-   \frac{dH}{d{{u}_{j}}}=0,\,\,j=\overline{1,m}  \\
-\end{array} \right.$
-\\Учитывая, что в уравнении ОУ ($\dot{x}=Ax+Bu$) отсутствует производные управления ($\dot{u}$). При не фиксированных граничных условиях уравнение трансверсальности в канонической форме имеет вид: 
-\[\begin{array}{*{35}{l}}
-   {{\psi }_{i}}\left( {{t}_{0}} \right)=0,{{\psi }_{i}}\left( {{t}_{k}} \right)=0  \\
-   H\left( {{t}_{0}} \right)=0,H\left( {{t}_{k}} \right)=0  \\
-\end{array}\]
-\par Такая форма уравнений даёт большое преимущество, т.к. слева только дифференциирование по времени, а справа частные производные по времени.
-\par Для общей задачи Лагранжа канонические переменные $\psi \left( t \right)$ совпадают с неизвестными множителями Лагранжа $\lambda \left( t \right)$.
-\par Кроме того, переход к функции Гамильтона позволит снизить требования к гладкости изменения переменных состояния и управления и решать задачи в условиях ограничений в виде неравенства.
-\par Для консервативных механических систем функция Гамильтона $H$ имеет простой физический смысл - она совпадает с полной механической энергией $H=const$ - имеет смысл закона сохранения полной механической энергии.
-\par В общем случае для линейного объекта в форме уравнений состояния $\dot{x}=Ax+Bu$ ($n$-размерности) отсутствует зависимость от $\dot{u}$ уравнения вариационной задачи записываются в следующем виде:
-Из $extrJ=\int\limits_{0}^{\infty }{F\left( x,u,t \right)dt}$
-$L\left( \dot{x},u,t,\lambda  \right)=F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \Phi \left( x,u,t \right)$ $\Phi \left( x,u,t \right)=\dot{x}-Ax-Bu$
-\\$H\left( {} \right)={{\lambda }^{T}}\left( t \right)\dot{x}-L\left( x,u,t,\lambda  \right)=-F\left( x,u,t \right)+{{\lambda }^{T}}\left( t \right)\cdot \left( \dot{x}-\dot{x}\underbrace{+Ax+Bu}_{{{\Phi }_{1}}\left( x,u,t \right)} \right)$
-получается система 
-\\$\left\{ \left. \begin{array}{*{35}{l}}
-   \frac{\partial X}{\partial t}=\left\| \frac{\partial H}{\partial {{\lambda }_{i}}} \right\|=AX+BU,\,\,i=\overline{1,n}  \\
-   \frac{\partial \lambda }{\partial t}=-\left\| \frac{\partial H}{\partial {{x}_{i}}} \right\|=\left\| \frac{\partial F}{\partial {{x}_{i}}} \right\|+{{\lambda }^{T}}\left\| \frac{\partial {{\Phi }_{1}}}{\partial {{x}_{i}}} \right\|,\,\,\,i=\overline{1,n}  \\
-   \frac{\partial H}{\partial {{u}_{j}}}=\frac{\partial F}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{{{\lambda }_{i}}\frac{\partial {{\varphi }_{1i}}}{\partial {{u}_{j}}}}=0,\,\,j=\overline{1,r}  \\
-\end{array} \right\} \right.2n+r$ уравнений
-\\
-\ExampleMy Определим оптимальное управление объектом:
-\\$T\dot{x}+x=ku$, $\frac{x}{u}=\frac{k}{Tp+1}\to \dot{x}=-\frac{1}{T}x+\frac{k}{T}u=ax+bu$
-\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt,\to L=q{{x}^{2}}+r{{u}^{2}}+\lambda \left( \dot{x}-ax-bu \right),\,H=-q{{x}^{2}}-r{{u}^{2}}+\lambda \left( ax+bu \right)$
-\\$\left\{ \begin{array}{*{35}{l}}
+	
+Стремление избавится от двойного дифференцирования (по времени $ \frac{d}{dt} $ и по производным $ \frac{\partial }{\partial \dot{x}} $ состояния и $ \frac{\partial }{\partial \dot{u}} $ управления) привело к предложению ввести канонические переменные $ \psi _i (t) $, сопряжённые с переменными состояния ОУ, и функцию Гамильтона:
+\begin{gather}
+H = - F(x,u,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _i = \frac{\partial F}{\partial \dot{x}_i} \\
+H = - L(x,u, \lambda ,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _i = \frac{\partial L}{\partial \dot{x}_i}
+\end{gather}
+Учитывая, что:
+\[ \frac{\partial H}{\partial x_i} = - \frac{\partial F}{\partial x_i} = - \frac{\partial H}{\partial x_i}, \quad \dot{x}_i = \frac{dx_i}{dt} = \frac{\partial H}{\partial \psi _i} \]
+\[ \frac{\partial F}{\partial x_i} - \frac{d}{dt} \Bigl( \underbrace{ \frac{\partial F}{\partial \dot{x}_i} }_{\psi _i} \Bigr) = 0 \enskip \Rightarrow \enskip \frac{d}{dt} \psi _i = \frac{\partial F}{\partial x_i} \]
+Получаем систему уравнений:
+\begin{equation}
+\left\{ \begin{darray}{l}
+   \frac{dx_i}{dt} = \frac{\partial H}{\partial \psi _i}, \quad i=\overline{1,n} \nr
+   \frac{d\psi _i}{dt} = - \frac{\partial H}{\partial x_i}, \quad i=\overline{1,n} \nr
+   \frac{\partial H}{\partial u_j} = 0, \quad j=\overline{1,m}
+\end{darray} \right.
+\end{equation}
+При условии, что в уравнении ОУ $\dot{x}=Ax+Bu$ отсутствуют производные управления $\dot{u}$.
+
+При нефиксированных граничных условиях уравнения трансверсальности в канонической форме имеют вид:
+\begin{equation}
+\left\{ \begin{darray}{l@{\quad}l}
+   {{\psi }_{i}}\left( {{t}_{0}} \right)=0, & \psi _i \bigl( t_\textit{к} \bigr) = 0 \\
+   H\left( {{t}_{0}} \right)=0, & H \bigl( t_\textit{к} \bigr) = 0
+\end{darray} \right.
+\end{equation}
+
+Такая форма уравнений даёт большое преимущество, т.\=,к.~слева только дифференцирование по времени, а справа частные производные по переменным.
+
+Для общей задачи Лагранжа канонические переменные $ \psi (t) $ совпадают с неизвестными множителями Лагранжа $ \lambda (t) $.
+
+Кроме того, переход к функции Гамильтона позволяет снизить требования к гладкости изменения переменных состояния и управления и решать задачи в условиях ограничений в виде неравенства.
+
+Для консервативных механических систем функция Гамильтона $H$ имеет простой физический смысл --- она совпадает с полной механической энергией, и равенство $H=const$ имеет смысл закона сохранения полной механической энергии.
+
+В общем случае для линейного объекта в форме уравнений состояния $\dot{x}=Ax+Bu$ ($n$-размерности), в котором отсутствует зависимость от $\dot{u}$, уравнения вариационной задачи записываются в следующем виде:
+\begin{equation}
+\left\{ \begin{darray}{l}
+	\frac{\partial X}{\partial t} = \left\| \frac{\partial H}{\partial \lambda _i} \right\| = AX + BU = \Phi _1, \quad i=\overline{1,n} \\
+	\frac{\partial \lambda }{\partial t} = - \left\| \frac{\partial H}{\partial x_i} \right\| = \left\| \frac{\partial F}{\partial x_i} \right\| + \lambda ^T \left\| \frac{\partial \Phi _1}{\partial x_i} \right\|, \quad i=\overline{1,n} \\
+	\frac{\partial H}{\partial u_j} = \frac{\partial F}{\partial u_j} + \sum\limits_{i=1}^{n} \lambda _i \frac{\partial \varphi _{1i}}{\partial u_j} = 0, \quad j=\overline{1,r}
+\end{darray} \right.
+\end{equation}
+
+\begin{problem}
+Определим оптимальное управление объектом:
+\[ T\dot{x}+x=ku, \quad \frac{x}{u}=\frac{k}{Tp+1} \enskip \Rightarrow \enskip \dot{x}=-\frac{1}{T}x+\frac{k}{T}u=ax+bu \]
+\[ J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)} \, dt \enskip \Rightarrow \enskip L = qx^2 + ru^2 + \lambda \left( \dot{x} - ax - bu \right) \]
+\[ H = -q{{x}^{2}}-r{{u}^{2}}+\lambda \left( ax+bu \right) \]
+\[ \left\{ \begin{darray}{l}
    \dot{x}=\frac{\partial H}{\partial \lambda }=ax+bu  \\
-   \dot{\lambda }=-\frac{\partial H}{\partial x}=-\left( 2qx+\lambda a \right)=2qx-\lambda a  \\
-   0=-\frac{\partial H}{\partial u}=-\left( -2ru+\lambda b \right)=2ru-\lambda b  \\
-\end{array} \right.$ $\to u=\frac{b}{2r}\lambda $
-\\Имеем систему уравнений:
-\\$\left\{ \begin{array}{*{35}{l}}
+   \dot{\lambda }=-\frac{\partial H}{\partial x} = 2qx - \lambda a  \\
+   0 = -\frac{\partial H}{\partial u}=2ru-\lambda b \enskip \Rightarrow \enskip u=\frac{b}{2r}\lambda
+\end{darray} \right. \]
+
+\[ \left\{ \begin{darray}{l}
    \dot{x}=ax+\frac{{{b}^{2}}}{2r}\lambda   \\
-   \dot{\lambda }=2qx-a\lambda   \\
-\end{array} \right.=\left| \begin{matrix}
-   a & \frac{{{b}^{2}}}{2r}  \\
-   2q & -a  \\
-\end{matrix} \right|\left| \begin{matrix}
-   x  \\
-   \lambda   \\
-\end{matrix} \right|$
-\\Для определения корней системы составим определитель
-\\$\Delta \left( p \right)=\left| Ep-A \right|=\left| \begin{matrix}
-   p-a & -\frac{{{b}^{2}}}{2r}  \\
-   -2q & p+a  \\
-\end{matrix} \right|={{p}^{2}}-{{a}^{2}}-2q\left( \frac{{{b}^{2}}}{2r} \right)={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$
-\\${{p}_{1,2}}=\pm \sqrt{{{a}^{2}}+\frac{q{{b}^{2}}}{r}}$-условию устойчивости удовлетворяет только отрицательный корень, поэтому решение ищем в виде $\left\{ \begin{array}{*{35}{l}}
-   x={{C}_{1}}\exp \left( {{p}_{2}}t \right)  \\
-   \lambda ={{C}_{2}}\exp \left( {{p}_{2}}t \right)  \\
-\end{array} \right.$ ${{C}_{1}},\,{{C}_{2}}$ - постоянные интегрирования ${{C}_{1}}={{x}_{0}}$, ${{C}_{2}}=\frac{\left( {{p}_{2}}-a \right)2r}{b}{{C}_{1}}=\frac{2q}{{{p}_{2}}+a}{{C}_{1}}$
-\\Следовательно искомое оптимальное уравнение
-\\${{U}_{}}\left( t \right)=\frac{b}{2r}\lambda \left( t \right)=\frac{bq}{r\left( {{p}_{2}}-a \right)}\cdot \underbrace{{{C}_{1}}\exp \left( {{p}_{2}}t \right)}_{x\left( t \right)}=u\left( t \right)\to \underbrace{\frac{{{p}_{2}}-a}{b}}_{{{K}_{}}}x\left( t \right)$ - такое решение определяет структуру оптимального регулятора в форме отрицательной обратной связи
-\\${{K}_{}}=\frac{{{p}_{2}}-a}{b}=-\frac{a+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}}{b}$   
-\par Вспомним пример поиска характеристического полинома системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}$ доставляющего $\min J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+q{{{\dot{x}}}^{2}} \right)}dt$ перепишем в нашем случае:
-\\$J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{\left( \frac{\dot{x}-ax}{b} \right)}^{2}} \right)}dt=\int\limits_{0}^{\infty }{\left( \left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{{\dot{x}}}^{2}} \right)}dt$
-\\$F=\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{\dot{x}}^{2}}\to \frac{\partial F}{\partial x}=2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}$
-\\$\frac{\partial F}{\partial \dot{x}}=-\frac{2ra}{{{b}^{2}}}x+\frac{2r}{{{b}^{2}}}\dot{x}$, уравнение Эйлера:
-\\$\frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0\to 2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}+\frac{2ra}{{{b}^{2}}}\dot{x}-\frac{2ra}{{{b}^{2}}}\ddot{x}\to \ddot{x}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)x=0$
-\\Соответствующий характеристический полином ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить как $\left[ {{p}^{2}}-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]\left[ {{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}} \right]=0$ - произведение полиномов с симметричным расположением левого и правого полюсов - это \underline{факторизация}. Устойчивый характер процессов дает полином ${{p}^{2}}+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=0$.
-\par Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то ${{U}_{opt}}={{K}_{opt}}\cdot x$ $\dot{x}=ax+b{{K}_{oc}}x=\left( a+b{{K}_{oc}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_{oc}} \right)$. Приравнивая два полинома 
-$p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_{oc}} \right)$, получим ${{K}_{oc}}=\frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b}$ - как видно решения совпадают - в литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
-\\Записывая факторизацию для $D\left( p \right)\to \left[ p-\left( a+b{{K}_{oc}} \right) \right]\left[ p+\left( a+b{{K}_{oc}} \right) \right]={{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)$ получим ${{p}^{2}}-{{\left( a+b{{K}_{oc}} \right)}^{2}}={{p}^{2}}-\left( {{a}^{2}}+\frac{{{b}^{2}}}{r}q \right)$ - уравнение $K_{oc}^{2}+\frac{2a}{b}{{K}_{oc}}-\frac{q}{r}=0$ откуда:  ${{K}_{oc}}=-\frac{a}{b}\pm \sqrt{\frac{{{a}^{2}}}{{{b}^{2}}}+\frac{q}{r}}$ скалярное стационарное уравнение Риккати.
+   \dot{\lambda }=2qx-a\lambda
+\end{darray} \right. = \left| \begin{darray}{c@{\quad}c}
+   a & \frac{{{b}^{2}}}{2r}  \\[1ex]
+   2q & -a  
+\end{darray} \right| \cdot \left| \begin{darray}{c}
+   x  \\[1ex]
+   \lambda  
+\end{darray} \right| \]
+
+\pagebreak
+Для определения корней системы составим определитель:
+\[ \Delta (p) = \left| Ep-A \right| = \left| \begin{darray}{c@{\quad}c}
+   p-a & -\frac{{{b}^{2}}}{2r}  \\[1ex]
+   -2q & p+a  
+\end{darray} \right| = p^2 - \left( a^2 + q\frac{b^2}{r} \right) = 0 \]
+\[ p_{1,2} = \pm \sqrt{ a^2 + q\frac{b^2}{r} } \]
+
+Условию устойчивости удовлетворяет только отрицательный корень, поэтому решение ищем в виде:
+\[ \left\{ \begin{darray}{l}
+   x = C_1 e^{p_2t} \\
+   \lambda = C_2 e^{p_2t}
+\end{darray} \right. \]
+\[ C_1 = x_0, \quad C_2 = \frac{ \left( p_2 - a \right) 2r }{b} C_1 = \frac{2q}{p_2 + a} C_1 \]
+
+Следовательно, искомое оптимальное управление:
+\[ u_\textit{опт} (t) = \frac{b}{2r} \lambda (t) = \frac{bq}{r\left( p_2 - a \right)} \cdot \underbrace{ C_1 e^{p_2t} }_{x(t)} = \frac{p_2-a}{b} \underbrace{ C_1 e^{p_2t} }_{x(t)} = \underbrace{ \frac{p_2-a}{b} }_{K_\textit{опт}} x(t) \]
+
+Такое решение определяет структуру оптимального регулятора в форме отрицательной пропорциональной обратной связи:
+\[ K_\textit{опт} = \frac{p_2-a}{b} = -\frac{a+\sqrt{a^2+qb^2/r}}{b} \]
+   
+\end{problem}
+
+Вспоминая пример поиска характеристического полинома системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}\,$, доставляющего $\min \, J=\int\limits_{0}^{\infty }{\left( a_0{{x}^{2}}+a_1{{{\dot{x}}}^{2}} \right)} \, dt$, перепишем его в нашем случае:
+\begin{multline*}
+J = \int\limits_{0}^{\infty }{\Bigl( q{{x}^{2}}+r{{u}^{2}} \Bigr)} \, dt = \int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{\left( \frac{\dot{x}-ax}{b} \right)}^{2}} \right)} \, dt ={} \\*
+	\int\limits_{0}^{\infty }{ \Biggl[ \left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{{\dot{x}}}^{2}} \Biggr] } \, dt
+\end{multline*}
+\[ F=\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right){{x}^{2}}-\frac{2ra}{{{b}^{2}}}x\dot{x}+\frac{r}{{{b}^{2}}}{{\dot{x}}^{2}} \]
+\[ \frac{\partial F}{\partial x}=2\left( q+r\frac{{{a}^{2}}}{{{b}^{2}}} \right)x-\frac{2ra}{{{b}^{2}}}\dot{x}, \quad
+	\frac{\partial F}{\partial \dot{x}}=-\frac{2ra}{{{b}^{2}}}x+\frac{2r}{{{b}^{2}}}\dot{x} \]
+Уравнение Эйлера:
+\[ \frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0 \enskip \Rightarrow \enskip 2\left( q + r \frac{a^2}{b^2} \right) x - \frac{2ra}{b^2} \dot{x} + \frac{2ra}{b^2} \dot{x} - \frac{2r}{b^2} \ddot{x} = 0 \]
+\[ \ddot{x} - \left( a^2 + q \frac{b^2}{r} \right) x = 0 \]
+Соответствующий характеристический полином \vspace{1ex} ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить как $\left[ p^2 - \sqrt{a^2 + q \frac{b^2}{r}} \right] \cdot \left[ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} \right] = 0 $ \vspace{1ex} --- произведение полиномов с симметричным расположением левого и правого полюсов --- это \textbf{факторизация}. Устойчивый характер процессов даёт полином $ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} = 0 $.
+
+Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то $ u_\textit{опт} = K_\textit{опт} \cdot x $, $\dot{x}=ax+b{{K}_\textit{ос}}x=\left( a+b{{K}_\textit{ос}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_\textit{ос}} \right)$. Приравнивая два полинома $p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_\textit{ос}} \right)$, получим:
+\[ K_\textit{ос} = \frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b} \]
+Как видно, решения совпадают. В литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
+
+Записывая факторизацию для $D(p)$, получим:
+\[ \Bigl[ p - \bigl( a+b{{K}_\textit{ос}} \bigr) \Bigr] \cdot \Bigl[ p + \bigl( a+b{{K}_\textit{ос}} \bigr) \Bigr] = {{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right) \]
+\[ {{p}^{2}}-{{\left( a+b{{K}_\textit{ос}} \right)}^{2}}={{p}^{2}}-\left( {{a}^{2}}+\frac{{{b}^{2}}}{r}q \right) \]
+\begin{equation}\label{equ:variations:Riccati}
+K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
+\end{equation}
+Это скалярное стационарное уравнение Риккати. В итоге получаем:
+\[ K_\textit{ос} = -\frac{a}{b}\pm \sqrt{\frac{{{a}^{2}}}{{{b}^{2}}}+\frac{q}{r}} \]
 
 \clearpage
 \section{Принцип максимума\label{maximum}}
@@ -1118,22 +1167,9 @@ ${{S}_{\varphi }}\left( \omega  \right)=\frac{jc\omega +\sqrt{1+{{c}^{2}}}}{j\om
 \item ${{W}^{*}}\left( p \right)={}^{{{N}^{+}}\left( p \right)}/{}_{\psi \left( p \right)}=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \frac{1}{1+p}\cdot \frac{1+p}{cp+\sqrt{1+{{c}^{2}}}}=\frac{\frac{1}{c\sqrt{1+{{c}^{2}}}+1+{{c}^{2}}}}{\frac{c}{\sqrt{1+{{c}^{2}}}}p+1}$
 \end{enumerate}
 
-\subsection{Фильтры Калмана\label{stochastic:filters}}
-\par Современная теория стохастической фильтрации заложена в 40-х годах XX века трудами А.Н.Колмогорова и Н.Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач   измерения параметров траектории летательных аппаратов по радарным данным. Первым результатом полученным на основе интегрального уравнения Вилмера-Холмса. Решение искалось в частотной области с использованием разложения спектральной.
-\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
-
-
-
-
-
-
-
-
-
-
- 
-   
 	\subsection{Фильтры Калмана\label{stochastic:filters}}
+\par Современная теория стохастической фильтрации заложена в 40-х годах XX века трудами А.Н.Колмогорова и Н.Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач   измерения параметров траектории летательных аппаратов по радарным данным. Первым результатом полученным на основе интегрального уравнения Вилмера-Холмса. Решение искалось в частотной области с использованием разложения спектральной.
+
  
 	\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
 \par Создание фильтра К.-Б., в котором по измерениям выхода ОУ $y(t)$, искалась несмещенная оценка всего фазового вектора $\bar{x}(t)$ состояния системы в условиях действия помех спровоцировало интерес к созданию наблюдателей, решающих задачу восстановления неизмеряемых координат состояния объекта по измерениям выхода $y(t)$.
