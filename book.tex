@@ -22,8 +22,6 @@
 	{\par \vspace{\baselineskip} \refstepcounter{problem} {\raggedleft \textit{Пример \theproblem} \par} \vspace{-0.5\baselineskip} \begin{oframed}}%	это выполняется при отрытии окружения
 	{\par \end{oframed}}%	а это при закрытии
 
-%\newtheorem{theorem}{Теорема}
-
 \begin{document}
 
 \begin{titlepage}
@@ -836,8 +834,8 @@ K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
 \begin{theorem}[(Л.\=,С.~Понтрягин, 1956~г.)]
 Для того, чтобы допустимое управление $ u^* (t) $ и соответствующая ему траектория $ x^* (t) $ были оптимальными необходимо существование такой ненулевой непрерывной векторной функции $ \psi ^* (t) $, отвечающей в силу уравнений Гамильтона функциям  $ u^* (t) $ и $ x^* (t) $, что:
 \begin{enumerate}
-\item в $ \forall $ момент времени $ t_0 \le t \le t_\textit{к} $, когда $ u^* (t) $ непрерывна, функция $ H^* \left( x^*, u^* \right) = \underset{u \in U}{ \max } \, H^* \left( \psi _0^*, \psi ^*, x^*, u \right) $ достигает максимума;
-\item в $ \forall $ момент времени $ \psi _0^* = -1, \enskip H^* \bigl( \psi ^* (T), x^* (T) \bigr) = 0 $.
+\item в любой момент времени $ t_0 \le t \le t_\textit{к} $, когда $ u^* (t) $ непрерывна, функция $ H^* \left( x^*, u^* \right) = \underset{u \in U}{ \max } \, H^* \left( \psi _0^*, \psi ^*, x^*, u \right) $ достигает максимума;
+\item в любой момент времени $ \psi _0^* = -1, \enskip H^* \bigl( \psi ^* (T), x^* (T) \bigr) = 0 $.
 \end{enumerate}
 \end{theorem}
 
@@ -870,64 +868,110 @@ K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
 \item $ H\left( \psi ,x,u \right)=-1\left( x+{{u}^{2}} \right)+\psi u $
 \item $ \max H = \underset{ u(t) \in U }{ \max } \, \left( -x - u^2 + \psi u \right) $
 \[ \frac{\partial H^*}{\partial u} = -2u + \psi = 0 \enskip \Rightarrow \enskip u = \frac{1}{2}\psi \enskip \bigl( |u| \le 1 \bigr) \]
-\item $\psi =-\frac{\partial H}{\partial x} \enskip \Rightarrow \enskip \dot{\psi }=-\frac{\left( x-{{u}^{2}}+\psi u \right)}{\partial x}=1$
-\item ${{u}^{*}}=\left\{ \begin{array}{*{35}{l}}
-   \frac{t}{2},\,\,0\le t\le 2  \\
-   1,\,\,\,\,2\le t\le 4  \\
-\end{array} \right.$, ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
-   \frac{{{t}^{2}}}{4}+{{C}_{2}},0\le t\le 2  \\
-   t+{{C}_{3}},2\le t\le 4  \\
-\end{array} \right.$
-\\с дополнительным условием: 
-и $x\left( {{2}_{+0}} \right)=x\left( {{2}_{-0}} \right)\to x\left( {{2}_{+0}} \right)=2-4=-2=x\left( {{2}_{-0}} \right)=\frac{{{2}^{2}}}{4}+{{C}_{2}}=1+{{C}_{2}}\to {{C}_{2}}=-3$ и значит ${{x}^{*}}=\left\{ \begin{array}{*{35}{l}}
-   \frac{{{t}^{2}}}{4}-3,\,\,0\le t\le 2  \\
-   t-4,\,\,\,2\le t\le 4  \\
-\end{array} \right.$
-\\${{J}_{\min }}=\int\limits_{0}^{2}{\left( \frac{{{t}^{2}}}{4}+\frac{{{t}^{2}}}{4}-3 \right)}dt+\int\limits_{2}^{4}{\left( {{1}^{2}}+t-4 \right)}dt=\left. \left( \frac{{{t}^{3}}}{6}-3t \right) \right|_{0}^{2}+\left. \left( \frac{{{t}^{2}}}{2}-3t \right) \right|_{2}^{4}=-4\frac{2}{3}$ 
+\item $ \dot{ \psi } = -\frac{\partial H}{\partial x} = -\frac{ \partial \left( -x - u^2 + \psi u \right) }{\partial x} = 1 $
+\item $ \psi = t + C_1, \quad \psi (0) = 0 \enskip \Rightarrow \enskip \psi (t) = t $
+\end{enumerate}
+\[ u^* = \left\{ \begin{darray}{l@{\quad}l}
+	\frac{t}{2}, & 0 \le t \le 2 \\
+	1, & 2 \le t \le 4
+\end{darray} \right. , \qquad x^* = \left\{ \begin{darray}{l@{\quad}l}
+	\frac{t^2}{4} + C_2, & 0 \le t \le 2 \\
+	t + C_3, & 2 \le t \le 4
+\end{darray} \right. \]
+\[ x(4) = 0 \enskip \Rightarrow \enskip x(4) = 4 + C_3 = 0 \enskip \Rightarrow \enskip C_3 = -4 \]
+\[ x \bigl( 2_{+0} \bigr) = x \bigl( 2_{-0} \bigr) \enskip \Rightarrow \enskip 2 - 4 = \frac{2^2}{4} + C_2 \enskip \Rightarrow \enskip C_2 = -3 \]
+\[ x^* = \left\{ \begin{darray}{l@{\quad}l}
+	\frac{t^2}{4} - 3, & 0 \le t \le 2 \\
+	t - 4, & 2 \le t \le 4
+\end{darray} \right. \]
+\begin{multline*}
+J_{ \min } = \int\limits_0^2 \left( \frac{t^2}{4} + \frac{t^2}{4} - 3 \right) \, dt + \int\limits_2^4 \left( 1^2 + t - 4 \right) \, dt = {} \\* \left( \frac{t^3}{6} - 3t \right) \bigg|_0^2 + \left( \frac{t^2}{2} - 3t \right) \bigg|_2^4 = -4\frac{2}{3} 
+\end{multline*}
+\end{problem}
+
+\begin{figure}[ht] \centering
+\begin{tikzpicture}[xscale=2]
+	\draw[very thin,gray,xstep=1mm,ystep=2mm] (0,-1) grid (4,1);				% сетка
+	\draw[semithick,->] (0,0) -- (4.2,0) node[above right] {$t$};				% ось абсцисс
+	\draw[semithick,->] (0,-1) -- (0,1.4) node[anchor=east] {$u(t)$};		% ось ординат
+	\foreach \t in {1,2,3,4}
+		\draw[semithick] (\t cm,1mm) -- (\t cm,-1mm) node[anchor=north] {$\t$};
+	\foreach \u in {-1,0,1}
+		\draw[semithick] (0.5mm,\u cm) -- (-0.5mm,\u cm) node[anchor=east] {$\u$};
+	\draw[semithick,blue] (0,0) -- (2,1) -- (4,1);
+	\begin{scope}[yshift=-2cm]
+		\draw[very thin,gray,xstep=1mm,ystep=2mm] (0,-3) grid (4,0);			% сетка
+		\draw[semithick,->] (0,0) -- (4.2,0) node[above right] {$t$};			% ось абсцисс
+		\draw[semithick,->] (0,-3) -- (0,0.4) node[anchor=east] {$x(t)$};	% ось ординат
+		\foreach \t in {1,2,3,4}
+			\draw[semithick] (\t cm,1mm) -- (\t cm,-1mm) node[above=2mm] {$\t$};
+		\foreach \x in {-3,-2,-1,0}
+			\draw[semithick] (0.5mm,\x cm) -- (-0.5mm,\x cm) node[anchor=east] {$\x$};
+		\draw[semithick,blue,smooth,samples=100,domain=0:2,variable=\t]
+			plot( \t, {(\t^2)/4-3} ) -- (4,0);
+	\end{scope}
+\end{tikzpicture}
+\footnotesize \caption{Решение задачи, рассмотренной в первом примере\label{fig:maximum:first_example}}
+\end{figure}
+
+\begin{problem}
+\[ T\dot{x} + x = Ku \enskip \Rightarrow \enskip \dot{x} = ax + bu \]
+\[ \min \, \int\limits_{t_0}^{t_\textit{к}} \bigl( qx^2 + ru^2 \bigr) \, dt, \quad |u| \le U_{ \max } \]
+\begin{enumerate}
+\item ${{H}^{*}}=-\left( q{{x}^{2}}+r{{u}^{2}} \right)+\psi \left( ax+bu \right)$
+\item $\frac{\partial {{H}^{*}}}{\partial u}=-2ru+\psi b=0 $
+\[ \left\{ \begin{darray}{l@{\quad}l}
+	u = \frac{b}{2r}\psi & \text{при} \left| \frac{b}{2r}\psi \right| \le U_{ \max } \\
+	u = U_{ \max } & \text{при} \left| \frac{b}{2r}\psi \right| \ge U_{ \max } 
+\end{darray} \right. \]
+\item $ \dot{ \psi } = -\frac{\partial H}{\partial x} = 2qx - a\psi , \quad \dot{x} = ax + b\frac{b}{2r}\psi $
+\[ \psi = \frac{-a-\sqrt{a^2+b^2q/r}}{b^2} \cdot 2rx \] 
+\item $ U_\textit{опт} (t) = \left\{ \begin{darray}{l@{\quad}l}
+	\underbrace{ \frac{-a-\sqrt{a^2+b^2q/r}}{b} }_{K_\textit{опт}} x & \text{при} \left| K_\textit{опт} x \right| \le U_{ \max } \\
+	\pm U_{ \max } & \text{при} \left| K_\textit{опт} x \right| \ge U_{ \max }
+\end{darray} \right. $
 \end{enumerate}
 \end{problem}
 
-\ExampleMy $T\dot{x}+x=Ku\to \dot{x}=ax+bu$ 
-\\$\underset{\min }{\mathop{extr}}\,\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$
-\\$\left| u \right|\le {{U}_{\max }}$
-\begin{enumerate}
-\item ${{H}^{*}}=-\left( q{{x}^{2}}+r{{u}^{2}} \right)+\psi \left( ax+bu \right)$
-\item $\frac{\partial {{H}^{*}}}{\partial u}=-2ru+\psi b=0\to \begin{array}{*{35}{l}}
-   u=\frac{b}{2r}\psi$, при $\left| u \right|\in {{U}_{\max }}$   
-   $\\u={{U}_{\max }}$, при $\left| \frac{b}{2r}{{\psi }_{1}} \right|\ge {{U}_{\max }}$ 
-$\\\end{array}$
-\item $\left. \begin{array}{*{35}{l}}
-   \dot{\psi }=-\frac{\partial H}{\partial x}=2qx-a\psi$	
-	$\dot{x}=ax+b\frac{b}{2r}\psi   \\
-\end{array} \right\}$, получим систему аналогичную ранее и тогда  $\psi =\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{{{b}^{2}}}\cdot 2rx$ 
-\item ${{U}_{opt}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
-   \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}  $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\le {{U}_{\max }}$
-   $\\\pm {{U}_{\max }} $, при $\left| \frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b} \right|\ge {{U}_{\max }}$
-$ \\\end{array} \right.$  
-\end{enumerate} 
-\par Наибольшее применение принцип максимума нашёл при оптимизации из условия  
-$\min {{t}_{p.p.}}$ (максимального быстродействия), т.к. в этом случае $\underset{\min ,u\in U}{\mathop{extr}}\,J=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{F\left( x,u \right)}dt=\int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1}dt={{t}_{k}}-{{t}_{0}}$ - имеет простейшую подынтегральную функцию и гамильтониан ${{H}^{*}}=-1+\sum\limits_{i=1}^{n}{{{\psi }_{i}}\left( t \right)}{{\Phi }_{i}}\left( x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, от управления зависит только последнее слагаемое и в условиях ограничений на управление  
-$\left| u \right|\le {{U}_{m}}$, решение имеет естественный вид: $u={{U}_{m}}\cdot sign{{\psi }^{T}}B$ - т.е. оптимальная система является релейной с определением переключения по знаку вспомогательной функции ${{B}^{T}}\psi $, где $\dot{\psi }=-{{A}^{T}}\psi \to \psi \left( t \right)=-\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$, однако поиск $\psi \left( 0 \right)$ - приводит либо к системе трансцендентных уравнений, трудно решаемых в общем виде, либо к итерационному поиску.
-\par В простейшем случае:
-\\Когда объект представим последовательным соединением 2 интеграторов: $\ddot{x}=u$, $\left| u \right|\le {{U}_{m}}$
-\\$\left| \begin{array}{*{35}{l}}
-   {{{\dot{x}}}_{1}}  \\
-   {{{\dot{x}}}_{2}}  \\
-\end{array} \right|=\left| \begin{matrix}
+Наибольшее применение принцип максимума нашёл при минимизации времени переходного процесса (максимизации быстродействия), так как в этом случае $ \underset{ u \in U }{ \min } \=, J = \int\limits_{t_0}^{t_\textit{к}} F(x,u) \, dt = \int\limits_{t_0}^{t_\textit{к}} 1 \, dt = t_\textit{к} - t_0 $ имеет простейшую подынтегральную функцию и гамильтониан $ H^* = -1 + \sum\limits_{i=1}^{n} \psi _i (t) \Phi _i (x,u) = -1 + \psi ^T (Ax+Bu) $, от управления зависит только последнее слагаемое и в условиях ограничений на управление  
+$\left| u \right|\le {{U}_{m}}$ решение имеет естественный вид: $ u = U_m \cdot sign( \psi ^T B ) $, т.\=,е. оптимальная система является релейной с определением переключения по знаку вспомогательной функции $ B^T \psi $, где $ \dot{ \psi } = -A^T\psi \enskip \Rightarrow \enskip \psi (t) = -e^{-A^Tt} \psi (0) $, однако, поиск $ \psi (0) $ приводит либо к системе трансцендентных уравнений, трудно решаемых в общем виде, либо к итерационному поиску.
+
+В простейшем случае, когда объект представим последовательным соединением двух интеграторов:
+\[ \ddot{x} = u, \quad  |u| \le U_m \]
+\vspace{-1.5\baselineskip}
+\begin{figure*}[ht] \centering
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw=black,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex},
+		point/.style={inner sep = 0pt}	]
+	\node[block] (int1) {$ 1/p $};
+	\node[block] (int2) [right = 5em of int1] {$ 1/p $};
+	\draw[vec] (int1) to node{$ \dot{x} = x_2 $} (int2);
+	\node[point] (input) [left = of int1] {};
+	\draw[vec] (input) to node{$u$} (int1);
+	\node[point] (output) [right = 5em of int2] {};
+	\draw[vec] (int2) to node{$ x = x_1 $} (output);
+\end{tikzpicture}
+\end{figure*}
+\[ \left| \begin{matrix}
+	\dot{x}_1 \\
+	\dot{x}_2
+\end{matrix} \right| = \left| \begin{matrix}
    0 & 1  \\
-   0 & 0  \\
-\end{matrix} \right|\left| \begin{matrix}
+   0 & 0  
+\end{matrix} \right| \cdot \left| \begin{matrix}
    {{x}_{1}}  \\
-   {{x}_{2}}  \\
-\end{matrix} \right|+\left| \begin{matrix}
+   {{x}_{2}} 
+\end{matrix} \right| + \left| \begin{matrix}
    0  \\
-   1  \\
-\end{matrix} \right|u$
-Гамильтониан $H\left( \psi ,x,u \right)=-1+{{\psi }_{1}}{{x}_{2}}+{{\psi }_{2}}u$ и $max$ достигается при ${{U}_{opt}}\left( t \right)={{U}_{m}}\cdot sign{{\psi }_{2}}$, где 
-${{\dot{\psi }}_{2}}=-\frac{\partial H}{\partial {{x}_{2}}}={{\psi }_{1}}$, ${{\dot{\psi }}_{1}}=-\frac{\partial H}{\partial {{x}_{1}}}=0$ и ${{\psi }_{2}}\left( t \right)={{C}_{1}}t+{{C}_{2}}$, произвольные постоянные при $\forall $ наборе которых ${{\psi }_{2}}$ может иметь только 2 интервала с разными знаками $\to $ соответственно ${{U}_{opt}}\left( t \right)$ - кусочно-постоянная функция, принимающая $+{{U}_{m}}$ и $-{{U}_{m}}$ значения. Отсюда, для перевода из нулевого начального состояния в заданное (например положительное $x\left( {{t}_{k}} \right)>0$) конечное будем иметь 2 интервала: разгон и торможение, и переключение произойдет ровно посередине. Если будет ограничена скорость набора $\left| {{x}_{2}} \right|\le {{x}_{2m}}$, то в интервале ${{t}_{1}}\to {{t}_{2}}$ потребуется обнулить управление $u$ ${{{t}'}_{k}}\to {{t}_{k}}$, а управление будет иметь 3 интервала: $+{{U}_{m}}$ $0$ $-{{U}_{m}}$ ${{U}_{opt}}\left( t \right)=dez{{\psi }_{2}}\left( t \right)=\left\{ \begin{array}{*{35}{l}}
-   0,\,\,\left| {{\psi }_{2}} \right|\le 1  \\
-   sign{{\psi }_{2}},\,\left| {{\psi }_{2}} \right|>1  \\
-\end{array} \right.$
+   1  
+\end{matrix} \right| u \]
+Гамильтониан $H\left( \psi ,x,u \right)=-1+{{\psi }_{1}}{{x}_{2}}+{{\psi }_{2}}u$ и $max$ достигается при $ u_\textit{опт} (t) = U_m \cdot sign \=, \psi _2 $, где $ \dot{ \psi }_2 = -\frac{\partial H}{\partial x_2} = \psi _1, \enskip \dot{\psi }_1 = -\frac{\partial H}{\partial x_1} = 0 $ и $ \psi _2 (t) = C_1t + C_2 $, произвольные постоянные, при любом наборе которых $ \psi _2 $ может иметь только два интервала с разными знаками, соответственно $ u_\textit{опт} (t) $ --- кусочно-постоянная функция, принимающая значения $ +U_m $ и $ -U_m $. Отсюда, для перевода из нулевого начального состояния в заданное конечное (например, положительное $ x (t_\textit{к}) > 0 $) будем иметь два интервала: разгон и торможение, и переключение произойдёт ровно посередине. Если будет ограничена скорость набора $ |x_2| \le x_{2m} $, то в интервале $ t_1 \to t_2 $ потребуется обнулить управление и увеличится время переходного процесса $ t'_\textit{к} > t_\textit{к} $, а управление будет иметь три интервала: $ +U_m $, $ 0 $, $ -U_m $.
+\[ u_\textit{опт}^{\textit{огр.}x_2} (t) = \left\{ \begin{darray}{l@{\quad}l}
+	0 & \text{при} \bigl| \psi _2 \bigr| \le 1  \\
+	sign \=, \psi _2 & \text{при} \bigl| \psi _2 \bigr| > 1
+\end{darray} \right. \]
 
 	\subsection{Синтез оптимального по быстродействию управления для линейных систем\label{maximum:fastest}}
  Итак, в общем случае задача синтеза оптимального по быстродействию управления линейным объектом $\dot{X}=A\left( x,u \right)=Ax+Bu$ с $\min \int\limits_{{{t}_{0}}}^{{{t}_{k}}}{1dt={{t}_{k}}-{{t}_{0}}}$, с возможным ограничением на $\left| {{x}_{i}} \right|\le {{X}_{i}}$ осуществляется с помощью принципа Максимума на основе составления формулы Гамильтона: $H\left( \psi ,x,u \right)=-1+{{\psi }^{T}}\left( Ax+Bu \right)$, и ${{u}_{opt}}={{U}_{\max }}\cdot sign\left( \frac{\partial H}{\partial u} \right)={{U}_{\max }}sign\left( {{B}^{T}}\psi  \right)$ и  $\dot{\psi }\left( t \right)=-{{\psi }^{T}}\left( t \right)\frac{\partial \Phi \left( x,u \right)}{\partial x}=-{{\psi }^{T}}\left( t \right)A=-{{A}^{T}}\psi \left( t \right)\to \psi \left( t \right)=\exp \left( -{{A}^{T}}t \right)\psi \left( 0 \right)$ - это набор экспонент, поиск которых в общем виде затруднён. Однако в частных случаях были получены ряд важных результатов.
