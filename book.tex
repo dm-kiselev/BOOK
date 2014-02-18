@@ -179,7 +179,7 @@ W_\text{\textit{УУ}}W_\text{\textit{ОУ}}\longrightarrow\frac{x_\text{\textit
 
 В общем случае постановки задач оптимального управления характеризуются значительным разнообразием, что связано с тремя основными причинами:
 \begin{itemize}
-\item Конкретными \glqq условиями\grqq функционирования, к которым следует отнести:
+\item Конкретными \glqq условиями\grqq\ функционирования, к которым следует отнести:
 \begin{itemize}
 \item начальное (исходное) и конечное (требуемое) состояния ОУ с временной привязкой $X_{0}\left ( t_{0} \right )$, $X_\text{\textit{к}}\left ( t_\text{\textit{к}} \right )$;
 \item взаимосвязи, присущие реальным процессам, в форме:
@@ -1137,47 +1137,85 @@ S(t,x) = \underset{u \in U}{ \min } \=, \left[ \int\limits_{t_0}^{t_0 + \Delta t
 Это выражение должно использоваться для определения оптимальных управлений на интервале $ \bigl[ t_0, t_0 + \Delta t \bigr] $. При решении либо решают функциональные уравнения Беллмана в частных производных, либо применяют численные методы.
 
 	\subsection{Функциональное уравнение Беллмана для синтеза оптимального управления\label{dyn_prog:Bellman_equation}}
-\par Первое слагаемое с точностью до малых более высокого порядка чем $\Delta t$, можно приблизительно записать $\int\limits_{{{t}_{0}}}^{{{t}_{0}}+\Delta t}{F\left( x,u,t \right)}dt\approx F\left( x,u,t \right)\Delta t=\Delta J$. Второе слагаемое, определяющее значение $S\left( t+\Delta t,x+\Delta x \right)$ для $\forall $ $t+\Delta t$ разложим в ряд Тейлора. Ограничиваясь линейными членами относительно $\Delta {{x}_{i}}$ и $\Delta t$ и переходя к пределу (если функция $S\left( t,x \right)$) имеет непрерывные частные производные по всем ${{x}_{i}}\left( t \right)$ и $t$), запишем:
-\\$S\left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \Delta {{x}_{i}}+\frac{\partial S}{\partial t}\Delta t=S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \frac{d{{x}_{i}}}{dt}+\frac{\partial S}{\partial t} \right]\Delta t$
-\\Тогда можем записать:
-\\$S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)\Delta t+S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{{\dot{x}}}_{i}}+\frac{\partial S}{\partial t}} \right]\Delta t \right\}$. Откуда переходя к пределу при $\Delta t\to 0$, получим нелинейное дифференциальное уравнение Беллмана в частных производных относительно неизвестной функции $S\left( t,x \right)$:
-\\$\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right] \right\}=0$ 
-\\Необычность этого уравнения в том, что она содержит операцию минимизации. Регулярных аналитических методов решения таких уравнений нет. Однако Лётов А.М. предложил методику поиска ${{u}^{0}}\left( t \right)=u\left( \frac{\partial S\left( x,t \right)}{\partial x} \right)$ и тогда уравнение становится обычным уравнением в частных производных:
-\\$F\left( \dot{x},u,t \right)+grad_{x}^{T}S\left( x,t \right)\cdot \Phi \left( x,u \right)+\frac{\partial S\left( x,t \right)}{\partial t}=0$ с граничным условием $S\left( {{x}^{0}},T \right)=0$.
-\\Если $S\left( x \right)$ не зависит явным образом от $t$, то $\frac{\partial S}{\partial t}=0$ и поиск оптимального управления можно производить по уравнению: $\frac{\partial F\left( \dot{x},u,t \right)}{\partial {{u}_{j}}}+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}}=0$ 
-\par Такой подход наиболее подходит, когда ищется решение для линейно-квадратичных задач и вспомогательная функция берется в виде квадратично-нелинейной формы $S\left( x \right)=\sum\limits_{i,j=1}^{n}{{}}$ объекта управления: $T\dot{x}+x=Ku\to \dot{x}=a\dot{x}+bu$, и вспомогательной функции $\min \int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)}dt$ $S\left( x \right)=A{{x}^{2}}$
-\\Тогда функциональное уравнение Беллмана запишется в виде:
-\\$q{{x}^{2}}+r{{u}^{2}}+\left( ax+bu \right)\cdot \frac{\partial S}{\partial x}=0$
-\\$2ru+b\frac{\partial S}{\partial x}=0\to {{U}^{0}}\left( t \right)=-\frac{b}{2r}\frac{\partial S}{\partial x}=-\underbrace{\frac{b}{2r}A}_{{{K}_{os}}}x\left( t \right)$
-\\Для нахождения $A$ и ${{K}_{os}}$:
-\\$q{{x}^{2}}+r{{\left( -\frac{b}{r}Ax \right)}^{2}}+\left( ax+b\left( -\frac{b}{r}Ax \right) \right)Ax=0$, возведя в квадрат вынеся $x$ и структурировав получим:
-\\${{b}^{2}}{{A}^{2}}-2arA-qr=0$, откуда $A=\frac{r\left( a\pm \sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}} \right)}{{{b}^{2}}}$ $\left( A>0 \right)$ получим для ${{K}_{os}}=-\frac{b}{r}A=\frac{-a-\sqrt{{{a}^{2}}+{{b}^{2}}\frac{q}{r}}}{b}$ проверить совпадение ?вар.исч.?
-\par Подводя итог для общего подхода применение метода для задачи в форме Лагранжа можно сформулировать в виде алгебраической процедуры:
+Первое слагаемое с точностью до малых более высокого порядка, чем $ \Delta t $, можно приблизительно записать так:
+\[ \int\limits_{t_0}^{t_0 + \Delta t} F(x,u,t) \=, dt \approx F(x,u,t) \Delta t = \Delta J \]
+
+Второе слагаемое, определяющее значение $ S\left( t+\Delta t,x+\Delta x \right)$ для любого $t+\Delta t$ разложим в ряд Тейлора. Ограничиваясь линейными членами относительно $ \Delta x_i $ и $ \Delta t $ и переходя к пределу (если функция $ S(t,x) $ имеет непрерывные частные производные по всем $ x_i (t) $ и $t$), запишем:
+\begin{multline*}
+S \left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \Delta {{x}_{i}}+\frac{\partial S}{\partial t}\Delta t = \\ S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}}\cdot \frac{d{{x}_{i}}}{dt}+\frac{\partial S}{\partial t} \right]\Delta t
+\end{multline*}
+Тогда можем записать:
+\[ S\left( t,x \right)=\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)\Delta t+S\left( t,x \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{{\dot{x}}}_{i}}+\frac{\partial S}{\partial t}} \right]\Delta t \right\} \]
+
+Откуда, переходя к пределу при $ \Delta t \to 0 $, получим нелинейное дифференциальное уравнение Беллмана в частных производных относительно неизвестной функции $S\left( t,x \right)$:
+\begin{equation}\label{equ:dyn_prog:Bellman}
+\underset{u\in U}{\mathop{\min }}\,\left\{ F\left( x,u,t \right)+\left[ \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\cdot {{\varphi }_{i}}\left( x,u,t \right)+\frac{\partial S}{\partial t}} \right] \right\}=0
+\end{equation}
+
+Необычность этого уравнения в том, что оно содержит операцию минимизации. Регулярных аналитических методов решения таких уравнений нет. Однако, Лётов~А.\=,М. предложил методику поиска $ u^\textit{о} (t) = u \left( \frac{ \partial S(x,t) }{ \partial x } \right) $, \vspace{0.5ex} тогда уравнение \eqref{equ:dyn_prog:Bellman} становится обычным уравнением в частных производных:
+\[ F(x,u,t) + grad_{x}^{T} \=, S(x,t) \cdot \Phi (x,u) + \frac{ \partial S(x,t) }{ \partial t } = 0 \]
+с граничным условием $ S \bigl( x^\textit{о}, T \bigr) = 0 $.
+
+Если $ S(x) $ не зависит явным образом от $t$, то $\frac{\partial S}{\partial t}=0$ и поиск оптимального управления можно производить по уравнению:
+\[ \frac{ \partial F(x,u,t) }{ \partial u_j } + \sum\limits_{i=1}^{n}{\frac{\partial S}{\partial {{x}_{i}}}\frac{\partial {{\varphi }_{i}}}{\partial {{u}_{j}}}} = 0 \]
+
+Такой подход наиболее подходит, когда ищется решение для линейно\-/квадратичных задач и вспомогательная функция берётся в виде квадратичной формы $ S(x) = \sum\limits_{i,j=1}^{n} A_{ij} x_i x_j $.
+
+\begin{problem}
+\[ T \dot{x} + x = Ku \enskip \Rightarrow \enskip \dot{x} = ax + bu \]
+\[ \min \int\limits_{0}^{ \infty } \bigl( qx^2 + ru^2 \bigr) \=, dt, \qquad S(x) = Ax^2 \]
+Тогда функциональное уравнение Беллмана запишется в виде:
+\[ qx^2 + ru^2 + (ax+bu) \cdot \frac{\partial S}{\partial x} = 0 \]
+\[ 2ru + b\frac{\partial S}{\partial x} = 0 \enskip \Rightarrow \enskip u^\textit{о} (t) = - \frac{b}{2r} \frac{\partial S}{\partial x} = \underbrace{-\frac{b}{r}A}_{K_\textit{ос}} x(t) \]
+Для нахождения $A$ и $ K_\textit{ос} $:
+\[ qx^2 + r{ \left( -\frac{b}{r}Ax \right) }^2 + \biggl( ax + b\Bigl( -\frac{b}{r}Ax \Bigr) \biggr) Ax = 0 \]
+Возведя в квадрат, вынеся $x$ и сгруппировав, получим:
+\[ b^2 A^2 - 2arA - qr = 0 \]
+\[ A = \frac{ r \left( a \pm \sqrt{ a^2 + b^2 q/r } \right) }{ b^2 } \qquad (A>0) \]
+\[ K_\textit{ос} = -\frac{b}{r}A = \frac{ -a - \sqrt{ a^2 + b^2 q/r } }{b} \]
+\end{problem}
+
+Подводя итог, применение метода для задачи в форме Лагранжа можно сформулировать в виде алгоритмической процедуры:
 \begin{enumerate}
-\item Составить функцию Беллмана
-\\$B\left( t,x,u,\frac{\partial S\left( x,t \right)}{\partial x} \right)=F\left( x,u,t \right)+grad_{x}^{T}S\left( x,t \right)\Phi \left( x,u,t \right)$
-\item Максимизировать функцию Беллмана по $u\in U$
-\\$\underset{u\in U}{\mathop{\min }}\,B\left( t,x,u,\frac{\partial S}{\partial x} \right)={{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)$, определяя управление, как явную функцию вектора состояния и $\frac{\partial S}{\partial x}$
-\item Составить уравнение Беллмана 
-\\${{B}^{*}}\left( t,x,\frac{\partial S}{\partial x} \right)+\frac{\partial S\left( {{x}^{*}},t \right)}{\partial t}=0$, $S\left( {{x}^{*}},T \right)=0$
-\item Решением этого уравнения является функция $S\left( {{x}^{*}},T \right)$, по которой определяются  $\frac{\partial S}{\partial x}$, а затем искомое оптимальное управление  ${{u}^{*}}=u\left( {{x}^{*}},\frac{\partial S}{\partial x} \right)$.
-\end{enumerate} 
-\ExampleMy Примем эту процедуру для управляемого объекта:
-\\$\dot{x}=Ax+bu$ $x\left( 0 \right)={{x}_{0}}$ без ограничений на $u$ $x$ $\underset{u}{\mathop{\min }}\,J\left( x,u \right)=\int\limits_{0}^{T}{\left( {{x}^{2}}+c{{u}^{2}} \right)}dt$ - задача Лагранжа с фиксированным временем и подвижным правым концом.
-\\При этом естественно искать решение в классе линейных функций $u\left( t \right)=K\left( t \right)-x\left( t \right)$
-\begin{enumerate}
-\item Составим функцию Беллмана $B={{x}^{2}}+c{{u}^{2}}+\frac{\partial S\left( x,t \right)}{\partial x}\left( ax+bu \right)$
-\item Найдём её минимум $\frac{\partial B}{\partial u}=2cu\left( t \right)+b\frac{\partial S\left( x,t \right)}{\partial x}=0\to {{u}^{*}}=-\frac{b}{2c}\frac{\partial S\left( x,t \right)}{\partial x}$
-\\$\frac{{{\partial }^{2}}B}{\partial {{u}^{2}}}=2c>0$ - достаточность выполнения
-\item Составим дифференциальное уравнение Беллмана, подставляя вместо $u\leftrightarrow {{u}^{*}}$
-${{x}^{2}}-\frac{{{b}^{2}}}{c}{{\left( \frac{\partial S}{\partial x} \right)}^{2}}\left( \frac{1}{4}-\frac{1}{2} \right)+ax\frac{\partial S}{\partial x}+\frac{\partial S}{\partial t}=0$, $S\left( x\left( t \right),t \right)=0$, это нелинейное уравнение 1 порядка в частных производных, в общем случае с труднонаходимым решением. Однако, если решение ищется как линейное, то $s\left( t \right)=p\left( t \right){{x}^{2}}$. Составим уравнение относительно новой неизвестной $p\left( t \right)$:
-\\$\frac{\partial S}{\partial x}=2p\left( t \right)\cdot x$ ${{u}^{*}}=-\frac{b}{c}p\left( t \right)\cdot x$
-\\${{x}^{2}}\left( \dot{p}\left( t \right)-\frac{{{b}^{2}}}{4{{c}^{2}}}\cdot 4{{p}^{2}}\left( t \right)-2ap\left( t \right)+1 \right)=0$, $p\left( T \right)=0$ - в скобках нелинейное дифференциальное уравнение 1 порядка - типа Риккати с граничным условием на правом конце. Это уравнение можно решить методом разделения переменных. В итоге получаем:
-\\$p\left( t \right)={{p}_{1}}{{p}_{2}}{}^{\left( 1-\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}/{}_{\left( {{p}_{2}}-{{p}_{1}}\exp \left( -\frac{{{b}^{2}}}{{{c}^{2}}}\left( {{p}_{1}}-{{p}_{2}} \right)\left( T-t \right) \right) \right)}$ где ${{p}_{1}}$, ${{p}_{2}}$ корни уравнения $\frac{{{b}^{2}}}{{{c}^{2}}}-{{p}^{2}}\left( t \right)+2ap\left( t \right)-1=0$. Если $T\to \infty $, то $p\left( t \right)\Rightarrow \left\{ \begin{array}{*{35}{l}}
-   {{p}_{1}} $, если ${{p}_{1}}>{{p}_{2}}$   
-$   \\{{p}_{2}}$, если ${{p}_{2}}>{{p}_{1}}$   
-$ \\\end{array} \right.$, т.е. $p\left( t \right)=\max \left( {{p}_{2}},{{p}_{1}} \right)$ 
+\item составить функцию Беллмана
+\[ B \left( t, x, u, \frac{ \partial S(x,t) }{ \partial x } \right) = F(x,u,t) + grad_{x}^{T} \=, S(x,t) \cdot \Phi (x,u,t) \]
+\item минимизировать функцию Беллмана по $ u \in U $
+\[ \underset{ u \in U }{ \min } \=, B \left( t, x, u, \frac{ \partial S }{ \partial x } \right) = B^* \left( t, x, \frac{\partial S}{\partial x} \right) , \]
+определяя управление, как явную функцию $ x $ и $ \frac{\partial S}{\partial x} $
+\[ u^* = u \left( x^*, \frac{\partial S}{\partial x} \right) \]
+\item составить уравнение Беллмана
+\[ B^* \left( t, x, \frac{\partial S}{\partial x} \right) + \frac{ \partial S \bigl( x^*, t \bigr) }{\partial t} = 0, \quad S \bigl( x^*, T \bigr) = 0 \]
+\item решением этого уравнения является функция $ S(x,t) $, по которой определяются  $ \frac{\partial S}{\partial x} $, а затем искомое оптимальное управление  $ u^* = u \left( x^*, \frac{\partial S}{\partial x} \right)$.
 \end{enumerate}
+
+\begin{problem}
+
+Применим эту процедуру для управляемого объекта:
+\[ \dot{x} = Ax + bu, \quad x(0) = x_0 \]
+\[ \underset{u}{ \min } \=, J(x,u) = \int\limits_{0}^{T} \bigl( x^2 + cu^2 \bigr) \=, dt \]
+
+Это задача Лагранжа с фиксированным временем и подвижным правым концом. При этом естественно искать решение в классе линейных функций $ u(t) = K(t) \cdot x(t) $.
+
+\begin{enumerate}
+\item Составим функцию Беллмана
+\[ B = x^2 + cu^2 + \frac{\partial S(x,t)}{\partial x} (ax+bu) \]
+\item Найдём её минимум
+\[ \frac{\partial B}{\partial u} = 2cu(t) + b\frac{\partial S(x,t)}{\partial x} = 0 \enskip \Rightarrow \enskip u^* = -\frac{b}{2c} \frac{\partial S(x,t)}{\partial x} \]
+\[ \frac{ \partial ^2 B }{ \partial u^2 } = 2c > 0 \enskip \Rightarrow \enskip \text{достаточность выполнена} \]
+\item Составим дифференциальное уравнение Беллмана, подставляя $ u^* $ вместо $ u $
+\[ x^2 - \frac{b^2}{c} { \left( \frac{\partial S}{\partial x} \right) }^2 \left( \frac{1}{4} - \frac{1}{2} \right) + ax \frac{\partial S}{\partial x} + \frac{\partial S}{\partial t} = 0, \quad S \bigl( x(T), T \bigr) = 0 \] 
+\end{enumerate}
+
+Это нелинейное уравнение первого порядка в частных производных, в общем случае с труднонаходимым решением. Однако, если решение ищется как линейное, то $ S(t) = p(t) x^2 $. Составим уравнение относительно новой неизвестной $ p(t) $:
+\[ \frac{\partial S}{\partial x} = 2p(t) \cdot x, \quad u^* = -\frac{b}{c} p(t) \cdot x \]
+\[ x^2 \left( \dot{p}(t) - \frac{b^2}{4c^2} \cdot 4p^2(t) - 2ap(t) + 1 \right) = 0, \quad p(T) = 0 \]
+
+В скобках нелинейное дифференциальное уравнение первого порядка типа Риккати с граничным условием на правом конце. Это уравнение можно решить методом разделения переменных, и решение принимает вид:
+\[ p(t) = p_1 p_2 \frac{ 1 - \exp \left( -\frac{b^2}{c^2} \cdot \bigl( p_1 - p_2 \bigr) (T-t) \right) }{ p_2 - p_1 \exp \left( -\frac{b^2}{c^2} \cdot \bigl( p_1 - p_2 \bigr) (T-t) \right) } , \]
+где $ p_1 $, $ p_2 $ --- корни уравнения $ \frac{b^2}{c^2} p^2 (t) + 2ap(t) - 1 = 0 $. Если $ T \to \infty $, то $ p(t) = \max \bigl( p_1, p_2 \bigr) $.
+
+\end{problem}
+
 \ExampleMy Рассмотрим задачу Лагранжа с закрепленными концами и свободным временем для произвольной динамической системы: $\sum\nolimits_{n}{{}}$: $\dot{x}=\Phi \left( x,u \right)$, $x\left( 0 \right)={{x}_{0}}$, $x\left( T \right)={{x}_{k}}$, $u\in U$. 
 \par Следует найти допустимое управление, переводящее эту систему из ${{x}_{0}}$ в ${{x}_{k}}$, так чтобы критерий качества $J\left( x,u,T \right)=\int\limits_{0}^{T}{F\left( x,u \right)}dt\to $ принимал наименьшее значение. Для решения этой задачи согласно процедуре метода введём функцию $R\left( x \right)$, которая совпадает с наименьшим значением критерия вдоль оптимальной траектории. Эта функция зависит только от текущего состояния. Уравнение Беллмана в этом случае принимает вид $\underset{u\in U}{\mathop{\min }}\,\left[ F\left( x\left( t \right),u\left( t \right) \right)+grad_{x}^{T}R\left( x \right)\Phi \left( x\left( t \right),u\left( t \right) \right) \right]=0$
 \par Задача максимального быстродействия является частным случаем сформулированной задачи Лагранжа с закрепленными концами и свободным временем, если положить в ней $F\left( x,u \right)\equiv 1$. Содержательный смысл функции $R\left( x \right)$ - наименьшее время перевода системы из текущего состояния $x\left( t \right)$ до цели ${{x}_{k}}$. Уравнение Беллмана для этой задачи принимает вид 
