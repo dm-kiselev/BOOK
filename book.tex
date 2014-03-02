@@ -1319,7 +1319,7 @@ s_{N-1} \bigl( x_{N-2} \bigr) = \underset{ u_{N-1}^\textit{о} \in U }{ \min } \
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
 	\subsection{Основные понятия\label{stochastic:general}}
-\par При оптимальном управлении реальными объектами теория детерминированного управления, определяющая закон управления как функцию времени и фазовых координат часто не применима, т.к. на ОУ действуют различные случайные возмущения, начальные значения координат произвольные, текущие значения не могут быть полностью измерены. В этом случае необходимо применять статистические методы, основанные на работах Н.Винера, А.Н.Колмогорова, Р.Каллмана и др. При проектировании таких систем прежде всего важна точность управления, т.е. точность воспроизведения полезного входного сигнала, оцениваемая по величине ошибки: $\varepsilon \left( t,\tau  \right)=V\left( t+\tau  \right)-y\left( t \right)$, причём в зависимости от величины $\tau$ выделяют:
+\par При оптимальном управлении реальными объектами теория детерминированного управления, определяющая закон управления как функцию времени и фазовых координат часто не применима, т.к. на ОУ действуют различные случайные возмущения, начальные значения координат произвольные, текущие значения не могут быть полностью измерены. В этом случае необходимо применять статистические методы, основанные на работах Н.~Винера, А.\=,Н.~Колмогорова, Р.~Калмана и др. При проектировании таких систем прежде всего важна точность управления, т.е. точность воспроизведения полезного входного сигнала, оцениваемая по величине ошибки: $\varepsilon \left( t,\tau  \right)=V\left( t+\tau  \right)-y\left( t \right)$, причём в зависимости от величины $\tau$ выделяют:
 \begin{itemize}
 \item При $\tau =0$, ошибка фильтрации
 \item При $\tau <0$, ошибка сглаживания
@@ -1332,60 +1332,103 @@ s_{N-1} \bigl( x_{N-2} \bigr) = \underset{ u_{N-1}^\textit{о} \in U }{ \min } \
    y=Cx+f  \\
 \end{array} \right.\]
 \\где $V$, $x\left( 0 \right)$ и $f$ (уставка, начальное состояние и помехи приведенные к выходу), считаются случайными сигналами с известными характеристиками. В стандартной постановке они либо переменные с нулевым средним $M\left\{ {} \right\}=0$ и заданной дисперсией 
-$M\left\{ {{x}^{T}}\left( 0 \right)x\left( 0 \right) \right\}={{Q}_{x}}$ (вид "белого" шума), либо результат его обработки дополнительной динамической структурой с известными параметрами:
+$M\left\{ {{x}^{T}}\left( 0 \right)x\left( 0 \right) \right\}={{Q}_{x}}$ (вид  \glqqбелого\grqq шума), либо результат его обработки дополнительной динамической структурой с известными параметрами:
 \[\left\{ \begin{array}{*{35}{l}}
-   {{{\dot{z}}}_{1}}={{A}_{V}}{{z}_{1}}+{{\mu }_{1}}\left( t \right)$, где ${{\mu }_{1}}\left( t \right)$- "белые" шумы интенсивностью ${{Q}_{\mu }}$   
+   {{{\dot{z}}}_{1}}={{A}_{V}}{{z}_{1}}+{{\mu }_{1}}\left( t \right)$, где ${{\mu }_{1}}\left( t \right)$- \glqqбелые\grqq шумы интенсивностью ${{Q}_{\mu }}$   
    $\\V={{\mathbb{C}}_{V}}\cdot {{z}_{1}}$   
 $\\\end{array} \right.\]
 
 \[\left\{ \begin{array}{*{35}{l}}
-   {{{\dot{z}}}_{2}}={{A}_{f}}{{z}_{2}}+{{\mu }_{2}}\left( t \right)$, где ${{\mu }_{2}}\left( t \right)$- "белые" шумы интенсивностью ${{Q}_{f}}$ 
+   {{{\dot{z}}}_{2}}={{A}_{f}}{{z}_{2}}+{{\mu }_{2}}\left( t \right)$, где ${{\mu }_{2}}\left( t \right)$- \glqqбелые\grqq шумы интенсивностью ${{Q}_{f}}$ 
    $\\f={{\mathbb{C}}_{f}}\cdot {{z}_{2}}$
 $ \\\end{array} \right.\]
 \par Шумы ${{\mu }_{1}}\left( t \right)$ и ${{\mu }_{2}}\left( t \right)$ независимы, в силу своего происхождения. Необходимо найти управление, обеспечивающее отслеживание уставки $V\left( t \right)$ с минимизацией критерия качества: \[\min J=M\left\{ \int\limits_{0}^{T}{\left( {{\varepsilon }^{T}}Q\varepsilon +{{u}^{T}}Ru \right)dt} \right\}\]
 \par Как мы видим критерий может быть расширен и включать в себя не только требования минимизации дисперсии, но и экономию управляющего воздействия.  
 
 	\subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
-Величину дисперсии ошибки фильтрации $J=M\left\{ {{\varepsilon }^{2}}\left( t \right) \right\}$ можно найти по её автокорреляционной функции ${{R}_{\varepsilon }}\left( \tau  \right)$ или спектральной плотности ${{S}_{\varepsilon }}\left( \omega  \right)$
-\\$M\left\{ {{\varepsilon }^{2}} \right\}={{R}_{\varepsilon }}\left( 0 \right)=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{{{S}_{\varepsilon }}\left( \omega  \right)d\omega }$
+\par Величину дисперсии ошибки фильтрации $J=M\left\{ {{\varepsilon }^{2}}\left( t \right) \right\}$ можно найти по её автокорреляционной функции ${{R}_{\varepsilon }}\left( \tau  \right)$ или спектральной плотности ${{S}_{\varepsilon }}\left( \omega  \right)$.
+\[M\left\{ {{\varepsilon }^{2}} \right\}={{R}_{\varepsilon }}\left( 0 \right)=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{{{S}_{\varepsilon }}\left( \omega  \right)d\omega }\]
 \par Спектральную плотность ошибки фильтрации можно найти зная спектральные плотности задающего сигнала (уставки) ${{S}_{V}}$ и помехи ${{S}_{f}}$, приведенной ко входу замкнутой системы:
-${{S}_{\varepsilon }}\left( \omega  \right)={{\left| W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| 1-W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)={{\left| 1-{{W}_{\textit{з}}}\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| {{W}_{\textit{з}}}\left( p \right) \right|}^{3}}{{S}_{f}}\left( \omega  \right)$  
-\\$W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, для системы с единичной отрицательной обратной связью, если помеха не приведена ко входу, то вместо $W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, используют выражение $\frac{{{W}_{fy}}}{1+{{W}_{p}}}$.
+\begin{multline*}
+{{S}_{\varepsilon }}\left( \omega  \right)={{\left| W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| 1-W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)=\\{{\left| 1-{{W}_{\textit{з}}}\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| {{W}_{\textit{з}}}\left( p \right) \right|}^{3}}{{S}_{f}}\left( \omega  \right)  
+\end{multline*}
+
+$W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, для системы с единичной отрицательной обратной связью, если помеха не приведена ко входу, то вместо $W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, используют выражение $\frac{{{W}_{fy}}}{1+{{W}_{p}}}$.
 \par Выражение для спектральной плотности ошибки является дробно-рациональным, вычисления которого можно выполнить по таблицам Мак-Ленна или используя прямой матричный метод:
-\underline{Напоминание:} Случайная величина - есть функция результата опыта или наблюдения, взятая из пространства элементарных событий. Задаются плотностью вероятностей $f\left( x \right)$ и функцией распределения $F\left( x \right)=\int\limits_{-\infty }^{x}{f\left( x \right)}dx$. Числовыми характеристиками являются математическое ожидание, дисперсия и вообще остальные моменты распределения.
+\\
+\\
+\underline{Напоминание:} Случайная величина - есть функция результата опыта или наблюдения, взятая из пространства элементарных событий. Задаются плотностью вероятностей $f\left( x \right)$ и функцией распределения \[F\left( x \right)=\int\limits_{-\infty }^{x}{f\left( x \right)}dx\] 
+Числовыми характеристиками являются математическое ожидание, дисперсия и вообще остальные моменты распределения.
 \\Случайный процесс - есть случайная функция независимой переменной $t$ - можно рассматривать как совокупность случайных величин $\left\{ x\left( {{t}_{1}} \right),x\left( {{t}_{1}} \right)..x \right\}$ в момент времени ${{t}_{1}},{{t}_{2}},...$ и соответственно описывается совокупность совместных распределений случайной величины для всевозможных моментов времени ${{t}_{1}}$.
-\\Для этого используются автокорреляционные функции 
-\\$M\left\{ \left[ x\left( {{t}_{1}} \right)-m\left( {{t}_{1}} \right) \right]\left[ x\left( {{t}_{2}} \right)-m\left( {{t}_{2}} \right) \right] \right\}={{R}_{x}}\left( {{t}_{1}},{{t}_{2}} \right)={{R}_{x}}\left( {{t}_{2}}-{{t}_{1}} \right)={{R}_{x}}\left( \tau  \right)$ 
-\\Взаимокорреляционные функции:
-\\$M\left\{ \left[ x\left( {{t}_{1}} \right)-{{m}_{x}}\left( {{t}_{1}} \right) \right]\left[ y\left( {{t}_{2}}={{t}_{1}}+\tau  \right)-{{m}_{y}}\left( {{t}_{2}} \right) \right] \right\}={{R}_{xy}}\left( \tau  \right)$, при этом ${{\left| {{R}_{xy}}\left( \tau  \right) \right|}^{2}}\le {{R}_{x}}\left( 0 \right){{R}_{y}}\left( 0 \right)={{D}_{x}}{{D}_{y}}$
-\\${{R}_{xy}}\left( \tau  \right)=\int\limits_{-\infty }^{+\infty }{\omega \left( t \right)}\cdot {{R}_{x}}\left( \tau -t \right)dt$
-\\Или спектральные плотности, как преобразование Фурье от корреляционной функции ${{S}_{x}}\left( \omega  \right)=F\left( {{R}_{x}}\left( \tau  \right) \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{x}}}\left( \tau  \right)\exp \left( -j\omega \tau  \right)d\tau \cdot \int\limits_{0}^{+\infty }{{{R}_{x}}}\left( \tau  \right)\cos \left( \omega \tau  \right)d\tau $ $\left( {{S}_{x}}\left( \omega  \right)\ge 0,{{S}_{x}}\left( \omega  \right)={{S}_{x}}\left( -\omega  \right) \right)$ и взаимные спектральные плотности. 
-\\${{S}_{xy}}\left( \omega  \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{xy}}\exp \left( -j\omega \tau  \right)}d\tau $
-\\Наиболее интересующие нас процессы:
+\\
+\\
+Для этого используются:
+\begin{itemize}
+\item Автокорреляционные функции: 
+\[M\left\{ \left[ x\left( {{t}_{1}} \right)-m\left( {{t}_{1}} \right) \right]\left[ x\left( {{t}_{2}} \right)-m\left( {{t}_{2}} \right) \right] \right\}={{R}_{x}}\left( {{t}_{1}},{{t}_{2}} \right)={{R}_{x}}\left( {{t}_{2}}-{{t}_{1}} \right)={{R}_{x}}\left( \tau  \right)\] 
+\item Взаимокорреляционные функции:
+\[M\left\{ \left[ x\left( {{t}_{1}} \right)-{{m}_{x}}\left( {{t}_{1}} \right) \right]\left[ y\left( {{t}_{2}}={{t}_{1}}+\tau  \right)-{{m}_{y}}\left( {{t}_{2}} \right) \right] \right\}={{R}_{xy}}\left( \tau  \right)\]
+при этом \[{{\left| {{R}_{xy}}\left( \tau  \right) \right|}^{2}}\le {{R}_{x}}\left( 0 \right){{R}_{y}}\left( 0 \right)={{D}_{x}}{{D}_{y}}\]
+\[{{R}_{xy}}\left( \tau  \right)=\int\limits_{-\infty }^{+\infty }{\omega \left( t \right)}\cdot {{R}_{x}}\left( \tau -t \right)dt\]
+\item Cпектральные плотности, как преобразование Фурье от корреляционной функции:
+\[{{S}_{x}}\left( \omega  \right)=F\left( {{R}_{x}}\left( \tau  \right) \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{x}}}\left( \tau  \right)\exp \left( -j\omega \tau  \right)d\tau \cdot \int\limits_{0}^{+\infty }{{{R}_{x}}}\left( \tau  \right)\cos \left( \omega \tau  \right)d\tau \]
+\[{{S}_{x}}\left( \omega  \right)\ge 0,{{S}_{x}}\left( \omega  \right)={{S}_{x}}\left( -\omega  \right)\] 
+\item Взаимные спектральные плотности: 
+\[{{S}_{xy}}\left( \omega  \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{xy}}\exp \left( -j\omega \tau  \right)}d\tau\]
+\end{itemize}
+
+
+Наиболее интересующие нас процессы:
 \begin{enumerate}
-\item "Белый" шум: имеет $S\left( \omega  \right)={{a}^{2}}\left( {{N}^{2}} \right)$ - постоянную спектральную плотность и $R\left( \tau  \right)={{a}^{2}}\delta $, ${{D}_{\text{БШ}}}=R\left( \tau  \right)={{a}^{2}}\delta =\frac{1}{\pi }\int\limits_{0}^{\infty }{{{a}^{2}}}d\omega $ 
-\\Идеализация  случайного сигнала - БШ допустима тогда, когда в полосе пропускания линейной системы спектральная плотность входного воздействия меняется мало, что имеет место, когда эффективная полоса пропускания системы более узкая по сравнению с полосой частот входного воздействия.
-\item Альтернативной является $x=C$ - константа. ${{R}_{c}}\left( \tau  \right)={{\mathbb{C}}^{2}}={{D}_{c}}$ тогда ${{S}_{c}}\left( \omega  \right)$ существует только на нулевой частоте и равна  
-${{S}_{c}}\left( \omega  \right)=2\int\limits_{0}^{\infty }{{{c}^{2}}}\cos \left( \omega \tau  \right)d\tau =\left. 2{{c}^{2}}\frac{\sin \left( \omega \tau  \right)}{\omega } \right|_{0}^{\infty }=2{{c}^{2}}\pi \delta \left( \omega  \right)$
+\item  \glqqБелый\grqq шум: имеет $S\left( \omega  \right)={{a}^{2}}\left( {{N}^{2}} \right)$ - постоянную спектральную плотность и $R\left( \tau  \right)={{a}^{2}}\delta $, ${{D}_{\text{БШ}}}=R\left( \tau  \right)={{a}^{2}}\delta =\frac{1}{\pi }\int\limits_{0}^{\infty }{{{a}^{2}}}d\omega $. 
+Идеализация  случайного сигнала - БШ допустима тогда, когда в полосе пропускания линейной системы спектральная плотность входного воздействия меняется мало, что имеет место, когда эффективная полоса пропускания системы более узкая по сравнению с полосой частот входного воздействия.
+\item Альтернативной является $x=C$ - константа. ${{R}_{c}}\left( \tau  \right)={{\mathbb{C}}^{2}}={{D}_{c}}$ тогда ${{S}_{c}}\left( \omega  \right)$ существует только на нулевой частоте и равна:  
+\[{{S}_{c}}\left( \omega  \right)=2\int\limits_{0}^{\infty }{{{c}^{2}}}\cos \left( \omega \tau  \right)d\tau =\left. 2{{c}^{2}}\frac{\sin \left( \omega \tau  \right)}{\omega } \right|_{0}^{\infty }=2{{c}^{2}}\pi \delta \left( \omega  \right)\]
 \par Соотношение между спектральной плотностью $S\left( \omega  \right)$ и корреляционной функцией $R\left( \tau  \right)$, аналогично связи между частотой и переходной характеристиками: чем шире график корреляционной функции тем уже график спектральной плотности и наоборот.
-\item Случайный процесс с корреляционной функцией экспонент ${{R}_{x}}\left( \tau  \right):{{D}_{x}}\exp \left( -\lambda \tau  \right)$, $\lambda =\frac{1}{T}$ - параметр затухания - имеет быстрый случайный процесс принимающий значение $\pm A\left( {{D}_{\lambda }}={{A}^{2}} \right)$ где смена знака происходит в соответствии с пуассоновским случайным процессом с параметром $0.5\lambda $.
-\\Спектральная плотность ${{S}_{x}}\left( \omega  \right)={{A}^{2}}\left( \int\limits_{-\infty }^{0}{\exp \left( \lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -\lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$
-\\Такой процесс может быть получен из БШ путём пропускания через динамическое звено: пусть ${{S}_{\text{БШ}}}=1$ ${{S}_{x}}\left( \omega  \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$ $S\left( j\omega  \right)=\frac{A\sqrt{2\lambda }}{j\omega +\lambda }$, т.к.  ${{S}_{x}}\left( \omega  \right)={{\left| W\left( j\omega  \right) \right|}^{2}}{{S}_{БШ}}$ то ${{S}_{x}}\left( \omega  \right)=\underbrace{S\left( j\omega  \right)S\left( -j\omega  \right)}_{\text{факторизация}}=W\left( j\omega  \right)W\left( -j\omega  \right)$, следовательно $W\left( p \right)={{\left. W\left( j\omega  \right) \right|}_{j\omega =p}}=S\left( j\omega  \right)$ 
+\item Случайный процесс с корреляционной функцией экспонент ${{R}_{x}}\left( \tau  \right):$
+${{D}_{x}}\exp \left( -\lambda \tau  \right)$, $\lambda =\frac{1}{T}$ (параметр затухания) - имеет быстрый случайный процесс принимающий значение $\pm A\left( {{D}_{\lambda }}={{A}^{2}} \right)$ где смена знака происходит в соответствии с пуассоновским случайным процессом с параметром $0.5\lambda $.
+Спектральная плотность: 
+\begin{multline*}
+{{S}_{x}}\left( \omega  \right)={{A}^{2}}\left( \int\limits_{-\infty }^{0}{\exp \left( \lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau+\int\limits_{0}^{+\infty }{\exp \left( -\lambda \tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)\\=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}
+\end{multline*}
+\par Такой процесс может быть получен из БШ путём пропускания через динамическое звено: 
+\\Пусть ${{S}_{\text{БШ}}}=1$,
+${{S}_{x}}\left( \omega  \right)=\frac{2{{A}^{2}}\lambda }{{{\omega }^{2}}+{{\lambda }^{2}}}$,
+ $S\left( j\omega  \right)=\frac{A\sqrt{2\lambda }}{j\omega +\lambda }$, т.к.  ${{S}_{x}}\left( \omega  \right)={{\left| W\left( j\omega  \right) \right|}^{2}}{{S}_{БШ}}$, то
+\[{{S}_{x}}\left( \omega  \right)=\underbrace{S\left( j\omega  \right)S\left( -j\omega  \right)}_{\text{факторизация}}=W\left( j\omega  \right)W\left( -j\omega  \right)\]
+следовательно: 
+\[W\left( p \right)={{\left. W\left( j\omega  \right) \right|}_{j\omega =p}}=S\left( j\omega  \right)\]
 \end{enumerate}
-\ExampleMy Желаемое ${{R}_{\rho }}\left( \tau  \right)=25\exp \left( -0.4\left| \tau  \right| \right)\to {{S}_{\rho }}\left( \omega  \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)$ $=25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|$ - это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
-\\Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
-\\Пусть $S\left( \omega  \right)=\frac{B\left( j\omega  \right)}{A\left( j\omega  \right)A\left( -j\omega  \right)}=\frac{{{b}_{0}}{{\left( j\omega  \right)}^{2n-2}}+...+{{b}_{n-1}}}{\left( {{a}_{0}}{{\left( j\omega  \right)}^{n}}+{{a}_{1}}{{\left( j\omega  \right)}^{n-1}}+...+{{a}_{n}} \right)\left( {{a}_{0}}{{\left( -j\omega  \right)}^{n}}+...+{{a}_{n}} \right)}$, где степень полинома числителя на 1 меньше степени знаменателя. Тогда фрагмент таблицы Мак-Лена:
-\\при $n=1\to {{I}_{1}}=\frac{{{b}_{0}}}{2{{a}_{0}}{{a}_{1}}}$ 
-\\при $n=2\to {{I}_{2}}=\frac{-{{b}_{0}}{{a}_{2}}+{{a}_{0}}{{b}_{1}}}{2{{a}_{0}}{{a}_{1}}{{a}_{2}}}$
-\\при $n=3\to I=\frac{\left( -{{b}_{0}}{{a}_{2}}{{a}_{3}}+{{b}_{1}}{{a}_{0}}{{a}_{3}}-{{b}_{2}}{{a}_{0}}{{a}_{1}} \right)}{2{{a}_{0}}{{a}_{3}}\left( {{a}_{0}}{{a}_{3}}-{{a}_{1}}{{a}_{2}} \right)}$
-\\Или матричным методом: 
-\\$\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{S\left( \omega  \right)}d\omega ={{\left( -1 \right)}^{n+1}}\cdot \frac{N}{2{{a}_{0}}G}$, где $G$ - определитель матрицы Гурвица многочлена  
-$A\left( j\omega  \right)\left| \begin{matrix}
+\begin{problem}
+Желаемое ${{R}_{\rho }}\left( \tau  \right)=25\exp \left( -0.4\left| \tau  \right| \right)$, следовательно 
+\begin{multline*}
+{{S}_{\rho }}\left( \omega  \right)=25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4\tau  \right)\exp \left( -j\omega \tau  \right)d\tau }} \right)=
+\\25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)=
+\\25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=
+\\\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|.
+\end{multline*}
+Это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
+Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
+\\Пусть
+\begin{multline*}
+S\left( \omega  \right)=\frac{B\left( j\omega  \right)}{A\left( j\omega  \right)A\left( -j\omega  \right)}=\\\frac{{{b}_{0}}{{\left( j\omega  \right)}^{2n-2}}+...+{{b}_{n-1}}}{\left( {{a}_{0}}{{\left( j\omega  \right)}^{n}}+{{a}_{1}}{{\left( j\omega  \right)}^{n-1}}+...+{{a}_{n}} \right)\left( {{a}_{0}}{{\left( -j\omega  \right)}^{n}}+...+{{a}_{n}} \right)}
+\end{multline*}
+где степень полинома числителя на 1 меньше степени знаменателя. Тогда фрагмент таблицы Мак-Лена:
+\begin{itemize}
+\item При $n=1\to {{I}_{1}}=\frac{{{b}_{0}}}{2{{a}_{0}}{{a}_{1}}}$ 
+\item При $n=2\to {{I}_{2}}=\frac{-{{b}_{0}}{{a}_{2}}+{{a}_{0}}{{b}_{1}}}{2{{a}_{0}}{{a}_{1}}{{a}_{2}}}$
+\item При $n=3\to I=\frac{\left( -{{b}_{0}}{{a}_{2}}{{a}_{3}}+{{b}_{1}}{{a}_{0}}{{a}_{3}}-{{b}_{2}}{{a}_{0}}{{a}_{1}} \right)}{2{{a}_{0}}{{a}_{3}}\left( {{a}_{0}}{{a}_{3}}-{{a}_{1}}{{a}_{2}} \right)}$
+\end{itemize}
+\vspace{\baselineskip}
+Или решая матричным методом: 
+\[\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{S\left( \omega  \right)}d\omega ={{\left( -1 \right)}^{n+1}}\cdot \frac{N}{2{{a}_{0}}G}\]
+где $G$ - определитель матрицы Гурвица многочлена  
+\[A\left( j\omega  \right)\left| \begin{matrix}
    {{a}_{1}} & {{a}_{3}} & {{a}_{5}} & ...  \\
    {{a}_{0}} & {{a}_{2}} & {{a}_{4}} & ...  \\
    ... & ... & ... & ...  \\
-\end{matrix} \right|$
-\\$N$ - определитель матрицы, которая получается из матрицы Гурвица многочлена $A\left( j\omega  \right)$ заменой первой строки коэффициентами многочлена $B\left( j\omega  \right)\left| \begin{matrix}
+\end{matrix} \right|\]
+$N$ - определитель матрицы, которая получается из матрицы Гурвица многочлена $A\left( j\omega  \right)$ заменой первой строки коэффициентами многочлена $B\left( j\omega  \right)$ $ \left|\begin{matrix}
    {{b}_{0}} & {{b}_{1}} & {{b}_{2}} & ...  \\
    ... & ... & ... & ...  \\
 \end{matrix} \right|$ параметризуется для $n=2\to I={{\left( -1 \right)}^{2+1}}\frac{\left| \begin{matrix}
@@ -1395,7 +1438,9 @@ $A\left( j\omega  \right)\left| \begin{matrix}
    {{a}_{1}} & 0  \\
    {{a}_{0}} & {{a}_{2}}  \\
 \end{matrix} \right|}=-\frac{\left( {{b}_{0}}{{a}_{2}}-{{a}_{0}}{{b}_{1}} \right)}{2{{a}_{0}}\left( {{a}_{1}}{{a}_{2}} \right)}$
-\ExampleMy Пусть на систему с передаточной функцией $W\left( p \right)=\frac{1}{Tp+1}$ действует шум со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}$.
+\end{problem}
+\begin{problem}
+Пусть на систему с передаточной функцией $W\left( p \right)=\frac{1}{Tp+1}$ действует шум со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}$.
 \\Найдём дисперсию выходного сигнала:  
 \\${{S}_{y}}\left( \omega  \right)={{\left| W\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)=\frac{1}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}\Rightarrow n=2=\frac{2b}{{{T}^{2}}{{\omega }^{4}}+\left( {{T}^{2}}{{\alpha }^{2}}+1 \right){{\omega }^{2}}+{{\alpha }^{2}}}$
 \\$\left( Tj\omega +1 \right)\left( -Tj\omega +1 \right)\left( \alpha +j\omega  \right)\left( \alpha -j\omega  \right)$
@@ -1413,6 +1458,7 @@ $A\left( j\omega  \right)\left| \begin{matrix}
 \end{matrix} \right|}=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{b}{\left( T\alpha +1 \right)\alpha }$
 \end{enumerate}
 \par Величина оценки $J=M\left\{ {{\varepsilon }^{2}} \right\}$ является функцией параметров системы  $W\left( p,k,T \right)$ и тогда рассматривая производные ${}^{\partial J}/{}_{\partial k}$, ${}^{\partial J}/{}_{\partial T}$ - и приравнивая их к 0 можно определить оптимальные значения параметров передаточной функции.
+\end{problem}
 \ExampleMy На вход замкнутой системы с передаточной функции ${{W}_{\textit{з}}}\left( p \right)=\frac{k}{Tp+1}$, действует полезный случайный сигнал со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{b}{{{\alpha }^{2}}+{{\omega }^{2}}}$ и помеха в виде БШ интенсивностью ${{c}^{2}}$. 
 \\Найти параметр $K$при заданных $T$, $b$,$a$ так, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:
 \\${{S}_{\varepsilon }}\left( \omega  \right)={{\left| 1-{{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( s \right)+{{\left| {{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)=\frac{{{T}^{2}}\omega +{{\left( 1-K \right)}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{b}{{{\omega }^{2}}+{{\alpha }^{2}}}+\frac{{{K}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}{{c}^{2}}$  
