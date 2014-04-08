@@ -1352,40 +1352,44 @@ s_{N-1} \bigl( x_{N-2} \bigr) = \underset{ u_{N-1}^\textit{о} \in U }{ \min } \
 Необходимо найти управление, обеспечивающее отслеживание уставки $ v(t) $ с минимизацией критерия качества:
 \[ \min \=, J = M \left\{ \int\limits_{0}^{T} \bigl( \varepsilon ^T Q \varepsilon + u^T R u \bigr) \=, dt \right\} \]
 
-Как мы видим, критерий может быть расширен и включать в себя не только требование минимизации дисперсии, но и экономии управляющего воздействия.
+Как мы видим, критерий может быть расширен и включать в себя требование не только минимизации дисперсии, но и экономии управляющего воздействия.
 
 	\subsection{Синтез управления с минимальной дисперсией ошибки\label{stochastic:min_error_dispersion}}
-\par Величину дисперсии ошибки фильтрации $J=M\left\{ {{\varepsilon }^{2}}\left( t \right) \right\}$ можно найти по её автокорреляционной функции ${{R}_{\varepsilon }}\left( \tau  \right)$ или спектральной плотности ${{S}_{\varepsilon }}\left( \omega  \right)$.
-\[M\left\{ {{\varepsilon }^{2}} \right\}={{R}_{\varepsilon }}\left( 0 \right)=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{{{S}_{\varepsilon }}\left( \omega  \right)d\omega }\]
-\par Спектральную плотность ошибки фильтрации можно найти зная спектральные плотности задающего сигнала (уставки) ${{S}_{V}}$ и помехи ${{S}_{f}}$, приведенной ко входу замкнутой системы:
-\begin{multline*}
-{{S}_{\varepsilon }}\left( \omega  \right)={{\left| W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| 1-W_{S}^{\varepsilon }\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)=\\{{\left| 1-{{W}_{\textit{з}}}\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)+{{\left| {{W}_{\textit{з}}}\left( p \right) \right|}^{3}}{{S}_{f}}\left( \omega  \right)  
-\end{multline*}
+Величину дисперсии ошибки фильтрации $ J = M \bigl\{ \varepsilon ^2 (t) \bigr\} $ можно найти по её автокорреляционной функции $ R_\varepsilon ( \tau ) $ или спектральной плотности $ S_\varepsilon ( \omega ) $:
+\[ M \bigl\{ \varepsilon ^2 \bigr\} = R_\varepsilon (0) = \frac{1}{ 2 \pi } \int\limits_{ -\infty }^{ \infty } S_\varepsilon ( \omega ) \=, d\omega \]
 
-$W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, для системы с единичной отрицательной обратной связью, если помеха не приведена ко входу, то вместо $W_{\textit{з}}^{\varepsilon }\left( j\omega  \right)=\frac{1}{1+{{W}_{p}}\left( j\omega  \right)}$, используют выражение $\frac{{{W}_{fy}}}{1+{{W}_{p}}}$.
-\par Выражение для спектральной плотности ошибки является дробно-рациональным, вычисления которого можно выполнить по таблицам Мак-Ленна или используя прямой матричный метод:
-\\
-\\
-\underline{Напоминание:} Случайная величина - есть функция результата опыта или наблюдения, взятая из пространства элементарных событий. Задаются плотностью вероятностей $f\left( x \right)$ и функцией распределения \[F\left( x \right)=\int\limits_{-\infty }^{x}{f\left( x \right)}dx\] 
-Числовыми характеристиками являются математическое ожидание, дисперсия и вообще остальные моменты распределения.
-\\Случайный процесс - есть случайная функция независимой переменной $t$ - можно рассматривать как совокупность случайных величин $\left\{ x\left( {{t}_{1}} \right),x\left( {{t}_{1}} \right)..x \right\}$ в момент времени ${{t}_{1}},{{t}_{2}},...$ и соответственно описывается совокупность совместных распределений случайной величины для всевозможных моментов времени ${{t}_{1}}$.
-\\
-\\
+Спектральную плотность ошибки фильтрации можно найти, зная спектральные плотности задающего сигнала (уставки) $ S_v $ и помехи $ S_f $, приведённой ко входу замкнутой системы:
+\begin{multline*}
+S_\varepsilon ( \omega ) = { \bigl| W_\textit{з}^\varepsilon ( j\omega ) \bigr| }^2 S_v ( \omega ) + { \bigl| 1 - W_\textit{з}^\varepsilon ( j\omega ) \bigr| }^{2} S_f ( \omega ) = \\ { \bigl| 1 - W_\textit{з} (p) \bigr| }^2 S_v ( \omega ) + { \bigl| W_\textit{з} (p) \bigr| }^2 S_f ( \omega ) ,
+\end{multline*}
+где $ W_\textit{з}^\varepsilon ( j\omega ) = \frac{1}{ 1 + W_\textit{р} ( j\omega ) } $ (для системы с единичной ООС), если помеха не приведена ко входу, то вместо $ 1 - W_\textit{з}^\varepsilon ( j\omega ) = \frac{ W_\textit{р} }{ 1 + W_\textit{р} } $ используют выражение $ \frac{ W_{fy} }{ 1 + W_\textit{р} } $.
+
+Выражение для спектральной плотности ошибки является дробно-рациональным, вычисление которого можно выполнить по таблицам Мак-Ленна или используя прямой матричный метод.
+
+Случайная величина (СВ) --- есть функция результата опыта или наблюдения, взятая из пространства элементарных событий. Она задаётся плотностью вероятностей $ f(x)$ и функцией распределения $ F(x) = \int\limits_{ -\infty }^x f(x) \=, dx $. Числовыми характеристиками СВ являются математическое ожидание $ M \{ x \} $, дисперсия $ D = M \{ x^2 \} - M^2 \{ x \} $ и вообще остальные моменты распределения.
+
+Случайный процесс (СП) --- есть случайная функция независимой переменной $ t $, его можно рассматривать как совокупность случайных величин $ \Bigl\{ x\bigl( t_1 \bigr), x\bigl( t_2 \bigr) \ldots \Bigr\} $ в моменты времени $ t_1, t_2 \ldots $ и, соответственно, описывается совокупностью совместных распределений случайной величины для всевозможных моментов времени.
+
 Для этого используются:
 \begin{itemize}
-\item Автокорреляционные функции: 
-\[M\left\{ \left[ x\left( {{t}_{1}} \right)-m\left( {{t}_{1}} \right) \right]\left[ x\left( {{t}_{2}} \right)-m\left( {{t}_{2}} \right) \right] \right\}={{R}_{x}}\left( {{t}_{1}},{{t}_{2}} \right)={{R}_{x}}\left( {{t}_{2}}-{{t}_{1}} \right)={{R}_{x}}\left( \tau  \right)\] 
-\item Взаимокорреляционные функции:
-\[M\left\{ \left[ x\left( {{t}_{1}} \right)-{{m}_{x}}\left( {{t}_{1}} \right) \right]\left[ y\left( {{t}_{2}}={{t}_{1}}+\tau  \right)-{{m}_{y}}\left( {{t}_{2}} \right) \right] \right\}={{R}_{xy}}\left( \tau  \right)\]
-при этом \[{{\left| {{R}_{xy}}\left( \tau  \right) \right|}^{2}}\le {{R}_{x}}\left( 0 \right){{R}_{y}}\left( 0 \right)={{D}_{x}}{{D}_{y}}\]
-\[{{R}_{xy}}\left( \tau  \right)=\int\limits_{-\infty }^{+\infty }{\omega \left( t \right)}\cdot {{R}_{x}}\left( \tau -t \right)dt\]
-\item Cпектральные плотности, как преобразование Фурье от корреляционной функции:
-\[{{S}_{x}}\left( \omega  \right)=F\left( {{R}_{x}}\left( \tau  \right) \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{x}}}\left( \tau  \right)\exp \left( -j\omega \tau  \right)d\tau \cdot \int\limits_{0}^{+\infty }{{{R}_{x}}}\left( \tau  \right)\cos \left( \omega \tau  \right)d\tau \]
-\[{{S}_{x}}\left( \omega  \right)\ge 0,{{S}_{x}}\left( \omega  \right)={{S}_{x}}\left( -\omega  \right)\] 
-\item Взаимные спектральные плотности: 
-\[{{S}_{xy}}\left( \omega  \right)=\int\limits_{-\infty }^{+\infty }{{{R}_{xy}}\exp \left( -j\omega \tau  \right)}d\tau\]
+\item автокорреляционные функции
+\[ M \biggl\{ \Bigl[ x \bigl( t_1 \bigr) - m \bigl( t_1 \bigr) \Bigr] \Bigl[ x \bigl( t_2 \bigr) - m \bigl( t_2 \bigr) \Bigr] \biggr\} = R_x \bigl( t_1, t_2 \bigr) = R_x \bigl( t_2 - t_1 = \tau \bigr) \] 
+\item взаимнокорреляционные функции
+\[ M \biggl\{ \Bigl[ x \bigl( t_1 \bigr) - m_x \bigl( t_1 \bigr) \Bigr] \Bigl[ y \bigl( t_2=t_1+\tau \bigr) - m_y \bigl( t_2 \bigr) \Bigr] \biggr\} = R_{xy} ( \tau ) \]
 \end{itemize}
 
+\[ R_{xy} ( \tau ) = R_{xy} ( -\tau ) \]
+\[ { \bigl| R_{xy} ( \tau ) \bigr| }^2 \le R_x(0) R_y(0) = D_x D_y \]
+\[ R_{xy} ( \tau ) = \int\limits_{ -\infty }^{ \infty } \omega (t) \cdot R_x ( \tau - t ) \=, dt \]
+
+Или:
+\begin{itemize}
+\item спектральные плотности, как преобразование Фурье от корреляционной функции,
+\[ S_x ( \omega ) = F \bigl( R_x ( \tau ) \bigr) = \int\limits_{ -\infty }^{ \infty } R_x ( \tau ) e^{ -j\omega\tau } d\tau \cdot \int\limits_{0}^{ \infty } R_x ( \tau ) \cos ( \omega\tau ) \=, d\tau \]
+\[ S_x ( \omega ) \ge 0, \quad S_x ( \omega ) = S_x ( -\omega ) \] 
+\item взаимные спектральные плотности
+\[ S_{xy} ( \omega ) = \int\limits_{ -\infty }^{ \infty } R_{xy} e^{ -j\omega\tau } d\tau \]
+\end{itemize}
 
 Наиболее интересующие нас процессы:
 \begin{enumerate}
