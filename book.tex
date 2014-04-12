@@ -1494,37 +1494,60 @@ N = \left| \begin{array}{llll}
 
 Величина оценки $ J = M \bigl\{ \varepsilon ^2 \bigr\} $ является функцией параметров системы $ W(p,k,T) $, и тогда, рассматривая производные $ \frac{ \partial J }{ \partial k } $, $ \frac{ \partial J }{ \partial T } $, и приравнивая их к нулю, можно определить оптимальные значения параметров передаточной функции.
 
-\ExampleMy На вход замкнутой системы с передаточной функции ${{W}_{\textit{з}}}\left( p \right)=\frac{k}{Tp+1}$, действует полезный случайный сигнал со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{b}{{{\alpha }^{2}}+{{\omega }^{2}}}$ и помеха в виде БШ интенсивностью ${{c}^{2}}$. 
-\\Найти параметр $K$при заданных $T$, $b$,$a$ так, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:
-\\${{S}_{\varepsilon }}\left( \omega  \right)={{\left| 1-{{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( s \right)+{{\left| {{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)=\frac{{{T}^{2}}\omega +{{\left( 1-K \right)}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{b}{{{\omega }^{2}}+{{\alpha }^{2}}}+\frac{{{K}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}{{c}^{2}}$  
-\\Значение критерия качества тогда выпишется, как $M\left\{ {{\varepsilon }^{2}} \right\}=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{\frac{\left[ -{{T}^{2}}b{{\left( j\omega  \right)}^{2}}+{{\left( 1-K \right)}^{2}}b \right]}{\left[ \left( Tj\omega +1 \right)\left( j\omega +\alpha  \right) \right]\left[ \left( -Tj\omega +1 \right)\left( -j\omega +\alpha  \right) \right]}}d\omega $ 
-$M\left\{ {{\varepsilon }^{2}} \right\}=\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{\frac{\left[ -{{T}^{2}}b{{\left( j\omega  \right)}^{2}}+{{\left( 1-K \right)}^{2}}b \right]}{\left[ \left( Tj\omega +1 \right)\left( j\omega +\alpha  \right) \right]\left[ \left( -Tj\omega +1 \right)\left( -j\omega +\alpha  \right) \right]}}d\omega +\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{\frac{{{K}^{2}}{{c}^{2}}d\omega }{\left[ \left( Tj\omega +1 \right)\left( -Tj\omega +1 \right) \right]}}=\frac{b\left( T{{\left( 1-K \right)}^{2}}+\alpha {{T}^{2}} \right)}{2T\cdot \left( 1+\alpha T \right)\alpha }+\frac{{{K}^{2}}{{c}^{2}}}{2T\cdot 1}=\frac{b\left( 1+T\alpha -2K+{{K}^{2}} \right)}{2\alpha \cdot \left( 1+\alpha T \right)}+\frac{{{K}^{2}}{{c}^{2}}}{2T}$
-\\$\frac{dJ}{dK}=\frac{b\left( K-1 \right)}{\alpha \left( 1+\alpha T \right)}+\frac{K{{C}^{2}}}{T}=0\Rightarrow K_{\textit{опт}}=\frac{Tb}{Tb+{{c}^{2}}\alpha \left( 1+T\alpha  \right)}$
-\\\\\ExampleMy Следящая система состоит в прямой цепи из пропорционального усилителя $K$ (УУ) и устройства управления углом антенны $W\left( p \right)=\frac{1}{p\left( Tp+1 \right)}\to {{W}_{p}}=\frac{K}{p\left( Tp+1 \right)}$. Задающий полезный входной сигнал имеет спектральную плотность ${{S}_{V}}=\frac{1}{1+{{\omega }^{2}}}$. Помеха типа БШ имеет интенсивность ${{c}^{2}}$. Определить величину коэффициента $K$, при котором дисперсия ошибки фильтрации минимальна. 
-\par Вернемся к общей постановке задачи. Пусть на вход фильтрующей динамической системы поступает сумма полезного сигнала $V\left( t \right)$ и помехи $f\left( t \right)$. Задача фильтрации состоит в том, чтобы установить передаточную функцию $W\left( p \right)$ или импульсную единичную временную функцию $\varpi \left( t \right)$ системы, при которой достигается 
-\\$\min M\left\{ {{\varepsilon }^{2}} \right\}$, $\varepsilon =V\left( t \right)-y\left( t \right)$. 
-\\Решение этой задачи было получено Н.Винером на основе следующей \underline{теоремы}:
-\par Искомая оптимальная импульсная функция ${{\varpi }^{*}}\left( t \right)$ (и соответствующая 
- ${{W}^{*}}\left( p \right)$), при которой $M\left\{ {{\varepsilon }^{2}} \right\}$ достигает минимальных значения удовлетворяет интегральному уравнению Винера-Хопфа: $y\left( t \right)=\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}\cdot \left( \underbrace{V\left( t \right)+f\left( t \right)}_{\varphi }d\tau  \right)$  
-\\${{R}_{\varphi V}}\left( \tau  \right)-\int\limits_{0}^{\infty }{\varpi \left( \tau  \right)}{{R}_{\varphi }}\left( t-\tau  \right)d\tau =0$, $t\ge 0$
-\\Это утверждение формирует необходимое и достаточное условие. Интеграл имеет вид свертки.
-\\Норберт Винер в 1943 году предложил частотный метод решения этой задачи, который в результате можно записать в виде следующей конструктивной процедуры:
+\begin{problem}
+На вход замкнутой системы с передаточной функцией $ W_\textit{з} (p) = \frac{k}{Tp+1} $ действует полезный случайный сигнал со спектральной плотностью $ S_v ( \omega ) = \frac{b}{ \alpha ^2 + \omega ^2 } $ и помеха в виде БШ интенсивностью $ c^2 $.
+
+Найти параметр $ K $ при заданных $ T, b, a $ такой, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:
+\begin{multline*}
+S_\varepsilon ( \omega ) = { \bigl| 1 - W_\textit{з} ( j\omega ) \bigr| }^2 S_v(s) + { \bigl| W_\textit{з} ( j\omega ) \bigr| }^2 S_f ( \omega ) = \\ -\frac{ T^2 \omega + {(1-k)}^2 }{ T^2 \omega ^2 + 1 } \cdot \frac{b}{ \omega ^2 + \alpha ^2 } + \frac{k^2}{ T^2  \omega ^2 + 1 } c^2
+\end{multline*}
+
+Тогда значение критерия качества:
+\begin{multline*}
+M \bigl\{ \varepsilon ^2 \bigr\} = \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \infty } \frac{ \bigl[ -T^2b{( j\omega )}^2 + {(1-k)}^2 b \bigr] }{ \bigl[ ( Tj\omega + 1 ) ( j\omega + \alpha ) \bigr] \bigl[ ( -Tj\omega + 1 ) ( -j\omega + \alpha ) \bigr] } \=, d\omega + \\ \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \infty } \frac{ k^2 c^2 d\omega }{ ( Tj\omega + 1 ) ( -Tj\omega + 1 ) } = \frac{ b \bigl( T {(1-k)}^2 + \alpha T^2 \bigr) }{ 2T \cdot ( 1 + \alpha T ) \alpha } + \frac{ k^2 c^2 }{ 2T \cdot 1} = \\ \frac{ b \bigl( 1 + T\alpha -2k + k^2 \bigr) }{ 2\alpha \cdot ( 1 + \alpha T ) } + \frac{ k^2 c^2 }{2T}
+\end{multline*}
+\[ \frac{dJ}{dK} = \frac{ b2(k-1) }{ 2\alpha ( 1 + \alpha T ) } + \frac{ 2kc^2 }{T} = 0 \enskip \Rightarrow \enskip K_\textit{опт} = \frac{Tb}{ Tb + c^2 \alpha ( 1 + T\alpha ) } \]
+\end{problem}
+
+Вернёмся к общей постановке задачи. Пусть на вход фильтрующей динамической системы поступает сумма полезного сигнала $ v(t) $ и помехи $ f(t) $. Задача фильтрации состоит в том, чтобы установить передаточную функцию $ W(p) $ или импульсную временную функцию $ \omega (t) $ системы, при которой достигается $ \min \=, M \bigl\{ \varepsilon ^2 \bigr\} $, где $ \varepsilon = v(t) - y(t) $. Решение этой задачи было получено Н.~Винером на основе следующей теоремы.
+
+\begin{theorem}
+Искомая оптимальная импульсная функция $ \omega ^* (t) $ (и соответствующая $ W^*(p) $), при которой $ M \bigl\{ \varepsilon ^2 \bigr\} $ достигает минимального значения удовлетворяет интегральному уравнению Винера\-/Хопфа:
+\[ y(t) = \int\limits_{0}^{ \infty } \omega ( \tau ) \cdot \underbrace{ \bigl( v(t) + f(t) \bigr) }_{ \varphi } \=, d\tau \]
+\[ R_\varphi ( \tau ) - \int\limits_{0}^{ \infty } \omega ^* ( \tau ) R_\varphi ( t - \tau ) \=, d\tau = 0, \quad t \ge 0 \]
+\end{theorem}
+
+Это утверждение формирует необходимое и достаточное условие. Интеграл имеет вид свёртки.
+
+Норберт Винер в 1943~г. предложил частотный метод решения этой задачи, который в результате можно записать в виде следующей конструктивной процедуры:
 \begin{enumerate}
-\item Вычислить спектральную плотность сигнала $\varphi \left( t \right)=V\left( t \right)+f\left( t \right)\to {{S}_{\varphi }}\left( \omega  \right)={{S}_{V}}\left( \omega  \right)+{{S}_{f}}\left( \omega  \right)$
-\item Выполнить факторизацию этой функции ${{S}_{\varphi }}\left( \omega  \right)=\psi \left( j\omega  \right)\cdot \psi \left( -j\omega  \right)$
-\item Вычислить функцию $N\left( j\omega  \right)={{\psi }^{-1}}\left( -j\omega  \right){{S}_{V}}\left( \omega  \right)$
-\item Представить функцию $N\left( p \right)={{\left. N\left( j\omega  \right) \right|}_{j\omega =p}}$ в виде суммы двух дробно-рациональных выражений $N\left( p \right)={{N}^{+}}\left( p \right)+{{N}^{-}}\left( p \right)$, одно из которых имеет полюса только  в левой полуплоскости, другое - только в правой. Такая операция называется РАСЩЕПЛЕНИЕМ. Из условия физической реализуемости нас будет интересовать только составляющая ${{N}^{*}}\left( p \right)+$
-\item Искомая передаточная функция, фильтрующая полезный сигнал на фоне независимой аддитивной помехи с $min$ средним квадратом ошибки (дисперсией) определяется выражением: ${{W}^{*}}\left( p \right)={}^{{{N}^{+}}\left( p \right)}/{}_{\psi \left( p \right)}$ $\psi \left( p \right)={{\left. \psi \left( j\omega  \right) \right|}_{j\omega =p}}$
+\item Вычислить спектральную плотность входного сигнала.
+\[ \varphi (t) = v(t) + f(t) \enskip \Rightarrow \enskip S_\varphi ( \omega ) = S_v ( \omega ) + S_f ( \omega ) \]
+\item Выполнить факторизацию этой функции.
+\[ S_\varphi ( \omega ) = \psi ( j\omega ) \cdot \psi ( -j\omega ) \]
+\item Вычислить функцию $ N ( j\omega ) = \psi ^{-1} ( -j\omega ) S_v ( \omega ) $.
+\item Представить функцию $ N(p) = N( j\omega ) \big|_{ j\omega = p } $ в виде суммы двух дробно\-/рациональных выражений $ N(p) = N^+(p) + N^-(p) $, одно из которых имеет полюса только в левой полуплоскости, другое --- только в правой. Такая операция называется \textbf{расщеплением}. Из условия физической реализуемости нас будет интересовать только составляющая $ N^+(p) $.
+\item Искомая передаточная функция, фильтрующая полезный сигнал на фоне независимой аддитивной помехи с $ \min $ средним квадратом ошибки (дисперсией) определяется выражением:
+\[ W^*(p) = \frac{ N^+ (p) }{ \psi (p) }, \]
+где $ \psi (p) = \psi ( j\omega ) \big|_{ j\omega = p } $.
 \end{enumerate}   
-\ExampleMy Пусть полезное входное воздействие, описывается спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}$, помеха - БШ с интенсивностью ${{c}^{2}}$ - найти ${{W}_{\textit{о.ф.}}}\left( p \right)=?$
+
+\begin{problem}
+Пусть полезное входное воздействие, описывается спектральной плотностью $ S_v ( \omega ) = \frac{1}{ \omega ^2 + 1 }$, помеха --- БШ с интенсивностью $ c^2 $. Найти $ W_\textit{о.ф.} (p) $.
 \begin{enumerate}
-\item ${{S}_{\varphi }}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}+{{c}^{2}}=\frac{{{c}^{2}}{{\omega }^{2}}+{{c}^{2}}+1}{{{\omega }^{2}}+1}$
-\item ${{S}_{\varphi }}\left( \omega  \right)=\frac{1}{{{\omega }^{2}}+1}+{{c}^{2}}=\frac{{{c}^{2}}{{\omega }^{2}}+{{c}^{2}}+1}{{{\omega }^{2}}+1}$;
-${{S}_{\varphi }}\left( \omega  \right)=\frac{jc\omega +\sqrt{1+{{c}^{2}}}}{j\omega +1}\cdot \frac{-jc\omega +\sqrt{1+{{c}^{2}}}}{-j\omega +1}$ $\psi \left( p \right)=\frac{cp+\sqrt{1+{{c}^{2}}}}{1+p}$
-\item $N\left( j\omega  \right)={{S}_{V}}\left( \omega  \right)\cdot {{\psi }^{-1}}\left( -j\omega  \right)=\frac{1}{{{\omega }^{2}}+1}\cdot \frac{-j\omega +1}{-jc\omega +\sqrt{1+{{c}^{2}}}}=\frac{1}{\left( 1+j\omega  \right)\left( \sqrt{1+{{c}^{2}}}-jc\omega  \right)}$ и $N\left( p \right)=\frac{1}{\left( 1+p \right)\left( \sqrt{{{c}^{2}}+1}-cp \right)}$
-\item $N\left( p \right)=\frac{1}{\left( 1+p \right)\left( \sqrt{{{c}^{2}}+1}-cp \right)}=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \left( \frac{1}{1+p}+\frac{c}{\sqrt{1+{{c}^{2}}}-cp} \right)\to {{N}^{+}}\left( p \right)=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \frac{1}{1+p}$
-\item ${{W}^{*}}\left( p \right)={}^{{{N}^{+}}\left( p \right)}/{}_{\psi \left( p \right)}=\frac{1}{c+\sqrt{1+{{c}^{2}}}}\cdot \frac{1}{1+p}\cdot \frac{1+p}{cp+\sqrt{1+{{c}^{2}}}}=\frac{\frac{1}{c\sqrt{1+{{c}^{2}}}+1+{{c}^{2}}}}{\frac{c}{\sqrt{1+{{c}^{2}}}}p+1}$
+\item $ S_\varphi ( \omega ) = \frac{1}{ \omega ^2 + 1 } + c^2 = \frac{ c^2 \omega ^2 + c^2 + 1 }{ \omega ^2 + 1 } $
+\item $ S_\varphi ( \omega ) = \underbrace{ \frac{ jc\omega + \sqrt{ 1 + c^2 } }{ j\omega + 1 } }_{ \psi ( j\omega ) } \cdot \underbrace{ \frac{ -jc\omega + \sqrt{ 1 + c^2 } }{ -j\omega + 1 } }_{ \psi ( -j\omega ) } $
+\[ \psi (p) = \frac{ cp + \sqrt{ 1 + c^2 } }{ 1 + p } \]
+\item $ N ( j\omega ) = S_v ( \omega ) \cdot \psi ^{-1} ( -j\omega ) = \frac{1}{ \omega ^2 + 1 } \cdot \frac{ -j\omega + 1 }{ -jc\omega + \sqrt{ 1 + c^2 } } = \frac{1}{ ( 1 + j\omega ) \Bigl( \sqrt{ 1 + c^2 } - jc\omega \Bigr) } $
+\[ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ c^2 + 1 } - cp \Bigr) } \]
+\item $ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ 1 + c^2 } - cp \Bigr) } = $ \par
+\begin{flushright} \vspace{-\baselineskip}
+$ \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \left( \frac{1}{1+p} + \frac{c}{ \sqrt{ 1 + c^2 } - cp } \right) $
+\end{flushright} \par
+\[ N^+(p) = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} \]
+\item $ W^*(p) = \frac{ N^+ (p) }{ \psi (p) } = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} \cdot \frac{1+p}{ cp + \sqrt{ 1 + c^2 } } = \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \underbrace{ \cfrac{c}{ \sqrt{ 1 + c^2 } } }_{T^*} p + 1 } $
 \end{enumerate}
+\end{problem}
 
 	\subsection{Фильтры Калмана\label{stochastic:filters}}
 \par Современная теория стохастической фильтрации заложена в 40-х годах XX века трудами А.Н.Колмогорова и Н.Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач   измерения параметров траектории летательных аппаратов по радарным данным. Первым результатом полученным на основе интегрального уравнения Вилмера-Холмса. Решение искалось в частотной области с использованием разложения спектральной.
