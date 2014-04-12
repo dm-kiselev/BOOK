@@ -1417,63 +1417,83 @@ S_\varepsilon ( \omega ) = { \bigl| W_\textit{з}^\varepsilon ( j\omega ) \bigr|
 \begin{problem}
 
 Желаемое $ R_\rho ( \tau ) = 25 \exp \bigl( -0.4 | \tau | \bigr) \enskip \Rightarrow \enskip $
+
 \begin{multline*}
-S_\rho ( \omega ) = 25 \left( \,\, \int\limits_{ -\infty }^{0} e^{ 0.4\tau } e^{ -j\omega\tau } d\tau + \int\limits_{0}^{ \infty } e^{ -0.4\tau } e^{ -j\omega\tau } d\tau \right) = \\ 25\left( \int\limits_{-\infty }^{0}{\exp \left( 0.4j\omega \tau  \right)d\tau +\int\limits_{0}^{+\infty }{\exp \left( -0.4-j\omega  \right)\tau d\tau }} \right)=
-\\25\left( \left. \frac{1}{0.4-j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{-\infty }^{0}+\left. \frac{1}{0.4+j\omega }\exp \left( \left( 0.4-j\omega  \right)\tau  \right) \right|_{0}^{+\infty } \right)=
-\\\frac{25\cdot 2\cdot 0.4}{0.16+{{\omega }^{2}}}=\left| \frac{4.47}{0.4+j\omega } \right|.
+S_\rho ( \omega ) = 25 \left( \,\, \int\limits_{ -\infty }^{0} e^{ 0.4\tau } e^{ -j\omega\tau } d\tau + \int\limits_{0}^{ \infty } e^{ -0.4\tau } e^{ -j\omega\tau } d\tau \right) = \\ 25 \left( \,\, \int\limits_{ -\infty }^{0} e^{ ( 0.4 - j\omega ) \tau } d\tau + \int\limits_{0}^{ \infty } e^{ ( -0.4 - j\omega ) \tau } d\tau \right) = \\ 25 \left( \frac{1}{ 0.4 - j\omega } e^{ ( 0.4 - j\omega ) \tau } \Big|_{ -\infty }^{0} + \frac{-1}{ 0.4 + j\omega } e^{ ( -0.4 - j\omega ) \tau } \Big|_{0}^{ \infty } \right) = \\ = 25 \left( \frac{1}{ 0.4 - j\omega } + \frac{1}{ 0.4 + j\omega } \right) = \frac{ 25 \cdot 2 \cdot 0.4 }{ 0.16 + \omega ^2 } = \frac{20}{ 0.16 + \omega ^2 } = { \left| \frac{ \sqrt{20} = 4.47 }{ 0.4 + j\omega } \right| }^2
 \end{multline*}
-Это инерционное звено с передаточной функцией $W\left( p \right)=\frac{4.47}{p+0.4}$
-Дифференциальное уравнение звена: $\dot{\rho }=-0.4\rho +4.47\cdot \mu \left( t \right)$, где $\mu \left( t \right)$ - БШ c $S\left( \omega  \right)=1$ интенсивностью.
-\\Пусть
-\begin{multline*}
-S\left( \omega  \right)=\frac{B\left( j\omega  \right)}{A\left( j\omega  \right)A\left( -j\omega  \right)}=\\\frac{{{b}_{0}}{{\left( j\omega  \right)}^{2n-2}}+...+{{b}_{n-1}}}{\left( {{a}_{0}}{{\left( j\omega  \right)}^{n}}+{{a}_{1}}{{\left( j\omega  \right)}^{n-1}}+...+{{a}_{n}} \right)\left( {{a}_{0}}{{\left( -j\omega  \right)}^{n}}+...+{{a}_{n}} \right)}
-\end{multline*}
-где степень полинома числителя на 1 меньше степени знаменателя. Тогда фрагмент таблицы Мак-Лена:
-\begin{itemize}
-\item При $n=1\to {{I}_{1}}=\frac{{{b}_{0}}}{2{{a}_{0}}{{a}_{1}}}$ 
-\item При $n=2\to {{I}_{2}}=\frac{-{{b}_{0}}{{a}_{2}}+{{a}_{0}}{{b}_{1}}}{2{{a}_{0}}{{a}_{1}}{{a}_{2}}}$
-\item При $n=3\to I=\frac{\left( -{{b}_{0}}{{a}_{2}}{{a}_{3}}+{{b}_{1}}{{a}_{0}}{{a}_{3}}-{{b}_{2}}{{a}_{0}}{{a}_{1}} \right)}{2{{a}_{0}}{{a}_{3}}\left( {{a}_{0}}{{a}_{3}}-{{a}_{1}}{{a}_{2}} \right)}$
-\end{itemize}
-\vspace{\baselineskip}
-Или решая матричным методом: 
-\[\frac{1}{2\pi }\int\limits_{-\infty }^{+\infty }{S\left( \omega  \right)}d\omega ={{\left( -1 \right)}^{n+1}}\cdot \frac{N}{2{{a}_{0}}G}\]
-где $G$ - определитель матрицы Гурвица многочлена  
-\[A\left( j\omega  \right)\left| \begin{matrix}
-   {{a}_{1}} & {{a}_{3}} & {{a}_{5}} & ...  \\
-   {{a}_{0}} & {{a}_{2}} & {{a}_{4}} & ...  \\
-   ... & ... & ... & ...  \\
-\end{matrix} \right|\]
-$N$ - определитель матрицы, которая получается из матрицы Гурвица многочлена $A\left( j\omega  \right)$ заменой первой строки коэффициентами многочлена $B\left( j\omega  \right)$ $ \left|\begin{matrix}
-   {{b}_{0}} & {{b}_{1}} & {{b}_{2}} & ...  \\
-   ... & ... & ... & ...  \\
-\end{matrix} \right|$ параметризуется для $n=2\to I={{\left( -1 \right)}^{2+1}}\frac{\left| \begin{matrix}
-   {{b}_{0}} & {{b}_{1}}  \\
-   {{a}_{0}} & {{a}_{2}}  \\
-\end{matrix} \right|}{2{{a}_{0}}\left| \begin{matrix}
-   {{a}_{1}} & 0  \\
-   {{a}_{0}} & {{a}_{2}}  \\
-\end{matrix} \right|}=-\frac{\left( {{b}_{0}}{{a}_{2}}-{{a}_{0}}{{b}_{1}} \right)}{2{{a}_{0}}\left( {{a}_{1}}{{a}_{2}} \right)}$
+
+Это инерционное звено с передаточной функцией:
+\[ W(p) = \frac{4.47}{p+0.4} \]
+
+Дифференциальное уравнение звена:
+\[ \dot{ \rho } = -0.4\rho + 4.47 \mu (t), \]
+где $ \mu (t) $ --- БШ c интенсивностью $ S ( \omega ) = 1 $.
+
 \end{problem}
+
+Пусть:
+\begin{multline*}
+S ( \omega ) = \frac{ B ( j\omega ) }{ A ( j\omega ) A ( -j\omega ) } = \\ \frac{ b_0 { ( j\omega ) }^{2n-2} + \ldots + b_{n-1} }{ \bigl( a_0 { ( j\omega ) }^n + a_1 { ( j\omega ) }^{n-1} + \ldots + a_n \bigr) \bigl( a_0 { ( -j\omega ) }^n + \ldots + a_n \bigr) } ,
+\end{multline*}
+где степень полинома в числителе на единицу меньше степени полинома в знаменателе. Тогда фрагмент таблицы Мак-Ленна:
+
+\begin{center}
+\renewcommand\arraystretch{2}		% увеличили расстояние между строками таблицы
+	\begin{tabular}{|l|l|} \hline
+		$ n = 1 $ & $ I = \frac{ b_0 }{ 2 a_0 a_1 } $ \\ \hline
+		$ n = 2 $ & $ I = \frac{ -b_0 a_2 + a_0 b_1 }{ 2 a_0 a_1 a_2 } $ \\ \hline
+		$ n = 3 $ & $ I = \frac{ -b_0 a_2 a_3 + b_1 a_0 a_3 - b_2 a_0 a_1 }{ 2 a_0 a_3 \bigl( a_0 a_3 - a_1 a_2 \bigr) } $ \\
+\hline	\end{tabular}
+\end{center}
+
+Или матричным методом:
+\[ \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \infty } S ( \omega ) \=, d\omega = {(-1)}^{n+1} \cdot \frac{N}{ 2 a_0 G }, \]
+где $ G $ --- определитель матрицы Гурвица многочлена $ A ( j\omega ) $, $ N $ --- определитель матрицы, которая получается из матрицы Гурвица многочлена $ A ( j\omega ) $ заменой первой строки коэффициентами многочлена $ B ( j\omega ) $.
+
+\[ G = \left| \begin{array}{llll}
+	a_1 & a_3 & a_5 & \ldots \\
+	a_0 & a_2 & a_4 & \ldots \\
+	\hdotsfor[2.5]{4}
+\end{array} \right| \qquad
+N = \left| \begin{array}{llll}
+	b_0 & b_1 & b_2 & \ldots \\
+	a_0 & a_2 & a_4 & \ldots \\
+	\hdotsfor[2.5]{4}
+\end{array} \right| \]
+
+Например, для $ n = 2 $:
+\[ I = {(-1)}^{2+1} \=, \frac{ \left| \begin{matrix}
+	b_0 & b_1 \\
+	a_0 & a_2
+\end{matrix} \right| }{ 2 a_0 \left| \begin{matrix}
+	a_1 & 0 \\
+	a_0 & a_2
+\end{matrix} \right| } = - \frac{ \bigl( b_0 a_2 - a_0 b_1 \bigr) }{ 2 a_0 \bigl( a_1 a_2 \bigr) } \]
+
 \begin{problem}
-Пусть на систему с передаточной функцией $W\left( p \right)=\frac{1}{Tp+1}$ действует шум со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}$.
-\\Найдём дисперсию выходного сигнала:  
-\\${{S}_{y}}\left( \omega  \right)={{\left| W\left( p \right) \right|}^{2}}{{S}_{V}}\left( \omega  \right)=\frac{1}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{2b}{{{\alpha }^{2}}+{{\omega }^{2}}}\Rightarrow n=2=\frac{2b}{{{T}^{2}}{{\omega }^{4}}+\left( {{T}^{2}}{{\alpha }^{2}}+1 \right){{\omega }^{2}}+{{\alpha }^{2}}}$
-\\$\left( Tj\omega +1 \right)\left( -Tj\omega +1 \right)\left( \alpha +j\omega  \right)\left( \alpha -j\omega  \right)$
-\\$\left[ T{{\left( j\omega  \right)}^{2}}+\left( T\alpha +1 \right)j\omega +\alpha  \right]\left[ T{{\left( -j\omega  \right)}^{2}}+\left( T\alpha +1 \right)\left( -j\omega  \right)+\alpha  \right]$
+
+Пусть на систему с передаточной функцией $ W(p) = \frac{1}{Tp+1} $ действует шум со спектральной плотностью $ S_v ( \omega ) = \frac{2b}{ \alpha ^2 + \omega ^2 } $.
+
+Найдём дисперсию выходного сигнала:  
+\[ S_y ( \omega ) = { \bigl| W(p) \bigr| }^2 S_v ( \omega ) = \frac{1}{ \bigl( T^2 \omega ^2 + 1 \bigr) } \cdot \frac{2b}{ \bigl( \alpha ^2 + \omega ^2 \bigr) } \]
+\[ n = 2 = \frac{2b}{ T^2 \omega ^4 + \bigl( T^2 \alpha ^2 + 1 \bigr) \omega ^2 + \alpha ^2 } \]
+
 \begin{enumerate}
-\item ${{b}_{0}}=0$, ${{b}_{1}}=2b$
-\\${{a}_{0}}={{T}_{1}}{{a}_{1}}=\left( T\alpha +1 \right)$ ${{a}_{2}}=\alpha $
-\\${{D}_{y}}=\frac{2b\left( T\alpha +1 \right)}{2T{{\left( T\alpha +1 \right)}^{2}}\alpha }=\frac{b}{\left( T\alpha +1 \right)\alpha }$
-\item ${{D}_{y}}={{\left( -1 \right)}^{2+1}}\cdot \frac{\left| \begin{matrix}
-   0 & 2b  \\
-   T & \alpha   \\
-\end{matrix} \right|}{2T\left| \begin{matrix}
-   T\alpha +1 & 0  \\
-   T & \alpha   \\
-\end{matrix} \right|}=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{-\left( -2bT \right)}{2T\cdot \left( T\alpha +1 \right)\cdot \alpha }=\frac{b}{\left( T\alpha +1 \right)\alpha }$
+\item $ b_0 = 0, \quad b_1 = 2b, \quad a_0 = T, \quad a_1 = ( T\alpha + 1 ), \quad a_2 = \alpha $
+\[ D_y = \frac{ 2b( T\alpha + 1 ) }{ 2T{( T\alpha + 1 )}^2 \alpha } = \frac{b}{( T\alpha + 1 ) \alpha } \]
+\item $ D_y = {(-1)}^{2+1} \cdot \frac{ \left| \begin{matrix}
+	0 & 2b \\
+	T & \alpha
+\end{matrix} \right| }{ 2T \left| \begin{matrix}
+	T\alpha + 1 & 0 \\
+	T & \alpha
+\end{matrix} \right| } = \frac{ -(-2bT) }{ 2T \cdot ( T\alpha + 1 ) \cdot \alpha } = \frac{b}{ ( T\alpha + 1 ) \alpha } $
 \end{enumerate}
-\par Величина оценки $J=M\left\{ {{\varepsilon }^{2}} \right\}$ является функцией параметров системы  $W\left( p,k,T \right)$ и тогда рассматривая производные ${}^{\partial J}/{}_{\partial k}$, ${}^{\partial J}/{}_{\partial T}$ - и приравнивая их к 0 можно определить оптимальные значения параметров передаточной функции.
+
 \end{problem}
+
+Величина оценки $ J = M \bigl\{ \varepsilon ^2 \bigr\} $ является функцией параметров системы $ W(p,k,T) $, и тогда, рассматривая производные $ \frac{ \partial J }{ \partial k } $, $ \frac{ \partial J }{ \partial T } $, и приравнивая их к нулю, можно определить оптимальные значения параметров передаточной функции.
+
 \ExampleMy На вход замкнутой системы с передаточной функции ${{W}_{\textit{з}}}\left( p \right)=\frac{k}{Tp+1}$, действует полезный случайный сигнал со спектральной плотностью ${{S}_{V}}\left( \omega  \right)=\frac{b}{{{\alpha }^{2}}+{{\omega }^{2}}}$ и помеха в виде БШ интенсивностью ${{c}^{2}}$. 
 \\Найти параметр $K$при заданных $T$, $b$,$a$ так, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:
 \\${{S}_{\varepsilon }}\left( \omega  \right)={{\left| 1-{{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{V}}\left( s \right)+{{\left| {{W}_{\textit{з}}}\left( j\omega  \right) \right|}^{2}}{{S}_{f}}\left( \omega  \right)=\frac{{{T}^{2}}\omega +{{\left( 1-K \right)}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}\cdot \frac{b}{{{\omega }^{2}}+{{\alpha }^{2}}}+\frac{{{K}^{2}}}{{{T}^{2}}{{\omega }^{2}}+1}{{c}^{2}}$  
