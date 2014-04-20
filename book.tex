@@ -6,6 +6,7 @@
 \usetikzlibrary{positioning}	% автоматическое размещение элементов на чертежах относительно друг друга
 \usetikzlibrary{shapes.misc}
 \usetikzlibrary{intersections}
+\usetikzlibrary{calc}
 \usepackage{enumitem}			% Для разрывов в списках
 \usepackage{ncccomma}			% для использования запятой в качестве разделителя дробной части
 \usepackage{framed}				% текст в рамке
@@ -20,8 +21,23 @@
 \newcounter{problem}[section]				% счётчик примеров (имя example уже зарезервировано)
 \renewcommand{\theproblem}{\thesection.\arabic{problem}}		% команда вывода текущего значения счётчика примеров
 \newenvironment{problem}%	окружение для оформления примера
-	{\par \vspace{\baselineskip} \refstepcounter{problem} {\raggedleft \textit{Пример \theproblem} \par} \vspace{-0.5\baselineskip} \begin{oframed}}%	это выполняется при отрытии окружения
+	{\par \vspace{\baselineskip} \refstepcounter{problem} \begin{flushright} \textit{Пример \theproblem} \end{flushright} \vspace{-\baselineskip} \begin{oframed}}%	это выполняется при отрытии окружения
 	{\par \end{oframed}}%	а это при закрытии
+
+\newcommand*{\mysum}[3][]{
+	% определение новой команды для рисования сумматора в окружении tikzpicture, команда имеет 3 параметра:
+	% первый необязательный - указывает, какие входы сумматора инверсные, например: 1,3
+	% второй обязательный - месторасположение на рисунке, например: left = of object
+	% третий обязательный - имя нового сумматора
+	\node[circle,thick,inner sep=0pt,minimum size=2ex] (#3) [#2] {};
+	\foreach \i in {#1} {
+		\fill[black!50] let \p1 = ($ (#3.east) - (#3.center) $), \n1 = {veclen(\x1,\y1)}, \n2 = { -135 + 90*\i ) } in
+			(#3.center) -- ++(\n2:\n1) arc (\n2:{ \n2 + 90 }:\n1) -- cycle;
+	}
+	\draw[semithick] (#3.north west) -- (#3.south east)
+					  (#3.south west) -- (#3.north east);
+	\draw[thick] let \p1 = ($ (#3.east) - (#3.center) $), \n1 = {veclen(\x1,\y1)} in (#3.center) circle (\n1);
+}
 
 \begin{document}
 
@@ -1535,95 +1551,184 @@ M \bigl\{ \varepsilon ^2 \bigr\} = \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \i
 \begin{problem}
 Пусть полезное входное воздействие, описывается спектральной плотностью $ S_v ( \omega ) = \frac{1}{ \omega ^2 + 1 }$, помеха --- БШ с интенсивностью $ c^2 $. Найти $ W_\textit{о.ф.} (p) $.
 \begin{enumerate}
-\item $ S_\varphi ( \omega ) = \frac{1}{ \omega ^2 + 1 } + c^2 = \frac{ c^2 \omega ^2 + c^2 + 1 }{ \omega ^2 + 1 } $
-\item $ S_\varphi ( \omega ) = \underbrace{ \frac{ jc\omega + \sqrt{ 1 + c^2 } }{ j\omega + 1 } }_{ \psi ( j\omega ) } \cdot \underbrace{ \frac{ -jc\omega + \sqrt{ 1 + c^2 } }{ -j\omega + 1 } }_{ \psi ( -j\omega ) } $
-\[ \psi (p) = \frac{ cp + \sqrt{ 1 + c^2 } }{ 1 + p } \]
-\item $ N ( j\omega ) = S_v ( \omega ) \cdot \psi ^{-1} ( -j\omega ) = \frac{1}{ \omega ^2 + 1 } \cdot \frac{ -j\omega + 1 }{ -jc\omega + \sqrt{ 1 + c^2 } } = \frac{1}{ ( 1 + j\omega ) \Bigl( \sqrt{ 1 + c^2 } - jc\omega \Bigr) } $
-\[ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ c^2 + 1 } - cp \Bigr) } \]
-\item $ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ 1 + c^2 } - cp \Bigr) } = $ \par
-\begin{flushright} \vspace{-\baselineskip}
+\item $ S_\varphi ( \omega ) = \frac{1}{ \omega ^2 + 1 } + c^2 = \frac{ c^2 \omega ^2 + c^2 + 1 }{ \omega ^2 + 1 } $ \medskip
+\item $ S_\varphi ( \omega ) = \underbrace{ \frac{ jc\omega + \sqrt{ 1 + c^2 } }{ j\omega + 1 } }_{ \psi ( j\omega ) } \cdot \underbrace{ \frac{ -jc\omega + \sqrt{ 1 + c^2 } }{ -j\omega + 1 } }_{ \psi ( -j\omega ) } $ \\[\medskipamount]
+$ \psi (p) = \frac{ cp + \sqrt{ 1 + c^2 } }{ 1 + p } $
+\item $ N ( j\omega ) = S_v ( \omega ) \cdot \psi ^{-1} ( -j\omega ) = \frac{1}{ \omega ^2 + 1 } \cdot \frac{ -j\omega + 1 }{ -jc\omega + \sqrt{ 1 + c^2 } } = $
+\begin{flushright}
+$ \frac{1}{ ( 1 + j\omega ) \Bigl( \sqrt{ 1 + c^2 } - jc\omega \Bigr) } $
+\end{flushright}
+$ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ c^2 + 1 } - cp \Bigr) } $
+\item $ N(p) = \frac{1}{ (1+p) \Bigl( \sqrt{ 1 + c^2 } - cp \Bigr) } = $
+\begin{flushright} \vspace{-.5\baselineskip}
 $ \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \left( \frac{1}{1+p} + \frac{c}{ \sqrt{ 1 + c^2 } - cp } \right) $
-\end{flushright} \par
-\[ N^+(p) = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} \]
-\item $ W^*(p) = \frac{ N^+ (p) }{ \psi (p) } = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} \cdot \frac{1+p}{ cp + \sqrt{ 1 + c^2 } } = \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \underbrace{ \cfrac{c}{ \sqrt{ 1 + c^2 } } }_{T^*} p + 1 } $
+\end{flushright}
+$ N^+(p) = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} $
+\item $ W^*(p) = \frac{ N^+ (p) }{ \psi (p) } = \frac{1}{ c + \sqrt{ 1 + c^2 } } \cdot \frac{1}{1+p} \cdot \frac{1+p}{ cp + \sqrt{ 1 + c^2 } } = $
+\begin{flushright} \vspace{-.5\baselineskip}
+$ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \underbrace{ \cfrac{c}{ \sqrt{ 1 + c^2 } } }_{T^*} p + 1 } $
+\end{flushright}
 \end{enumerate}
 \end{problem}
 
 	\subsection{Фильтры Калмана\label{stochastic:filters}}
-\par Современная теория стохастической фильтрации заложена в 40-х годах XX века трудами А.Н.Колмогорова и Н.Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач   измерения параметров траектории летательных аппаратов по радарным данным. Первым результатом полученным на основе интегрального уравнения Вилмера-Холмса. Решение искалось в частотной области с использованием разложения спектральной.
 
+Современная теория стохастической фильтрации заложена в~40\=/х годах XX~века трудами А.\=,Н.~Колмогорова и Н.~Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач измерения параметров траектории летательных аппаратов по радарным данным. Первые результаты получены на основе интегрального уравнения Винера-Хопфа. Решение искалось в частотной области с использованием разложения спектральной плотности на пару зеркально симметричных сомножителей и последующим порождением выходного процесса из белого шума. Предложенная процедура очень сложна, и область применения оказалась довольно узкой.
 
-Теорема: Фильтр, формирующий линейную несмещенную  оценку вектора состояния \[x(t)\] с минимальной квадратичной ошибкой для указанной системы, описывается уравнением: $\dot{\bar{x}}(t)=A\bar{x}(t)+F(t)(y(t)-C\bar{x}(t)),\,\,\bar{x}(0)=0$ где $F(t)=P(t){{C}^{T}}{{R}^{-1}}$  и матрица $P(t)$ - ковариации ошибки оценивания удовлетворяет уравнению Риккати:$\dot{P}(t)=AP(t)+P(t){{A}^{T}}-P(t){{C}^{T}}{{R}^{-1}}CP(t)+Q,\,P(0)=S.$
-\par А при стационарных стохастических возмущениях и длительном наблюдении матрица ковариаций стационарна (не зависит от t) и удовлетворяет алгебраическому уравнению: $AP+P{{A}^{T}}-P{{C}^{T}}{{R}^{-1}}CP+Q=0$  При этом матрицы $Q,R$ - симметричные положительноопределенные, а $P$ - симметричная положительно-полуопределенная.
-\par Пусть полезный сигнал имеет \[{{S}_{v}}(\omega )=\frac{1}{{{\omega }^{2}}+1},\,\] т.е. порождается динамической системой $\dot{v}=-v+{{\mu }_{1}}$ где ${{\mu }_{1}}$ - белый шум с $Q={{S}_{{{\mu }_{1}}}}=1$ 
-На выходе измерения занулены БШ со спектральной плотностью $R={{S}_{f}}={{c}^{2}}$  
-Тогда стационарное решение $P$ удовлетворяет уравнению:$-1\cdot p-1\cdot p-p\cdot 1\cdot \frac{1}{{{c}^{2}}}\cdot 1\cdot p+1=0\to -2p-\frac{{{p}^{2}}}{{{c}^{2}}}+1=0\to $ 
-$\to {{p}^{2}}+2{{c}^{2}}p-{{c}^{2}}=0\,\,p=-{{c}^{2}}\pm \sqrt{{{c}^{4}}+{{c}^{2}}}=-{{c}^{2}}+{{c}^{2}}\sqrt{{{c}^{2}}+1}$ т.к. \[p>0\,\,\,F={{c}^{2}}(\sqrt{{{c}^{2}}+1}-1)\cdot \frac{1}{{{c}^{2}}}\] Т.е. уравнение для оптимальной фильтрации системы имеет вид: \[\dot{\bar{x}}=-\bar{x}+(\sqrt{{{c}^{2}}+1}-1)(y-\bar{x})\] и структура всей системы 
+\pagebreak
+Дальнейшее развитие теоремы фильтрации связано с именами Р.~Калмана и Р.~Бьюси. Ими решена задача в пространстве состояний, найдены дискретный, а затем и непрерывный эквиваленты интегрального уравнения Винера-Хопфа в виде матричных разностного и дифференциального уравнений соответственно. Приведём эти результаты в виде теоремы и основанной на ней процедуры синтеза фильтра.
 
+Пусть задана динамическая система:
+\[ \begin{darray}{l@{\quad}l}
+	\dot{x} = Ax + \alpha (t), & M \bigl\{ x(0) \bigr\} \\
+	y = Cx + \beta (t) & {}
+\end{darray} \]
 
-\par 
-\par	Рисунок
-\par
+Входной сигнал $ \alpha (t) $ и ошибка измерения $ \beta (t) $ являются случайными процессами типа БШ с известными матрицами ковариаций $ Q $ и $ R $ соответственно. Начальное состояние --- случайный вектор с нулевым математическим ожиданием и матрицей ковариации $ S $. Начальное положение, входной сигнал и ошибка измерения взаимно не коррелированы.
 
-Передаточная функция всего фильтра ${{W}_{filtra}}(p)=\frac{\sqrt{{{c}^{2}}+1}-1}{p+\sqrt{{{c}^{2}}+1}}$
+Необходимо по результатам измерения выхода $ y(t) $ найти несмещённую оценку фазового вектора состояния системы $ \bar{x} (t) $, оптимальную в смысле $ \min \=, D_\varepsilon $ ошибки оценивания $ \varepsilon = x - \bar{x} $.
 
-Док-во: \[{{S}_{x}}=\frac{2}{{{\omega }^{2}}+1}\] реализуется 
+\begin{theorem}[(Теорема Калмана-Бьюси, 1961 г.)]
+Фильтр, формирующий линейную несмещённую  оценку вектора состояния $ x(t) $ с минимальной среднеквадратичной ошибкой для указанной системы описывается уравнением:
+\[ \dot{\bar{x}}(t) = A\bar{x}(t) + F(t) \bigl( y(t) - C\bar{x}(t) \bigr) , \quad \bar{x}(0) = 0, \]
+где $ F(t) = P(t)C^TR^{-1} $ и $ P(t) $ --- матрица ковариации ошибки оценивания, которая удовлетворяет уравнению Риккати:
+\[ \dot{P}(t) = AP(t) + P(t)A^T - P(t)C^TR^{-1}CP(t) + Q, \quad P(0) = S \]
+\end{theorem}
 
-\par 
-\par	Рисунок
-\par
+А при стационарных стохастических возмущениях и длительном наблюдении матрица ковариаций стационарна (не зависит от $ t $) и удовлетворяет алгебраическому уравнению:
+\[ AP + PA^T - PC^TR^{-1}CP + Q = 0 \]
 
-$Q=2A=-1R=1C=1$
-$-2p-{{p}^{2}}+2=0\to {{p}^{2}}+2p-2=0\to p=-1+\sqrt{3=}0.73$
-${{W}_{filtra}}(p)=\frac{0.73}{p+1.73}=\frac{0.423}{0.577p+1}$ 
-Если теперь вернемся к матричной постановке задачи оптимального синтеза 
+При этом матрицы $Q$ и $R$ --- симметричные положительно определённые, а $P$ --- симметричная положительно полуопределённая.
 
-$\dot{x}=Ax+Bu+v,\,\,X(0),\,\,M\left\{ X(0) \right\}=0\,,\ M\left\{ {{X}^{T}}(0)X(0) \right\}={{Q}_{x}}\,$ 
-\[\begin{matrix}
-   y=Cx+f,\,\,\,\,{{{\dot{z}}}_{1}}={{A}_{v}}z+{{\mu }_{1}}(t)\,\,  \\
-   v={{c}_{v}}{{z}_{1}}  \\
-\end{matrix}\]\[y=Cx+f,\,\,\,\,\,{{\dot{z}}_{1}}={{A}_{v}}z+{{\mu }_{1}}(t)\,,\,\,\,\,\,\,v={{c}_{v}}{{z}_{1}}\]	
-${{\dot{z}}_{2}}={{A}_{f}}{{z}_{2}}+{{\mu }_{2}}(t)\,,\,\,f={{c}_{f}}{{z}_{2}}$ где ${{\mu }_{1}}\,$ и ${{\mu }_{2}}$ - белый шум с интенсивностями ${{Q}_{1}}\,\,{{Q}_{2}}\,$ соответственно. 
-А управление должно обеспечивать отслеживание уставки $V(t)$ с минимизацией критерия $I=M\left\{ \int\limits_{0}^{T}{({{E}^{T}}QE+{{u}^{T}}Ru})dt \right\},\,E=v(t)-y(t).$ То формулировке задачи сводится к стандартной за счет расширения вектора состояния и соответствующих матриц: $X=(x,{{z}_{1}},{{z}_{2}}),\,\,A=\left| \begin{matrix}
-   A & {{C}_{v}} & 0  \\
-   0 & {{A}_{v}} & 0  \\
-   0 & 0 & {{A}_{f}}  \\
-\end{matrix} \right|;B=\left| \begin{matrix}
-   B  \\
-   0  \\
-   0  \\
-\end{matrix} \right|;\,c=(c,0,{{c}_{f}})$ 
-вектор возумщения $F=\left| \begin{matrix}
-   0  \\
-   {{\mu }_{1}}  \\
-   {{\mu }_{2}}  \\
-\end{matrix} \right|$ 
-При такой постановке задачи было доказано, что решение дается расширением матричным дифференциальным уравнением Риккати, при $T\to \infty $ и постоянным параметрах уравнение становится адгебраическим. Однако, интереснее всего то, что решение $u(t)=-kx(t)+Fz(t)$  распадается на независимое решение для обратных и прямых связей. 
-\par Док-во. Испольнительным механизмом для следящей системы является двигатель постоянного тока, модель которого описывается  $\dot{x}=-0.1x+1.5u$. Следует найти структуру $X Y$, чтобы система максимально точно отслеживала случайное задание с ${{R}_{v}}(\tau )=25{{e}^{-0.4\left| \tau  \right|}}$ . Определим ${{S}_{v}}(\tau )=\frac{20}{{{\omega }^{2}}+0.16}=\frac{20}{{{\left| j\omega +0.4 \right|}^{2}}}$, т.е. такой процесс будет порождаться БШ \[\mu \] с интенсивностью \[20{{c}^{-2}}\], пропущенного через формирующий фильтр и \[W(p)=\frac{1}{p+0.4}\] или соотв. $\dot{v}=-0.4v+\mu (t)$ 
-Расширенная модель: \[\left| \begin{matrix}
-   {\dot{x}}  \\
-   {\dot{v}}  \\
-\end{matrix} \right|=\left| \begin{matrix}
-   -0.1 & 0  \\
-   0 & -0.4  \\
-\end{matrix} \right|\left| \begin{matrix}
-   x  \\
-   v  \\
-\end{matrix} \right|+\left( \begin{matrix}
-   1.5  \\
-   0  \\
-\end{matrix} \right)u(t)+\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)\mu \]
-Для завершения постановки задачи в качестве критерия возьмем $I=M\int\limits_{0}^{\infty }{\left[ {{(x-v)}^{2}}+100{{u}^{2}} \right]}dt$. Управление будем искать в виде $u(t)=-kx+F\cdot v$, где $k={{R}^{-1}}{{B}^{T}}{{P}_{11}}=0.01\cdot 1.5\cdot {{P}_{11}},\,F={{R}^{-1}}{{B}^{T}}{{P}_{12}}=0.015{{P}_{12}}$ 
-Для прохождения ${{P}_{11}}$  и ${{P}_{12}}$  составляется уравнение Риккати и получаем $0.0225{{P}_{11}}^{2}+0.2{{P}_{11}}-1=0\,\,\,\to \,{{P}_{11}}=12.46\,,\,k=0.187\,{{P}_{12}}=-1.723,\,F=0.0258$ 
-$(0.3+1.5k){{P}_{12}}+1=0\,\,\,$ 
-$0.0225{{P}_{12}}^{2}+0.8{{P}_{22}}-1=0\,\,\,\,\to \,\,\,{{P}_{12}}=1.166$, что дат наименьшее значение критерия ${{\operatorname{I}}_{\min }}=\underset{\tau \to \infty }{\mathop{\lim }}\,M\left\{ \int\limits_{0}^{\infty }{\left[ {{(x-v)}^{2}}+100{{u}^{2}} \right]}dt \right\}=Tr\left[ p\left( \begin{matrix}
-   0 & 0  \\
-   0 & {{z}_{0}}  \\
-\end{matrix} \right) \right]=23.32{{c}^{-1}}.$
+\begin{problem}
+Пусть полезный сигнал имеет спектральную плотность $ S_v ( \omega ) = \frac{1}{ \omega ^2 + 1 } $, т.\=,е.~порождается динамической системой $ \dot{v} = -v + \mu _1 $, где $ \mu _1 $ --- белый шум с $ Q = S_{ \mu _1 } = 1 $. На выходе измерения зашумлены белым шумом со спектральной плотностью $ R = S_f = c^2 $. Тогда стационарное решение $ P $ удовлетворяет уравнению:
+\[ -1 \cdot p - 1 \cdot p - p \cdot 1 \cdot \frac{1}{ c^2 } \cdot 1 \cdot p + 1 = 0 \enskip \Rightarrow \enskip -2p - \frac{ p^2 }{ c^2 } + 1 = 0 \]
+\[ p^2 + 2c^2p - c^2 = 0 \enskip \Rightarrow \enskip p = -c^2 \pm \sqrt{ c^4 + c^2 } \]
+\[ p > 0 \enskip \Rightarrow \enskip p = -c^2 + c^2 \sqrt{ c^2 + 1 } \]
+\[ F = c^2 \left( \sqrt{ c^2 + 1 } - 1 \right) \cdot \frac{1}{ c^2 } = \sqrt{ c^2 + 1 } - 1 \]
+Т.\=,е.~уравнение для оптимального фильтра имеет вид:
+\[ \dot{\bar{x}} = -\bar{x} + \left( \sqrt{ c^2 + 1 } - 1 \right) \bigl( y - \bar{x} \bigr) \]
+Структура всей системы:
+\begin{center} \scriptsize
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex},
+		point/.style={inner sep=0pt}							]
+	\node[block] (input_int) {$ 1/p $};	
+	\mysum[4]{left = 1.5em of input_int}{sum1};
+	\draw[vec] (sum1) to (input_int);
+	\node[point] (input) [left = of sum1] {};
+	\draw[vec] (input) to node{$ \mu _1 $} (sum1);
+	\mysum{right = of input_int}{sum2};
+	\draw[vec] (input_int) to node(v){$ v $} (sum2);
+	\node[point] (noise) [above = of sum2] {};
+	\draw[vec] (noise) to node{$ f $} (sum2);
+	\node[point] (p1) [below = 4ex of sum1] {};
+	\draw (v) |- (p1.center) [vec] to (sum1);
+	\fill (v.south) circle (1pt);
+	\mysum[4]{right = of sum2}{sum3};
+	\draw[vec] (sum2) to node{$ y $} (sum3);
+	\node[block] (F) [right = 1.5em of sum3] {$ \sqrt{ c^2 + 1 } - 1 $};
+	\node[above = 1ex of F] {F};
+	\draw[vec] (sum3) to (F);
+	\mysum[4]{right = 1.5em of F}{sum4};
+	\draw[vec] (F) to (sum4);
+	\node[block] (output_int) [right = 1.5em of sum4] {$ 1/p $};
+	\draw[vec] (sum4) to (output_int);
+	\node[point] (output) [right = of output_int] {};
+	\draw[vec] (output_int) to node(est){$ \bar{x} $} (output);
+	\node[point] (p2) [below = 4ex of sum4] {};
+	\draw (est) |- (p2.center) [vec] to (sum4);
+	\draw[vec] (p2.center) -| (sum3);
+	\fill (est.south) circle (1pt);
+	\fill (p2.center) circle (1pt);
+	\node[point] (p3) [below left = 6ex and 1em of sum3] {};
+	\node[point] (p4) [above = 5ex of est.north east] {};
+	\draw[dashed] (p3) rectangle (p4);
+\end{tikzpicture}
+\end{center}
+Передаточная функция фильтра:
+\[ W_\textit{ф}(p) = \frac{ \sqrt{ c^2 + 1 } - 1 }{ p + \sqrt{ c^2 + 1 } } \]
+\end{problem}
 
+Теперь вернёмся к матричной постановке задачи оптимального синтеза:
+\[ \left\{ \begin{darray}{l}
+	\dot{x} = Ax + Bu + v \\
+	y = Cx + f
+\end{darray} \right. \]
+\[ x(0) \qquad M \bigl\{ x(0) \bigr\} = 0 \qquad M \bigl\{ x^T(0) x(0) \bigr\} = Q_x \]
+\[ \begin{darray}{l@{\qquad}l}
+	\dot{z}_1 = A_v z_1 + \mu _1 (t) & \dot{z}_2 = A_f z_2 + \mu _2 (t) \\
+	v = C_v z_1 					  & f = C_f z_2 ,
+\end{darray} \]
+где $ \mu _1 $ и $ \mu _2 $ --- взаимнонезависимые белые шумы с интенсивностями $ Q_1 $ и $ Q_2 $ соответственно.
+
+Управление должно обеспечивать отслеживание уставки $ v(t) $ с минимизацией критерия:
+\[ J = M \left\{ \int\limits_{0}^{T} \bigl( \varepsilon ^T Q \varepsilon + u^T R u \bigr) \=, dt \right\}, \quad \varepsilon = v(t) - y(t) \]
+
+Задача сводится к стандартной за счёт расширения вектора состояния и соответствующих матриц:
+\[ \underline{X} = \bigl( x, z_1, z_2 \bigr) \qquad \underline{C} = \bigl( C, 0, C_f \bigr) \]
+\[ \underline{A} = \begin{pmatrix}
+	A & C_v & 0 \\
+	0 & A_v & 0 \\
+	0 & 0 & A_f
+\end{pmatrix} \qquad \underline{B} = \begin{pmatrix}
+	B \\
+	0 \\
+	0
+\end{pmatrix} \qquad \underline{F} = \begin{pmatrix}
+	0 \\
+	\mu _1 \\
+	\mu _2
+\end{pmatrix} \]
+
+При такой постановке задачи было доказано, что решение даётся расширенным матричным дифференциальным уравнением Риккати. При $ T \to \infty $ и постоянных параметрах уравнение становится алгебраическим. Однако, интереснее всего то, что решение
+\[ u(t) = -Kx(t) + Fz(t) \]
+распадается на независимое решение для обратных и прямых связей.
+
+\pagebreak
+
+\begin{problem}
+
+Исполнительным механизмом следящей системы является двигатель постоянного тока, модель которого описывается уравнением $ \dot{x} = -0,1x + 1,5u $. Следует найти структуру УУ, чтобы система максимально точно отслеживала случайное задание уставки с $ R_v ( \tau ) = 25 e^{ -0,4 | \tau | } $.
+
+Определим $ S_v ( \tau ) = \frac{20}{ \omega ^2 + 0,16 } = \frac{20}{ {| j\omega + 0,4 |}^2 }$, т.\=,е.~такой процесс будет порождаться белым шумом $ \mu $ с интенсивностью $ 20 c^{-2} $, пропущенным через формирующий фильтр и $ W(p) = \frac{1}{p+0,4} $ или $ \dot{v} = -0,4v + \mu (t) $.
+
+Расширенная модель:
+\[ \begin{pmatrix}
+	\dot{x} \\
+	\dot{v}
+\end{pmatrix} = \begin{pmatrix}
+	-0,1 & 0 \\
+	0 & -0,4
+\end{pmatrix} \begin{pmatrix}
+	x \\
+	v
+\end{pmatrix} + \begin{pmatrix}
+	1,5 \\
+	0
+\end{pmatrix} u(t) + \begin{pmatrix}
+	0 \\
+	1
+\end{pmatrix} \mu \]
+
+Для завершения постановки задачи в качестве критерия возьмём:
+\[ J = M \left\{ \int\limits_{0}^{ \infty } \bigl[ {(x-v)}^2 + 100u^2 \bigr] \=, dt \right\} \]
+
+Управление будем искать в виде $u(t) = -K \cdot x + F \cdot v $, где $ K = R^{-1} B^T P_{11} = 0,01 \cdot 1,5 \cdot P_{11} $, $ F = R^{-1} B^T P_{12} = 0,015 \cdot P_{12} $.
+
+Для нахождения $ P_{11} $ и $ P_{12} $ составляется уравнение Риккати и получаем:
+\[ 0,0225 P_{11}^2 + 0,2 P_{11} - 1 = 0 \enskip \Rightarrow \enskip P_{11} = 12,46 \enskip \Rightarrow \enskip K = 0,187 \]
+\[ ( 0,3 + 1,5K ) P_{12} + 1 = 0 \enskip \Rightarrow \enskip P_{12} = -1,723 \enskip \Rightarrow \enskip F = 0,0258 \]
+\[ 0,0225 P_{12}^2 + 0,8 P_{22} - 1 = 0 \enskip \Rightarrow \enskip P_{12} = 1,166 \]
+\begin{multline*}
+J_{ \min } = \underset{ \tau \to \infty }{ \mathop{ \lim } } \=, M \left\{ \int\limits_{0}^{ \infty } \bigl[ {(x-v)}^2 + 100u^2 \bigr] \=, dt \right\} = \\ Tr \left[ P \begin{pmatrix}
+	0 & 0 \\
+	0 & 20
+\end{pmatrix} \right] = 23,32 c^{-1}
+\end{multline*}
+\end{problem}
 
 	\subsection{Наблюдатели состояния линейной системы\label{stochastic:observers}}
 \par Создание фильтра К.-Б., в котором по измерениям выхода ОУ $y(t)$, искалась несмещенная оценка всего фазового вектора $\bar{x}(t)$ состояния системы в условиях действия помех спровоцировало интерес к созданию наблюдателей, решающих задачу восстановления неизмеряемых координат состояния объекта по измерениям выхода $y(t)$.
