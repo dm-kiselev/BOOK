@@ -1809,18 +1809,70 @@ $\left( A-LC \right)$
 \end{array}\]
 Структура наблюдателя Люенбергера сокращенной размерности имеет вид:
 \begin{figure}[ht] \centering
-\begin{tikzpicture}[scale=3]
-	\draw[very thin,gray,step=1 mm] (-1.5,-0.6) grid (1.5,1);
-	\draw[semithick,->] (-1.5,0) -- (1.5,0) node[right] {$x_1$};
-	\draw[semithick,->] (0,-0.6) -- (0,1) node[above] {$x_2$};
-	\foreach \x in {-1,-0.5,0.5,1}
-		\draw[semithick] (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\x$};
-	\foreach \y in {-0.4,-0.2,0.2,0.4,0.6,0.8}
-		\draw[semithick] (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\y$};
-	\draw[semithick,blue,smooth cycle,variable=\t,samples=100,domain=-3.1415:3.1415]
-		plot({cos(\t r)/sqrt(2)},{sin(\t r)/sqrt(8)});		% r значит радианы
-	\draw[semithick,red] (-1,1) -- (1.5,-0.25);				% ограничение
-	\fill (0.5,0.25) circle (0.15mm);							% стац. точка
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex},
+		point/.style={inner sep=0pt}							]
+	%%Первая колонка блоков
+	\node[block] (block1_1) {$ B $};	
+	\node[point] (input) [left = 2em of block1_1] {$ u $};
+	\node[point] (LineSeparator1_1) 	 [left = 1em of block1_1] {};
+	\fill (LineSeparator1_1) circle (1pt);
+	\node[block] (block2_1) [below = 10.5em of input_int] {$ B $};
+	\node[point] (LineSeparator2_1) 	 [left = 1em of block2_1] {};
+	\draw[vec] (input) to (block1_1);
+	\draw (LineSeparator1_1) |- (LineSeparator2_1) [vec] to (block2_1);
+	
+	\mysum{right = 1em of block1_1}{sum1_1};
+	\node[block] (block1_2)[right = 1em of sum1_1] {$\in$};	
+	
+	\node[block] (block1_3)[below = 1em of block1_2] {$A$};
+	
+	\node[block] (block1_4)[right = 1em of block1_2] {$C$};	
+	
+	
+	
+	
+	\mysum{right = 1em of block2_1}{sum2_1};
+	\node[block] (block2_3)[above = 2em of block2_1] {$\left( D-GC \right)\left( A{{L}
+	_{1}}-A{{L}_{2}}G \right)$ };
+	\node[block] (block2_2)[below = 2em of block2_3] {$\in$};	
+	
+%	\draw (v) |- (sep) [vec] to (input_int2);
+	%\path[draw] node{separator1}  -- (1,0) -- (1,1) node {input_int2};
+
+	
+	
+%	\draw[vec] (input) to node{$ U $} (input_int);
+	
+%	\mysum[4]{left = 1.5em of input_int}{sum1};
+%	\mysum{right = of input_int}{sum2};
+%	\draw[vec] (input_int) to node(v){$ v $} (sum2);
+%	\node[point] (noise) [above = of sum2] {};
+%	\draw[vec] (noise) to node{$ f $} (sum2);
+%	\node[point] (p1) [below = 4ex of sum1] {};
+%		\draw (v) |- (p1.center) [vec] to (sum1);
+%	\fill (v.south) circle (1pt);
+%	\mysum[4]{right = of sum2}{sum3};
+%	\draw[vec] (sum2) to node{$ y $} (sum3);
+%	\node[block] (F) [right = 1.5em of sum3] {$ \sqrt{ c^2 + 1 } - 1 $};
+%	\node[above = 1ex of F] {F};
+%	\draw[vec] (sum3) to (F);
+%	\mysum[4]{right = 1.5em of F}{sum4};
+%	\draw[vec] (F) to (sum4);
+%	\node[block] (output_int) [right = 1.5em of sum4] {$ 1/p $};
+%	\draw[vec] (sum4) to (output_int);
+%	\node[point] (output) [right = of output_int] {};
+%	\draw[vec] (output_int) to node(est){$ \bar{x} $} (output);
+%	\node[point] (p2) [below = 4ex of sum4] {};
+%	\draw (est) |- (p2.center) [vec] to (sum4);
+%	\draw[vec] (p2.center) -| (sum3);
+%	\fill (est.south) circle (1pt);
+%	\fill (p2.center) circle (1pt);
+%	\node[point] (p3) [below left = 6ex and 1em of sum3] {};
+%	\node[point] (p4) [above = 5ex of est.north east] {};
+%	\draw[dashed] (p3) rectangle (p4);
 \end{tikzpicture}
 \footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
 \end{figure}
