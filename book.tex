@@ -1911,11 +1911,39 @@ $\left( A-LC \right)$
 Дифференциальное уравнение для вспомогательной переменной $z$ и соотношение для оценки принимают вид: 
 
 
-\begin{equation*}
+\[
+\left\{ 
 \begin{array}{*{35}{l}}
-\begin{split}
-   gy+0.8u  \\
-   z(0)=0  \\
+ \begin{array}{*{35}{l}}
+   \dot{z}=\left( -g,1 \right)
+   \bigg[ 
+	\left( \begin{matrix}
+   0 & 1  \\
+   0 & -5  \\
+\end{matrix} \right)\left( \begin{matrix}
+   0  \\
+   1  \\
+\end{matrix} \right)z+\bigg(\left( \begin{matrix}
+   0 & 1  \\
+   0 & -5  \\
+\end{matrix} \right)\left( \begin{matrix}
+   1  \\
+   0  \\
+\end{matrix} \right)+\\
+\left( \begin{matrix}
+   0 & 1  \\
+   0 & -5  \\
+\end{matrix} \right)\left( \begin{matrix}
+   0  \\
+   1  \\
+\end{matrix} \bigg) \right)y+
+\left( \begin{matrix}
+   0  \\
+   0.8  \\
+\end{matrix} \right)u \bigg];\\
+\end{array}
+ \\
+   z(0)=0;  \\
    \bar{x}=\left( \begin{matrix}
    0  \\
    1  \\
@@ -1931,35 +1959,15 @@ $\left( A-LC \right)$
 \end{matrix} \right)z+\left( \begin{matrix}
    1  \\
    g  \\
-\end{matrix} \right)y  \\
-\end{split} 
-\end{array}
-\end{equation*}
+\end{matrix} \right)y;\\
+\end{array}\right.\]
 
 
-\[\begin{array}{*{35}{l}}
-   \dot{z}=\left( -g,1 \right)\left[ \left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)z+\left( \left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   1  \\
-   0  \\
-\end{matrix} \right)+\left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right) \right)y+\left( \begin{matrix}
-   0  \\
-   0.8  \\
-\end{matrix} \right)u \right]=\left( -g,1 \right)\left[ \left( \begin{matrix}
+
+
+
+\[
+\dot{z}=\left( -g,1 \right)\left[ \left( \begin{matrix}
    1  \\
    -5  \\
 \end{matrix} \right)z+\left( \begin{matrix}
@@ -1968,8 +1976,9 @@ $\left( A-LC \right)$
 \end{matrix} \right)gy+\left( \begin{matrix}
    0  \\
    0.8  \\
-\end{matrix} \right)u \right]=-\left( g+5 \right)z-\left( g+5 \right)  \\
-\end{array}\]
+\end{matrix} \right)u 
+\right]
+=-\left( g+5 \right)z-\left( g+5 \right);\]
 
 
 
