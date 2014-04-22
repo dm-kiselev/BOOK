@@ -20,8 +20,8 @@
 
 \newcounter{problem}[section]				% счётчик примеров (имя example уже зарезервировано)
 \renewcommand{\theproblem}{\thesection.\arabic{problem}}		% команда вывода текущего значения счётчика примеров
-\newenvironment{problem}%	окружение для оформления примера
-	{\par \vspace{\baselineskip} \refstepcounter{problem} \begin{flushright} \textit{Пример \theproblem} \end{flushright} \vspace{-\baselineskip} \begin{oframed}}%	это выполняется при отрытии окружения
+\newenvironment{problem}[1][]%	окружение для оформления примера
+	{\par \refstepcounter{problem} \begin{flushright} \textit{Пример \theproblem} \end{flushright} \vspace{-\baselineskip} #1 \begin{oframed}}%	это выполняется при отрытии окружения
 	{\par \end{oframed}}%	а это при закрытии
 
 \newcommand*{\mysum}[3][]{
@@ -280,6 +280,7 @@ grad \, F \left( x \right) = \frac{\partial F\left( x \right)}{\partial x} = 0
 \item отыскать среди них решения задачи или доказать, что его нет. Достаточным условием решения задачи на $\max$ ($\min$) является отрицательная (положительная) определённость матрицы вторых производных $ \frac{ \partial ^ 2 F \left( x \right) }{ \partial x ^ 2} $ --- матрицы Гессе.
 \end{itemize}
 
+\enlargethispage{\baselineskip}
 %**********
 %Надо как-то выделить текст
 %**********
@@ -458,6 +459,8 @@ $J=\int\limits_0^1 \dot{x}^2 dt \to extr, \quad x(0) = 0, \enskip x(1) = 1 $
 Условие Лежандра: $\frac{\partial ^2 F}{\partial \dot{x} ^2} = 2 > 0 \enskip \Rightarrow \enskip \min $
 \[ J_{ \min } = \int\limits_0^1 { \left( \dot{\hat{x}} \right) }^2 dt = \int\limits_0^1 { \left( \dot{t} \right) }^2 dt = \int\limits_0^1 1^2 dt = t \Big|_0^1 = 1 \]
 \end{problem}
+
+\enlargethispage{\baselineskip}
 \begin{problem}
 Найти уравнение выхода $x(t)$  и характеристический полином СУ, для которой $ J(x) = \int\limits_{0}^{\infty } \left( a_0 x^2 + a_1 \dot{x} ^2 \right) \, dt \enskip \to \enskip \min $, при условиях $ a_0 > 0, a_1 > 0, x(0) = x_0, x( \infty ) = 0 $.
 \[ F = a_0 x^2 + a_1 \dot{x} ^2, \quad \frac{\partial F}{\partial x} = 2 a_0 x, \quad \frac{\partial F}{\partial \dot{x}} = 2 a_1 \dot{x} \]
@@ -512,7 +515,7 @@ x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \end{gathered}
 \[ J_{\max } = \int\limits_0^1 \Bigl( e^t e^{-t} + e^t \bigl( {-e^{-t}} \bigr) \Bigr) \, dt = 0 \]
 \end{problem}
 
-\pagebreak
+%\enlargethispage{\baselineskip}
 \item Задача со старшими производными:
 \begin{equation}
 \begin{gathered} J(x) = \int\limits_{t_0}^{t_\textit{к}} F \left( x, \dot{x}, \ddot{x}, \ldots x^{(n-1)}, t \right) \, dt \\
@@ -529,7 +532,7 @@ x_i(t_0) = x_{i0}, \enskip x_i(t_\textit{к}) = x_{i\textit{к}} \end{gathered}
 \end{equation}
 Условие Лежандра: $ \frac{\partial ^2 F}{ { \left( \partial x^{(n)} \right) }^2 } \underset{\le}{\ge} 0 $
 
-\begin{problem}
+\begin{problem}[\vspace{.5\baselineskip}]
 \[ J\left( x \right)=\int\limits_{0}^{1}{{{{\ddot{x}}}^{2}}}dt\enskip\to\enskip extr \]
 \[ x\left( 0 \right)=\dot{x}\left( 0 \right)=0, \enskip x\left( 1 \right)=0, \enskip \dot{x}\left( 1 \right)=1 \]
 \[ \begin{darray}{@{}l@{\qquad}l@{\qquad}}
@@ -551,7 +554,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 \end{enumerate}
 
 
-\vspace{\baselineskip}
+%\vspace{\baselineskip}
 	\subsection{Задачи с нефиксированными границами\label{variations:floating_ends}}
 
 Как для начального момента времени (левого конца), так и для конечного момента времени (правого конца) могут быть следующие варианты (для удобства будем рассматривать правый конец):
@@ -584,6 +587,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 \end{equation}
 Максимальное количество условий трансверсальности $2n+2$.
 
+\pagebreak
 %\ExampleMy 
 \begin{problem}
 \[ J = \int\limits_{0}^{1}{\left( {{{\dot{x}}}^{2}}+x \right)\,dt}\enskip\to\enskip extr, \quad x\left( 1 \right)=0 \]
@@ -607,7 +611,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 \item[в)] если $F\left( x,\dot{x} \right)$ не зависит от $t$, то $ F - \dot{x} \frac{\partial F}{\partial \dot{x}} = const $
 \end{enumerate}
 
-\vspace{\baselineskip}
+\vspace{.5\baselineskip}
 	\subsection{Оптимизация функционалов с~ограничениями в~форме равенств\label{variations:conditional_extremum}}
 
 При решении различных технических проблем нахождение экстремума требует учёта связей в форме алгебраических $ G(x,u)=0 $, дифференциальных $ \Phi (x,u,t) = \dot{x} - Ax - Bu = 0 $ и интегральных $ \int\varphi (x,u,t)dt = C $ уравнений, т.\=,е.~дополнительных условий. Тогда вместо функции $F\left( x, \dot{x}, t \right)$ берётся функция $L\left( x,u,t,\lambda  \right)=F\left( x,\dot{x},t \right) + \lambda ^T (t) \cdot \Phi \left( x,u,t \right)$ --- лагранжиан, где $ \lambda (t) $ --- вектор множителей Лагранжа, и уравнения приобретают вид Эйлера-Лагранжа:
@@ -618,7 +622,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 \end{array} \right.
 \end{equation}
 
-\pagebreak
+\vspace{\baselineskip}
 \begin{problem}
 Пусть динамическая система задана уравнениями:
 \[ \left\{ \begin{array}{l}
@@ -628,9 +632,11 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 с произвольным начальным состоянием $ x_1(0), x_2(0) $ и нулевым конечным $ x_1( \infty ) = x_2( \infty ) = 0 $.
 Требуется: \[ \min\int\limits_{0}^{ \infty } \bigl( x_1^2 + x_2^2 + 0.1u^2 \bigr) \, dt \]
 
+%\enlargethispage{\baselineskip}
 \begin{enumerate}
 \item Составляем лагранжиан:
 \[ L( x, u, \lambda ) = \bigl( x_1^2 + x_2^2 + 0.1u^2 \bigr) + \lambda _1 \bigl( \dot{x}_1 - x_2 \bigr) + \lambda _2 \bigl( \dot{x}_2 + x_1 - u \bigr) \]
+\pagebreak
 \item Составляем уравнения Эйлера-Лагранжа:
 \[ \left\{ \begin{array}{l}
 	\frac{\partial L}{\partial x_1} - \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}_1} \right) = 2x_1 + \lambda _2 - \frac{d}{dt} \bigl( \lambda _1 \bigr) = 0 \\[2ex]
@@ -705,7 +711,7 @@ F = \ddot{x}^2 \, : & \frac{\partial F}{\partial x} - \frac{d}{dt} \left( \frac{
 
 \end{problem}
 
-\vspace{\baselineskip}
+%\vspace{\baselineskip}
 	\subsection{Каноническая (Гамильтонова) форма уравнений Эйлера (Лагранжа)\label{variations:Canonical_Euler}}
 	
 Стремление избавится от двойного дифференцирования (по времени $ \frac{d}{dt} $ и по производным $ \frac{\partial }{\partial \dot{x}} $ состояния и $ \frac{\partial }{\partial \dot{u}} $ управления) привело к предложению ввести канонические переменные $ \psi _i (t) $, сопряжённые с переменными состояния ОУ, и функцию Гамильтона:
@@ -751,7 +757,7 @@ H = - L(x,u, \lambda ,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _
 \end{darray} \right.
 \end{equation}
 
-\begin{problem}
+\begin{problem}%[\vspace{-.5\baselineskip}]
 Определим оптимальное управление объектом:
 \[ T\dot{x}+x=ku, \quad \frac{x}{u}=\frac{k}{Tp+1} \enskip \Rightarrow \enskip \dot{x}=-\frac{1}{T}x+\frac{k}{T}u=ax+bu \]
 \[ J=\int\limits_{0}^{\infty }{\left( q{{x}^{2}}+r{{u}^{2}} \right)} \, dt \enskip \Rightarrow \enskip L = qx^2 + ru^2 + \lambda \left( \dot{x} - ax - bu \right) \]
@@ -773,7 +779,6 @@ H = - L(x,u, \lambda ,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _
    \lambda  
 \end{darray} \right| \]
 
-\pagebreak
 Для определения корней системы составим определитель:
 \[ \Delta (p) = \left| Ep-A \right| = \left| \begin{darray}{c@{\quad}c}
    p-a & -\frac{{{b}^{2}}}{2r}  \\[1ex]
@@ -781,19 +786,19 @@ H = - L(x,u, \lambda ,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _
 \end{darray} \right| = p^2 - \left( a^2 + q\frac{b^2}{r} \right) = 0 \]
 \[ p_{1,2} = \pm \sqrt{ a^2 + q\frac{b^2}{r} } \]
 
+%\enlargethispage{10\baselineskip}
 Условию устойчивости удовлетворяет только отрицательный корень, поэтому решение ищем в виде:
 \[ \left\{ \begin{darray}{l}
    x = C_1 e^{p_2t} \\
    \lambda = C_2 e^{p_2t}
-\end{darray} \right. \]
-\[ C_1 = x_0, \quad C_2 = \frac{ \left( p_2 - a \right) 2r }{b} C_1 = \frac{2q}{p_2 + a} C_1 \]
+\end{darray} \right. \] \nopagebreak
+\[ C_1 = x_0, \quad C_2 = \frac{ \left( p_2 - a \right) 2r }{b} C_1 = \frac{2q}{p_2 + a} C_1 \] \pagebreak
 
 Следовательно, искомое оптимальное управление:
 \[ u_\textit{опт} (t) = \frac{b}{2r} \lambda (t) = \frac{bq}{r\left( p_2 - a \right)} \cdot \underbrace{ C_1 e^{p_2t} }_{x(t)} = \frac{p_2-a}{b} \underbrace{ C_1 e^{p_2t} }_{x(t)} = \underbrace{ \frac{p_2-a}{b} }_{K_\textit{опт}} x(t) \]
 
 Такое решение определяет структуру оптимального регулятора в форме отрицательной пропорциональной обратной связи:
 \[ K_\textit{опт} = \frac{p_2-a}{b} = -\frac{a+\sqrt{a^2+qb^2/r}}{b} \]
-   
 \end{problem}
 
 Вспоминая пример поиска характеристического полинома системы $D\left( p \right)=p+\sqrt{\frac{{{a}_{0}}}{{{a}_{1}}}}\,$, доставляющего $\min \, J=\int\limits_{0}^{\infty }{\left( a_0{{x}^{2}}+a_1{{{\dot{x}}}^{2}} \right)} \, dt$, перепишем его в нашем случае:
@@ -807,9 +812,10 @@ J = \int\limits_{0}^{\infty }{\Bigl( q{{x}^{2}}+r{{u}^{2}} \Bigr)} \, dt = \int\
 Уравнение Эйлера:
 \[ \frac{\partial F}{\partial x}-\frac{d}{dt}\left( \frac{\partial F}{\partial \dot{x}} \right)=0 \enskip \Rightarrow \enskip 2\left( q + r \frac{a^2}{b^2} \right) x - \frac{2ra}{b^2} \dot{x} + \frac{2ra}{b^2} \dot{x} - \frac{2r}{b^2} \ddot{x} = 0 \]
 \[ \ddot{x} - \left( a^2 + q \frac{b^2}{r} \right) x = 0 \]
-Соответствующий характеристический полином \vspace{1ex} ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить как $\left[ p^2 - \sqrt{a^2 + q \frac{b^2}{r}} \right] \cdot \left[ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} \right] = 0 $ \vspace{1ex} --- произведение полиномов с симметричным расположением левого и правого полюсов --- это \textit{факторизация}. Устойчивый характер процессов даёт полином $ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} = 0 $.
+Соответствующий характеристический полином \vspace{1ex} ${{p}^{2}}-\left( {{a}^{2}}+q\frac{{{b}^{2}}}{r} \right)=0$ можно представить \vspace{1ex} как $\left[ p^2 - \sqrt{a^2 + q \frac{b^2}{r}} \right] \cdot \left[ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} \right] = 0 $ \  --- произведение полиномов с симметричным расположением левого и правого полюсов --- это \textit{факторизация}. Устойчивый \vspace{.5ex} характер процессов даёт полином $ p^2 + \sqrt{a^2 + q \frac{b^2}{r}} = 0 $.
 
-Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то $ u_\textit{опт} = K_\textit{опт} \cdot x $, $\dot{x}=ax+b{{K}_\textit{ос}}x=\left( a+b{{K}_\textit{ос}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_\textit{ос}} \right)$. Приравнивая два полинома $p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_\textit{ос}} \right)$, получим:
+\vspace{1ex}
+Если мы ищем оптимальную обратную пропорциональную связь для объекта $\dot{x}=ax+bu$, то $ u_\textit{опт} = K_\textit{опт} \cdot x $, $\dot{x}=ax+b{{K}_\textit{ос}}x=\left( a+b{{K}_\textit{ос}} \right)x$ и $D\left( p \right)=p-\left( a+b{{K}_\textit{ос}} \right)$. Приравнивая \vspace{1ex} два полинома $p+\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}=p-\left( a+b{{K}_\textit{ос}} \right)$, получим:
 \[ K_\textit{ос} = \frac{-\sqrt{{{a}^{2}}+q\frac{{{b}^{2}}}{r}}-a}{b} \]
 Как видно, решения совпадают. В литературе принято такой подход называть синтезом линейного оптимального регулятора в частотной области.
 
@@ -824,7 +830,7 @@ K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
 
 \clearpage
 \section{Принцип максимума\label{maximum}}
-	\subsection{Определение\label{maximum:def}}
+
 В целом ряде практических задач оптимизацию функционала при заданных дифференциальных (динамических) уравнениях объекта $\left\{ \dot{X}=\Phi \left( x,u \right)=AX+BU \right\}$ требуется обеспечивать при ограниченных диапазонах допустимого изменения управлений $\left| {{u}_{i}} \right|\le {{U}_{i}}$   и/или координат объекта $\left| {{x}_{i}} \right|\le {{X}_{i}}$. В изменениях функций образуются переломы, в изменении производных --- разрывы. Нарушаются условия, при которых были выведены уравнения Эйлера и Эйлера\-/Лагранжа в вариациях.
 
 Коллективом ученых под руководством академика Л.\=,С.~Понтрягина (В.\=,Г.~Болтянский, Р.\=,В.~Гамкрелидзе, Е.\=,Ф.~Мищенко и др.) был разработан принцип максимума, использующий понятие игольчатой вариации относительно оптимального управления и траектории движения, что позволило доказать применимость модифицированной функции Гамильтона для таких неклассических вариационных задач. Модификация заключалась в следующем:
@@ -1133,7 +1139,7 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
 
 \clearpage   
 \section{Динамическое программирование\label{dyn_prog}}
-	\subsection{Определение\label{dyn_prog:def}}
+
 В технике и экономике существует класс объектов и процессов, управление которыми осуществляется на основе ограниченного числа решений, принимаемых последовательно в некоторые фиксированные моменты времени. Определение закона (алгоритма) управления для таких объектов связано с решением задачи по методу многошагового выбора, который был предложен американским учёным Р.~Беллманом и назван \textit{динамическим программированием}.
 
 В основу положен принцип оптимальности, согласно которому оптимальное управление определяется конечной целью и состоянием системы в данный момент времени независимо от предыстории.
@@ -1337,7 +1343,7 @@ s_{N-1} \bigl( x_{N-2} \bigr) = \underset{ u_{N-1}^\textit{о} \in U }{ \min } \
 
 \clearpage
 \section{Синтез оптимальных стохастических систем\label{stochastic}}
-	\subsection{Основные понятия\label{stochastic:general}}
+
 При оптимальном управлении реальными объектами теория детерминированного управления, определяющая закон управления как функцию времени и фазовых координат часто не применима, т.\=,к. на ОУ действуют различные случайные возмущения, начальные значения координат произвольные, текущие значения не могут быть полностью измерены. В этом случае необходимо применять статистические методы, основанные на работах Н.~Винера, А.\=,Н.~Колмогорова, Р.~Калмана и др. При проектировании таких систем прежде всего важна точность управления, т.\=,е.~точность воспроизведения полезного входного сигнала, оцениваемая по величине ошибки:
 \[ \varepsilon ( t, \tau ) = v( t + \tau ) - y(t) \]
 При разных значениях $ \tau $ эта ошибка называется по-разному:
@@ -1358,8 +1364,7 @@ s_{N-1} \bigl( x_{N-2} \bigr) = \underset{ u_{N-1}^\textit{о} \in U }{ \min } \
 \[ \left\{ \begin{darray}{l}
 	\dot{z}_1 = A_v z_1 + \mu _1 (t) \\
 	v = C_v z_1
-\end{darray} \right. \]
-\[ \left\{ \begin{darray}{l}
+\end{darray} \right. \qquad \left\{ \begin{darray}{l}
 	\dot{z}_2 = A_f z_2 + \mu _2 (t) \\
 	f = C_f z_2
 \end{darray} \right. \]
@@ -1513,18 +1518,19 @@ N = \left| \begin{array}{llll}
 \begin{problem}
 На вход замкнутой системы с передаточной функцией $ W_\textit{з} (p) = \frac{k}{Tp+1} $ действует полезный случайный сигнал со спектральной плотностью $ S_v ( \omega ) = \frac{b}{ \alpha ^2 + \omega ^2 } $ и помеха в виде БШ интенсивностью $ c^2 $.
 
-Найти параметр $ K $ при заданных $ T, b, a $ такой, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:
+Найти параметр $ K $ при заданных $ T, b, a $ такой, чтобы минимизировать дисперсию ошибки воспроизведения полезного сигнала:\vspace{-\baselineskip}
 \begin{multline*}
 S_\varepsilon ( \omega ) = { \bigl| 1 - W_\textit{з} ( j\omega ) \bigr| }^2 S_v(s) + { \bigl| W_\textit{з} ( j\omega ) \bigr| }^2 S_f ( \omega ) = \\ -\frac{ T^2 \omega + {(1-k)}^2 }{ T^2 \omega ^2 + 1 } \cdot \frac{b}{ \omega ^2 + \alpha ^2 } + \frac{k^2}{ T^2  \omega ^2 + 1 } c^2
 \end{multline*}
 
-Тогда значение критерия качества:
+Тогда значение критерия качества:\vspace{-\baselineskip}
 \begin{multline*}
 M \bigl\{ \varepsilon ^2 \bigr\} = \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \infty } \frac{ \bigl[ -T^2b{( j\omega )}^2 + {(1-k)}^2 b \bigr] }{ \bigl[ ( Tj\omega + 1 ) ( j\omega + \alpha ) \bigr] \bigl[ ( -Tj\omega + 1 ) ( -j\omega + \alpha ) \bigr] } \=, d\omega + \\ \frac{1}{ 2\pi } \int\limits_{ -\infty }^{ \infty } \frac{ k^2 c^2 d\omega }{ ( Tj\omega + 1 ) ( -Tj\omega + 1 ) } = \frac{ b \bigl( T {(1-k)}^2 + \alpha T^2 \bigr) }{ 2T \cdot ( 1 + \alpha T ) \alpha } + \frac{ k^2 c^2 }{ 2T \cdot 1} = \\ \frac{ b \bigl( 1 + T\alpha -2k + k^2 \bigr) }{ 2\alpha \cdot ( 1 + \alpha T ) } + \frac{ k^2 c^2 }{2T}
 \end{multline*}
 \[ \frac{dJ}{dK} = \frac{ b2(k-1) }{ 2\alpha ( 1 + \alpha T ) } + \frac{ 2kc^2 }{T} = 0 \enskip \Rightarrow \enskip K_\textit{опт} = \frac{Tb}{ Tb + c^2 \alpha ( 1 + T\alpha ) } \]
 \end{problem}
 
+\enlargethispage{\baselineskip}
 Вернёмся к общей постановке задачи. Пусть на вход фильтрующей динамической системы поступает сумма полезного сигнала $ v(t) $ и помехи $ f(t) $. Задача фильтрации состоит в том, чтобы установить передаточную функцию $ W(p) $ или импульсную временную функцию $ \omega (t) $ системы, при которой достигается $ \min \=, M \bigl\{ \varepsilon ^2 \bigr\} $, где $ \varepsilon = v(t) - y(t) $. Решение этой задачи было получено Н.~Винером на основе следующей теоремы.
 
 \begin{theorem}
@@ -1575,7 +1581,6 @@ $ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \unde
 
 Современная теория стохастической фильтрации заложена в~40\=/х годах XX~века трудами А.\=,Н.~Колмогорова и Н.~Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач измерения параметров траектории летательных аппаратов по радарным данным. Первые результаты получены на основе интегрального уравнения Винера-Хопфа. Решение искалось в частотной области с использованием разложения спектральной плотности на пару зеркально симметричных сомножителей и последующим порождением выходного процесса из белого шума. Предложенная процедура очень сложна, и область применения оказалась довольно узкой.
 
-\pagebreak
 Дальнейшее развитие теоремы фильтрации связано с именами Р.~Калмана и Р.~Бьюси. Ими решена задача в пространстве состояний, найдены дискретный, а затем и непрерывный эквиваленты интегрального уравнения Винера-Хопфа в виде матричных разностного и дифференциального уравнений соответственно. Приведём эти результаты в виде теоремы и основанной на ней процедуры синтеза фильтра.
 
 Пусть задана динамическая система:
@@ -1606,8 +1611,11 @@ $ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \unde
 \[ p^2 + 2c^2p - c^2 = 0 \enskip \Rightarrow \enskip p = -c^2 \pm \sqrt{ c^4 + c^2 } \]
 \[ p > 0 \enskip \Rightarrow \enskip p = -c^2 + c^2 \sqrt{ c^2 + 1 } \]
 \[ F = c^2 \left( \sqrt{ c^2 + 1 } - 1 \right) \cdot \frac{1}{ c^2 } = \sqrt{ c^2 + 1 } - 1 \]
+
 Т.\=,е.~уравнение для оптимального фильтра имеет вид:
 \[ \dot{\bar{x}} = -\bar{x} + \left( \sqrt{ c^2 + 1 } - 1 \right) \bigl( y - \bar{x} \bigr) \]
+
+\pagebreak
 Структура всей системы:
 \begin{center} \scriptsize
 \begin{tikzpicture}	
@@ -1686,8 +1694,6 @@ $ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \unde
 При такой постановке задачи было доказано, что решение даётся расширенным матричным дифференциальным уравнением Риккати. При $ T \to \infty $ и постоянных параметрах уравнение становится алгебраическим. Однако, интереснее всего то, что решение
 \[ u(t) = -Kx(t) + Fz(t) \]
 распадается на независимое решение для обратных и прямых связей.
-
-\pagebreak
 
 \begin{problem}
 Исполнительным механизмом следящей системы является двигатель постоянного тока, модель которого описывается уравнением $ \dot{x} = -0,1x + 1,5u $. Следует найти структуру УУ, чтобы система максимально точно отслеживала случайное задание уставки с $ R_v ( \tau ) = 25 e^{ -0,4 | \tau | } $.
