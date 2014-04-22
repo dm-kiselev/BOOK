@@ -1815,29 +1815,54 @@ $\left( A-LC \right)$
 		vec/.style={->,>=stealth,semithick,inner sep=1ex},
 		point/.style={inner sep=0pt}							]
 	%%Первая колонка блоков
-	\node[block] (block1_1) {$ B $};	
+	\node[block] (block1_1) {$ B $};
+		
 	\node[point] (input) [left = 2em of block1_1] {$ u $};
+	\draw[vec] (input) to (block1_1);
+
+	\mysum{right = 1em of block1_1}{sum1_1};
+	\draw[vec] (block1_1) to (sum1_1);
+
+	\node[block] (block1_2)[right = 8em of block1_1] {$\in$};	
+	\draw[vec] (sum1_1) to (block1_2);
+		
+	\node[block] (block1_3)[below = 1em of block1_2] {$A$};
+	\node[point] (LineSeparator1_2) [right = 3em of block1_2]{}; 	
+	\fill (LineSeparator1_2) circle (1pt);	
+	\node[point] (LineSeparator1_3) [above right = 0.1em of LineSeparator1_2]{$x$}; 	
+	
+	\node[point] (LineSeparator1_3) [right = 3em of block1_3]{}; 		
+	\draw (LineSeparator1_2) |- (LineSeparator1_3) [vec] to (block1_3);
+	
+	
+	\node[point] (LineSeparator1_4) [left = 6em of block1_3]{}; 	
+	\draw (block1_3) |- (LineSeparator1_4) [vec] to (sum1_1);
+	
+		
+	\node[block] (block1_4)[right = 6em of block1_2] {$\mathbb{C}$};	
+	\draw[vec] (block1_2) to (block1_4);
+
+	
+	
+	
+	
+	%Bottom row
+	\node[block] (block2_1) [below = 8.5em of input_int] {$ B $};
 	\node[point] (LineSeparator1_1) 	 [left = 1em of block1_1] {};
 	\fill (LineSeparator1_1) circle (1pt);
-	\node[block] (block2_1) [below = 10.5em of input_int] {$ B $};
+	
 	\node[point] (LineSeparator2_1) 	 [left = 1em of block2_1] {};
-	\draw[vec] (input) to (block1_1);
 	\draw (LineSeparator1_1) |- (LineSeparator2_1) [vec] to (block2_1);
 	
-	\mysum{right = 1em of block1_1}{sum1_1};
-	\node[block] (block1_2)[right = 1em of sum1_1] {$\in$};	
-	
-	\node[block] (block1_3)[below = 1em of block1_2] {$A$};
-	
-	\node[block] (block1_4)[right = 1em of block1_2] {$C$};	
-	
-	
-	
-	
 	\mysum{right = 1em of block2_1}{sum2_1};
-	\node[block] (block2_3)[above = 2em of block2_1] {$\left( D-GC \right)\left( A{{L}
-	_{1}}-A{{L}_{2}}G \right)$ };
-	\node[block] (block2_2)[below = 2em of block2_3] {$\in$};	
+	\node[block] (block2_2)[right = 8em of block2_1] {$\in$};	
+	\node[block] (block2_3)[above = 1em of block2_2] {$\left( D-GC \right)\left( A{{L}_{1}}-A{{L}_{2}}G \right)$ };
+	\node[block] (block2_4)[below = 1em of block2_2] {$\left( D-GC \right)A{{L}_{2}}$ };	
+
+
+	\node[block](block2_5)[right = 6em of block2_2]{${{L}_{2}}$};
+	
+	\node[block](block2_6)[right = 5em of block2_3]{${{L}_{1}}+{{L}_{2}}G$};	
 	
 %	\draw (v) |- (sep) [vec] to (input_int2);
 	%\path[draw] node{separator1}  -- (1,0) -- (1,1) node {input_int2};
