@@ -720,7 +720,7 @@ H = - F(x,u,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _i = \frac{
 H = - L(x,u, \lambda ,t) + \sum\limits_{i=1}^{n} \psi _i \dot{x}_i, \quad \psi _i = \frac{\partial L}{\partial \dot{x}_i}
 \end{gather}
 Учитывая, что:
-\[ \frac{\partial H}{\partial x_i} = - \frac{\partial F}{\partial x_i} = - \frac{\partial H}{\partial x_i}, \quad \dot{x}_i = \frac{dx_i}{dt} = \frac{\partial H}{\partial \psi _i} \]
+\[ \frac{\partial H}{\partial x_i} = - \frac{\partial F}{\partial x_i} = - \frac{\partial L}{\partial x_i}, \quad \dot{x}_i = \frac{dx_i}{dt} = \frac{\partial H}{\partial \psi _i} \]
 \[ \frac{\partial F}{\partial x_i} - \frac{d}{dt} \Bigl( \underbrace{ \frac{\partial F}{\partial \dot{x}_i} }_{\psi _i} \Bigr) = 0 \enskip \Rightarrow \enskip \frac{d}{dt} \psi _i = \frac{\partial F}{\partial x_i} \]
 Получаем систему уравнений:
 \begin{equation}
@@ -1097,7 +1097,7 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
  \item При построении оптимального управления реальными объектами существует как минимум три причины невозможности его технической реализации:
  \begin{itemize}
  \item неидеальность (неточность) математической модели объекта управления;
- \item упрощения, принимаемые при реализации закона (алгоритма) объекта управления;
+ \item упрощения, принимаемые при реализации закона (алгоритма) управления;
  \item неточность (непостоянство) характеристик реальных элементов, реализующих управление (гистерезис, зона нечувствительности и~т.\=,п.).
   \end{itemize}
 
@@ -1775,10 +1775,10 @@ $\left( A-LC \right)$
 \\
 \par Эти идеи были строго доказаны математически и получили название двух основных принципов:
 \begin{itemize}
-\item Приницип стохастической эквивалентности - утверждает возможность замены реальных переменных стоятония $X$ в регуляторе, их оценками  $\hat{x}$, вычисляемыми по измеряемому выходу $y$; 
+\item Приницип стохастической эквивалентности - утверждает возможность замены реальных переменных состояния $X$ в регуляторе их оценками  $\hat{x}$, вычисляемыми по измеряемому выходу $y$; 
 \item Принцип разделения - утвержает, что синтез регулятора и наблюдателя для линейных систему можно производить независимо друг от друга. 
 \end{itemize}
-\par Структура наблюдателя полного порядка, очевидно, избыточна, т.к. в ней определяются и те координаты, которые доступны для измерения. Поэтому, в 1968 году Люенбергер Д.Ж. предложио идею построения наблюдателей сокращающей размерности. Пусть в системе:
+\par Структура наблюдателя полного порядка, очевидно, избыточна, т.к. в ней определяются и те координаты, которые доступны для измерения. Поэтому, в 1968 году Люенбергер Д.Ж. предложил идею построения наблюдателей сокращенной размерности. Пусть в системе:
  \[\left\{ \begin{array}{*{35}{l}}
    \dot{x}=Ax+Bu  \\
    x(0)  \\
@@ -1900,7 +1900,7 @@ $\left( A-LC \right)$
 	
 	
 	
-	\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {$1/p$};
+	\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {${{L}_{1}}+{{L}_{2}}G$};
 	\node[point] (LineSeparator1_4) [right = 15ex of LineSeparator1_3]{};
 	
 	\draw[vec] (LineSeparator1_3) to (block2_6);
@@ -1912,9 +1912,12 @@ $\left( A-LC \right)$
 
 	\node[point] (LineSeparator1_4) [below = 10ex of LineSeparator1_3] {};
 	\fill (LineSeparator1_4.south) circle (2pt);	
-	\draw[vec] (LineSeparator1_4) -| (block2_3);
+	%\draw[vec] (LineSeparator1_4) -| (block2_3);
 	
-	%\draw (LineSeparator1_2) |- (LineSeparator1_3) [vec] to (block1_3);
+	\node[point] (LineSeparator1_5) [right = 6ex of block2_3] {};
+	
+		
+	\draw (LineSeparator1_4) -| (LineSeparator1_5) [vec] to (block2_3);
 	
 %	\node[point] (LineSeparator1_2) [right = 7.5ex of block1_2]{}; 	% вместо этого лучше сначала нарисовать блок С (который справа от интегратора), нарисовать к нему вектор и на этом векторе поставить узел с текстом $x$, а затем уже от этого узла вести вектор к блоку А. (см. мой рисунок в предыдущем пункте)
 %	\fill (LineSeparator1_2) circle (1pt);		% соответственно и точку рисовать как-то так: \fill (x.south) circle (1pt);
