@@ -2086,12 +2086,141 @@ $\left( A-LC \right)$
 
 Структура системы имеет вид:
 
-\par 
-\par	Рисунок
-\par
-\par
-\par
 
+\end{problem}
+
+\begin{figure}[ht] \centering
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex},
+		point/.style={inner sep=0pt}							]
+	%%Первая колонка блоков
+	\node[block] (block1_1) {$ 0.8 $};
+		
+	\node[point] (input) [left = of block1_1] {$ u $};	% Расстояние в явном виде писать необязательно, здесь можно написать просто [left = of block1_1] и будет нормально. Явно задавать расстояние следует в том случае, когда надо сделать его меньше, чем делается автоматически, например, в случае, когда рисунок не помещается на страницу.
+	\draw[vec] (input) to (block1_1);
+
+	\mysum{right = 3ex of block1_1}{sum1_1};
+	\draw[vec] (block1_1) to (sum1_1);
+
+	\node[block] (block1_2)[right = 13ex of sum1_1] {$1/p$};	% надо задавать размещение относительно соседних элементов, а не относительно какой-нибудь штуки на другом краю рисунка :) здесь надо написать, что block1_2 справа от sum1_1
+	
+	\node[point] (inp2) [above = 2ex of block1_2] {${{x}_{2}}\left( 0 \right)$};
+	\draw[vec] (inp2) to (block1_2);
+	
+	
+	% знак интегрирования на самом блоке можно заменить на 1/p
+	\draw[vec] (sum1_1) to (block1_2);
+		
+	\node[block] (block1_3)[below = of block1_2] {$5$};
+	
+	\node[block] (block1_4)[right = 20ex of block1_2] {$1/p$};
+
+	\node[point] (inp3) [above = 2ex of block1_4] {${{x}_{1}}\left( 0 \right)$};
+	\draw[vec] (inp3) to (block1_4);
+	
+	
+	%\node[point] (LineSeparator1_2) [right = 7.5ex of block1_2]{};
+	
+	\draw[vec] (block1_2) to node(LineSeparator1_2){${{x}_{2}}$} (block1_4);
+	
+	\fill (LineSeparator1_2.south) circle (2pt);
+	\draw[vec] (LineSeparator1_2) |- (block1_3);
+	
+	\draw[vec] (block1_3) -| (sum1_1);
+	
+	\node[point] (output) [right = of block1_4] {$ y $};
+	\draw[vec] (block1_4) to (output);
+
+
+	%%Вторая линия
+	\node[block] (block2_1)[below =30ex of block1_1] {$0.8$};
+	\mysum{right = 3ex of block2_1}{sum2_1};
+	
+	
+	\node[block] (block2_2)[right = 13ex of sum2_1] {$1/p$};
+	\node[block] (block2_3)[above = of sum2_1] {$325$};
+	\node[block] (block2_4)[below = of block2_2] {$5$};
+	\node[point] (LineSeparator1_1) [left = 3.5ex of block1_1] {};
+	\fill (LineSeparator1_1) circle (2pt);	
+	\draw[vec] (LineSeparator1_1) |- (block2_1);	
+	
+	
+	\mysum{right = of block2_2}{sum2_3};
+	\node[block] (block2_6)[above = of sum2_3] {$35$};
+	
+	\node[block] (block2_5)[right = 13ex of sum2_3] {$1/p$};
+	
+	
+	\draw[vec] (block2_1) to (sum2_1);	
+	
+	\draw[vec] (sum2_1) to (block2_2);	
+	
+	
+
+		
+	
+	\draw[vec] (block2_2) to (sum2_3);	
+
+	
+	\draw[vec] (sum2_3) to (block2_5);
+	
+	\draw[vec] (block2_3) to (sum2_1);
+	
+	\draw[vec] (block2_4) -| (sum2_1);
+	
+
+	
+	
+	%\draw[vec] (block2_4) -| (sum2_1);
+	
+	\node[point] (LineSeparator2_1) [right = 15ex of block2_2]{};
+	\node[point] (LineSeparator2_10) [above = 1ex of LineSeparator2_1]{$z$};
+	\fill (LineSeparator2_1) circle (2pt);
+
+	\draw[vec] (LineSeparator2_1) |- (block2_4);	
+
+
+	%\draw[vec] (LineSeparator2_1) |- (block2_4);	
+	
+
+		
+	\mysum{right =3ex of block2_5}{sum2_4};	
+	
+	
+	%\draw[vec] (block2_5) to (sum2_2);	
+
+	\node[point] (LineSeparator1_3) [above  = 34.7ex of sum2_2]{};
+
+	\fill (LineSeparator1_3.south) circle (2pt);	
+	
+	
+	
+	%\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {$15$};
+	%\node[point] (LineSeparator1_4) [right = 15ex of LineSeparator1_3]{};
+	
+	%\draw[vec] (LineSeparator1_3) to (block2_6);
+	%\draw[vec] (block2_6) to (sum2_2);
+	
+	%\node[point] (output2) [right = 2ex of sum2_2] {${{\overline{x}}_{2}}$};	
+	
+	%\draw[vec] (sum2_2) to (output2);
+
+	%\node[point] (LineSeparator1_4) [below = 10ex of LineSeparator1_3] {};
+	%\fill (LineSeparator1_4.south) circle (2pt);	
+	%\draw[vec] (LineSeparator1_4) -| (block2_3);
+	
+	%\node[point] (LineSeparator1_5) [right = 15ex of block2_3] {};
+	
+		
+	%\draw (LineSeparator1_4) -| (LineSeparator1_5) [vec] to (block2_3);
+\end{tikzpicture}
+\footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
+\end{figure}
+
+
+\begin{problem}
 Синтезируем наблюдатель Люенбергера 1 порядка. Для этого выберем матрицу $D$ так, чтобы матрица $\left| \begin{matrix}
    C  \\
    D  \\
@@ -2188,6 +2317,8 @@ Cтруктура имеет вид:
 
 
 \end{problem}
+
+
 \begin{figure}[ht] \centering
 \begin{tikzpicture}	
 	[	auto,
@@ -2255,7 +2386,7 @@ Cтруктура имеет вид:
 
 		
 	
-	\draw[vec] (block2_2) to (sum2_2);	
+	
 
 	
 	\draw[vec] (block2_3) -| (sum2_1);
@@ -2266,15 +2397,15 @@ Cтруктура имеет вид:
 	\fill (LineSeparator2_1) circle (2pt);
 
 
-
+	\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {$15$};
 	\draw[vec] (LineSeparator2_1) |- (block2_4);	
 	
 
 		
-	\mysum{right =3ex of block2_5}{sum2_2};	
+	\mysum{below =9ex of block2_6}{sum2_2};	
 	
 	
-	\draw[vec] (block2_5) to (sum2_2);	
+	\draw[vec] (block2_2) to (sum2_2);	
 
 	\node[point] (LineSeparator1_3) [above  = 34.7ex of sum2_2]{};
 
@@ -2282,7 +2413,7 @@ Cтруктура имеет вид:
 	
 	
 	
-	\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {$15$};
+
 	\node[point] (LineSeparator1_4) [right = 15ex of LineSeparator1_3]{};
 	
 	\draw[vec] (LineSeparator1_3) to (block2_6);
@@ -2303,6 +2434,7 @@ Cтруктура имеет вид:
 \end{tikzpicture}
 \footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
 \end{figure}
+
 
 
 
