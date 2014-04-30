@@ -310,7 +310,7 @@ $ \min \, F \left( x \right) = x_1^2 - 2 x_1 x_2 + 4 x_2^2 $
 	-2 &  8
 \end{array} \right| $ положительно определённая --- это достаточное условие $ \min \, F \left( x^* \right) = 0 $
 \end{problem}
-\begin{problem}
+\begin{problem} \label{ex:extremum:third_example}
 $ f(x) = x^3 \left( x^2 - 1 \right) \to extr; \quad -1 \le x \le 2 $
 \[ \frac{\partial f}{\partial x} = 5x^4 - 3x^2 = 0 \enskip \Rightarrow \enskip x_1 = 0, x_2 = \sqrt{3/5}, x_3 = - \sqrt{3/5} \]
 \[ \frac{\partial ^ 2 F }{\partial x^2} = 20x^2 - 6x \]
@@ -338,7 +338,7 @@ $ f(x) = x^3 \left( x^2 - 1 \right) \to extr; \quad -1 \le x \le 2 $
 		\draw[semithick] (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\y$};
 	\draw[semithick,blue] plot (\x,{\x*\x*\x*(\x*\x-1)});		% график (ага, со степенями проблемы)
 \end{tikzpicture}
-\footnotesize \caption{График функции, рассмотренной в третьем примере\label{fig:extremum:third_example}}
+\footnotesize \caption{График функции, рассмотренной в примере \ref{ex:extremum:third_example} \label{fig:extremum:third_example}}
 \end{figure}
 
 В качестве точек возможного экстремума необходимо проанализировать не только стационарные точки, но ещё границы допустимой области и точки возможных разрывов оптимизируемой функции.
@@ -354,7 +354,7 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 \item найти стационарные точки и отыскать среди них решения задачи или доказать, что решения нет.
 \end{itemize}
 
-\begin{problem}
+\begin{problem} \label{ex:extremum:fourth_example}
 Найти стационарные точки для $F\left( x \right)=0.5\left( x_{1}^{2}+4x_{2}^{2} \right)$ при линейном ограничении на переменные $g\left( x \right)={{x}_{1}}+2{{x}_{2}}-1=0$.
 \begin{itemize}
 \item $L\left( x,\lambda  \right)=\frac{1}{2}\left( x_{1}^{2}+4x_{2}^{2} \right)+\lambda \left( {{x}_{1}}+2{{x}_{2}}-1 \right)$
@@ -404,7 +404,7 @@ L \left( x, \lambda \right) = F \left( x \right) + \lambda ^T G\left( x \right) 
 	\draw[semithick,red] (-1,1) -- (1.5,-0.25);				% ограничение
 	\fill (0.5,0.25) circle (0.15mm);							% стац. точка
 \end{tikzpicture}
-\footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
+\footnotesize \caption{Решение задачи, рассмотренной в примере \ref{ex:extremum:fourth_example} \label{fig:extremum:fourth_example}}
 \end{figure}
 
 Задачи оптимизации без ограничений и с ограничениями в форме равенств называются классическими и могут быть решены аналитически. Все остальные (неклассические) очень редко могут решаться аналитически. Для их решения используют алгоритмы Куна-Таккера, градиентные методы, симплексные алгоритмы и методы прямого поиска.
@@ -833,7 +833,7 @@ K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
 
 В целом ряде практических задач оптимизацию функционала при заданных дифференциальных (динамических) уравнениях объекта $\left\{ \dot{X}=\Phi \left( x,u \right)=AX+BU \right\}$ требуется обеспечивать при ограниченных диапазонах допустимого изменения управлений $\left| {{u}_{i}} \right|\le {{U}_{i}}$   и/или координат объекта $\left| {{x}_{i}} \right|\le {{X}_{i}}$. В изменениях функций образуются переломы, в изменении производных --- разрывы. Нарушаются условия, при которых были выведены уравнения Эйлера и Эйлера\-/Лагранжа в вариациях.
 
-Коллективом ученых под руководством академика Л.\=,С.~Понтрягина (В.\=,Г.~Болтянский, Р.\=,В.~Гамкрелидзе, Е.\=,Ф.~Мищенко и др.) был разработан принцип максимума, использующий понятие игольчатой вариации относительно оптимального управления и траектории движения, что позволило доказать применимость модифицированной функции Гамильтона для таких неклассических вариационных задач. Модификация заключалась в следующем:
+Коллективом учёных под руководством академика Л.\=,С.~Понтрягина (В.\=,Г.~Болтянский, Р.\=,В.~Гамкрелидзе, Е.\=,Ф.~Мищенко и др.) был разработан принцип максимума, использующий понятие игольчатой вариации относительно оптимального управления и траектории движения, что позволило доказать применимость модифицированной функции Гамильтона для таких неклассических вариационных задач. Модификация заключалась в следующем:
 \begin{itemize}
 \item уравнение для критерия качества $J=\int\limits_{{{t}_{0}}}^{{{t}_\textit{к}}}{{{F}_{0}}\left( x,u \right) \, dt}$ из интегральной формы преобразовывалось в дифференциальную
 \begin{equation}
@@ -888,7 +888,7 @@ K_\textit{ос}^2 + \frac{2a}{b} K_\textit{ос} - \frac{q}{r} = 0
 
 Для неконсервативных систем $ H^* = \psi \dot{X} $ будет мощностью, а $ \psi _i $ \--- импульсами воздействий, которые вводят в ОУ такое количество энергии, которое обеспечивало бы заданный закон движения и экстремум функционала критерия качества.
 
-\begin{problem}
+\begin{problem} \label{ex:maximum:first_example}
 \[ \min \, J = \int\limits_0^4 \bigl( x + u^2 \bigr) \, dt, \quad \dot{x} = u, \quad x(4) = 0, \quad |u| \le 1 \]
 \begin{enumerate}
 \item $ H\left( \psi ,x,u \right)=-1\left( x+{{u}^{2}} \right)+\psi u $
@@ -915,6 +915,7 @@ J_{ \min } = \int\limits_0^2 \left( \frac{t^2}{4} + \frac{t^2}{4} - 3 \right) \,
 \end{multline*}
 \end{problem}
 
+\vspace{-\baselineskip} \enlargethispage{\baselineskip}
 \begin{figure}[ht] \centering
 \begin{tikzpicture}[xscale=2]
 	\draw[very thin,gray,xstep=1mm,ystep=2mm] (0,-1) grid (4,1);				% сетка
@@ -937,7 +938,7 @@ J_{ \min } = \int\limits_0^2 \left( \frac{t^2}{4} + \frac{t^2}{4} - 3 \right) \,
 			plot( \t, {(\t^2)/4-3} ) -- (4,0);
 	\end{scope}
 \end{tikzpicture}
-\footnotesize \caption{Решение задачи, рассмотренной в первом примере\label{fig:maximum:first_example}}
+\footnotesize \caption{Решение задачи, рассмотренной в примере \ref{ex:maximum:first_example} \label{fig:maximum:first_example}}
 \end{figure}
 
 \begin{problem}
@@ -1016,7 +1017,7 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
 \item Наличие только ограниченного числа вариантов управляющего сигнала $ \pm U_m $ позволяет разделить всё фазовое пространство СУ на области с помощью гиперповерхностей $ S(x) = 0 $, в каждой из которых управление постоянно. Такой подход называется методом фазового пространства, и позволяет вычислять управление на основе анализа нелинейных зависимостей: $ u_\textit{опт} = -U_{ \max } \cdot sign \bigl[ S(x) \bigr] $.
 \end{enumerate}
 
-\vspace{-\baselineskip}
+% \vspace{-\baselineskip}
 \begin{problem}
 \[ \ddot{x} = u(t), \qquad \left| \begin{matrix}
    \dot{x}_1  \\
@@ -1039,6 +1040,7 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
 	u = + U_m & \Rightarrow & U_m x_1 = \frac{x_2^2}{2} \\
 	u = - U_m & \Rightarrow & - U_m x_1 = \frac{x_2^2}{2}
 \end{darray} \]
+
 Откуда получаем траектории следующего вида:
 \begin{center}
 \begin{tikzpicture}
@@ -1065,9 +1067,12 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
 \end{tikzpicture}
 \end{center}
 
+% \enlargethispage{2\baselineskip}
 Выделим линию:
 \[ S \bigl( x_1, x_2 \bigr) = x_1 + sign \bigl( x_2 \bigr) \frac{x_2^2}{2U_m} = x_1 + \frac{x_2 \cdot \bigl| x_2 \bigr| }{2U_m} = 0 \]
 \[ u = -U_m \cdot sign \Bigl( S \bigl( x_1, x_2 \bigr) \Bigr) \]
+
+\pagebreak
 Тогда получим фазовые траектории в виде:
 \begin{center}
 \begin{tikzpicture}
@@ -1091,6 +1096,7 @@ $\left| u \right|\le {{U}_{m}}$ решение имеет естественны
 \end{tikzpicture}
 \end{center}
 \end{problem}
+
 Аналитические представления для поверхностей переключения как функций координат полностью разрешимы для линейных систем второго порядка. Для большего порядка решения найдены только в частных случаях.
 
  \begin{enumerate}[resume]
@@ -1656,6 +1662,7 @@ $ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \unde
 	\draw[dashed] (p3) rectangle (p4);
 \end{tikzpicture}
 \end{center}
+
 Передаточная функция фильтра:
 \[ W_\textit{ф}(p) = \frac{ \sqrt{ c^2 + 1 } - 1 }{ p + \sqrt{ c^2 + 1 } } \]
 \end{problem}
@@ -2585,8 +2592,17 @@ Cтруктура имеет вид:
 \footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
 \end{figure}
 
+\clearpage
 
-
+\setcounter{secnumdepth}{-1}		% отключили нумерацию разделов
+\section{Список литературы\label{references}}
+\setcounter{secnumdepth}{2}		% включили обратно
+\begin{enumerate}
+\item \textit{Певзнер~Л.\=,Д.} Теория систем управления. --- М.: Изд. МГГУ, 2002. --- 472 с.
+\item \textit{Сейдж~Э.\=,П., Уайт~Ч.\=,С. III.} Оптимальное управление системами\=,: Пер. с англ. / Под ред. Б.\=,Р.~Левина. --- М.: Радио и связь, 1982. --- 392 с.
+\item \textit{Чураков~Е.\=,П.} Оптимальные и адаптивные системы\=,: Учебное пособие для вузов. --- М.: Энергоатомиздат, 1987. --- 256 с.
+\item \textit{Куропаткин~П.\=,В.} Оптимальные и самонастраивающиеся системы\=,: Учебное пособие. --- М.: Высшая школа, 1980.
+\end{enumerate}
 
 
 \end{document}
