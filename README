@@ -8,3 +8,5 @@ To create PDF from TEX file use pdflatex command. To learn about LaTeX
 syntax see e.g. http://www.inp.nsk.su/~baldin/LaTeX/lurs.pdf
 
 To find & view TeX documentation use texdoc command.
+
+PLEASE COMPILE TWICE BEFORE PRINTING!
