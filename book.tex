@@ -1880,7 +1880,71 @@ J_{ \min } = \underset{ \tau \to \infty }{ \mathop{ \lim } } \=, M \left\{ \int\
 
 Матрица $G$ в наблюдателе подбирается (аналогично $L$) так, чтобы обеспечить качество динамического процесса восстановления координат состояния. Исследования показали, что наблюдатели неполного порядка менее чувствительны к помехам, чем наблюдатели полного порядка.
 
-\begin{problem}
+\begin{figure}[ht] \centering
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex}		]
+	% Первый ряд блоков
+	\node[block] (B1) {$ 0,8 $};
+	\node[coordinate] (input) [left = of B1] {};
+	\draw[vec] (input) to node(u){$ u $} (B1);
+	\mysum[4]{right = 1.5em of B1}{sum1_1};
+	\draw[vec] (B1) to (sum1_1);
+	\node[block] (int1_1) [right = 1.5em of sum1_1] {$ 1/p $};
+	\node[coordinate] (input2) [above = 2\baselineskip of int1_1] {};
+	\draw[vec] (input2) to node(x2_init){$ x_2(0) $} (int1_1);
+	\draw[vec] (sum1_1) to (int1_1);
+	\node[block] (A) [below = \baselineskip of int1_1] {$ 5 $};
+	\node[block] (int1_2) [right = of int1_1] {$ 1/p $};
+	\node[coordinate] (input3) [above = 2\baselineskip of int1_2] {};
+	\draw[vec] (input3) to node(x1_init){$ x_1(0) $} (int1_2);
+	\draw[vec] (int1_1) to node(x2){$ x_2 $} (int1_2);
+	\fill (x2.south) circle (1pt);
+	\draw[vec] (x2) |- (A);
+	\draw[vec] (A) -| (sum1_1);
+	
+	% Второй ряд
+	\node[block] (B2) [below = 8\baselineskip of B1] {$ 0,8 $};
+	\mysum[4]{right = 1.5em of B2}{sum2_1};
+	\draw[vec] (u) |- (B2);
+	\fill (u.south) circle (1pt);
+	\draw[vec] (B2) to (sum2_1);
+	\node[block] (int2_1) [right = 1.5em of sum2_1] {$ 1/p $};
+	\draw[vec] (sum2_1) to (int2_1);
+	\mysum{right = of int2_1}{sum2_2};
+	\draw[vec] (int2_1) to node(est2){$ \bar{x}_2 $} (sum2_2);
+	\node[block] (int2_2) [right = 1.5em of sum2_2] {$ 1/p $};
+	\draw[vec] (sum2_2) to (int2_2);
+	\node[block] (block2_1) [below = \baselineskip of int2_1] {$ 5 $};
+	\draw[vec] (est2) |- (block2_1);
+	\fill (est2.south) circle (1pt);
+	\draw[vec] (block2_1) -| (sum2_1);
+	\node[coordinate] (output2) [right = 5em of int2_2] {};
+	\draw[vec] (int2_2) to node(est1)[above left]{$ \bar{x}_1 $} (output2);
+	\fill (est1.south east) circle (1pt);
+	\fill (est2 |- block2_1) circle (1pt);
+	\draw[vec] (est2 |- block2_1) to (output2 |- block2_1);
+
+	% other shit
+	\mysum[4]{above = 4.5\baselineskip of est1.south east}{sum3};
+	\draw[vec] (est1.south east) to (sum3);
+	\node[block] (block2_2) [above = 1.5\baselineskip of sum2_1] {325};
+	\draw[vec] (block2_2) to (sum2_1);
+	\node[block] (block2_3) [above = 1.5\baselineskip of sum2_2] {35};
+	\draw[vec] (block2_3) to (sum2_2);
+	\draw[vec] (sum3) -| (block2_2);
+	\fill (sum3 -| block2_3) circle (1pt);
+	\draw[vec] (sum3 -| block2_3) to (block2_3);
+	\draw[vec] (int1_2) to (output2 |- int1_2);
+	\draw[vec] (int1_2 -| sum3) node(x1)[above]{$ x_1 = y $} to (sum3);
+	\fill (x1.south) circle (1pt);
+
+\end{tikzpicture}
+\footnotesize \caption{Система, рассмотренная в примере~\ref{ex:stochastic:Luenberger:first_example} \label{fig:stochastic:Luenberger:first_example}}
+\end{figure}
+
+\begin{problem} \label{ex:stochastic:Luenberger:first_example}
 Пусть в системе управления положением:
 \[ \dot{x} = \begin{pmatrix}
 	0 & 1 \\
@@ -1893,18 +1957,20 @@ J_{ \min } = \underset{ \tau \to \infty }{ \mathop{ \lim } } \=, M \left\{ \int\
 	-l_2 & -5
 \end{pmatrix} \]
 
+\pagebreak
 Полюса наблюдателя определяются уравнением:
 \begin{multline*}
 \det \=, ( \lambda E - A + LC ) = \det \=, \begin{vmatrix}
 	\lambda + l_1 & -1 \\
 	l_2 & \lambda + 5
-\end{vmatrix} = \bigl( \lambda + l_1 \bigr) \cdot \bigl( \lambda + 5 \bigr) + l_2 = \\ \lambda ^2 + \bigl( 5 + l_1 \bigr) \lambda + \bigl( 5l_1 + l_2 \bigr) = 0
+\end{vmatrix} = \bigl( \lambda + l_1 \bigr) \cdot \bigl( \lambda + 5 \bigr) + l_2 = \nr \lambda ^2 + \bigl( 5 + l_1 \bigr) \lambda + \bigl( 5l_1 + l_2 \bigr) = 0
 \end{multline*}
 
 Поскольку характеристические числа системы $ \left\{ 0; -5 \right\} $, зададим полюса наблюдателя $ \left\{ \alpha \pm j\beta \right\} = \left\{ -20 \pm j10 \right\} $, т.\=,е.~характеристический полином наблюдателя имеет вид:
 \[ \lambda ^2 + 40\lambda + 500 = \lambda ^2 + 2 \alpha \lambda + \alpha ^2 + \beta ^2 \]
 \[ l_1 = 35, \qquad l_2 = 500 - 5 \cdot 35 = 325 \]
 
+\pagebreak
 Модель асимптотического наблюдателя имеет вид:
 \begin{multline*}
 \dot{\bar{x}} = ( A - LC ) \bar{x} + Bu + Ly = \left[ \begin{pmatrix}
@@ -1918,506 +1984,87 @@ J_{ \min } = \underset{ \tau \to \infty }{ \mathop{ \lim } } \=, M \left\{ \int\
 \end{multline*}
 \[ x(0) = 0 \]
 
-Структура системы показана на рисунке
-
+Структура системы показана на рисунке~\ref{fig:stochastic:Luenberger:first_example}.
 \end{problem}
 
+\begin{problem} \label{ex:stochastic:Luenberger:second_example}
+Синтезируем наблюдатель Люенбергера первого порядка. Для этого выберем матрицу $D$ так, чтобы матрица $ \begin{medsize} \begin{vmatrix} C \\ D \end{vmatrix} \end{medsize} $ была единичной $ \begin{medsize} \begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} \end{medsize} $, тогда $ L_1 = \begin{medsize} \begin{vmatrix} 1 \\ 0 \end{vmatrix} \end{medsize} , \enskip L_2 = \begin{medsize} \begin{vmatrix} 0 \\ 1 \end{vmatrix} \end{medsize} $.\vspace{1ex} Матрица $G$ \--- скаляр, равный $g$, $ ( D - GC ) = \begin{pmatrix} -g, & 1 \end{pmatrix} $.
 
-%\begin{figure}[ht] \centering
-%\begin{tikzpicture}	
-%	[	auto,
-%		block/.style={rectangle,draw,thick,inner sep=2ex},
-%		vec/.style={->,>=stealth,semithick,inner sep=1ex},
-%		point/.style={inner sep=0pt}							]
-%	%%Первая колонка блоков
-%	\node[block] (block1_1) {$ 0.8 $};
-%		
-%	\node[point] (input) [left = of block1_1] {$ u $};	% Расстояние в явном виде писать необязательно, здесь можно написать просто [left = of block1_1] и будет нормально. Явно задавать расстояние следует в том случае, когда надо сделать его меньше, чем делается автоматически, например, в случае, когда рисунок не помещается на страницу.
-%	\draw[vec] (input) to (block1_1);
-%
-%	\mysum{right = 3ex of block1_1}{sum1_1};
-%	\draw[vec] (block1_1) to (sum1_1);
-%
-%	\node[block] (block1_2)[right = 13ex of sum1_1] {$1/p$};	% надо задавать размещение относительно соседних элементов, а не относительно какой-нибудь штуки на другом краю рисунка :) здесь надо написать, что block1_2 справа от sum1_1
-%	
-%	\node[point] (inp2) [above = 2ex of block1_2] {${{x}_{2}}\left( 0 \right)$};
-%	\draw[vec] (inp2) to (block1_2);
-%	
-%	
-%	% знак интегрирования на самом блоке можно заменить на 1/p
-%	\draw[vec] (sum1_1) to (block1_2);
-%		
-%	\node[block] (block1_3)[below = of block1_2] {$5$};
-%	
-%	\node[block] (block1_4)[right = 20ex of block1_2] {$1/p$};
-%
-%	\node[point] (inp3) [above = 2ex of block1_4] {${{x}_{1}}\left( 0 \right)$};
-%	\draw[vec] (inp3) to (block1_4);
-%	
-%	
-%	%\node[point] (LineSeparator1_2) [right = 7.5ex of block1_2]{};
-%	
-%	\draw[vec] (block1_2) to node(LineSeparator1_2){${{x}_{2}}$} (block1_4);
-%	
-%	\fill (LineSeparator1_2.south) circle (2pt);
-%	\draw[vec] (LineSeparator1_2) |- (block1_3);
-%	
-%	\draw[vec] (block1_3) -| (sum1_1);
-%	
-%	\node[point] (output) [right = of block1_4] {$ y $};
-%	\draw[vec] (block1_4) to (output);
-%
-%
-%	%%Вторая линия
-%	\node[block] (block2_1)[below =30ex of block1_1] {$0.8$};
-%	\mysum{right = 8ex of block2_1}{sum2_1};
-%	
-%	
-%	\node[block] (block2_2)[right = 13ex of sum2_1] {$1/p$};
-%	\node[block] (block2_3)[above = of sum2_1] {$325$};
-%	\node[block] (block2_4)[below = of block2_2] {$5$};
-%	\node[point] (LineSeparator1_1) [left = 3.5ex of block1_1] {};
-%	\fill (LineSeparator1_1) circle (2pt);	
-%	\draw[vec] (LineSeparator1_1) |- (block2_1);	
-%	
-%	
-%	\mysum{right = of block2_2}{sum2_3};
-%	\node[block] (block2_6)[above = of sum2_3] {$35$};
-%	
-%	\node[block] (block2_5)[right = 12ex of sum2_3] {$1/p$};
-%	
-%	
-%	
-%	
-%	\draw[vec] (sum2_1) to (block2_2);	
-%	
-%	
-%
-%		
-%	
-%	\draw[vec] (block2_2) to (sum2_3);	
-%
-%	
-%	\draw[vec] (sum2_3) to (block2_5);
-%	
-%	\draw[vec] (block2_3) to (sum2_1);
-%	
-%	\draw[vec] (block2_4) -| (sum2_1);
-%	
-%
-%	
-%	
-%	%\draw[vec] (block2_4) -| (sum2_1);
-%	
-%	\node[point] (LineSeparator2_1) [right = 15ex of block2_2]{};
-%	\node[point] (LineSeparator2_10) [above = 1ex of LineSeparator2_1]{$z$};
-%	\fill (LineSeparator2_1) circle (2pt);
-%
-%	\draw[vec] (LineSeparator2_1) |- (block2_4);	
-%
-%
-%	%\draw[vec] (LineSeparator2_1) |- (block2_4);	
-%	
-%
-%	\node[point] (LineSeparator2_20) [below =18ex of LineSeparator1_3]{};
-%%	\mysum{below =18ex of LineSeparator1_3}{sum2_4};	
-%	
-%	
-%	%\draw[vec] (LineSeparator1_3) to (sum2_4);	
-%
-%	\draw[vec] (LineSeparator1_3) to (LineSeparator2_20)-| (block2_6);	
-%	\draw[vec] (LineSeparator1_3) to (LineSeparator2_20)-| (block2_3);	
-%
-%	\draw[vec] (block2_6) to (sum2_3);
-%
-%	%\node[point] (LineSeparator1_3) [above  = 34.7ex of sum2_2]{};
-%
-%	\fill (LineSeparator1_3.south) circle (2pt);	
-%	
-%%	\draw[vec] (block2_5) -| (sum2_4);
-%	
-%	
-%	\node[point] (out10)[right = 5ex of  block2_5]{};
-%	\draw[vec] (block2_5) to node(out50){${{\overline{x}}_{1}}$} (out10);
-%	\fill (out50.south) circle (2pt);
-%	
-%	\mysum{right = 3ex of block2_1}{sum2_10};
-%	\node[block] (block2_50)[below = 15ex of sum2_10] {$325$};
-%	
-%	\node[block] (block2_51)[below = 15ex of sum2_3] {$35$}; 
-%	
-%	\draw[vec] (block2_1) to (sum2_10);	
-%	\draw[vec] (sum2_10) to (sum2_1);	
-%	
-%	
-%	\node[point] (block2_52)[below = 25ex of  out50]{};
-%	
-%	\node[point] (block2_53)[below = 3ex of  block2_50]{};
-%	\node[point] (block2_54)[below = 3ex of  block2_51]{};
-%	
-%	\draw[vec] (out50) to (block2_52)-| (block2_53) to (block2_50);	
-%	
-%	\draw[vec] (block2_54) to (block2_51);	
-%	
-%	
-%	\draw[vec] (block2_50) to (sum2_10);	
-%	
-%	\draw[vec] (block2_51) to (sum2_3);	
-%	
-%	%\node[point] (out10)[right = 2ex of  block2_5]{${{\overline{x}}_{1}}$ };	
-%	
-%%	\node[point] (out11)[right = 35ex of  block2_4]{};
-%%	\draw[vec] (block2_4) to (out11);
-%	
-%	
-%	
-%\end{tikzpicture}
-%\footnotesize \caption{asdsadasdsadsadsd\label{fig:extremum:fourth_example}}
-%\end{figure}
+Дифференциальное уравнение для вспомогательной переменной $z$ и соотношение для оценки принимают вид:
+\begin{align*}
+\dot{z} = {} & \begin{medsize} \begin{pmatrix} -g, & 1 \end{pmatrix} \end{medsize} \Biggl[ \begin{medsize} \begin{pmatrix} 0 & 1 \\ 0 & -5 \end{pmatrix} \end{medsize} \begin{medsize} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{medsize} z + \biggl( \begin{medsize} \begin{pmatrix} 0 & 1 \\ 0 & -5 \end{pmatrix} \end{medsize} \begin{medsize} \begin{pmatrix} 1 \\ 0 \end{pmatrix} \end{medsize} + \begin{medsize} \begin{pmatrix} 0 & 1 \\ 0 & -5 \end{pmatrix} \end{medsize} \begin{medsize} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{medsize} g \biggr) y + {} \nr
+&\hphantom{ {} \begin{medsize} \begin{pmatrix} -g, & 1 \end{pmatrix} \end{medsize} \Biggl[ {} }
+\begin{medsize} \begin{pmatrix} 0 \\ 0,8 \end{pmatrix} \end{medsize} u \Biggr] = \begin{medsize} \begin{pmatrix} -g, & 1 \end{pmatrix} \end{medsize} \biggl[ \begin{medsize} \begin{pmatrix} 1 \\ -5 \end{pmatrix} \end{medsize} z + \begin{medsize} \begin{pmatrix} 1 \\ -5 \end{pmatrix} \end{medsize} gy + \begin{medsize} \begin{pmatrix} 0 \\ 0,8 \end{pmatrix} \end{medsize} u \biggr] = \nr
+& - (g+5)z - (g+5)gy + 0,8u
+\end{align*}
 
+% \[ z(0) = 0 \]
 
-%\begin{figure}[ht] \centering
-%\begin{tikzpicture}	
-%	[	auto,
-%		block/.style={rectangle,draw,thick,inner sep=2ex},
-%		vec/.style={->,>=stealth,semithick,inner sep=1ex},
-%		point/.style={inner sep=0pt}							]
-%	%%Первая колонка блоков
-%	\node[block] (block1_1) {$ 0.8 $};
-%		
-%	\node[point] (input) [left = of block1_1] {$ u $};	% Расстояние в явном виде писать необязательно, здесь можно написать просто [left = of block1_1] и будет нормально. Явно задавать расстояние следует в том случае, когда надо сделать его меньше, чем делается автоматически, например, в случае, когда рисунок не помещается на страницу.
-%	\draw[vec] (input) to (block1_1);
-%
-%	\mysum{right = 3ex of block1_1}{sum1_1};
-%	\draw[vec] (block1_1) to (sum1_1);
-%
-%	\node[block] (block1_2)[right = 13ex of sum1_1] {$1/p$};	% надо задавать размещение относительно соседних элементов, а не относительно какой-нибудь штуки на другом краю рисунка :) здесь надо написать, что block1_2 справа от sum1_1
-%	
-%	\node[point] (inp2) [above = 2ex of block1_2] {${{x}_{2}}\left( 0 \right)$};
-%	\draw[vec] (inp2) to (block1_2);
-%	
-%	
-%	% знак интегрирования на самом блоке можно заменить на 1/p
-%	\draw[vec] (sum1_1) to (block1_2);
-%		
-%	\node[block] (block1_3)[below = of block1_2] {$5$};
-%	
-%	\node[block] (block1_4)[right = 20ex of block1_2] {$1/p$};
-%
-%	\node[point] (inp3) [above = 2ex of block1_4] {${{x}_{1}}\left( 0 \right)$};
-%	\draw[vec] (inp3) to (block1_4);
-%	
-%	
-%	%\node[point] (LineSeparator1_2) [right = 7.5ex of block1_2]{};
-%	
-%	\draw[vec] (block1_2) to node(LineSeparator1_2){${{x}_{2}}$} (block1_4);
-%	
-%	\fill (LineSeparator1_2.south) circle (2pt);
-%	\draw[vec] (LineSeparator1_2) |- (block1_3);
-%	
-%	\draw[vec] (block1_3) -| (sum1_1);
-%	
-%	\node[point] (output) [right = of block1_4] {$ y $};
-%	\draw[vec] (block1_4) to (output);
-%
-%
-%	%%Вторая линия
-%	\node[block] (block2_1)[below =30ex of block1_1] {$0.8$};
-%	\mysum{right = 3ex of block2_1}{sum2_1};
-%	
-%	
-%	\node[block] (block2_2)[right = 13ex of sum2_1] {$1/p$};
-%	\node[block] (block2_3)[above = of sum2_1] {$325$};
-%	\node[block] (block2_4)[below = of block2_2] {$5$};
-%	\node[point] (LineSeparator1_1) [left = 3.5ex of block1_1] {};
-%	\fill (LineSeparator1_1) circle (2pt);	
-%	\draw[vec] (LineSeparator1_1) |- (block2_1);	
-%	
-%	
-%	\mysum{right = of block2_2}{sum2_3};
-%	\node[block] (block2_6)[above = of sum2_3] {$35$};
-%	
-%	\node[block] (block2_5)[right = 12ex of sum2_3] {$1/p$};
-%	
-%	
-%	\draw[vec] (block2_1) to (sum2_1);	
-%	
-%	\draw[vec] (sum2_1) to (block2_2);	
-%	
-%	
-%
-%		
-%	
-%	\draw[vec] (block2_2) to (sum2_3);	
-%
-%	
-%	\draw[vec] (sum2_3) to (block2_5);
-%	
-%	\draw[vec] (block2_3) to (sum2_1);
-%	
-%	\draw[vec] (block2_4) -| (sum2_1);
-%	
-%
-%	
-%	
-%	%\draw[vec] (block2_4) -| (sum2_1);
-%	
-%	\node[point] (LineSeparator2_1) [right = 15ex of block2_2]{};
-%	\node[point] (LineSeparator2_10) [above = 1ex of LineSeparator2_1]{$z$};
-%	\fill (LineSeparator2_1) circle (2pt);
-%
-%	\draw[vec] (LineSeparator2_1) |- (block2_4);	
-%
-%
-%	%\draw[vec] (LineSeparator2_1) |- (block2_4);	
-%	
-%
-%		
-%	\mysum{below =18ex of LineSeparator1_3}{sum2_4};	
-%	
-%	
-%	\draw[vec] (LineSeparator1_3) to (sum2_4);	
-%
-%	\draw[vec] (sum2_4)-| (block2_6);	
-%	\draw[vec] (sum2_4)-| (block2_3);	
-%
-%	\draw[vec] (block2_6) to (sum2_3);
-%
-%	%\node[point] (LineSeparator1_3) [above  = 34.7ex of sum2_2]{};
-%
-%	\fill (LineSeparator1_3.south) circle (2pt);	
-%	
-%	\draw[vec] (block2_5) -| (sum2_4);
-%	
-%	
-%	\node[point] (out10)[right = 5ex of  block2_5]{};
-%	\draw[vec] (block2_5) to (out10);
-%	
-%	\node[point] (out11)[right = 35ex of  block2_4]{};
-%	\draw[vec] (block2_4) to (out11);
-%	
-%	
-%	
-%\end{tikzpicture}
-%\footnotesize \caption{Рыфвфывфывыфве\label{fig:extremum:fourth_example}}
-%\end{figure}
+\[ \bar{x} = \begin{medsize} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{medsize} z + \biggl[ \begin{medsize} \begin{pmatrix} 1 \\ 0 \end{pmatrix} \end{medsize} + \begin{medsize} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{medsize} g \biggr] y = \begin{medsize} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \end{medsize} z + \begin{medsize} \begin{pmatrix} 1 \\ g \end{pmatrix} \end{medsize} y \]
 
+Полюс наблюдателя равен $ -(g+5) $. Выберем в точке $ -20 $, тогда $ g = 15 $, и окончательно получаем:
+\[ \dot{z} = -20z - 300y + 0.8u, \qquad z(0) = 0, \qquad \bar{x}_1 = y, \qquad \bar{x}_2 = z + 15y \]
 
-\begin{problem}
-Синтезируем наблюдатель Люенбергера 1 порядка. Для этого выберем матрицу $D$ так, чтобы матрица $\left| \begin{matrix}
-   C  \\
-   D  \\
-\end{matrix} \right|$ была еденичной $\left| \begin{matrix}
-   1 & 0  \\
-   0 & 1  \\
-\end{matrix} \right|$, тогда ${{L}_{1}}=\left| \begin{matrix}
-   1  \\
-   0  \\
-\end{matrix} \right|,{{L}_{2}}=\left| \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right|$. Матрица $G$ - скаляр равный $g$, $(D-GC)=(-g,1).$
-Дифференциальное уравнение для вспомогательной переменной $z$ и соотношение для оценки принимают вид: 
-
-
-\[
-\left\{ 
-\begin{array}{*{35}{l}}
- \begin{array}{*{35}{l}}
-   \dot{z}=\left( -g,1 \right)
-   \bigg[ 
-	\left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)z+\bigg(\left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   1  \\
-   0  \\
-\end{matrix} \right)+\\
-\left( \begin{matrix}
-   0 & 1  \\
-   0 & -5  \\
-\end{matrix} \right)\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \bigg) \right)y+
-\left( \begin{matrix}
-   0  \\
-   0.8  \\
-\end{matrix} \right)u \bigg];\\
-\end{array}
- \\
-   z(0)=0;  \\
-   \bar{x}=\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)z+\left[ \left( \begin{matrix}
-   1  \\
-   0  \\
-\end{matrix} \right)+\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)g \right]y=\left( \begin{matrix}
-   0  \\
-   1  \\
-\end{matrix} \right)z+\left( \begin{matrix}
-   1  \\
-   g  \\
-\end{matrix} \right)y;\\
-\end{array}\right.\]
-
-
-
-
-
-\[
-\dot{z}=\left( -g,1 \right)\left[ \left( \begin{matrix}
-   1  \\
-   -5  \\
-\end{matrix} \right)z+\left( \begin{matrix}
-   1  \\
-   -5  \\
-\end{matrix} \right)gy+\left( \begin{matrix}
-   0  \\
-   0.8  \\
-\end{matrix} \right)u 
-\right]
-=-\left( g+5 \right)z-\left( g+5 \right);\]
-
-
-
-Полюс наблюдателя равен $-(g+5)$. Выберем в точке $-20$, тогда $g$ равно 15.
-И окончательно получим уравнение: 
-\[\dot{z}=-20z-300y+0.8u,\,\,z(0)=0,{{\bar{x}}_{1}}=y,{{\bar{x}}_{2}}=z+15y\]
-Cтруктура имеет вид:
-
-
-
-
+% Структура системы показана на рисунке~\ref{fig:stochastic:Luenberger:second_example}.
 \end{problem}
 
+\begin{figure}[t] \centering
+\begin{tikzpicture}	
+	[	auto,
+		block/.style={rectangle,draw,thick,inner sep=2ex},
+		vec/.style={->,>=stealth,semithick,inner sep=1ex}		]
+	% Первый ряд блоков
+	\node[block] (B1) {$ 0,8 $};
+	\node[coordinate] (input) [left = of B1] {};
+	\draw[vec] (input) to node(u){$ u $} (B1);
+	\mysum[4]{right = 1.5em of B1}{sum1_1};
+	\draw[vec] (B1) to (sum1_1);
+	\node[block] (int1_1) [right = 1.5em of sum1_1] {$ 1/p $};
+	\node[coordinate] (input2) [above = 2\baselineskip of int1_1] {};
+	\draw[vec] (input2) to node(x2_init){$ x_2(0) $} (int1_1);
+	\draw[vec] (sum1_1) to (int1_1);
+	\node[block] (A) [below = \baselineskip of int1_1] {$ 5 $};
+	\node[block] (int1_2) [right = of int1_1] {$ 1/p $};
+	\node[coordinate] (input3) [above = 2\baselineskip of int1_2] {};
+	\draw[vec] (input3) to node(x1_init){$ x_1(0) $} (int1_2);
+	\draw[vec] (int1_1) to node(x2){$ x_2 $} (int1_2);
+	\fill (x2.south) circle (1pt);
+	\draw[vec] (x2) |- (A);
+	\draw[vec] (A) -| (sum1_1);
 
-%\begin{figure}[ht] \centering
-%\begin{tikzpicture}	
-%	[	auto,
-%		block/.style={rectangle,draw,thick,inner sep=2ex},
-%		vec/.style={->,>=stealth,semithick,inner sep=1ex},
-%		point/.style={inner sep=0pt}							]
-%	%%Первая колонка блоков
-%	\node[block] (block1_1) {$ 0.8 $};
-%		
-%	\node[point] (input) [left = of block1_1] {$ u $};	% Расстояние в явном виде писать необязательно, здесь можно написать просто [left = of block1_1] и будет нормально. Явно задавать расстояние следует в том случае, когда надо сделать его меньше, чем делается автоматически, например, в случае, когда рисунок не помещается на страницу.
-%	\draw[vec] (input) to (block1_1);
-%
-%	\mysum{right = 3ex of block1_1}{sum1_1};
-%	\draw[vec] (block1_1) to (sum1_1);
-%
-%	\node[block] (block1_2)[right = 13ex of sum1_1] {$1/p$};	% надо задавать размещение относительно соседних элементов, а не относительно какой-нибудь штуки на другом краю рисунка :) здесь надо написать, что block1_2 справа от sum1_1
-%	
-%	\node[point] (inp2) [above = 2ex of block1_2] {${{x}_{2}}\left( 0 \right)$};
-%	\draw[vec] (inp2) to (block1_2);
-%	
-%	
-%	% знак интегрирования на самом блоке можно заменить на 1/p
-%	\draw[vec] (sum1_1) to (block1_2);
-%		
-%	\node[block] (block1_3)[below = of block1_2] {$5$};
-%	
-%	\node[block] (block1_4)[right = 20ex of block1_2] {$1/p$};
-%
-%	\node[point] (inp3) [above = 2ex of block1_4] {${{x}_{1}}\left( 0 \right)$};
-%	\draw[vec] (inp3) to (block1_4);
-%	
-%	%\draw (block1_2) [vec] to (block1_4);
-%	
-%	%\node[point] (LineSeparator1_2) [right = 7.5ex of block1_2]{};
-%	
-%	\draw[vec] (block1_2) to node(LineSeparator1_2){${{x}_{2}}$} (block1_4);
-%	
-%	\fill (LineSeparator1_2.south) circle (2pt);
-%	\draw[vec] (LineSeparator1_2) |- (block1_3);
-%	
-%	\draw[vec] (block1_3) -| (sum1_1);
-%	
-%	\node[point] (output) [right = of block1_4] {$ y $};
-%	\draw[vec] (block1_4) to (output);
-%
-%
-%	%%Вторая линия
-%	\node[block] (block2_1)[below =30ex of block1_1] {$0.8$};
-%	\mysum{right = 3ex of block2_1}{sum2_1};
-%	
-%	
-%	\node[block] (block2_2)[right = 13ex of sum2_1] {$1/p$};
-%	\node[block] (block2_3)[above = of block2_2] {$300$};
-%	\node[block] (block2_4)[below = of block2_2] {$20$};
-%	\node[point] (LineSeparator1_1) [left = 3.5ex of block1_1] {};
-%	\fill (LineSeparator1_1) circle (2pt);	
-%	\draw[vec] (LineSeparator1_1) |- (block2_1);	
-%
-%	
-%	\draw[vec] (block2_1) to (sum2_1);	
-%	
-%	\draw[vec] (sum2_1) to (block2_2);	
-%	
-%	
-%
-%		
-%	
-%	
-%
-%	
-%	\draw[vec] (block2_3) -| (sum2_1);
-%	\draw[vec] (block2_4) -| (sum2_1);
-%	
-%	\node[point] (LineSeparator2_1) [right = 15ex of block2_2]{};
-%	\node[point] (LineSeparator2_10) [above = 1ex of LineSeparator2_1]{$z$};
-%	\fill (LineSeparator2_1) circle (2pt);
-%
-%
-%	\node[block] (block2_6)[below = 20ex of LineSeparator1_3] {$15$};
-%	\draw[vec] (LineSeparator2_1) |- (block2_4);	
-%	
-%
-%		
-%	\mysum{below =9ex of block2_6}{sum2_2};	
-%	
-%	
-%	\draw[vec] (block2_2) to (sum2_2);	
-%
-%	\node[point] (LineSeparator1_3) [above  = 34.7ex of sum2_2]{};
-%
-%	\fill (LineSeparator1_3.south) circle (2pt);	
-%	
-%	
-%	
-%
-%	\node[point] (LineSeparator1_4) [right = 15ex of LineSeparator1_3]{};
-%	
-%	\draw[vec] (LineSeparator1_3) to (block2_6);
-%	\draw[vec] (block2_6) to (sum2_2);
-%	
-%	\node[point] (output2) [right = 2ex of sum2_2] {${{\overline{x}}_{2}}$};	
-%	
-%	\draw[vec] (sum2_2) to (output2);
-%
-%	\node[point] (LineSeparator1_4) [below = 10ex of LineSeparator1_3] {};
-%	\fill (LineSeparator1_4.south) circle (2pt);	
-%	%\draw[vec] (LineSeparator1_4) -| (block2_3);
-%	
-%	\node[point] (LineSeparator1_5) [right = 15ex of block2_3] {};
-%	
-%		
-%	\draw (LineSeparator1_4) -| (LineSeparator1_5) [vec] to (block2_3);
-%\end{tikzpicture}
-%\footnotesize \caption{Решение задачи, рассмотренной в четвёртом примере\label{fig:extremum:fourth_example}}
-%\end{figure}
+	% Второй ряд
+	\node[block] (B2) [below = 8\baselineskip of B1] {$ 0,8 $};
+	\mysum[2,4]{right = 1.5em of B2}{sum2_1};
+	\draw[vec] (u) |- (B2);
+	\fill (u.south) circle (1pt);
+	\draw[vec] (B2) to (sum2_1);
+	\node[block] (int2_1) [right = 1.5em of sum2_1] {$ 1/p $};
+	\draw[vec] (sum2_1) to (int2_1);
+	\mysum{right = 8em of int2_1}{sum2_2};
+	\draw[vec] (int2_1) to (sum2_2);
+	\node[coordinate] (z) [right = 2em of int2_1, label=above:$ z $] {};
+	\fill (z) circle (1pt);
+	\node[block] (block2_1) [below = \baselineskip of int2_1] {$ 20 $};
+	\draw[vec] (z) |- (block2_1);
+	\draw[vec] (block2_1) -| (sum2_1);
+	\node[coordinate] (output2) [right = 5em of sum2_2] {};
+	\draw[vec] (sum2_2) to node(est2){$ \bar{x}_2 $} (output2);
 
+	\node[block] (block2_2) [above = \baselineskip of sum2_2] {$ 15 $};
+	\draw[vec] (block2_2)  to (sum2_2);
+	\draw[vec] (int1_2) to (int1_2 -| output2);
+	\draw[vec] (int1_2 -| block2_2) node(x1)[above]{$ x_1 = y $} to (block2_2);
+	\fill (x1.south) circle (1pt);
+	\node[block] (block2_3) [above left = 0 and 2em of block2_2] {$ 300 $};
+	\draw[vec] (block2_2 |- block2_3) to (block2_3);
+	\fill (block2_2 |- block2_3) circle (1pt);
+	\draw[vec] (block2_3) -| (sum2_1);
+
+\end{tikzpicture}
+\footnotesize \caption{Система, рассмотренная в примере~\ref{ex:stochastic:Luenberger:second_example} \label{fig:stochastic:Luenberger:second_example}}
+\end{figure}
+
+\mbox{}
 
 \clearpage
 
