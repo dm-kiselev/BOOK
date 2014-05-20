@@ -53,12 +53,12 @@
 	\maketitle
 \end{titlepage}
 
-\bibindex{УДК \mbox{}\\ ББК \pbox[lt]{\mbox{} \\ \mbox{}}}
-\copyrighttable{ISBN }
+\bibindex{УДК 681.513.5\\ББК \pbox[lt]{14.2.6\\Н561}}
+\copyrighttable{ }
 {	\item С.\=,А.~Нестеров, \theyear \\
 	\item Санкт-Петербургский государственный\\ политехнический университет, \theyear }
 \begin{abstract}
-\fulltitle{Нестеров С.\=,А.}{\textbf{Системы оптимального управления}\=, : конспект лекций --- СПб.\=, : Изд-во политехнического ун-та, \theyear . --- \mbox{} с.}
+\fulltitle{Нестеров С.\=,А.}{\textbf{Системы оптимального управления}\=,: конспект лекций --- СПб.\=,: Изд-во политехнического ун-та, \theyear . --- 73~с.}
 Настоящее пособие представляет собой конспект лекций по первой части курса "<Оптимальное и адаптивное управление">, читаемого на кафедре "<Компьютерные системы и программные технологии"> для студентов пятого курса, обучающихся по профилю "<Встраиваемые системы управления">.
 
 \begin{center}
@@ -1265,7 +1265,7 @@ S \left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}
 
 \textit{Оптимальное управление следует выбирать таким, чтобы в любой точке изохроны вектор нормали $ -grad \=, R(x) $ и текущий вектор фазовой скорости $ \dot{x} = \Phi (x,u) $ были предельно близки, и, если управление не ограничено, то оба вектора имеют одно направление.}
 
-\begin{problem}
+\begin{problem} \label{ex:dyn_prog:third_example}
 Найти допустимое управление $ \bigl| u(t) \bigr| \le 1 $ для быстрейшего перевода из произвольной точки фазового пространства в начало координат системы:
 \[ \dot{x}_1 = x_2, \quad \dot{x}_2 = u, \quad x_1(0) = x_0 \]
  
@@ -1281,12 +1281,12 @@ S \left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}
 \item Область \textbf{1} $ \left\{ \left( \begin{matrix}
 	x_1 \\
 	x_2
-\end{matrix} \right) \=, : \enskip \frac{\partial R}{\partial x_2} > 0 \right\} \enskip \Rightarrow \enskip u^* = -1 \enskip \Rightarrow \enskip $ уравнение Беллмана принимает вид: 
+\end{matrix} \right) \=, : \enskip \frac{\partial R}{\partial x_2} > 0 \right\} \enskip \Rightarrow \enskip \vspace{1ex} u^* = -1 \enskip \Rightarrow \enskip $ уравнение Беллмана принимает вид: 
 \[ 1 + \frac{\partial R}{\partial x_1} x_2 - \frac{\partial R}{\partial x_2} = 0 \enskip \Rightarrow \enskip R_1 = x_2 + 2\sqrt{ \frac{x_2^2}{2} + x_1 } \]
 \item Область \textbf{2} $ \left\{ \left( \begin{matrix}
 	x_1 \\
 	x_2
-\end{matrix} \right) \=, : \enskip \frac{\partial R}{\partial x_2} < 0 \right\} \enskip \Rightarrow \enskip u^* = 1 \enskip \Rightarrow \enskip $ уравнение Беллмана принимает вид:
+\end{matrix} \right) \=, : \enskip \frac{\partial R}{\partial x_2} < 0 \right\} \enskip \Rightarrow \enskip \vspace{1ex} u^* = 1 \enskip \Rightarrow \enskip $ уравнение Беллмана принимает вид:
 \[ 1 + \frac{\partial R}{\partial x_1} x_2 + \frac{\partial R}{\partial x_2} = 0 \enskip \Rightarrow \enskip R_2 = -x_2 + 2\sqrt{ \frac{x_2^2}{2} - x_1 } \]
 \end{itemize}
 \end{enumerate}
@@ -1301,7 +1301,7 @@ S \left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}
 Отметим один замечательный результат. В каждой области можно выделить аналитическое выражение для  семейства изохрон уровня $ T^* $:
 \begin{itemize}
 \item в первой:
-\[ x_1 + \frac{x_2^2}{2} - \frac{ { \bigl( T^* - x_2 \bigr) }^2 }{4} = 0 \]
+\[ x_1 + \frac{x_2^2}{2} - \frac{ { \bigl( T^* - x_2 \bigr) }^2 }{4} = 0 \] \pagebreak
 \item во второй:
 \[ x_1 - \frac{x_2^2}{2} + \frac{ { \bigl( T^* + x_2 \bigr) }^2 }{4} = 0 \]
 \end{itemize}
@@ -1309,9 +1309,44 @@ S \left( t+\Delta t,x+\Delta x \right)=S\left( t,x \right)+\sum\limits_{i=1}^{n}
 А на границе:
 \[ x_1 + \frac{ x_2 \cdot T^* }{2} = 0 \]
 
-Таким образом, можно изобразить семейство изохрон, и для любой точки, например, $ \left( \begin{matrix} x_1 \\ x_2 \end{matrix} \right) = \left( \begin{matrix} 4 \\ 0 \end{matrix} \right) $ изобразить вектор $ grad \=, R = \left( \begin{matrix} 0.5 \\ 1 \end{matrix} \right) $ и вектор фазовой скорости $ \Phi (x,u) = \left( \begin{matrix} 0 \\ u \end{matrix} \right) $. Из всех возможных управлений лишь при $ u = -1 $ будет наибольшая проекция на направление антиградиента к изохроне в этой точке. Значит, оптимальное управление $ u^* \left( \begin{matrix} 4 \\ 0 \end{matrix} \right) = -1 $.
+Таким образом, можно изобразить семейство изохрон, и для любой точки, например, $ \left( \begin{mmatrix} x_1 \\ x_2 \end{mmatrix} \right) = \left( \begin{mmatrix} 4 \\ 0 \end{mmatrix} \right) $ изобразить вектор $ grad \=, R = \left( \begin{mmatrix} 0.5 \\ 1 \end{mmatrix} \right) $, а вектор фазовой скорости $ \Phi (x,u) = \left( \begin{mmatrix} 0 \\ u \end{mmatrix} \right) $. Из всех возможных управлений лишь при $ u = -1 $ будет наибольшая проекция на направление антиградиента к изохроне в этой точке. Значит, оптимальное управление $ u^* \left( \begin{mmatrix} 4 \\ 0 \end{mmatrix} \right) = -1 $.
 
 \end{problem}
+
+\begin{figure}[ht] \centering
+\begin{tikzpicture}[xscale=0.35,yscale=0.7]
+	\draw[very thin,gray,xstep=4mm,ystep=2mm] (-10,-5) grid (10,5);		% сетка
+	\draw[semithick,->] (-10,0) -- (10,0) node[right] {$ x_1 $};
+	\draw[semithick,->] (0,-5) -- (0,5) node[above] {$ x_2 $};
+	\foreach \x in {-8,-6,-4,-2,2,4,6,8}
+		\draw[semithick] (\x cm,1mm) -- (\x cm,-1mm) node[anchor=north] {$\x$};
+	\foreach \y in {-4,-3,-2,-1,1,2,3,4}
+		\draw[semithick] (2mm,\y cm) -- (-2mm,\y cm) node[anchor=east] {$\y$};	
+	
+	\foreach \T in {1,2,3,4} {
+		\draw[blue,smooth,variable=\y,samples=100,domain=-\T:\T]
+			plot({ -\y*\y/2 + (\T-\y)*(\T-\y)/4 },{\y})
+			plot({ \y*\y/2 - (\T+\y)*(\T+\y)/4 },{\y});
+	}
+
+	\draw[thick,blue,rotate=90] ({-sqrt(20)},-10) parabola bend (0,0) (0,0) parabola ({sqrt(20)},10);
+
+	\begin{scope} \scriptsize
+		\node at (0.3,0.25) {$1$};
+		\node at (1,0.4) {$2$};
+		\node at (1.5,0.75) {$3$};
+		\node at (2.5,1.5) {$ T^* \!\! = 4 \, \text{с} $};
+	\end{scope}
+	
+	\draw[semithick,->] (4,0) -- (4.5,1) node[inner sep=0,above right=0mm and 1mm]{$ grad \, T $};
+	\draw[dashed] (4,0) -- (3.5,-1);
+	\draw[semithick,->] (4,0) -- (4,-1);
+
+	\node at (-8,-4) {$+$};
+	\node at (8,4) {$-$};
+\end{tikzpicture}
+\footnotesize \caption{Решение задачи, рассмотренной в примере~\ref{ex:dyn_prog:third_example} \label{fig:dyn_prog:third_example}}
+\end{figure}
 
 	\subsection{Численное решение уравнений динамического программирования\label{dyn_prog:numerical}}
 
@@ -1591,7 +1626,7 @@ $ \cfrac{ \left. \cfrac{1}{ c \sqrt{ 1 + c^2 } + 1 + c^2 } \right\} k^* }{ \unde
 
 Современная теория стохастической фильтрации заложена в~40\=/х годах XX~века трудами А.\=,Н.~Колмогорова и Н.~Винера, которые независимо друг от друга использовали процедуры интерполяции и экстраполяции стационарных случайных последовательностей для решения задач измерения параметров траектории летательных аппаратов по радарным данным. Первые результаты получены на основе интегрального уравнения Винера-Хопфа. Решение искалось в частотной области с использованием разложения спектральной плотности на пару зеркально симметричных сомножителей и последующим порождением выходного процесса из белого шума. Предложенная процедура очень сложна, и область применения оказалась довольно узкой.
 
-Дальнейшее развитие теоремы фильтрации связано с именами Р.~Калмана и Р.~Бьюси. Ими решена задача в пространстве состояний, найдены дискретный, а затем и непрерывный эквиваленты интегрального уравнения Винера-Хопфа в виде матричных разностного и дифференциального уравнений соответственно. Приведём эти результаты в виде теоремы и основанной на ней процедуры синтеза фильтра.
+Дальнейшее развитие теории фильтрации связано с именами Р.~Калмана и Р.~Бьюси. Ими решена задача в пространстве состояний, найдены дискретный, а затем и непрерывный эквиваленты интегрального уравнения Винера-Хопфа в виде матричных разностного и дифференциального уравнений соответственно. Приведём эти результаты в виде теоремы и основанной на ней процедуры синтеза фильтра.
 
 Пусть задана динамическая система:
 \[ \begin{darray}{l@{\quad}l}
@@ -2077,7 +2112,8 @@ J_{ \min } = \underset{ \tau \to \infty }{ \mathop{ \lim } } \=, M \left\{ \int\
 \item \textit{Чураков~Е.\=,П.} Оптимальные и адаптивные системы\=,: Учебное пособие для вузов. --- М.: Энергоатомиздат, 1987. --- 256 с.
 \item \textit{Куропаткин~П.\=,В.} Оптимальные и самонастраивающиеся системы\=,: Учебное пособие. --- М.: Высшая школа, 1980.
 \end{enumerate}
- \newpage \mbox{} \newpage   
+
+\newpage \thispagestyle{empty} \mbox{} \newpage   
 
 \end{document}
 
